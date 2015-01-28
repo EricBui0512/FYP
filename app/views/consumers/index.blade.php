@@ -1,0 +1,1 @@
+E:\wamp\www\booking\app/views/consumers/index.blade.php

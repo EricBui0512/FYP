@@ -1,0 +1,1 @@
+E:\wamp\www\booking\app/views/images/index.blade.php
