@@ -15,6 +15,10 @@ class CreateServiceconditionsTable extends Migration {
 		Schema::create('serviceconditions', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('specialcondition');
+			$table->string('condition1');
+			$table->string('condition2');
+			$table->string('dealcondition');
 			$table->timestamps();
 		});
 	}

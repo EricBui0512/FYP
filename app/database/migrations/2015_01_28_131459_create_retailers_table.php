@@ -15,6 +15,12 @@ class CreateRetailersTable extends Migration {
 		Schema::create('retailers', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('id_catalogy')->unsigned();
+			$table->integer('id_address')->unsigned();
+			$table->integer('id_company')->unsigned();
+			$table->string('website');
+			$table->integer('id_subperadmin')->unsigned();
+			$table->string('name');
 			$table->timestamps();
 		});
 	}

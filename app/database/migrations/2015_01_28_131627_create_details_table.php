@@ -15,6 +15,15 @@ class CreateDetailsTable extends Migration {
 		Schema::create('details', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('id_consumer')->unsigned();
+			$table->string('consumeremail');
+			$table->integer('id_service')->unsigned();
+			$table->integer('id_outlet')->unsigned();
+			$table->dateTime('paymentdate');
+			$table->string('paymenttype');
+			$table->string('specialrequest');
+			$table->dateTime('timeslot');
+			$table->timestamps('remindtime');
 			$table->timestamps();
 		});
 	}

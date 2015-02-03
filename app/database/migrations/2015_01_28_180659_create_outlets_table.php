@@ -15,6 +15,16 @@ class CreateOutletsTable extends Migration {
 		Schema::create('outlets', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('name');
+			$table->integer('id_address')->unsigned();
+			$table->string('outletregister');
+			$table->string('website');
+			$table->string('photo');
+			$table->integer('id_retailer')->unsigned();
+			$table->string('operationhour');
+			$table->integer('id_description')->unsigned();
+			$table->float('rate');
+			$table->boolean('active')->default(0);
 			$table->timestamps();
 		});
 	}

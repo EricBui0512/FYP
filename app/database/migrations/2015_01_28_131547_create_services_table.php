@@ -15,6 +15,12 @@ class CreateServicesTable extends Migration {
 		Schema::create('services', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('id_outlet')->unsigned();
+			$table->integer('id_condition')->unsigned();
+			$table->integer('id_photo')->unsigned();
+			$table->integer('id_detail')->unsigned();
+			$table->boolean('active')->default(0);
+			$table->string('timeoperate');
 			$table->timestamps();
 		});
 	}

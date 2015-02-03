@@ -15,6 +15,7 @@ class CreateBussinesscatelogiesTable extends Migration {
 		Schema::create('bussinesscatelogies', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('catelogyname');
 			$table->timestamps();
 		});
 	}
