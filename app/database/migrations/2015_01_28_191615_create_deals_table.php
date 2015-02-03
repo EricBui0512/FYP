@@ -15,6 +15,16 @@ class CreateDealsTable extends Migration {
 		Schema::create('deals', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('id_consumer');
+			$table->string('consumeremail');
+			$table->integer('id_service')->unsigned();
+			$table->integer('id_outlet')->unsigned();
+			$table->datetime('paymentdate');
+			$table->string('paymenttype');
+			$table->decimal('amount',10);
+			$table->string('specialrequest');
+			$table->datetime('timeslot');
+			$table->timestamps('remindtime');
 			$table->timestamps();
 		});
 	}

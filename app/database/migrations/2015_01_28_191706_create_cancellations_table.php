@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateCaancellationsTable extends Migration {
+class CreateCancellationsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,13 @@ class CreateCaancellationsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('caancellations', function(Blueprint $table)
+		Schema::create('cancellations', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('id_deal')->unsigned();
+			$table->integer('id_who')->unsigned();
+			$table->string('reason');
+			$table->string('who');
 			$table->timestamps();
 		});
 	}
@@ -27,7 +31,7 @@ class CreateCaancellationsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('caancellations');
+		Schema::drop('cancellations');
 	}
 
 }

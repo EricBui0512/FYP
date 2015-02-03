@@ -15,6 +15,12 @@ class CreateFeedbacksTable extends Migration {
 		Schema::create('feedbacks', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('id_deal')->unsigned();
+			$table->integer('id_consumer')->unsigned();
+			$table->integer('id_service')->unsigned();
+			$table->string('feedback');
+			$table->string('feedbackcol');
+			$table->decimal('rate',10);
 			$table->timestamps();
 		});
 	}

@@ -15,6 +15,11 @@ class CreateConsumersTable extends Migration {
 		Schema::create('consumers', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('firstname');
+			$table->string('lastname');
+			$table->string('email');
+			$table->integer('id_address');
+			$table->boolean('active');
 			$table->timestamps();
 		});
 	}
