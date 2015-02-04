@@ -23,7 +23,7 @@ class CreateDetailsTable extends Migration {
 			$table->string('paymenttype');
 			$table->string('specialrequest');
 			$table->dateTime('timeslot');
-			$table->timestamps('remindtime');
+			$table->datetime('remindtime');
 			$table->timestamps();
 		});
 	}

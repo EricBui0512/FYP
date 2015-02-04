@@ -24,7 +24,7 @@ class CreateDealsTable extends Migration {
 			$table->decimal('amount',10);
 			$table->string('specialrequest');
 			$table->datetime('timeslot');
-			$table->timestamps('remindtime');
+			$table->datetime('remindtime');
 			$table->timestamps();
 		});
 	}
