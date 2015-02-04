@@ -1561,241 +1561,225 @@ lists-popover-message
                                 </div>
                             </div>
                         </li>
-                        <li data-priority="2" class="
-user_center_option uc_account
-uc-option uc-option--account
-" id="current_account">
-                            <a href="javascript:void(0);" class="
-popover_trigger signin_cta
-profile_menu_trigger
-uc-option__link
-" data-google-track="Click/Action: index/header_logged_out_link_box">
-                                <img class="uc-option__icon" src="https://q.bstatic.com/static/img/experiment_dda_uc_signin_copy_change/welcome/0d76a5d91a38c65f6a64b9516de90cfb7dd0bfd2.png" />
-                                <span class="uc-option__text">
-Sign in
-</span>
-                            </a>
-                            <div class="user_center_popover center_arrow uc_login ">
-                                <div class="uc_top_arrow"></div>
-                                <div class="new_menu_size popover_content">
-                                    <div class="user_access_menu ClickTaleSensitive    user-access-menu-include-facebook-signin ">
-                                        <div class="user_access_menu_tabs">
-                                            <div class="user_access_signin_menu_tab user_menu_first_tab user_menu_active_tab form-tabs user_access_section_trigger" data-target="user_access_signin_menu">
-                                                Sign in
-                                            </div>
-                                            <div class="user_access_signup_menu_tab  form-tabs user_access_section_trigger" data-target="user_access_signup_menu">
-                                                Sign up
-                                            </div>
-                                        </div>
-                                        <div class="user_access_signin_menu form-section form-shown-section">
-                                            <div class="alert alert-error" style="display:none;"></div>
-                                            <div class="form-loading"><span class="form-loading-content">Loading...</span>
-                                            </div>
-                                            <div class="ua-facebook-button-wrapper">
-                                                <div class="
-ua-facebook-button
-js-ua-facebook-button
-" data-type="signin">
-                                                    <div class="ua-facebook-button__button" data-command="facebook-connect">
-                                                        Sign in with Facebook
-                                                    </div>
-                                                    <div class="ua-facebook-button__error">
-                                                        Sorry, social sign in is not currently available. Instead, please enter your email address and password.
-                                                    </div>
-                                                </div>
-                                                <div class="ua-facebook-button-header">
-                                                    <i class="ua-facebook-button-header__text">Or</i>
-                                                </div>
-                                            </div>
-                                            <form class="user_access_form form-subsection  user_access_form_js" target="log_tar" action="https://secure.booking.com/login.en-gb.html?sid=8a9f25f2192ae5441594c09ddc4ef943;dcid=4;tmpl=profile%2Fslogin;protocol=https&" method="post">
-                                                <input type="hidden" name="bhc_csrf_token" value="8QvSVAAAAAA=S2JEezuXPz9D3sgsV58Rwj_OqIC8EpzOP-A0HqN5LKvlmf_6Z6ebPKWpbL4U7hzJGGRn5qjABN70vUdjtxFXTTPQhbD8v1FJcZG3UOzGq9UTivBFWp3aHfvmjcKHcV6FnAEh95eev9A56m6dG4LIheWECO-Vkj80CuLFM9m4wxKczN37NeZ6dt4kNxA">
-                                                <input type="hidden" name="op" value="login" />
-                                                <input type="hidden" name="user_access_menu" value="1" />
-                                                <input type="hidden" name="target_url" value="https:&#47;&#47;www.booking.com&#47;index.en-gb.html?sid=2c0024c6af15f91602a9ed00048ac02f;dcid=4">
-                                                <p class="form-header-p">Sign in to your account</p>
-                                                <p class="form-header form-subheader">To personalise this site and manage your bookings</p>
-                                                <label class="bootstrapped-label user_access_email_section">
-                                                    Email address
-                                                    <input type="text" name="username" maxlength="80" class="user_access_email bootstrapped-input input-text input-block-level input-xlarge" data-validation="required{Please enter a valid email address}|email" value="" />
-                                                </label>
-                                                <label class="bootstrapped-label">
-                                                    Password
-                                                    <a class="inline-forgot-pass forgot_pass_trigger" href="https:&#47;&#47;secure.booking.com&#47;login.en-gb.html?sid=8a9f25f2192ae5441594c09ddc4ef943;dcid=4;op=remind&amp;" data-href="https:&#47;&#47;secure.booking.com&#47;login.en-gb.html?sid=8a9f25f2192ae5441594c09ddc4ef943;dcid=4;op=remind&amp;" tabindex="-1" target="_blank">Forgotten your password?</a>
-                                                    <input type="password" name="password" class="user_access_password bootstrapped-input input-text input-block-level input-xlarge" data-validation="required{Please add a password}" />
-                                                </label>
-                                                <div class="clearfix"></div>
-                                                <input type="submit" value="Sign in" class="bootstrapped-input btn btn-primary  " />
-                                                <div class="user_access_inline_signup user_access_section_trigger_link">
-                                                    No account? <a href="#" data-target="user_access_signup_menu" class="user_access_section_trigger">Start here</a>
-                                                </div>
-                                            </form>
-                                            <div class="form-subsection">
-                                                <div class="form-usp-block">
-                                                    <p class="form-header-p">It's fast, free and secure!</p>
-                                                    <ul class="user_access_menu_usps">
-                                                        <li>Change upcoming bookings</li>
-                                                        <li>Access all your confirmations</li>
-                                                        <li>Personalise your deals</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="resend-conf-lightbox is-hidden js-modal--resend">
-                                            <div class="resend-conf" data-type="modal">
-                                                <div class="resend-conf__step resend-conf__step--form">
-                                                    <a href="#" class="resend-conf__icon resend-conf__icon--close js-close"></a>
-                                                    <h4 class="resend-conf__step__title">Enter your email address and we'll resend your confirmation</h4>
-                                                    <form class="resend-conf-form user_access_form" action="https://secure.booking.com/resendconfemail">
-                                                        <input type="hidden" name="stype" value="1">
-                                                        <input type="hidden" name="aid" value="304142">
-                                                        <input type="hidden" name="lang" value="en-gb">
-                                                        <input type="email" class="user_access_email bootstrapped-input input-text input-block-level input-xlarge" name="email" value="" maxlength="80" autocomplete="off" placeholder="Your email address" />
-                                                        <div class="resend-conf-form__error is-hidden">Please enter a valid email address</div>
-                                                        <div class="clearfix"></div>
-                                                        <div class="resend-conf-form__choose-booking marginBottom_5">
-                                                            <input type="radio" name="last" value="1" id="cs_resend_one-active-booking" checked>
-                                                            <label for="cs_resend_one-active-booking">For your most recent booking</label>
-                                                        </div>
-                                                        <div class="resend-conf-form__choose-booking marginBottom_10">
-                                                            <input type="radio" name="last" value="0" id="cs_resend_five-active-bookings">
-                                                            <label for="cs_resend_five-active-bookings">For up to 5 of your most recent bookings</label>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                        <button type="submit" class="resend-conf-form__send bootstrapped-input btn btn-primary  marginTop_5">Resend<img src="https://r.bstatic.com/static/img/ajax-loaders/ajax-loader-blue-button/9e684ff4b8aecf9b1c961c2659aecad18e1a3093.gif" alt="Loading" title="" class="resend-conf-form__loading">
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                                <div class="resend-conf__step resend-conf__step--success txtcenter is-hidden">
-                                                    <a href="#" class="resend-conf__icon resend-conf__icon--close js-close"></a>
-                                                    <h4 class="resend-conf__step__title">
-<em class="resend-conf__icon resend-conf__icon--success"></em>
-We've resent your requested confirmations to <span class="resend-conf__success__email"></span>
-</h4>
-                                                    <div class="marginTop_10">Please note that email delivery may take up to 10 minutes</div>
-                                                    <button class="resend-conf-form__close bootstrapped-input btn btn-primary  marginTop_10 js-close">
-                                                        Close
-                                                    </button>
-                                                </div>
-                                                <div class="resend-conf__step resend-conf__step--error is-hidden txtcenter">
-                                                    <a href="#" class="resend-conf__icon resend-conf__icon--close js-close"></a>
-                                                    <h4 class="resend-conf__step__title">
-<em class="resend-conf__icon resend-conf__icon--error"></em>
-Sorry, we were unable to resend your requested confirmations
-</h4>
-                                                    <div class="marginTop_10">
-                                                        <a href="#" class="resend-conf__link js-btn--repeat">
-                                                            <em class="resend-conf__icon resend-conf__icon--repeat"></em>
-                                                            <span>Please check your email address and try again</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="user_access_signup_menu form-section form-hidden-section">
-                                            <div class="alert alert-error"></div>
-                                            <div class="form-loading"><span class="form-loading-content">Loading...</span>
-                                            </div>
-                                            <div class="ua-facebook-button-wrapper">
-                                                <div class="
-ua-facebook-button
-js-ua-facebook-button
-" data-type="signup">
-                                                    <div class="ua-facebook-button__button" data-command="facebook-connect">
-                                                        Sign up with Facebook
-                                                    </div>
-                                                    <div class="ua-facebook-button__error">
-                                                        Sorry, social sign up is not currently available. Instead, please enter your email address and create a password.
-                                                    </div>
-                                                </div>
-                                                <div class="ua-facebook-button-header">
-                                                    <i class="ua-facebook-button-header__text">Or</i>
-                                                </div>
-                                            </div>
-                                            <form class="user_access_form user_access_form_signup form-subsection" action="https://secure.booking.com/login.en-gb.html?sid=8a9f25f2192ae5441594c09ddc4ef943;dcid=4;tmpl=profile%2Fslogin;protocol=https&" method="post" target="log_tar">
-                                                <input type="hidden" name="bhc_csrf_token" value="8QvSVAAAAAA=S2JEezuXPz9D3sgsV58Rwj_OqIC8EpzOP-A0HqN5LKvlmf_6Z6ebPKWpbL4U7hzJGGRn5qjABN70vUdjtxFXTTPQhbD8v1FJcZG3UOzGq9UTivBFWp3aHfvmjcKHcV6FnAEh95eev9A56m6dG4LIheWECO-Vkj80CuLFM9m4wxKczN37NeZ6dt4kNxA">
-                                                <input type="hidden" name="no_redirect" value="1" />
-                                                <input type="hidden" name="target_url" value="https:&#47;&#47;www.booking.com&#47;index.en-gb.html?sid=2c0024c6af15f91602a9ed00048ac02f;dcid=4">
-                                                <input type="hidden" name="user_access_menu" value="1" />
-                                                <input type="hidden" name="op" value="register" />
-                                                <input type="hidden" name="tmpl" value="profile/signup" />
-                                                <label class="bootstrapped-label user_access_email_section">
-                                                    Email address
-                                                    <input type="text" name="username" maxlength="80" class="user_access_email bootstrapped-input input-text input-block-level input-xlarge" data-validation="required{Please enter a valid email address}|email" value="" />
-                                                </label>
-                                                <label class="bootstrapped-label password_strength_wrapper ">
-                                                    Password
-                                                    <span class="pwd_text_field">
-<input
-type="password"
-name="password"
-class="user_signup_password bootstrapped-input input-text input-block-level input-xlarge password_strength"
-data-validation="required{Please add a password}|min_length(8){Password needs to be at least 8 characters long}"
-/>
-</span>
-                                                    <div class="user_access_password_strength input-xlarge jq_tooltip">
-                                                        <div class="pass_strength_bar pass_strength_progress"></div>
-                                                        <div class="pass_strength_bar pass_strength_steps">
-                                                            <div class="pass_strength_step"></div>
-                                                            <div class="pass_strength_step"></div>
-                                                            <div class="pass_strength_step"></div>
-                                                            <div class="pass_strength_step"></div>
-                                                            <div class="pass_strength_step"></div>
-                                                            <div class="pass_strength_step"></div>
-                                                            <div class="pass_strength_step"></div>
-                                                            <div class="pass_strength_step"></div>
-                                                            <div class="pass_strength_step"></div>
-                                                            <div class="pass_strength_step"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="pass_strength_text jq_tooltip" title="Include capital letters, special characters, and numbers to increase your password strength">&nbsp;</div>
-                                                </label>
-                                                <div class="clearfix"></div>
-                                                <div class="news_subscribe_check">
-                                                    <label>
-                                                        <input type="checkbox" id="newsletter_subscribe_check" name="subscribe" value="1" />
-                                                        <strong>Send me newsletters with Exclusive Deals </strong>
-                                                    </label>
-                                                </div>
-                                                <input type="submit" value="Create my account" class="bootstrapped-input btn btn-primary " />
-                                            </form>
-                                            <div class="form-subsection">
-                                                <div class="form-usp-block">
-                                                    <p class="form-header-p">It's fast, free and secure!</p>
-                                                    <ul class="user_access_menu_usps">
-                                                        <li>Change bookings</li>
-                                                        <li>Personalise your deals</li>
-                                                        <li>Book faster</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <p class="terms_and_conditions">By having an account you are agreeing with our <a href="https://www.booking.com/general.en-gb.html?sid=8a9f25f2192ae5441594c09ddc4ef943;dcid=4;tmpl=docs/terms-and-conditions" target="_blank">Terms and Conditions</a> and <a href="https://www.booking.com/general.en-gb.html?sid=8a9f25f2192ae5441594c09ddc4ef943;dcid=4;tmpl=docs/privacy-policy" target="_blank">Privacy Statement</a>
-                                            </p>
-                                        </div>
-                                        <iframe src="about:blank" name="log_tar" id="log_tar" width="1" height="1" style="height:0px;width:1px;overflow:hidden;visibility:hidden;position:absolute;" frameborder="0" border="0"></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="user_center_popover center_arrow uc-cug-signup-menu-prompt js-uc-cug-signup-menu-prompt">
-                                <div class="uc_top_arrow"></div>
-                                <div class="popover_content">
-                                    <div class="uc-cug-signup-menu-prompt__header">
-                                        <span class="uc-cug-signup-menu-prompt__close js-uc-cug-signup-menu-prompt__close use_sprites icon_remove"></span>
-                                        <div class="uc-cug-signup-menu-prompt__title">
-                                            Welcome back! Sign in to see <strong>Member Deals</strong>.
-                                        </div>
-                                        <div class="b-button b-button_primary uc-cug-signup-menu-prompt__button js-uc-cug-signup-menu-prompt-button">
-                                            <span class="b-button__text">Sign in</span>
-                                        </div>
-                                        <div class="uc-cug-signup-menu-prompt__signup">No account? <a class="js-uc-cug-signup-menu-prompt-link" href="#">Start here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+ 						@if (!Auth::check())
+	                        <li data-priority="2" class="user_center_option uc_account uc-option uc-option--account" id="current_account">
+	                            <a href="javascript:void(0);" class="popover_trigger signin_cta profile_menu_trigger uc-option__link" data-google-track="Click/Action: index/header_logged_out_link_box">
+	                                <img class="uc-option__icon" src="https://q.bstatic.com/static/img/experiment_dda_uc_signin_copy_change/welcome/0d76a5d91a38c65f6a64b9516de90cfb7dd0bfd2.png" />
+	                                <span class="uc-option__text">
+										Sign in
+									</span>
+	                            </a>
+	                            <div class="user_center_popover center_arrow uc_login ">
+	                                <div class="uc_top_arrow"></div>
+	                                <div class="new_menu_size popover_content">
+	                                    <div class="user_access_menu ClickTaleSensitive    user-access-menu-include-facebook-signin ">
+	                                        <div class="user_access_menu_tabs">
+	                                            <div class="user_access_signin_menu_tab user_menu_first_tab user_menu_active_tab form-tabs user_access_section_trigger" data-target="user_access_signin_menu">
+	                                                Sign in
+	                                            </div>
+	                                            <div class="user_access_signup_menu_tab  form-tabs user_access_section_trigger" data-target="user_access_signup_menu">
+	                                                Sign up
+	                                            </div>
+	                                        </div>
+	                                        <div class="user_access_signin_menu form-section form-shown-section">
+	                                            <div class="alert alert-error" style="display:none;"></div>
+	                                            <div class="form-loading"><span class="form-loading-content">Loading...</span>
+	                                            </div>
+	                                            <div class="ua-facebook-button-wrapper">
+	                                                <div class="ua-facebook-button js-ua-facebook-button" data-type="signin">
+	                                                    <div class="ua-facebook-button__button" data-command="facebook-connect">
+	                                                        Sign in with Facebook
+	                                                    </div>
+	                                                    <div class="ua-facebook-button__error">
+	                                                        Sorry, social sign in is not currently available. Instead, please enter your email address and password.
+	                                                    </div>
+	                                                </div>
+	                                                <div class="ua-facebook-button-header">
+	                                                    <i class="ua-facebook-button-header__text">Or</i>
+	                                                </div>
+	                                            </div>
+	                                            <form class="user_access_form form-subsection  user_access_form_js" target="log_tar" action="https://secure.booking.com/login.en-gb.html?sid=8a9f25f2192ae5441594c09ddc4ef943;dcid=4;tmpl=profile%2Fslogin;protocol=https&" method="post">
+	                                                <input type="hidden" name="bhc_csrf_token" value="8QvSVAAAAAA=S2JEezuXPz9D3sgsV58Rwj_OqIC8EpzOP-A0HqN5LKvlmf_6Z6ebPKWpbL4U7hzJGGRn5qjABN70vUdjtxFXTTPQhbD8v1FJcZG3UOzGq9UTivBFWp3aHfvmjcKHcV6FnAEh95eev9A56m6dG4LIheWECO-Vkj80CuLFM9m4wxKczN37NeZ6dt4kNxA">
+	                                                <input type="hidden" name="op" value="login" />
+	                                                <input type="hidden" name="user_access_menu" value="1" />
+	                                                <input type="hidden" name="target_url" value="https:&#47;&#47;www.booking.com&#47;index.en-gb.html?sid=2c0024c6af15f91602a9ed00048ac02f;dcid=4">
+	                                                <p class="form-header-p">Sign in to your account</p>
+	                                                <p class="form-header form-subheader">To personalise this site and manage your bookings</p>
+	                                                <label class="bootstrapped-label user_access_email_section">
+	                                                    Email address
+	                                                    <input type="text" name="username" maxlength="80" class="user_access_email bootstrapped-input input-text input-block-level input-xlarge" data-validation="required{Please enter a valid email address}|email" value="" />
+	                                                </label>
+	                                                <label class="bootstrapped-label">
+	                                                    Password
+	                                                    <a class="inline-forgot-pass forgot_pass_trigger" href="https:&#47;&#47;secure.booking.com&#47;login.en-gb.html?sid=8a9f25f2192ae5441594c09ddc4ef943;dcid=4;op=remind&amp;" data-href="https:&#47;&#47;secure.booking.com&#47;login.en-gb.html?sid=8a9f25f2192ae5441594c09ddc4ef943;dcid=4;op=remind&amp;" tabindex="-1" target="_blank">Forgotten your password?</a>
+	                                                    <input type="password" name="password" class="user_access_password bootstrapped-input input-text input-block-level input-xlarge" data-validation="required{Please add a password}" />
+	                                                </label>
+	                                                <div class="clearfix"></div>
+	                                                <input type="submit" value="Sign in" class="bootstrapped-input btn btn-primary  " />
+	                                                <div class="user_access_inline_signup user_access_section_trigger_link">
+	                                                    No account? <a href="#" data-target="user_access_signup_menu" class="user_access_section_trigger">Start here</a>
+	                                                </div>
+	                                            </form>
+	                                            <div class="form-subsection">
+	                                                <div class="form-usp-block">
+	                                                    <p class="form-header-p">It's fast, free and secure!</p>
+	                                                    <ul class="user_access_menu_usps">
+	                                                        <li>Change upcoming bookings</li>
+	                                                        <li>Access all your confirmations</li>
+	                                                        <li>Personalise your deals</li>
+	                                                    </ul>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                        <div class="resend-conf-lightbox is-hidden js-modal--resend">
+	                                            <div class="resend-conf" data-type="modal">
+	                                                <div class="resend-conf__step resend-conf__step--form">
+	                                                    <a href="#" class="resend-conf__icon resend-conf__icon--close js-close"></a>
+	                                                    <h4 class="resend-conf__step__title">Enter your email address and we'll resend your confirmation</h4>
+	                                                    <form class="resend-conf-form user_access_form" action="https://secure.booking.com/resendconfemail">
+	                                                        <input type="hidden" name="stype" value="1">
+	                                                        <input type="hidden" name="aid" value="304142">
+	                                                        <input type="hidden" name="lang" value="en-gb">
+	                                                        <input type="email" class="user_access_email bootstrapped-input input-text input-block-level input-xlarge" name="email" value="" maxlength="80" autocomplete="off" placeholder="Your email address" />
+	                                                        <div class="resend-conf-form__error is-hidden">Please enter a valid email address</div>
+	                                                        <div class="clearfix"></div>
+	                                                        <div class="resend-conf-form__choose-booking marginBottom_5">
+	                                                            <input type="radio" name="last" value="1" id="cs_resend_one-active-booking" checked>
+	                                                            <label for="cs_resend_one-active-booking">For your most recent booking</label>
+	                                                        </div>
+	                                                        <div class="resend-conf-form__choose-booking marginBottom_10">
+	                                                            <input type="radio" name="last" value="0" id="cs_resend_five-active-bookings">
+	                                                            <label for="cs_resend_five-active-bookings">For up to 5 of your most recent bookings</label>
+	                                                        </div>
+	                                                        <div class="clearfix"></div>
+	                                                        <button type="submit" class="resend-conf-form__send bootstrapped-input btn btn-primary  marginTop_5">Resend<img src="https://r.bstatic.com/static/img/ajax-loaders/ajax-loader-blue-button/9e684ff4b8aecf9b1c961c2659aecad18e1a3093.gif" alt="Loading" title="" class="resend-conf-form__loading">
+	                                                        </button>
+	                                                    </form>
+	                                                </div>
+	                                                <div class="resend-conf__step resend-conf__step--success txtcenter is-hidden">
+	                                                    <a href="#" class="resend-conf__icon resend-conf__icon--close js-close"></a>
+	                                                    <h4 class="resend-conf__step__title">
+															<em class="resend-conf__icon resend-conf__icon--success"></em>
+															We've resent your requested confirmations to <span class="resend-conf__success__email"></span>
+														</h4>
+	                                                    <div class="marginTop_10">Please note that email delivery may take up to 10 minutes</div>
+	                                                    <button class="resend-conf-form__close bootstrapped-input btn btn-primary  marginTop_10 js-close">
+	                                                        Close
+	                                                    </button>
+	                                                </div>
+	                                                <div class="resend-conf__step resend-conf__step--error is-hidden txtcenter">
+	                                                    <a href="#" class="resend-conf__icon resend-conf__icon--close js-close"></a>
+	                                                    <h4 class="resend-conf__step__title">
+															<em class="resend-conf__icon resend-conf__icon--error"></em>
+															Sorry, we were unable to resend your requested confirmations
+														</h4>
+	                                                    <div class="marginTop_10">
+	                                                        <a href="#" class="resend-conf__link js-btn--repeat">
+	                                                            <em class="resend-conf__icon resend-conf__icon--repeat"></em>
+	                                                            <span>Please check your email address and try again</span>
+	                                                        </a>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                        <div class="user_access_signup_menu form-section form-hidden-section">
+	                                            <div class="alert alert-error"></div>
+	                                            <div class="form-loading"><span class="form-loading-content">Loading...</span>
+	                                            </div>
+	                                            <div class="ua-facebook-button-wrapper">
+	                                                <div class="ua-facebook-button js-ua-facebook-button" data-type="signup">
+	                                                    <div class="ua-facebook-button__button" data-command="facebook-connect">
+	                                                        Sign up with Facebook
+	                                                    </div>
+	                                                    <div class="ua-facebook-button__error">
+	                                                        Sorry, social sign up is not currently available. Instead, please enter your email address and create a password.
+	                                                    </div>
+	                                                </div>
+	                                                <div class="ua-facebook-button-header">
+	                                                    <i class="ua-facebook-button-header__text">Or</i>
+	                                                </div>
+	                                            </div>
+	                                            <form class="user_access_form user_access_form_signup form-subsection" action="https://secure.booking.com/login.en-gb.html?sid=8a9f25f2192ae5441594c09ddc4ef943;dcid=4;tmpl=profile%2Fslogin;protocol=https&" method="post" target="log_tar">
+	                                                <input type="hidden" name="bhc_csrf_token" value="8QvSVAAAAAA=S2JEezuXPz9D3sgsV58Rwj_OqIC8EpzOP-A0HqN5LKvlmf_6Z6ebPKWpbL4U7hzJGGRn5qjABN70vUdjtxFXTTPQhbD8v1FJcZG3UOzGq9UTivBFWp3aHfvmjcKHcV6FnAEh95eev9A56m6dG4LIheWECO-Vkj80CuLFM9m4wxKczN37NeZ6dt4kNxA">
+	                                                <input type="hidden" name="no_redirect" value="1" />
+	                                                <input type="hidden" name="target_url" value="https:&#47;&#47;www.booking.com&#47;index.en-gb.html?sid=2c0024c6af15f91602a9ed00048ac02f;dcid=4">
+	                                                <input type="hidden" name="user_access_menu" value="1" />
+	                                                <input type="hidden" name="op" value="register" />
+	                                                <input type="hidden" name="tmpl" value="profile/signup" />
+	                                                <label class="bootstrapped-label user_access_email_section">
+	                                                    Email address
+	                                                    <input type="text" name="username" maxlength="80" class="user_access_email bootstrapped-input input-text input-block-level input-xlarge" data-validation="required{Please enter a valid email address}|email" value="" />
+	                                                </label>
+	                                                <label class="bootstrapped-label password_strength_wrapper ">
+	                                                    Password
+	                                                    <span class="pwd_text_field">
+	                                                    	<input type="password" name="password" class="user_signup_password bootstrapped-input input-text input-block-level input-xlarge password_strength" data-validation="required{Please add a password}|min_length(8){Password needs to be at least 8 characters long}"/>
+														</span>
+	                                                    <div class="user_access_password_strength input-xlarge jq_tooltip">
+	                                                        <div class="pass_strength_bar pass_strength_progress"></div>
+	                                                        <div class="pass_strength_bar pass_strength_steps">
+	                                                            <div class="pass_strength_step"></div>
+	                                                            <div class="pass_strength_step"></div>
+	                                                            <div class="pass_strength_step"></div>
+	                                                            <div class="pass_strength_step"></div>
+	                                                            <div class="pass_strength_step"></div>
+	                                                            <div class="pass_strength_step"></div>
+	                                                            <div class="pass_strength_step"></div>
+	                                                            <div class="pass_strength_step"></div>
+	                                                            <div class="pass_strength_step"></div>
+	                                                            <div class="pass_strength_step"></div>
+	                                                        </div>
+	                                                    </div>
+	                                                    <div class="pass_strength_text jq_tooltip" title="Include capital letters, special characters, and numbers to increase your password strength">&nbsp;</div>
+	                                                </label>
+	                                                <div class="clearfix"></div>
+	                                                <div class="news_subscribe_check">
+	                                                    <label>
+	                                                        <input type="checkbox" id="newsletter_subscribe_check" name="subscribe" value="1" />
+	                                                        <strong>Send me newsletters with Exclusive Deals </strong>
+	                                                    </label>
+	                                                </div>
+	                                                <input type="submit" value="Create my account" class="bootstrapped-input btn btn-primary " />
+	                                            </form>
+	                                            <div class="form-subsection">
+	                                                <div class="form-usp-block">
+	                                                    <p class="form-header-p">It's fast, free and secure!</p>
+	                                                    <ul class="user_access_menu_usps">
+	                                                        <li>Change bookings</li>
+	                                                        <li>Personalise your deals</li>
+	                                                        <li>Book faster</li>
+	                                                    </ul>
+	                                                </div>
+	                                            </div>
+	                                            <p class="terms_and_conditions">By having an account you are agreeing with our <a href="https://www.booking.com/general.en-gb.html?sid=8a9f25f2192ae5441594c09ddc4ef943;dcid=4;tmpl=docs/terms-and-conditions" target="_blank">Terms and Conditions</a> and <a href="https://www.booking.com/general.en-gb.html?sid=8a9f25f2192ae5441594c09ddc4ef943;dcid=4;tmpl=docs/privacy-policy" target="_blank">Privacy Statement</a>
+	                                            </p>
+	                                        </div>
+	                                        <iframe src="about:blank" name="log_tar" id="log_tar" width="1" height="1" style="height:0px;width:1px;overflow:hidden;visibility:hidden;position:absolute;" frameborder="0" border="0"></iframe>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="user_center_popover center_arrow uc-cug-signup-menu-prompt js-uc-cug-signup-menu-prompt">
+	                                <div class="uc_top_arrow"></div>
+	                                <div class="popover_content">
+	                                    <div class="uc-cug-signup-menu-prompt__header">
+	                                        <span class="uc-cug-signup-menu-prompt__close js-uc-cug-signup-menu-prompt__close use_sprites icon_remove"></span>
+	                                        <div class="uc-cug-signup-menu-prompt__title">
+	                                            Welcome back! Sign in to see <strong>Member Deals</strong>.
+	                                        </div>
+	                                        <div class="b-button b-button_primary uc-cug-signup-menu-prompt__button js-uc-cug-signup-menu-prompt-button">
+	                                            <span class="b-button__text">Sign in</span>
+	                                        </div>
+	                                        <div class="uc-cug-signup-menu-prompt__signup">No account? <a class="js-uc-cug-signup-menu-prompt-link" href="#">Start here</a>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </li>
+                        @endif
                         <li class="user_center_option uc-mybooking uc-mybooking--usp" data-priority="2">
                             <a href="javascript:void(0);" class="popover_trigger" title="Manage an existing booking" data-google-track="Click/Action: index/header_manage_booking_open">
-Manage booking
-</a>
+								Manage booking
+							</a>
                             <div class="user_center_popover center_arrow uc-mybooking__popover user_access_menu">
                                 <div class="uc_top_arrow"></div>
                                 <div class="popover_content popover_content--has-footer">
