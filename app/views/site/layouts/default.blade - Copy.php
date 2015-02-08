@@ -4966,7 +4966,6 @@ Manage booking
         b_ch: 'd'
     };
     </script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script src="https://r.bstatic.com/static/js/error_catcher_z/e05e7c0302beff3f079f8a6ab224916c2d0f4b5f.js"></script>
     <script src="https://q.bstatic.com/static/js/bhc/e8487f37f2b974a9d6455369f26233a4a30e5642.js"></script>
     <script type="text/javascript" src="https://r.bstatic.com/static/js/jquery-1.4.4.min/e185cfe54ae7b27a09cc0bdbe1063f3b6275078b.js"></script>
