@@ -35,10 +35,11 @@ class BlogController extends BaseController {
 	public function getIndex()
 	{
 		// Get all the blog posts
-		$posts = $this->post->orderBy('created_at', 'DESC')->paginate(10);
-
+		// $posts = $this->post->orderBy('created_at', 'DESC')->paginate(10);
+		$outlet=new Outlet();
+		$outlet=$outlet->listAll();
 		// Show the page
-		return View::make('site/blog/index', compact('posts'));
+		return View::make('site/homelayout',compact('outlet'));
 	}
 
 	/**

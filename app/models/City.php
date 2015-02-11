@@ -1,6 +1,6 @@
 <?php
 
-class City extends \Eloquent {
+class City extends Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [
