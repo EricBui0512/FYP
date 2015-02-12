@@ -34,19 +34,19 @@
 	};
 
 	// the plugin prototype
-	OnePageNav.prototype = {
-		defaults: {
-			currentClass: 'current',
-			changeHash: false,
-			easing: 'swing',
-			filter: '',
-			scrollSpeed: 750,
-			scrollOffset: 0,
-			scrollThreshold: 0.5,
-			begin: false,
-			end: false,
-			scrollChange: false
-		},
+	// OnePageNav.prototype = {
+	// 	defaults: {
+	// 		currentClass: 'current',
+	// 		changeHash: false,
+	// 		easing: 'swing',
+	// 		filter: '',
+	// 		scrollSpeed: 750,
+	// 		scrollOffset: 0,
+	// 		scrollThreshold: 0.5,
+	// 		begin: false,
+	// 		end: false,
+	// 		scrollChange: false
+	// 	},
 
 		init: function() {
 			var self = this;

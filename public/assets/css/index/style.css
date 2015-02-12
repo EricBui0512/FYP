@@ -413,7 +413,7 @@ input:focus {
 /*----  SECTION:  HOME > TOP BAR   ----*/
 .navbar {
   background: #FFF;
-  overflow: hidden;
+  /*overflow: hidden;*/
   border: 0;
   border-radius: 0 !important;
   text-align: left;
