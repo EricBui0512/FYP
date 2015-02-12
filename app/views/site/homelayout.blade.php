@@ -80,7 +80,7 @@
                     <ul class="nav navbar-nav navbar-right responsive-nav main-nav-list">
                         <li class=""><a href="#home">Home</a>
                         </li>               
-                        <li class=""><a href="#products">Login</a> 
+                        <li class=""><a href="" data-toggle="modal" data-target=".bs-example-modal-lg">Login</a> 
                     </ul>
                 </nav>
             </div>
@@ -88,19 +88,63 @@
         <!-- / END TOP BAR -->
 
         <!-- BIG HEADING WITH CALL TO ACTION BUTTONS AND SHORT MESSAGES -->
-        <div class="container">
+        <div class="container ">
             <!-- HEADING -->
             <h1 class="intro"></h1>
              <div id="locationField"></div>
             <div class="col-md-12">            
-                <form method="POST" action="" >
-                    <div class="input-group">
+                <form method="POST" action="" class="form-search" >
+                    <div class="row text-left">
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label for="email" accesskey="E">Service </label>
+                            <select class="form-control" name="room" id="room">
+                              <option selected="selected" disabled="disabled">Select a Service</option>
+                              <option value="Single">WINTER HOT STONE</option>
+                              <option value="Double">ARCTIC BERRY PEEL FACIAL</option>
+                              <option value="Deluxe">TRIPLE BODY BOOST</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label for="room">Countries</label>
+                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-original-title="" title=""> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                            <select class="form-control" name="room" id="room">
+                              <option selected="selected" disabled="disabled">Select a countries</option>
+                              <option value="Single">Việt Nam</option>
+                              <option value="Double">Singapore</option>
+                              <option value="Deluxe">Maylaysia</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label for="checkin">City</label>
+                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Check-In is from 11:00" data-original-title="" title=""> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                            <i class="fa fa-calendar infield"></i>
+                            <select class="form-control" name="room" id="room">
+                              <option selected="selected" disabled="disabled">Select a countries</option>
+                              <option value="Single">Hà Nội</option>
+                              <option value="Double">Hồ Chí Minh</option>
+                              <option value="Deluxe">Đà Nẵng</option>
+                            </select>
+                          </div>
+                        </div>
+                       
+                        
+                        <div class="col-sm-2">
+
+                          <button type="submit" class="btn btn-primary btn-block bt-search">Search</button>
+                        </div>
+          </div>
+                    <!-- <div class="input-group">
                           <input id="autocomplete" placeholder="Try adding countries, regions, continents"
                                  onFocus="geolocate()" type="text" class="form-control search"></input>
                           <span class="input-group-btn">
                             <button class="btn btn-primary custom-button blue-btn" type="button">Search</button>
                           </span>
-                    </div><!-- /input-group -->
+                    </div>
                 </form>
             </div><!-- /.col-lg-6 -->
             <!-- CALL TO ACTION BUTTONS -->  
@@ -309,177 +353,9 @@
                             </div>
                         </div>
                     </div>
+                   
                 </div>
                 <!-- END FIRST ROW -->
-
-                <div class="row wow fadeInRight animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
-                    <div class="col-md-3">
-                        <div class="item item-5">
-                            <div class="item-overlay">
-                            </div>
-                            <div class="item-content">
-                                <div class="item-top-content">
-                                    <div class="item-top-content-inner">
-                                        <div class="item-product">
-                                            <div class="item-top-title">
-                                                <h5>Public Radio</h5>
-                                                <p class="subdescription">
-                                                    UI Element
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="item-product-price">
-                                            <span class="price-num green-text">$15</span>
-                                            <p class="subdescription">
-                                                $23
-                                            </p>
-                                            <div class="old-price">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-add-content">
-                                    <div class="item-add-content-inner">
-                                        <div class="section">
-                                            <p>
-                                                Creative Radio PSD
-                                            </p>
-                                        </div>
-                                        <div class="section">
-                                            <a href="#" class="btn btn-primary custom-button red-btn">Demo</a>
-                                            <br>
-                                            <a href="#" class="btn btn-primary custom-button green-btn">Buy</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="item item-6">
-                            <div class="item-overlay">
-                            </div>
-                            <div class="item-content">
-                                <div class="item-top-content">
-                                    <div class="item-top-content-inner">
-                                        <div class="item-product">
-                                            <div class="item-top-title">
-                                                <h5>Health Care</h5>
-                                                <p class="subdescription">
-                                                    One Page Template
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="item-product-price">
-                                            <span class="price-num green-text">$18</span>
-                                            <p class="subdescription">
-                                                $30
-                                            </p>
-                                            <div class="old-price">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-add-content">
-                                    <div class="item-add-content-inner">
-                                        <div class="section">
-                                            <p>
-                                                Responsive One Page Template
-                                            </p>
-                                        </div>
-                                        <div class="section">
-                                            <a href="#" class="btn btn-primary custom-button red-btn">Demo</a>
-                                            <br>
-                                            <a href="#" class="btn btn-primary custom-button green-btn">Buy</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="item item-7">
-                            <div class="item-overlay">
-                            </div>
-                            <div class="item-content">
-                                <div class="item-top-content">
-                                    <div class="item-top-content-inner">
-                                        <div class="item-product">
-                                            <div class="item-top-title">
-                                                <h5>Radio Dial</h5>
-                                                <p class="subdescription">
-                                                    UI Element
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="item-product-price">
-                                            <span class="price-num green-text">$10</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-add-content">
-                                    <div class="item-add-content-inner">
-                                        <div class="section">
-                                            <p>
-                                                Creative WordPress Theme
-                                            </p>
-                                        </div>
-                                        <div class="section">
-                                            <a href="#" class="btn btn-primary custom-button red-btn">Demo</a>
-                                            <br>
-                                            <a href="#" class="btn btn-primary custom-button green-btn">Buy</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="item item-8">
-                            <div class="item-overlay">
-                            </div>
-                            <div class="item-content">
-                                <div class="item-top-content">
-                                    <div class="item-top-content-inner">
-                                        <div class="item-product">
-                                            <div class="item-top-title">
-                                                <h5>Pricing Page</h5>
-                                                <p class="subdescription">
-                                                    UI Element
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="item-product-price">
-                                            <span class="price-num green-text">$17</span>
-                                            <p class="subdescription">
-                                                $36
-                                            </p>
-                                            <div class="old-price">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-add-content">
-                                    <div class="item-add-content-inner">
-                                        <div class="section">
-                                            <p>
-                                                Creative UI Element
-                                            </p>
-                                        </div>
-                                        <div class="section">
-                                            <a href="#" class="btn btn-primary custom-button red-btn">Demo</a>
-                                            <br>
-                                            <a href="#" class="btn btn-primary custom-button green-btn">Buy</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- / END PRODUCTS LIST -->
             </div>
             <!-- / END CONTAINER -->
@@ -487,7 +363,177 @@
         <!-- / END COLOR OVERLAY -->
     </section>
     <!-- / END PRODUCTS SECTION -->
+ <!-- ======================== -->
+    <!-- Login -->
+    <!-- ========================= -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">  
+            <div class="form-login">             
+                <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#panel1" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Login Panel</span></a></li>
+                        <li class=""><a href="#panel2" data-toggle="tab"><i class="icon-user"></i>&nbsp;<span>Register Panel</span></a></li>
+                        <li><a href="#panel3" data-toggle="tab"><i class="icon-key"></i>&nbsp;<span>Forgot Password</span></a></li>
+                       
+                    </ul>
+                    <div class="tab-content ">
+                        <div class="tab-pane active" id="panel1">
+                            <div class="row-fluid">
+                                <div class="span5">
+                                    <h4><i class="icon-user"></i>&nbsp;&nbsp; Login Here</h4>
+
+                                    <label>Username</label>
+                                    <input type="text" class="input-block-level">
+                                    <label>Password</label><a href="#" class="pull-right"><i class="icon-question-sign"></i>&nbsp;Forgot Password</a> 
+                                    <input type="password" class="input-block-level">
+                                    <label>
+                                        <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
+                                        &nbsp;&nbsp;&nbsp;Remember Me
+                                    </label>
+                                    <br>
+
+                                    <a href="#" class="btn btn-default ">Sign In&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                                </div>
+                                <div class="span3">
+                                    <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Social</h4>
+                                    <div class="socials clearfix">
+                                        <a class="icon-facebook facebook"></a>
+                                        <a class="icon-twitter twitter"></a>
+                                        <a class="icon-google-plus google-plus"></a>
+                                        <a class="icon-pinterest pinterest"></a>
+                                        <a class="icon-linkedin linked-in"></a>
+                                        <a class="icon-github github"></a>
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <h4><i class="icon-question"></i>&nbsp;&nbsp;Registration</h4>
+                                    <div class="box">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel.
+                                        </p>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in.
+                                        </p>
+                                    </div>
+                                    <div class="box">
+                                        Don't Have An Account.<br>
+                                        Click Here For <a href="#" data-toggle="tab">Free Register</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="panel2">
+                            <div class="row-fluid">
+                                <div class="span5">
+                                    <h4><i class="icon-user"></i>&nbsp;&nbsp; Register Here</h4>
+
+
+                                    <label>Username</label>
+                                    <input type="text" class="input-block-level">
+                                    <label>Password </label>
+                                    <input type="password" class="input-block-level">
+                                    <label>Repeat Password</label>
+                                    <input type="password" class="input-block-level">
+                                    <label>
+                                        <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
+                                        &nbsp;&nbsp;&nbsp;I Aggree With <a href="#">Terms &amp; Conditions</a>
+                                    </label>
+                                    <br>
+
+                                    <a href="#" class=" btn btn-default  ">Register Now&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+
+                                </div>
+                                <div class="span3">
+                                    <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Social</h4>
+                                    <div class="socials clearfix">
+                                        <a class="icon-facebook facebook"></a>
+                                        <a class="icon-twitter twitter"></a>
+                                        <a class="icon-google-plus google-plus"></a>
+                                        <a class="icon-pinterest pinterest"></a>
+                                        <a class="icon-linkedin linked-in"></a>
+                                        <a class="icon-github github"></a>
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <h4><i class="icon-question"></i>&nbsp;&nbsp;Login</h4>
+                                    <div class="box">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel.
+                                        </p>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in.
+                                        </p>
+                                    </div>
+                                    <div class="box">
+                                        Already Have An Account.<br>
+                                        Click Here For <a href="#" data-toggle="tab">Login</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="panel3">
+                            <div class="row-fluid">
+                                <div class="span5">
+                                    <h4><i class="icon-unlock"></i>&nbsp;&nbsp;Password Recovery</h4>
+
+                                    <label>Email</label>
+                                    <input type="text" class="input-block-level">
+                                    <label>Security Question</label>
+                                    <select class="input-block-level">
+                                        <option disabled="disabled" selected="selected">---Select---</option>
+                                        <option>Which Is Your First Mobile</option>
+                                        <option>What Is Your Pet Name</option>
+                                        <option>What Is Your Mother Name</option>
+                                        <option>Which Is Your First Game</option>
+                                    </select>
+                                    <label>Answer</label>
+                                    <input type="text" class="input-block-level">
+                                    <br>
+                                    <br>
+                                    <a href="#" class=" btn btn-default  ">Recover Password&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                                </div>
+                                <div class="span7">
+                                    <h4><i class="icon-question"></i>&nbsp;&nbsp;Help</h4>
+                                    <div class="box">
+                                        <p>Getting Error With Password Recovery Click Here For <a href="#">Support</a></p>
+                                        <ul>
+
+
+                                            <li>Vestibulum pharetra lectus montes lacus!</li>
+                                            <li>Iaculis lectus augue pulvinar taciti.</li>
+                                        </ul>
+
+                                    </div>
+                                    <div class="box">
+                                        <ul>
+                                            <li>Potenti facilisis felis sociis blandit euismod.</li>
+                                            <li>Odio mi hendrerit ad nostra.</li>
+                                            <li>Rutrum mi commodo molestie taciti.</li>
+                                            <li>Interdum ipsum ad risus conubia, porttitor.</li>
+                                            <li>Placerat litora, proin hac hendrerit ac volutpat.</li>
+                                            <li>Ornare, aliquam condimentum  habitasse.</li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+    <!-- end login -->
+    </div>
+  </div>
+</div>
+
+
+    
     <!-- =========================
+
    FOOTER             
 ============================== -->
 
