@@ -1,6 +1,6 @@
 <?php
 
-class CitiesController extends \BaseController {
+class AdminCitiesController extends \BaseController {
 
 	/**
 	 * Display a listing of cities
