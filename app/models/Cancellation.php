@@ -1,6 +1,6 @@
 <?php
 
-class Caancellation extends \Eloquent {
+class Cancellation extends \Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [

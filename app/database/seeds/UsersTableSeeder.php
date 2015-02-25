@@ -4,8 +4,8 @@ class UsersTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('users')->delete();
-
+        
+        DB::statement("TRUNCATE TABLE users");
 
         $users = array(
             array(

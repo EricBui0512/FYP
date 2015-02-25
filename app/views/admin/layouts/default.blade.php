@@ -83,15 +83,26 @@
     			<div class="collapse navbar-collapse navbar-ex1-collapse">
     				<ul class="nav navbar-nav">
     					<li{{ (Request::is('admin') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin') }}}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-    					<li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/blogs') }}}"><span class="glyphicon glyphicon-list-alt"></span> Blog</a></li>
-    					<li{{ (Request::is('admin/comments*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/comments') }}}"><span class="glyphicon glyphicon-bullhorn"></span> Comments</a></li>
-    					<li class="dropdown{{ (Request::is('admin/users*|admin/roles*') ? ' active' : '') }}">
+    					<!-- <li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/blogs') }}}"><span class="glyphicon glyphicon-list-alt"></span> Blog</a></li> -->
+    					<!-- <li{{ (Request::is('admin/comments*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/comments') }}}"><span class="glyphicon glyphicon-bullhorn"></span> Comments</a></li> -->
+    					<li class="dropdown{{ (Request::is('admin/countries*|admin/cities*|admin/address*') ? ' active' : '') }}">
+    						<a class="dropdown-toggle" data-toggle="dropdown" href="{{{ URL::to('admin/countries') }}}">
+    							<span class="glyphicon glyphicon-user"></span> Manager <span class="caret"></span>
+    						</a>
+    						<ul class="dropdown-menu">
+    							<li{{ (Request::is('admin/countries*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/countries') }}}"><span class="glyphicon glyphicon-user"></span> Countries</a></li>
+    							<li{{ (Request::is('admin/cities*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/cities') }}}"><span class="glyphicon glyphicon-user"></span> Cities</a></li>
+    							<li{{ (Request::is('admin/address*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/address') }}}"><span class="glyphicon glyphicon-user"></span> Address</a></li>
+    						</ul>
+    					</li>
+    					<li class="dropdown{{ (Request::is('admin/users*|admin/roles*|admin/permissionss*') ? ' active' : '') }}">
     						<a class="dropdown-toggle" data-toggle="dropdown" href="{{{ URL::to('admin/users') }}}">
     							<span class="glyphicon glyphicon-user"></span> Users <span class="caret"></span>
     						</a>
     						<ul class="dropdown-menu">
     							<li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/users') }}}"><span class="glyphicon glyphicon-user"></span> Users</a></li>
     							<li{{ (Request::is('admin/roles*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/roles') }}}"><span class="glyphicon glyphicon-user"></span> Roles</a></li>
+    							<li{{ (Request::is('admin/permissions*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/permissions') }}}"><span class="glyphicon glyphicon-user"></span> Permissions</a></li>
     						</ul>
     					</li>
     				</ul>

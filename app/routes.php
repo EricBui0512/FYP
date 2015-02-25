@@ -19,6 +19,7 @@ Route::model('user', 'User');
 Route::model('comment', 'Comment');
 Route::model('post', 'Post');
 Route::model('role', 'Role');
+Route::model('country', 'Country');
 
 /** ------------------------------------------
  *  Route constraint patterns
@@ -67,6 +68,14 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::get('roles/{role}/delete', 'AdminRolesController@getDelete');
     Route::post('roles/{role}/delete', 'AdminRolesController@postDelete');
     Route::controller('roles', 'AdminRolesController');
+
+    # Country Management
+    Route::get('countries/{country}/show', 'AdminCountriesController@getShow');
+    Route::get('countries/{country}/edit', 'AdminCountriesController@getEdit');
+    Route::post('countries/{country}/edit', 'AdminCountriesController@postEdit');
+    Route::get('countries/{country}/delete', 'AdminCountriesController@getDelete');
+    Route::post('countries/{country}/delete', 'AdminCountriesController@postDelete');
+    Route::controller('countries', 'AdminCountriesController');
 
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');

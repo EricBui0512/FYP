@@ -1,17 +1,17 @@
 <?php
 
-class CaancellationsController extends \BaseController {
+class CancellationsController extends \BaseController {
 
 	/**
-	 * Display a listing of caancellations
+	 * Display a listing of cancellations
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		$caancellations = Caancellation::all();
+		$cancellations = Caancellation::all();
 
-		return View::make('caancellations.index', compact('caancellations'));
+		return View::make('cancellations.index', compact('cancellations'));
 	}
 
 	/**
@@ -21,7 +21,7 @@ class CaancellationsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('caancellations.create');
+		return View::make('cancellations.create');
 	}
 
 	/**
@@ -40,7 +40,7 @@ class CaancellationsController extends \BaseController {
 
 		Caancellation::create($data);
 
-		return Redirect::route('caancellations.index');
+		return Redirect::route('cancellations.index');
 	}
 
 	/**
@@ -53,7 +53,7 @@ class CaancellationsController extends \BaseController {
 	{
 		$caancellation = Caancellation::findOrFail($id);
 
-		return View::make('caancellations.show', compact('caancellation'));
+		return View::make('cancellations.show', compact('caancellation'));
 	}
 
 	/**
@@ -66,7 +66,7 @@ class CaancellationsController extends \BaseController {
 	{
 		$caancellation = Caancellation::find($id);
 
-		return View::make('caancellations.edit', compact('caancellation'));
+		return View::make('cancellations.edit', compact('caancellation'));
 	}
 
 	/**
@@ -88,7 +88,7 @@ class CaancellationsController extends \BaseController {
 
 		$caancellation->update($data);
 
-		return Redirect::route('caancellations.index');
+		return Redirect::route('cancellations.index');
 	}
 
 	/**
@@ -101,7 +101,7 @@ class CaancellationsController extends \BaseController {
 	{
 		Caancellation::destroy($id);
 
-		return Redirect::route('caancellations.index');
+		return Redirect::route('cancellations.index');
 	}
 
 }
