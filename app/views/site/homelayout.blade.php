@@ -153,7 +153,7 @@
                         </div>
                         <div class="col-sm-2">
 
-                          <button type="submit" class="btn btn-primary btn-block bt-search">Search</button>
+                          <button type="submit" class="btn bt-spa btn-block bt-search">Search</button>
                         </div> 
                     </div>
                 </div>
@@ -501,7 +501,7 @@
     </div>
   </div>
 </div>
-  
+
     <!-- =========================
 
    FOOTER             
