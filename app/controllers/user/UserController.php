@@ -38,7 +38,15 @@ class UserController extends BaseController {
         // Show the page
         return View::make('site/user/index', compact('user'));
     }
-
+    /**
+     * Users Signup
+     *
+     * @return View
+     */
+    public function Signup()
+    {   
+        return View::make('site/user/signup');
+    }
     /**
      * Stores new user
      *
@@ -119,6 +127,14 @@ class UserController extends BaseController {
     public function getCreate()
     {
         return View::make('site/user/create');
+    }
+    /**
+     * Displays the form for user creation
+     *
+     */
+    public function userCreate($type)
+    {
+        return View::make('site/user/create',compact('type'));
     }
 
 

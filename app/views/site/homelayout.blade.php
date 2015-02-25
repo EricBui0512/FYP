@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/index/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/index/jquery.vegas.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/index/animate.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
 
     <link rel="stylesheet" href="{{asset('assets/fonts/index/icon-fonts/styles.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/index/pixeden-icons.css')}}">
@@ -74,7 +75,8 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a href="./" class="navbar-brand">
-                        <div class="logo">Booking.com</div>
+                        <img src="{{asset('assets/img/index/logo.png')}}">
+                        <!-- <div class="logo">Booking.com</div> -->
                     </a>
                 </div>
                 <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
@@ -83,6 +85,7 @@
                         </li> 
                         @if (!Auth::check())              
                             <li class=""><a href="" data-toggle="modal" data-target=".bs-example-modal-lg">Login</a></li> 
+                            <li class=""><a href="{{{ URL::to('user/signup') }}}" class="btn btn-default btn-block" >Sign up</a></li> 
                         @else
                             <li class="">
                                     <div >
@@ -109,10 +112,9 @@
         <div class="container ">
             <!-- HEADING -->
             <h1 class="intro"></h1>
-             <div id="locationField"></div>
-            <div class="col-md-12">            
-                <div class="form-search" >
-                    <div class="row text-left">
+             <div id="locationField"></div>             
+                <div class="row form-search" >
+                    <div class="text-left">
                         <div class="col-sm-3">
                           <div class="form-group">
                             <label for="email" accesskey="E">Service </label>
@@ -149,16 +151,12 @@
                             </select>
                           </div>
                         </div>
-                       
-                        
                         <div class="col-sm-2">
 
-                          <button type="submit" class="btn btn-primary btn-block bt-search">Search</button>
+                          <button type="submit" class="btn bt-spa btn-block bt-search">Search</button>
                         </div> 
                     </div>
                 </div>
-          </div>
-
                     <!-- <div class="input-group">
                           <input id="autocomplete" placeholder="Try adding countries, regions, continents"
                                  onFocus="geolocate()" type="text" class="form-control search"></input>
@@ -502,7 +500,8 @@
     <!-- end login -->
     </div>
   </div>
-</div>  
+</div>
+
     <!-- =========================
 
    FOOTER             
