@@ -16,8 +16,6 @@
  *  ------------------------------------------
  */
 Route::model('user', 'User');
-Route::model('comment', 'Comment');
-Route::model('post', 'Post');
 Route::model('role', 'Role');
 Route::model('country', 'Country');
 
@@ -31,27 +29,13 @@ Route::pattern('user', '[0-9]+');
 Route::pattern('role', '[0-9]+');
 Route::pattern('token', '[0-9a-z]+');
 
+
 /** ------------------------------------------
  *  Admin Routes
  *  ------------------------------------------
  */
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
-
-    # Comment Management
-    Route::get('comments/{comment}/edit', 'AdminCommentsController@getEdit');
-    Route::post('comments/{comment}/edit', 'AdminCommentsController@postEdit');
-    Route::get('comments/{comment}/delete', 'AdminCommentsController@getDelete');
-    Route::post('comments/{comment}/delete', 'AdminCommentsController@postDelete');
-    Route::controller('comments', 'AdminCommentsController');
-
-    # Blog Management
-    Route::get('blogs/{post}/show', 'AdminBlogsController@getShow');
-    Route::get('blogs/{post}/edit', 'AdminBlogsController@getEdit');
-    Route::post('blogs/{post}/edit', 'AdminBlogsController@postEdit');
-    Route::get('blogs/{post}/delete', 'AdminBlogsController@getDelete');
-    Route::post('blogs/{post}/delete', 'AdminBlogsController@postDelete');
-    Route::controller('blogs', 'AdminBlogsController');
 
     # User Management
     Route::get('users/{user}/show', 'AdminUsersController@getShow');
@@ -70,15 +54,12 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::controller('roles', 'AdminRolesController');
 
     # Country Management
-    Route::get('countries/{country}/show', 'AdminCountriesController@getShow');
-    Route::get('countries/{country}/edit', 'AdminCountriesController@getEdit');
-    Route::post('countries/{country}/edit', 'AdminCountriesController@postEdit');
-    Route::get('countries/{country}/delete', 'AdminCountriesController@getDelete');
-    Route::post('countries/{country}/delete', 'AdminCountriesController@postDelete');
-    Route::controller('countries', 'AdminCountriesController');
+    Route::get('countries/{country}/edit', 'AdminCommonController@getCountryEdit');
+    Route::post('countries/{country}/edit', 'AdminCommonController@postCountryEdit');
+    Route::get('countries/{country}/delete', 'AdminCommonController@getCountryDelete');
+    Route::post('countries/{country}/delete', 'AdminCommonController@postCountryDelete');
+    Route::controller('countries', 'AdminCommonController');
 
-    # Admin Dashboard
-    Route::controller('/', 'AdminDashboardController');
 });
 
 
@@ -121,4 +102,4 @@ Route::get('contact-us', function()
 // Route::post('{postSlug}', 'BlogController@postView');
 
 # Index Page - Last route, no matches
-Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));
+Route::get('/', array('before' => 'detectLang','uses' => 'SiteController@getIndex'));

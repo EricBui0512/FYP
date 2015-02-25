@@ -4,7 +4,7 @@ class PermissionsTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('permissions')->delete();
+        DB::statement("TRUNCATE TABLE permissions");
 
         $permissions = array(
             array( // 1
@@ -35,10 +35,10 @@ class PermissionsTableSeeder extends Seeder {
 
         DB::table('permissions')->insert( $permissions );
 
-        DB::table('permission_role')->delete();
+        DB::statement("TRUNCATE TABLE permission_role");
 
         $role_id_admin = Role::where('name', '=', 'admin')->first()->id;
-        $role_id_comment = Role::where('name', '=', 'comment')->first()->id;
+        $role_id_comment = Role::where('name', '=', 'retailer')->first()->id;
         $permission_base = (int)DB::table('permissions')->first()->id - 1;
 
         $permissions = array(
