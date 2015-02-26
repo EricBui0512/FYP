@@ -8,6 +8,7 @@ class Retailer extends \Eloquent {
 		'address_id' => 'required|integer',
 		'company_register_id' => 'required',
 		'name' => 'required',
+		'website' => 'url'
 	];
 
 	// Don't forget to fill this array

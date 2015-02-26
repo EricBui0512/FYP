@@ -2,6 +2,16 @@
 
 class RetailersController extends \BaseController {
 
+	protected $adminId = null;
+
+	public function __construct()
+	{
+
+		parent::__construct();
+
+		$this->adminId = Auth::id();
+	}
+
 	/**
 	 * Display a listing of retailers
 	 *
@@ -9,7 +19,7 @@ class RetailersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$retailers = Retailer::all();
+		$retailers = Retailer::where( 'adminId', $this->adminId );
 
 		return View::make('retailers.index', compact('retailers'));
 	}
@@ -31,12 +41,14 @@ class RetailersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Retailer::$rules);
+		$validator = Validator::make( $data = Input::all(), Retailer::$rules );
 
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
+
+		$data['admin_id'] = $this->adminId;
 
 		Retailer::create($data);
 
