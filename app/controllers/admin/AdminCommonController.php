@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 22:47:44
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-25 23:38:08
+ * @Last Modified time: 2015-02-26 08:49:00
  */
 class AdminCommonController extends AdminController {
 
@@ -200,7 +200,7 @@ class AdminCommonController extends AdminController {
      *
      * @return Datatables JSON
      */
-    public function getCountryData()
+    public function getCountries()
     {
         $countries = Country::select(array('id', 'country', 'created_at', 'updated_at'));
 

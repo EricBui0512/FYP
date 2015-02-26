@@ -20,17 +20,11 @@ class BaseController extends Controller {
 	 */
 	protected function setupLayout()
 	{
-		$user = Auth::user();
 
-		
-		$layout = 'admin.layouts.default';
-
-		$this->layout = $layout;
-
-		// if ( ! is_null($this->layout))
-		// {
-		// 	$this->layout = View::make($this->layout);
-		// }
+		if ( ! is_null($this->layout))
+		{
+			$this->layout = View::make($this->layout);
+		}
 	}
 
 	public function sendMail($template, $email, $name, $data = array()) {

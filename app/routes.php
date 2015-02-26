@@ -23,8 +23,6 @@ Route::model('country', 'Country');
  *  Route constraint patterns
  *  ------------------------------------------
  */
-Route::pattern('comment', '[0-9]+');
-Route::pattern('post', '[0-9]+');
 Route::pattern('user', '[0-9]+');
 Route::pattern('role', '[0-9]+');
 Route::pattern('token', '[0-9a-z]+');
@@ -54,10 +52,13 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::controller('roles', 'AdminRolesController');
 
     # Country Management
+    Route::get('countries/create', 'AdminCommonController@getCountryCreate');
+    Route::post('countries/create', 'AdminCommonController@postCountryCreate');
     Route::get('countries/{country}/edit', 'AdminCommonController@getCountryEdit');
     Route::post('countries/{country}/edit', 'AdminCommonController@postCountryEdit');
     Route::get('countries/{country}/delete', 'AdminCommonController@getCountryDelete');
     Route::post('countries/{country}/delete', 'AdminCommonController@postCountryDelete');
+    Route::get('countries/data', 'AdminCommonController@getCountries');
     Route::controller('countries', 'AdminCommonController');
 
     # Admin Dashboard
@@ -100,10 +101,6 @@ Route::get('contact-us', function()
     // Return about us page
     return View::make('site/contact-us');
 });
-
-// # Posts - Second to last set, match slug
-// Route::get('{postSlug}', 'BlogController@getView');
-// Route::post('{postSlug}', 'BlogController@postView');
 
 # Index Page - Last route, no matches
 Route::get('/', array('before' => 'detectLang','uses' => 'SiteController@getIndex'));
