@@ -4,29 +4,32 @@ class Outlet extends Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
+		'name' => 'required',
+		'address_id' => 'required',
+		'outlet_register_id' => 'required',
+		'image' => 'required',
+		'retailer_id' => 'integer',
+		'description_id' => 'integer'
 	];
-	// Don't forget to fill this array
-	protected $fillable = [];
-	// get outlet id
-	public function getOutlet($id){
-		return $this->findOrFail($id);
-    }
-    // list all outlet
-	public function listAll(){
-		return $this->all();
-    }
-    // list all Outlet for LocationAdress
-    public function listLocationAdress(){
-		return $this->all();
-    }
-    // list all Outlet for LocationCity
-    public function listLocationCity(){
-		return $this->all();
-    }
-    // list all Outlet for Locationcountries
-    public function listLocationCountries(){
-		return $this->all();
-    }
 
+	// Don't forget to fill this array
+	protected $fillable = [ 'name', 'admin_id', 'address_id', 'retailer_id', 'photo_id',
+			'description_id', 'outlet_register_id', 'website', 'operation_hour', 'rate', 'active'];
+
+	public function scopeOwner( $query ) {
+
+		return $query->where( 'admin_id', Auth::id() );
+	}
+
+	public function services() {
+
+		return $this->hasMany( 'Service' );
+	}
+
+	public function description() {
+
+		return $this->belongsTo('OutletDescription');
+	}
+
+	
 }

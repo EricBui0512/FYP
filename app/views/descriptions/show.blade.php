@@ -1,1 +1,0 @@
-E:\wamp\www\booking\app/views/descriptions/show.blade.php

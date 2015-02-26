@@ -10,4 +10,13 @@ class Country extends \Eloquent {
 	// Don't forget to fill this array
 	protected $fillable = [];
 
+	/**
+	 * Get the country's city.
+	 *
+	 * @return array
+	 */
+	public function cities()
+	{
+		return $this->hasMany('City');
+	}
 }

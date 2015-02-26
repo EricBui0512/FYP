@@ -20,10 +20,20 @@ class BaseController extends Controller {
 	 */
 	protected function setupLayout()
 	{
+
 		if ( ! is_null($this->layout))
 		{
 			$this->layout = View::make($this->layout);
 		}
+	}
+
+	public function sendMail($template, $email, $name, $data = array()) {
+
+		\Mail::send($template, $data, function($message) use ($data, $email, $name)
+        {
+        	$subject = isset($data['subject']) ? $data['subject'] : 'Welcome!';
+            $message->to($email, $name)->subject($subject);
+        });
 	}
 
 }

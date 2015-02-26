@@ -145,7 +145,9 @@ class UserController extends BaseController {
     public function getLogin()
     {
         $user = Auth::user();
-        if(!empty($user->id)){
+
+        if (!empty($user->id)) {
+
             return Redirect::to('/');
         }
 
@@ -162,13 +164,30 @@ class UserController extends BaseController {
         $input = Input::all();
 
         if ($this->userRepo->login($input)) {
-            return Redirect::intended('/');
-        } else {
+
+            $user = Auth::user();
+
+            if ( $user->user_type === Config::get('constants.USER_TYPE_ADMIN') ) {
+
+                return Redirect::to('admin');
+            }
+            else {
+
+                return Redirect::intended('/');
+            }
+        }
+        else {
+
             if ($this->userRepo->isThrottled($input)) {
+
                 $err_msg = Lang::get('confide::confide.alerts.too_many_attempts');
-            } elseif ($this->userRepo->existsButNotConfirmed($input)) {
+            }
+            elseif ($this->userRepo->existsButNotConfirmed($input)) {
+               
                 $err_msg = Lang::get('confide::confide.alerts.not_confirmed');
-            } else {
+            }
+            else {
+
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
             }
 
@@ -176,7 +195,6 @@ class UserController extends BaseController {
                 ->withInput(Input::except('password'))
                 ->with('error', $err_msg);
         }
-
     }
 
     /**

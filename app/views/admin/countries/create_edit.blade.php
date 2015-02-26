@@ -9,7 +9,7 @@
 	<!-- ./ tabs -->
 
 	{{-- Create Country Form --}}
-	<form class="form-horizontal" method="post" action="@if (isset($country)){{ URL::to('admin/countries/' . $country->id . '/edit') }}@endif" autocomplete="off">
+	<form class="form-horizontal" method="post" action="@if (isset($country)){{ URL::to('admin/countries/' . $country->id . '/edit') }} @else {{ URL::to('admin/countries/create') }} @endif" autocomplete="off">
 		<!-- CSRF Token -->
 		<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 		<!-- ./ csrf token -->

@@ -4,21 +4,29 @@ class RolesTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('roles')->delete();
+        DB::statement("TRUNCATE TABLE roles");
+        DB::statement("TRUNCATE TABLE assigned_roles");
 
         $adminRole = new Role;
         $adminRole->name = 'admin';
         $adminRole->save();
 
-        $commentRole = new Role;
-        $commentRole->name = 'comment';
-        $commentRole->save();
+        $retailerRole = new Role;
+        $retailerRole->name = 'retailer';
+        $retailerRole->save();
+
+        $userRole = new Role;
+        $userRole->name = 'user';
+        $userRole->save();
 
         $user = User::where('username','=','admin')->first();
         $user->attachRole( $adminRole );
 
+        $user = User::where('username','=','dungho')->first();
+        $user->attachRole( $retailerRole );
+
         $user = User::where('username','=','user')->first();
-        $user->attachRole( $commentRole );
+        $user->attachRole( $userRole );
     }
 
 }
