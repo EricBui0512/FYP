@@ -2,7 +2,7 @@
 * @Author: Dung Ho
 * @Date:   2015-02-26 10:37:50
 * @Last Modified by:   Dung Ho
-* @Last Modified time: 2015-02-26 11:26:30
+* @Last Modified time: 2015-02-26 23:42:57
 */
 
 # ************************************************************
@@ -14,7 +14,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.41-0ubuntu0.12.04.1)
 # Database: booking
-# Generation Time: 2015-02-26 04:23:26 +0000
+# Generation Time: 2015-02-26 16:40:28 +0000
 # ************************************************************
 
 
@@ -63,19 +63,18 @@ CREATE TABLE `assigned_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
-# Dump of table bussiness_catelogies
+# Dump of table business_categories
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `bussiness_catelogies`;
+DROP TABLE IF EXISTS `business_categories`;
 
-CREATE TABLE `bussiness_catelogies` (
+CREATE TABLE `business_categories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 
 
 # Dump of table cancellations
@@ -111,6 +110,7 @@ CREATE TABLE `cities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
+
 # Dump of table countries
 # ------------------------------------------------------------
 
@@ -123,6 +123,7 @@ CREATE TABLE `countries` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 # Dump of table deals
 # ------------------------------------------------------------
@@ -141,37 +142,6 @@ CREATE TABLE `deals` (
   `special_request` longtext COLLATE utf8_unicode_ci,
   `time_slot` datetime DEFAULT NULL,
   `remind_time` datetime DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
-
-# Dump of table descriptions
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `descriptions`;
-
-CREATE TABLE `descriptions` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `full_description` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `summary` longtext COLLATE utf8_unicode_ci,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
-# Dump of table details
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `details`;
-
-CREATE TABLE `details` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `summary` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `highlights` longtext COLLATE utf8_unicode_ci,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
@@ -212,6 +182,34 @@ CREATE TABLE `images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
+# Dump of table migrations
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `migrations`;
+
+CREATE TABLE `migrations` (
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Dump of table outlet_descriptions
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `outlet_descriptions`;
+
+CREATE TABLE `outlet_descriptions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `admin_id` int(11) unsigned NOT NULL,
+  `full_description` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `summary` longtext COLLATE utf8_unicode_ci,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
 # Dump of table outlets
 # ------------------------------------------------------------
 
@@ -225,7 +223,7 @@ CREATE TABLE `outlets` (
   `retailer_id` int(10) unsigned NOT NULL,
   `photo_id` int(11) NOT NULL,
   `description_id` int(10) unsigned DEFAULT NULL,
-  `outlet_register` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `outlet_register_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `website` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `operation_hour` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `rate` float(8,2) DEFAULT NULL,
@@ -267,7 +265,6 @@ CREATE TABLE `permission_role` (
   CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
 # Dump of table permissions
 # ------------------------------------------------------------
 
@@ -302,7 +299,6 @@ CREATE TABLE `retailers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
-
 # Dump of table roles
 # ------------------------------------------------------------
 
@@ -315,6 +311,7 @@ CREATE TABLE `roles` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 
 # Dump of table service_conditions
@@ -334,6 +331,23 @@ CREATE TABLE `service_conditions` (
 
 
 
+# Dump of table service_details
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `service_details`;
+
+CREATE TABLE `service_details` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `admin_id` int(11) NOT NULL,
+  `summary` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `highlights` longtext COLLATE utf8_unicode_ci,
+  `created_at` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
 # Dump of table services
 # ------------------------------------------------------------
 
@@ -341,6 +355,7 @@ DROP TABLE IF EXISTS `services`;
 
 CREATE TABLE `services` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `admin_id` int(11) unsigned NOT NULL,
   `outlet_id` int(10) unsigned NOT NULL,
   `condition_id` int(10) unsigned DEFAULT NULL,
   `photo_id` int(10) unsigned DEFAULT NULL,
@@ -349,11 +364,10 @@ CREATE TABLE `services` (
   `price` decimal(10,2) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
   `time_operate` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created_at` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 
 
 # Dump of table terms_conditions
@@ -396,10 +410,10 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
-
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+

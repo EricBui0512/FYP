@@ -12,7 +12,7 @@ class Retailer extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = [ 'admin_id', 'address_id', 'category_id', 'company_register_id', 'name', 'website'];
 
 	public function scopeOwner( $query ) {
 

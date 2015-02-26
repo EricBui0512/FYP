@@ -6,13 +6,20 @@ class Outlet extends Eloquent {
 	public static $rules = [
 		'name' => 'required',
 		'address_id' => 'required',
-		'outletregister' => 'required',
+		'outlet_register_id' => 'required',
 		'image' => 'required',
-		'id_retailer' => 'integer',
-		'id_description' => 'integer'
+		'retailer_id' => 'integer',
+		'description_id' => 'integer'
 	];
+
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = [ 'name', 'admin_id', 'address_id', 'retailer_id', 'photo_id',
+			'description_id', 'outlet_register_id', 'website', 'operation_hour', 'rate', 'active'];
+
+	public function scopeOwner( $query ) {
+
+		return $query->where( 'admin_id', Auth::id() );
+	}
 
 	public function services() {
 

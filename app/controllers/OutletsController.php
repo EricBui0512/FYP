@@ -2,6 +2,16 @@
 
 class OutletsController extends \BaseController {
 
+	protected $adminId = null;
+
+	public function __construct()
+	{
+
+		parent::__construct();
+
+		$this->adminId = Auth::id();
+	}
+
 	/**
 	 * Display a listing of outlets
 	 *
@@ -9,9 +19,9 @@ class OutletsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$outlets = Outlet::all();
+		$outlets = Outlet::owner()->get();
 
-		return View::make('outlets.index', compact('outlets'));
+		return View::make('site.outlets.index', compact('outlets'));
 	}
 
 	/**
@@ -21,7 +31,7 @@ class OutletsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('outlets.create');
+		return View::make('site.outlets.create');
 	}
 
 	/**
@@ -35,12 +45,15 @@ class OutletsController extends \BaseController {
 
 		if ($validator->fails())
 		{
+
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
+		$data['admin_id'] = $this->adminId;
+
 		Outlet::create($data);
 
-		return Redirect::route('outlets.index');
+		return Redirect::route('outlet.index');
 	}
 
 	/**
@@ -53,7 +66,7 @@ class OutletsController extends \BaseController {
 	{
 		$outlet = Outlet::findOrFail($id);
 
-		return View::make('outlets.show', compact('outlet'));
+		return View::make('site.outlets.show', compact('outlet'));
 	}
 
 	/**
@@ -66,7 +79,7 @@ class OutletsController extends \BaseController {
 	{
 		$outlet = Outlet::find($id);
 
-		return View::make('outlets.edit', compact('outlet'));
+		return View::make('site.outlets.edit', compact('outlet'));
 	}
 
 	/**

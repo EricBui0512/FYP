@@ -83,6 +83,16 @@ Route::group(array('before' => 'auth|role:retailer'), function()
 {
     Route::resource('retailer', 'RetailersController');
 
+    Route::resource('outlet', 'OutletsController');
+
+    # Service manager
+    Route::get('service/create', array( 'as' => 'service.create', 'uses' => 'RetailersController@createService'));
+    Route::post('service', array( 'as' => 'service.create', 'uses' => 'RetailersController@storeService'));
+    Route::get('service/{service}/edit', array( 'as' => 'service.edit', 'uses' => 'RetailersController@editService'));
+    Route::put('service/{service}', array( 'as' => 'service.edit', 'uses' => 'RetailersController@updateService'));
+    Route::delete('service/{service}', array( 'as' => 'service.delete', 'uses' => 'RetailersController@destroyService'));
+    Route::get('service', array( 'as' => 'services.index', 'uses' => 'RetailersController@listService'));
+
 });
 
 
