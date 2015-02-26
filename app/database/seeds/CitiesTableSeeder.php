@@ -32,7 +32,7 @@ class CitiesTableSeeder extends Seeder {
             $c = array(
                 array(
                     'city' => $city,
-                    'id_country' => $vnId,
+                    'country_id' => $vnId,
                     'created_at' => new DateTime,
                     'updated_at' => new DateTime,
                 ),

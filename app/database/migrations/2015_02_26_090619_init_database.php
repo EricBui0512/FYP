@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterUsersTable extends Migration {
+class InitDatabase extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,11 @@ class AlterUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('users', function(Blueprint $table)
-		{
-			$table->string('firstname');
-			$table->string('lastname');
-			$table->integer('addressId');
-		});
+		$file = dirname(__FILE__) . '/init.sql';
+      
+	    $contents = file_get_contents( $file );
+
+		DB::unprepared( $contents );
 	}
 
 	/**
@@ -27,10 +26,7 @@ class AlterUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('users', function(Blueprint $table)
-		{
-			//
-		});
+		
 	}
 
 }
