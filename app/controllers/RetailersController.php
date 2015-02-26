@@ -19,7 +19,7 @@ class RetailersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$retailers = Retailer::where( 'adminId', $this->adminId );
+		$retailers = Retailer::owner()->get();
 
 		return View::make('retailers.index', compact('retailers'));
 	}

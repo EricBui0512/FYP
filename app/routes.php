@@ -27,6 +27,18 @@ Route::pattern('user', '[0-9]+');
 Route::pattern('role', '[0-9]+');
 Route::pattern('token', '[0-9a-z]+');
 
+Route::filter('role', function( $route, $request, $value ) {
+
+    $roles = func_get_args();
+    array_shift($roles);
+    array_shift($roles);
+
+    if ( Auth::user()->user_type !== $roles[0] ) {
+
+        return App::abort( 401 );
+    }
+
+});
 
 /** ------------------------------------------
  *  Admin Routes
@@ -64,6 +76,12 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');
 
+
+});
+
+Route::group(array('before' => 'auth|role:retailer'), function()
+{
+    Route::resource('retailer', 'RetailersController');
 
 });
 

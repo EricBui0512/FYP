@@ -28,6 +28,7 @@ class SiteController extends BaseController {
 	 */
 	public function getIndex()
 	{
+
 		// Get all the blog posts
 		// $posts = $this->post->orderBy('created_at', 'DESC')->paginate(10);
 		$outlets = Outlet::where('active', 1);
@@ -37,6 +38,6 @@ class SiteController extends BaseController {
 
     public function postSearch() {
 
-        
+
     }
 }

@@ -14,6 +14,11 @@ class Retailer extends \Eloquent {
 	// Don't forget to fill this array
 	protected $fillable = [];
 
+	public function scopeOwner( $query ) {
+
+		return $query->where( 'admin_id', Auth::id() );
+	}
+
 	public function categories() {
 
 		return $this->belongsTo('BusinessCategory');
