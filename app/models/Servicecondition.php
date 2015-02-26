@@ -1,6 +1,6 @@
 <?php
 
-class Servicecondition extends \Eloquent {
+class ServiceCondition extends \Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [

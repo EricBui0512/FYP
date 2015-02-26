@@ -1,6 +1,6 @@
 <?php
 
-class Detail extends \Eloquent {
+class TermsCondition extends \Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [

@@ -1,13 +1,14 @@
 <?php
 
-class Admin extends \Eloquent {
+class Admin extends User {
 
-	// Add your validation rules here
-	public static $rules = [
-		// 'title' => 'required'
-	];
+	public function retailer() {
 
-	// Don't forget to fill this array
-	protected $fillable = [];
+		return $this->hasOne( 'Retailer' );
+	}
 
+	public function outlets() {
+
+		return $this->hasMany('Outlet');
+	}
 }

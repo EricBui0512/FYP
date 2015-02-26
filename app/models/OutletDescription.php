@@ -1,6 +1,6 @@
 <?php
 
-class Bussinesscatelogy extends \Eloquent {
+class OutletDescription extends \Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [
@@ -10,4 +10,10 @@ class Bussinesscatelogy extends \Eloquent {
 	// Don't forget to fill this array
 	protected $fillable = [];
 
+	protected $table = 'outlet_descriptions';
+
+	public function outlets() {
+
+		return $this->hasMany('Outlet');
+	}
 }

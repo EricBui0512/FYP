@@ -14,29 +14,15 @@ class Outlet extends Eloquent {
 	// Don't forget to fill this array
 	protected $fillable = [];
 
-	// get outlet id
-	public function getOutlet($id){
-		return $this->findOrFail($id);
-    }
+	public function services() {
 
-    // list all outlet
-	public function listAll(){
-		return $this->all();
-    }
+		return $this->hasMany( 'Service' );
+	}
 
-    // list all Outlet for LocationAdress
-    public function listLocationAdress(){
-		return $this->all();
-    }
+	public function description() {
 
-    // list all Outlet for LocationCity
-    public function listLocationCity(){
-		return $this->all();
-    }
+		return $this->belongsTo('OutletDescription');
+	}
 
-    // list all Outlet for Locationcountries
-    public function listLocationCountries(){
-		return $this->all();
-    }
-
+	
 }

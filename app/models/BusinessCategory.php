@@ -1,17 +1,17 @@
 <?php
 
-class Service extends \Eloquent {
+class BusinessCategory extends \Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
+		'name' => 'required'
 	];
 
 	// Don't forget to fill this array
 	protected $fillable = [];
 
-	public function outlets() {
+	public function retailers() {
 
-		return $this->belongsTo( 'Outlet' );
+		return $this->hasMany('Retailer');
 	}
 }
