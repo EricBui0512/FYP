@@ -60,6 +60,10 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::post('countries/{country}/delete', 'AdminCommonController@postCountryDelete');
     Route::controller('countries', 'AdminCommonController');
 
+    # Admin Dashboard
+    Route::controller('/', 'AdminDashboardController');
+
+
 });
 
 
