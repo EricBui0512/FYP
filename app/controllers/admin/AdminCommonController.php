@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 22:47:44
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-26 08:49:00
+ * @Last Modified time: 2015-02-26 09:01:28
  */
 class AdminCommonController extends AdminController {
 
@@ -185,14 +185,14 @@ class AdminCommonController extends AdminController {
      */
     public function postCountryDelete($country)
     {
-            // Was the role deleted?
-            if($country->delete()) {
-                // Redirect to the role management page
-                return Redirect::to('admin/countries')->with('success', Lang::get('admin/countries/messages.delete.success'));
-            }
+        // Was the role deleted?
+        if($country->delete()) {
+            // Redirect to the role management page
+            return Redirect::to('admin/countries')->with('success', Lang::get('admin/countries/messages.delete.success'));
+        }
 
-            // There was a problem deleting the role
-            return Redirect::to('admin/countries')->with('error', Lang::get('admin/countries/messages.delete.error'));
+        // There was a problem deleting the role
+        return Redirect::to('admin/countries')->with('error', Lang::get('admin/countries/messages.delete.error'));
     }
 
 	/**
