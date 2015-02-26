@@ -5,7 +5,7 @@ class DescriptionsTableSeeder extends Seeder {
     public function run()
     {
         
-        DB::statement("TRUNCATE TABLE descriptions");
+        DB::statement("TRUNCATE TABLE outlet_descriptions");
 
         $desc = array(
             array(
@@ -29,7 +29,7 @@ class DescriptionsTableSeeder extends Seeder {
             
         );
 
-        DB::table('descriptions')->insert( $desc );
+        DB::table('outlet_descriptions')->insert( $desc );
     }
 
 }

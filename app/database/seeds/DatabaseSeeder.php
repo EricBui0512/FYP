@@ -16,6 +16,12 @@ class DatabaseSeeder extends Seeder {
         $this->call('CountriesTableSeeder');
         $this->call('CitiesTableSeeder');
         $this->call('DescriptionsTableSeeder');
+        $this->call('BusinessCategoryTableSeeder');
+        $this->call('AddressTableSeeder');
+        $this->call('RetailerTableSeeder');
+        $this->call('ImageTableSeeder');
+        $this->call('OutletTableSeeder');
+        $this->call('ServiceTableSeeder');
 
         // supposed to only apply to a single connection and reset it's self
         // but I like to explicitly undo what I've done for clarity
