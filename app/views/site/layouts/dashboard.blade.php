@@ -18,19 +18,20 @@
    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
    <!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
    <!-- Bootstrap CSS-->
-   <link rel="stylesheet" href="app/css/bootstrap.css">
+   <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
    <!-- Vendor CSS-->
-   <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
-   <link rel="stylesheet" href="vendor/animo/animate+animo.css">
-   <link rel="stylesheet" href="vendor/csspinner/csspinner.min.css">
+
+   <link rel="stylesheet" href="{{asset('assets/vendor/fontawesome/css/font-awesome.min.css')}}">
+   <link rel="stylesheet" href="{{asset('assets/vendor/animo/animate+animo.css')}}">
+   <link rel="stylesheet" href="{{asset('assets/vendor/csspinner/csspinner.min.css')}}">
    <!-- START Page Custom CSS-->
    <!-- END Page Custom CSS-->
    <!-- App CSS-->
-   <link rel="stylesheet" href="app/css/app.css">
+   <link rel="stylesheet" href="{{asset('assets/app/css/app.css')}}">
    <!-- Modernizr JS Script-->
-   <script src="vendor/modernizr/modernizr.js" type="application/javascript"></script>
+   <script src="{{asset('assets/vendor/modernizr/modernizr.js')}}" ></script>
    <!-- FastClick for mobiles-->
-   <script src="vendor/fastclick/fastclick.js" type="application/javascript"></script>
+   <script src="{{asset('assets/vendor/fastclick/fastclick.js')}}"></script>
 </head>
 
 <body>
@@ -42,10 +43,10 @@
          <div class="navbar-header">
             <a href="index.html" class="navbar-brand">
                <div class="brand-logo">
-                  <img src="app/img/logo.png" alt="App Logo" class="img-responsive">
+                  <img src="../assets/app/img/logo.png" alt="App Logo" class="img-responsive">
                </div>
                <div class="brand-logo-collapsed">
-                  <img src="app/img/logo-single.png" alt="App Logo" class="img-responsive">
+                  <img src="../assets/app/img/logo-single.png" alt="App Logo" class="img-responsive">
                </div>
             </a>
          </div>
@@ -83,7 +84,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="app/img/user/01.jpg" alt="Image" class="media-object img-circle thumb32">
+                                       <img src="../assets/app/img/user/01.jpg" alt="Image" class="media-object img-circle thumb32">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">5m</small>
@@ -100,7 +101,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="app/img/user/04.jpg" alt="Image" class="media-object img-circle thumb32">
+                                       <img src="../assets/app/img/user/04.jpg" alt="Image" class="media-object img-circle thumb32">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">3h</small>
@@ -117,7 +118,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="app/img/user/03.jpg" alt="Image" class="media-object img-circle thumb32">
+                                       <img src="../assets/app/img/user/03.jpg" alt="Image" class="media-object img-circle thumb32">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">3h</small>
@@ -134,7 +135,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="app/img/user/05.jpg" alt="Image" class="media-object img-circle thumb32">
+                                       <img src="../assets/app/img/user/05.jpg" alt="Image" class="media-object img-circle thumb32">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">4h</small>
@@ -151,7 +152,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb32">
+                                       <img src="../assets/app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb32">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">yesterday</small>
@@ -299,7 +300,7 @@
                <!-- User picture-->
                <div class="user-block-picture">
                   <div class="user-block-status">
-                     <img src="app/img/user/02.jpg" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                     <img src="../assets/app/img/user/02.jpg" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
                      <div class="circle circle-success circle-lg"></div>
                   </div>
                   <!-- Status when collapsed-->
@@ -311,291 +312,8 @@
                </div>
             </div>
             <!-- END user info-->
-            <ul class="nav">
-               <!-- START Menu-->
-               <li class="nav-heading">Main navigation</li>
-               <li class="active">
-                  <a href="index.html" title="Dashboard" data-toggle="" class="no-submenu">
-                     <em class="fa fa-dot-circle-o"></em>
-                     <div class="label label-primary pull-right">10</div>
-                     <span class="item-text">Dashboard</span>
-                  </a>
-               </li>
-               <li>
-                  <a href="widgets.html" title="Widgets" data-toggle="" class="no-submenu">
-                     <em class="fa fa-cube"></em>
-                     <span class="item-text">Widgets</span>
-                  </a>
-               </li>
-               <li>
-                  <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
-                     <em class="fa fa-flask"></em>
-                     <span class="item-text">Elements</span>
-                  </a>
-                  <!-- START SubMenu item-->
-                  <ul class="nav collapse ">
-                     <li>
-                        <a href="button.html" title="Buttons" data-toggle="" class="no-submenu">
-                           <span class="item-text">Buttons</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="notifications.html" title="Notifications" data-toggle="" class="no-submenu">
-                           <span class="item-text">Notifications</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="spinners.html" title="Spinners" data-toggle="" class="no-submenu">
-                           <span class="item-text">Spinners</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="animations.html" title="Animations" data-toggle="" class="no-submenu">
-                           <span class="item-text">Animations</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="dropdown-animations.html" title="Dropdown" data-toggle="" class="no-submenu">
-                           <span class="item-text">Dropdown</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="panels.html" title="Panels" data-toggle="" class="no-submenu">
-                           <span class="item-text">Panels</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="portlets.html" title="Portlets" data-toggle="" class="no-submenu">
-                           <span class="item-text">Portlets</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="maps.html" title="Maps" data-toggle="" class="no-submenu">
-                           <span class="item-text">Maps</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="grid.html" title="Grid" data-toggle="" class="no-submenu">
-                           <span class="item-text">Grid</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="grid-masonry.html" title="Grid Masonry" data-toggle="" class="no-submenu">
-                           <span class="item-text">Grid Masonry</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="typo.html" title="Typography" data-toggle="" class="no-submenu">
-                           <span class="item-text">Typography</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="icons.html" title="Icons" data-toggle="" class="no-submenu">
-                           <div class="label label-primary pull-right">+400</div>
-                           <span class="item-text">Icons</span>
-                        </a>
-                     </li>
-                  </ul>
-                  <!-- END SubMenu item-->
-               </li>
-               <li>
-                  <a href="#" title="Forms" data-toggle="collapse-next" class="has-submenu">
-                     <em class="fa fa-edit"></em>
-                     <span class="item-text">Forms</span>
-                  </a>
-                  <!-- START SubMenu item-->
-                  <ul class="nav collapse ">
-                     <li>
-                        <a href="form-standard.html" title="Standard" data-toggle="" class="no-submenu">
-                           <span class="item-text">Standard</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="form-extended.html" title="Extended" data-toggle="" class="no-submenu">
-                           <span class="item-text">Extended</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="form-validation.html" title="Validation" data-toggle="" class="no-submenu">
-                           <span class="item-text">Validation</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="form-wizard.html" title="Wizard" data-toggle="" class="no-submenu">
-                           <span class="item-text">Wizard</span>
-                        </a>
-                     </li>
-                  </ul>
-                  <!-- END SubMenu item-->
-               </li>
-               <li>
-                  <a href="#" title="Charts" data-toggle="collapse-next" class="has-submenu">
-                     <em class="fa fa-bar-chart-o"></em>
-                     <span class="item-text">Charts</span>
-                  </a>
-                  <!-- START SubMenu item-->
-                  <ul class="nav collapse ">
-                     <li>
-                        <a href="chart-flot.html" title="Flot" data-toggle="" class="no-submenu">
-                           <span class="item-text">Flot</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="chart-radial.html" title="Radial" data-toggle="" class="no-submenu">
-                           <span class="item-text">Radial</span>
-                        </a>
-                     </li>
-                  </ul>
-                  <!-- END SubMenu item-->
-               </li>
-               <li>
-                  <a href="#" title="Tables" data-toggle="collapse-next" class="has-submenu">
-                     <em class="fa fa-table"></em>
-                     <span class="item-text">Tables</span>
-                  </a>
-                  <!-- START SubMenu item-->
-                  <ul class="nav collapse ">
-                     <li>
-                        <a href="table-standard.html" title="Standard" data-toggle="" class="no-submenu">
-                           <span class="item-text">Standard</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="table-extended.html" title="Extended" data-toggle="" class="no-submenu">
-                           <span class="item-text">Extended</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="table-datatable.html" title="DataTables" data-toggle="" class="no-submenu">
-                           <span class="item-text">DataTables</span>
-                        </a>
-                     </li>
-                  </ul>
-                  <!-- END SubMenu item-->
-               </li>
-               <li class="nav-heading">More elements</li>
-               <li>
-                  <a href="#" title="Pages" data-toggle="collapse-next" class="has-submenu">
-                     <em class="fa fa-file-text-o"></em>
-                     <span class="item-text">Pages</span>
-                  </a>
-                  <!-- START SubMenu item-->
-                  <ul class="nav collapse ">
-                     <li>
-                        <a href="pages/login.html" title="Login" data-toggle="" class="no-submenu">
-                           <span class="item-text">Login</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="pages/signup.html" title="Sign up" data-toggle="" class="no-submenu">
-                           <span class="item-text">Sign up</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="pages/recover.html" title="Recover Password" data-toggle="" class="no-submenu">
-                           <span class="item-text">Recover Password</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="pages/lock.html" title="Lock" data-toggle="" class="no-submenu">
-                           <span class="item-text">Lock</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="template.html" title="Starter Template" data-toggle="" class="no-submenu">
-                           <span class="item-text">Starter Template</span>
-                        </a>
-                     </li>
-                  </ul>
-                  <!-- END SubMenu item-->
-               </li>
-               <li>
-                  <a href="#" title="Extras" data-toggle="collapse-next" class="has-submenu">
-                     <em class="fa fa-plus"></em>
-                     <span class="item-text">Extras</span>
-                  </a>
-                  <!-- START SubMenu item-->
-                  <ul class="nav collapse ">
-                     <li>
-                        <a href="mailbox.html" title="Mailbox" data-toggle="" class="no-submenu">
-                           <span class="item-text">Mailbox</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="timeline.html" title="Timeline" data-toggle="" class="no-submenu">
-                           <span class="item-text">Timeline</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="calendar.html" title="Calendar" data-toggle="" class="no-submenu">
-                           <span class="item-text">Calendar</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="invoice.html" title="Invoice" data-toggle="" class="no-submenu">
-                           <span class="item-text">Invoice</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="search.html" title="Search" data-toggle="" class="no-submenu">
-                           <span class="item-text">Search</span>
-                        </a>
-                     </li>
-                  </ul>
-                  <!-- END SubMenu item-->
-               </li>
-               <!-- START Theme color options-->
-               <li>
-                  <a href="#" title="Color options" data-toggle="collapse-next" class="has-submenu">
-                     <div class="label label-purple pull-right">4</div>
-                     <em class="fa fa-tint"></em>
-                     <span class="item-text">Colors</span>
-                  </a>
-                  <!-- START SubMenu item-->
-                  <ul class="nav collapse">
-                     <li>
-                        <a href="#" title="Option 1" data-toggle="load-css" data-uri="app/css/beadmin-theme-a.css" class="no-submenu">
-                           <span class="item-text">Alternative 1</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#" title="Option 2" data-toggle="load-css" data-uri="app/css/beadmin-theme-b.css" class="no-submenu">
-                           <span class="item-text">Alternative 2</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#" title="Option 3" data-toggle="load-css" data-uri="app/css/beadmin-theme-c.css" class="no-submenu">
-                           <span class="item-text">Alternative 3</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#" title="Option 4" data-toggle="load-css" data-uri="app/css/beadmin-theme-d.css" class="no-submenu">
-                           <span class="item-text">Alternative 4</span>
-                        </a>
-                     </li>
-                  </ul>
-                  <!-- END SubMenu item-->
-               </li>
-               <!-- END Theme color options-->
-               <li>
-                  <ul class="nav-labels">
-                     <li class="nav-heading">Categories</li>
-                     <li class="nav-labels-item">
-                        <span class="circle circle-lg circle-success"></span><a href="#">Green</a>
-                     </li>
-                     <li class="nav-labels-item">
-                        <span class="circle circle-lg circle-danger"></span><a href="#">Red</a>
-                     </li>
-                     <li class="nav-labels-item">
-                        <span class="circle circle-lg circle-info"></span><a href="#">Skyblue</a>
-                     </li>
-                     <li class="nav-labels-item">
-                        <span class="circle circle-lg circle-warning"></span><a href="#">Yellow</a>
-                     </li>
-                  </ul>
-               </li>
-               <!-- END Menu-->
-            </ul>
+             @yield('menu')
+            
          </nav>
          <!-- END Sidebar (left)-->
       </aside>
@@ -629,7 +347,7 @@
                      </span>
                      <span class="pull-left">
                         <!-- Contact avatar-->
-                        <img src="app/img/user/05.jpg" alt="Image" class="media-object img-circle thumb32">
+                        <img src="../assets/app/img/user/05.jpg" alt="Image" class="media-object img-circle thumb32">
                      </span>
                      <!-- Contact info-->
                      <span class="media-body">
@@ -648,7 +366,7 @@
                      </span>
                      <span class="pull-left">
                         <!-- Contact avatar-->
-                        <img src="app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb32">
+                        <img src="../assets/app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb32">
                      </span>
                      <!-- Contact info-->
                      <span class="media-body">
@@ -667,7 +385,7 @@
                      </span>
                      <span class="pull-left">
                         <!-- Contact avatar-->
-                        <img src="app/img/user/07.jpg" alt="Image" class="media-object img-circle thumb32">
+                        <img src="../assets/app/img/user/07.jpg" alt="Image" class="media-object img-circle thumb32">
                      </span>
                      <!-- Contact info-->
                      <span class="media-body">
@@ -686,7 +404,7 @@
                      </span>
                      <span class="pull-left">
                         <!-- Contact avatar-->
-                        <img src="app/img/user/08.jpg" alt="Image" class="media-object img-circle thumb32">
+                        <img src="../assets/app/img/user/08.jpg" alt="Image" class="media-object img-circle thumb32">
                      </span>
                      <!-- Contact info-->
                      <span class="media-body">
@@ -712,7 +430,7 @@
                      </span>
                      <span class="pull-left">
                         <!-- Contact avatar-->
-                        <img src="app/img/user/09.jpg" alt="Image" class="media-object img-circle thumb32">
+                        <img src="../assets/app/img/user/09.jpg" alt="Image" class="media-object img-circle thumb32">
                      </span>
                      <!-- Contact info-->
                      <span class="media-body">
@@ -731,7 +449,7 @@
                      </span>
                      <span class="pull-left">
                         <!-- Contact avatar-->
-                        <img src="app/img/user/10.jpg" alt="Image" class="media-object img-circle thumb32">
+                        <img src="../assets/app/img/user/10.jpg" alt="Image" class="media-object img-circle thumb32">
                      </span>
                      <!-- Contact info-->
                      <span class="media-body">
@@ -924,7 +642,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="app/img/user/01.jpg" alt="Image" class="media-object img-circle thumb48">
+                                       <img src="../assets/app/img/user/01.jpg" alt="Image" class="media-object img-circle thumb48">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">2h</small>
@@ -941,7 +659,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="app/img/user/04.jpg" alt="Image" class="media-object img-circle thumb48">
+                                       <img src="../assets/app/img/user/04.jpg" alt="Image" class="media-object img-circle thumb48">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">3h</small>
@@ -958,7 +676,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="app/img/user/03.jpg" alt="Image" class="media-object img-circle thumb48">
+                                       <img src="../assets/app/img/user/03.jpg" alt="Image" class="media-object img-circle thumb48">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">4h</small>
@@ -975,7 +693,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb48">
+                                       <img src="../assets/app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb48">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">4h</small>
@@ -992,7 +710,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb48">
+                                       <img src="../assets/app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb48">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">4h</small>
@@ -1146,7 +864,7 @@
                   <div class="panel widget">
                      <div class="panel-body bg-success text-center">
                         <p>
-                           <img src="app/img/user/08.jpg" alt="" class="img-circle thumb64">
+                           <img src="../assets/app/img/user/08.jpg" alt="" class="img-circle thumb64">
                         </p>
                         <p>
                            <strong>Carrie Daniels</strong>
@@ -1232,34 +950,34 @@
    <!-- END Main wrapper-->
    <!-- START Scripts-->
    <!-- Main vendor Scripts-->
-   <script src="vendor/jquery/jquery.min.js"></script>
-   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+   <script src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>
+   <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
    <!-- Plugins-->
-   <script src="vendor/chosen/chosen.jquery.min.js"></script>
-   <script src="vendor/slider/js/bootstrap-slider.js"></script>
-   <script src="vendor/filestyle/bootstrap-filestyle.min.js"></script>
+   <script src="{{asset('assets/vendor/chosen/chosen.jquery.min.js')}}"></script>
+   <script src="{{asset('assets/vendor/slider/js/bootstrap-slider.js')}}"></script>
+   <script src="{{asset('assets/vendor/filestyle/bootstrap-filestyle.min.js')}}"></script>
    <!-- Animo-->
-   <script src="vendor/animo/animo.min.js"></script>
+   <script src="{{asset('assets/vendor/animo/animo.min.js')}}"></script>
    <!-- Sparklines-->
-   <script src="vendor/sparklines/jquery.sparkline.min.js"></script>
+   <script src="{{asset('assets/vendor/sparklines/jquery.sparkline.min.js')}}"></script>
    <!-- Slimscroll-->
-   <script src="vendor/slimscroll/jquery.slimscroll.min.js"></script>
+   <script src="{{asset('assets/vendor/slimscroll/jquery.slimscroll.min.js')}}"></script>
    <!-- Store + JSON-->
-   <script src="vendor/store/store+json2.min.js"></script>
+   <script src="{{asset('assets/vendor/store/store+json2.min.js')}}"></script>
    <!-- ScreenFull-->
-   <script src="vendor/screenfull/screenfull.min.js"></script>
+   <script src="{{asset('assets/vendor/screenfull/screenfull.min.js')}}"></script>
    <!-- START Page Custom Script-->
    <!--  Flot Charts-->
-   <script src="vendor/flot/jquery.flot.min.js"></script>
-   <script src="vendor/flot/jquery.flot.tooltip.min.js"></script>
-   <script src="vendor/flot/jquery.flot.resize.min.js"></script>
-   <script src="vendor/flot/jquery.flot.pie.min.js"></script>
-   <script src="vendor/flot/jquery.flot.time.min.js"></script>
-   <script src="vendor/flot/jquery.flot.categories.min.js"></script>
-   <!--[if lt IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
+   <script src="{{asset('assets/vendor/flot/jquery.flot.min.js')}}"></script>
+   <script src="{{asset('assets/vendor/flot/jquery.flot.tooltip.min.js')}}"></script>
+   <script src="{{asset('assets/vendor/flot/jquery.flot.resize.min.js')}}"></script>
+   <script src="{{asset('assets/vendor/flot/jquery.flot.pie.min.js')}}"></script>
+   <script src="{{asset('assets/vendor/flot/jquery.flot.time.min.js')}}"></script>
+   <script src="{{asset('assets/vendor/flot/jquery.flot.categories.min.js')}}"></script>
+   <!--[if lt IE 8]><script src="js/excanvas.min.js')}}"></script><![endif]-->
    <!-- END Page Custom Script-->
    <!-- App Main-->
-   <script src="app/js/app.js"></script>
+   <script src="{{asset('assets/app/js/app.js')}}"></script>
    <!-- END Scripts-->
 </body>
 
