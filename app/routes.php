@@ -25,6 +25,9 @@ Route::model('country', 'Country');
  */
 Route::pattern('user', '[0-9]+');
 Route::pattern('role', '[0-9]+');
+Route::pattern('outlet', '\d+');
+Route::pattern('retailer', '\d+');
+Route::pattern('service', '\d+');
 Route::pattern('token', '[0-9a-z]+');
 
 Route::filter('role', function( $route, $request, $value ) {
@@ -35,7 +38,7 @@ Route::filter('role', function( $route, $request, $value ) {
 
     if ( Auth::user()->user_type !== $roles[0] ) {
 
-        return App::abort( 401 );
+        return App::abort( 403 );
     }
 
 });
@@ -97,7 +100,12 @@ Route::group(array('before' => 'auth|role:retailer'), function()
 
 Route::group( array( 'before' => 'auth|role:user'), function() {
 
-    Route::resource('deal', 'ConsumersController');
+    Route::get( 'deal', array('as' => 'deal.index', 'uses' => 'ConsumersController@listDeal'));
+    Route::get( 'deal/{outletId}', array('as' => 'deal.crate', 'uses' => 'ConsumersController@createDeal'))->where( 'outletId', '\d+');
+    Route::post( 'deal/{outletId}', array('as' => 'deal.crate', 'uses' => 'ConsumersController@storeDeal'))->where( 'outletId', '\d+');
+   
+    Route::delete( 'deal/{id}', array('as' => 'deal.cancel', 'uses' => 'ConsumersController@cancelDeal'))->where( 'id', '\d+');
+
 });
 
 

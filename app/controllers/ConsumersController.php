@@ -17,7 +17,7 @@ class ConsumersController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function listDeal()
 	{
 		$deals = Deal::owner()->get();
 
@@ -29,9 +29,9 @@ class ConsumersController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function createDeal( $retailerId )
 	{
-		return View::make('site.deals.create');
+		return View::make('site.deals.create', compact('retailerId'));
 	}
 
 	/**
@@ -39,15 +39,17 @@ class ConsumersController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function storeDeal( $retailerId )
 	{
 		$validator = Validator::make($data = Input::all(), Deal::$rules);
 
 		if ( $validator->fails() )
 		{
+			var_dump($validator->messages());die;
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
+		$data['outlet_id'] = (int)$retailerId;
 		$data['consumer_id'] = $this->user->id;
 		$data['consumer_email'] = $this->user->email;
 
@@ -62,7 +64,7 @@ class ConsumersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function showDeal($id)
 	{
 		$deal = Deal::findOrFail($id);
 
@@ -75,7 +77,7 @@ class ConsumersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function editDeal($id)
 	{
 		$deal = Deal::find($id);
 
@@ -88,7 +90,7 @@ class ConsumersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function updateDeal($id)
 	{
 		$deal = Deal::findOrFail($id);
 
@@ -110,9 +112,9 @@ class ConsumersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function cancelDeal($id)
 	{
-		Deal::destroy($id);
+		Deal::destroy( $id );
 
 		return Redirect::route('deal.index');
 	}
