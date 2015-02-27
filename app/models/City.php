@@ -4,11 +4,12 @@ class City extends Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
+		'country_id' => 'required|integer|min:1',
+		'city' => 'required'
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = [ 'city', 'country_id' ];
 
 	/**
 	 * Get the city's country's.
