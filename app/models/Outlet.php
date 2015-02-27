@@ -21,6 +21,11 @@ class Outlet extends Eloquent {
 		return $query->where( 'admin_id', Auth::id() );
 	}
 
+	public function scopeActive( $query ) {
+
+		return $query->where( 'active', 1 );
+	}
+
 	public function services() {
 
 		return $this->hasMany( 'Service' );
@@ -30,6 +35,5 @@ class Outlet extends Eloquent {
 
 		return $this->belongsTo('OutletDescription');
 	}
-
 	
 }

@@ -2,7 +2,6 @@
 
 class SiteController extends BaseController {
 
-
     /**
      * User Model
      * @var User
@@ -28,11 +27,10 @@ class SiteController extends BaseController {
 	 */
 	public function getIndex()
 	{
-
-		// Get all the blog posts
-		// $posts = $this->post->orderBy('created_at', 'DESC')->paginate(10);
-		$outlets = Outlet::where('active', 1);
-		// Show the page
+        // get list outlet active
+		$outlets = Outlet::active();
+		
+        // Show the page
 		return View::make('site/homelayout',compact('outlets'));
 	}
 

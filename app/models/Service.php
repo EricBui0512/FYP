@@ -9,7 +9,7 @@ class Service extends \Eloquent {
 		'photo_id' => 'integer',
 		'condition_id' => 'integer',
 		'detail_id' => 'integer',
-		// 'active' => ''
+		'price' => 'regex:/[\d]{1,5}.[\d]{2}/'
 	];
 
 	// Don't forget to fill this array

@@ -91,8 +91,13 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::get('service/{service}/edit', array( 'as' => 'service.edit', 'uses' => 'RetailersController@editService'));
     Route::put('service/{service}', array( 'as' => 'service.edit', 'uses' => 'RetailersController@updateService'));
     Route::delete('service/{service}', array( 'as' => 'service.delete', 'uses' => 'RetailersController@destroyService'));
-    Route::get('service', array( 'as' => 'services.index', 'uses' => 'RetailersController@listService'));
+    Route::get('service', array( 'as' => 'service.index', 'uses' => 'RetailersController@listService'));
 
+});
+
+Route::group( array( 'before' => 'auth|role:user'), function() {
+
+    Route::resource('deal', 'ConsumersController');
 });
 
 
