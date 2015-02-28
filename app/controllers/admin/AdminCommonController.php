@@ -561,7 +561,7 @@ class AdminCommonController extends AdminController {
     public function deleteAddress($address)
     {
         // Title
-        $title = Lang::get('admin/addresses/title.address_delete');
+        $title = 'Delete Address';
 
         // Show the page
         return View::make('admin/addresses/delete', compact('address', 'title'));
