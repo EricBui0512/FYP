@@ -1,1 +1,0 @@
-E:\wamp\www\booking\app/views/outlets/create.blade.php
