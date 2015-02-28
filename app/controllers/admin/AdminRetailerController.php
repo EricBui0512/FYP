@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:17:58
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-28 17:16:09
+ * @Last Modified time: 2015-02-28 21:43:34
  */
 class AdminRetailerController extends AdminController {
 	
@@ -31,8 +31,8 @@ class AdminRetailerController extends AdminController {
 	{
 		$title = 'Edit Retailer';
 
-		$retailer = Retailer::getFull();
-
+		$retailer = Retailer::getFull( $id );
+			
 		$countries = Country::lists('country', 'id' );
 		$cities = City::where( 'country_id', $retailer->country_id )->lists('city', 'id');
 
