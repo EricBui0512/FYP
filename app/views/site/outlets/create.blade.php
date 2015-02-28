@@ -37,6 +37,8 @@
 	                                <option>Option 4</option>
                               	</select>
                               </div>
+                               <a href="" class="col-lg-1  icon-add"><em class="fa fa-plus"></em></a><small>&nbsp; new address</small>
+                              
                            </div>
                            <div class="form-group">
                               <label class="col-lg-2 control-label">Name</label>
