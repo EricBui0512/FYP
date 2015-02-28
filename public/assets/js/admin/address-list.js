@@ -10,7 +10,7 @@ $(document).ready(function() {
             },
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": "/admin/addresses/data/city/country",
+            "sAjaxSource": "/admin/addresses/data/"+city+"/"+country,
             "fnDrawCallback": function(oSettings) {
                 $('.container').on('click', '.dataTable .btn-xs, .btn-info.iframe', function() {
                     if ($(this).hasClass('btn-danger') || $(this).hasClass('btn-warning')) {
@@ -30,5 +30,30 @@ $(document).ready(function() {
             }
         });
     }
-    loadData();
+    loadData(0,0);
+ //    $('#countries-list').on('change', function() {
+	//   	country = $(this).val();
+	//   	$.ajax({
+ //            url: '/add',
+ //            method: 'POST',
+ //            async: true,
+ //            success: function(data) {
+                
+ //            },
+ //            statusCode: {
+ //                404: function() {
+ //                   // error
+ //                }
+ //            },
+ //            complete: function() {
+ //                //complete
+ //            }
+ //        });
+	//   	loadData(0,country);
+	// });
+	$('#cities-list').on('change', function() {
+	  	country = $("#countries-list").val();
+	  	city = $(this).val();
+	  	loadData(city,country);
+	});
 });

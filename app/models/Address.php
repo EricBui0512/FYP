@@ -11,8 +11,18 @@ class Address extends \Eloquent {
 	// Don't forget to fill this array
 	protected $fillable = ['address', 'city_id','district', 'postal_code'];
 
-	public function city() {
+	public function scopeByCountry( $query, $countryId )
+	{
+		return $query->leftJoin('cities', 'cities.id', '=', 'addresses.city_id')->where( 'country_id', $countryId );
+	}
 
+	public function scopeByCity( $query, $cityId )
+	{
+		return $query->where( 'city_id', $cityId );
+	}
+
+	public function city()
+	{
 		return $this->belongsTo('City');
 	}
 }

@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 22:47:44
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-28 10:41:02
+ * @Last Modified time: 2015-02-28 11:41:06
  */
 class AdminCommonController extends AdminController {
 
@@ -577,7 +577,8 @@ class AdminCommonController extends AdminController {
     public function destroyAddress( $address )
     {
         // Was the role deleted?
-        if ( $address->delete() ) {
+        if ( $address->delete() )
+        {
             // Redirect to the role management page
             return Redirect::to('admin/addresses')->with('success', Lang::get('admin/addresses/messages.delete.success'));
         }
@@ -591,11 +592,23 @@ class AdminCommonController extends AdminController {
      *
      * @return Datatables JSON
      */
-    public function getAddresses()
+    public function getAddresses( $countryId = 0, $cityId = 0 )
     {
+        $fields = array('id', 'address', 'district', 'postal_code', 'created_at', 'updated_at');
 
-        $addresses = Address::select(array('id', 'address', 'district', 'postal_code', 'created_at', 'updated_at'))->orderBy('city_id');
+        $query = Address::select( $fields );
 
+        if ( $countryId )
+        {
+            $query = $query->byCountry( $countryId );
+        }
+
+        if ( $cityId )
+        {
+            $query = $query->byCity( $cityId );
+        }
+        $addresses = $query->orderBy( 'city_id');
+        
         return Datatables::of($addresses)
         // ->edit_column('created_at','{{{ Carbon::now()->diffForHumans(Carbon::createFromFormat(\'Y-m-d H\', $test)) }}}')
 
@@ -607,5 +620,11 @@ class AdminCommonController extends AdminController {
 
         ->make();
     }
-    
+
+    public function getHtmlCity( $countryId ) {
+
+        $cities = City::ByCountry( $countryId );
+
+        return View::make( 'admin/cities/_city', compact('cities'));
+    }
 }

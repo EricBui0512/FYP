@@ -26,8 +26,8 @@ class City extends Eloquent {
 		return $this->hasMany('Address');
 	}
 
-	public function getByCountry( $countryId ) {
+	public function scopeByCountry( $query, $countryId ) {
 
-		return $this->where('country_id', $country_id);
+		return $query->where('country_id', $countryId);
 	}
 }
