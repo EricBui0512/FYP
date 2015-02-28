@@ -65,4 +65,25 @@ $(document).ready(function() {
         oTable.fnDestroy();
         loadData(city, country);
     });
+
+    $('#country_id').on('change', function() {
+        country = $(this).val();
+        console.log(country);
+        $.ajax({
+            url: '/admin/cities/html/' + country,
+            method: 'GET',
+            async: true,
+            success: function(data) {
+                $('.city-form').html(data);
+            },
+            statusCode: {
+                404: function() {
+                    // error
+                }
+            },
+            complete: function() {
+                //complete
+            }
+        });
+    });
 });

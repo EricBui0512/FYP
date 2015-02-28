@@ -17,7 +17,7 @@
                 </a>
              </li>
              <li>
-                <a href="notifications.html" title="Notifications" data-toggle="" class="no-submenu">
+                <a href="{{{URL::to('outlet/list')}}}" title="Notifications" data-toggle="" class="no-submenu">
                    <span class="item-text">List Outlet</span>
                 </a>
              </li>

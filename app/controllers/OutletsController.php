@@ -69,6 +69,18 @@ class OutletsController extends \BaseController {
 
 		return View::make('site.outlets.show', compact('outlet'));
 	}
+	/**
+	 * Display the specified outlet.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function getList()
+	{
+		// $outlet = Outlet::findOrFail($id);
+
+		return View::make('site.outlets.index');
+	}
 
 	/**
 	 * Show the form for editing the specified outlet.
