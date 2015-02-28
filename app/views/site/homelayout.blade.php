@@ -93,9 +93,8 @@
                                            {{{ Auth::user()->username }}}<span class="caret"></span>
                                         </div>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Daskboard</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
+                                            <li><a href="{{{ URL::to('user/dashboard') }}}">Daskboard</a></li>
+                                           
                                             <li class="divider"></li>
                                             <li><a href="{{{ URL::to('user/logout') }}}">Logout</a></li>
                                         </ul>

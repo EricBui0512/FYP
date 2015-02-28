@@ -39,6 +39,16 @@ class UserController extends BaseController {
         return View::make('site/user/index', compact('user'));
     }
     /**
+     * Users settings page
+     *
+     * @return View
+     */
+    public function getDasboard()
+    {
+        $user = Auth::user();    
+        return View::make('site/layouts/retailer', compact('user'));
+    }
+    /**
      * Users Signup
      *
      * @return View
