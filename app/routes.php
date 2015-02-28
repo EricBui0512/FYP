@@ -105,6 +105,19 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::get('outlets/data', 'AdminOutletsController@getData');
     Route::resource('outlets', 'AdminOutletsController');
 
+    Route::get('retailers/data', 'AdminRetailerController@getData');
+    Route::resource('retailers', 'AdminRetailerController');
+
+    # Service Management
+    Route::get('services/create', 'AdminRetailerController@createService');
+    Route::post('services/create', 'AdminRetailerController@storeService');
+    Route::get('services/{service}/edit', 'AdminRetailerController@editService');
+    Route::post('services/{service}/edit', 'AdminRetailerController@updateService');
+    Route::get('services/{service}/delete', 'AdminRetailerController@deleteService');
+    Route::post('services/{service}/delete', 'AdminRetailerController@destroyService');
+    Route::get('services/data', 'AdminRetailerController@getServicees')
+        ->where('cityId', '\d+')->where('countryId','\d+');
+    Route::get('services', 'AdminRetailerController@listService');
 
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');
@@ -129,16 +142,18 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::get('service', array( 'as' => 'service.index', 'uses' => 'RetailersController@listService'));
     #outlet manager
     Route::get('outlet/create', array( 'as' => 'outlet.create', 'uses' => 'OutletsController@create'));
-});
-
-Route::group( array( 'before' => 'auth|role:user'), function() {
 
     Route::get( 'deal', array('as' => 'deal.index', 'uses' => 'ConsumersController@listDeal'));
     Route::get( 'deal/{outletId}', array('as' => 'deal.crate', 'uses' => 'ConsumersController@createDeal'))->where( 'outletId', '\d+');
     Route::post( 'deal/{outletId}', array('as' => 'deal.crate', 'uses' => 'ConsumersController@storeDeal'))->where( 'outletId', '\d+');
    
     Route::delete( 'deal/{id}', array('as' => 'deal.cancel', 'uses' => 'ConsumersController@cancelDeal'))->where( 'id', '\d+');
-    
+
+});
+
+Route::group( array( 'before' => 'auth|role:user'), function() {
+
+        
 });
 
 

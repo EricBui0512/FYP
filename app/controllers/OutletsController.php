@@ -19,6 +19,7 @@ class OutletsController extends \BaseController {
 	 */
 	public function index()
 	{
+
 		$outlets = Outlet::owner()->get();
 
 		return View::make('site.outlets.index', compact('outlets'));
