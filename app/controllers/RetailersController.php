@@ -222,4 +222,15 @@ class RetailersController extends \BaseController {
 		return Redirect::route('service.index');
 	}
 
+	/**
+	 * Remove the specified service from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function createDeals()
+	{
+		return View::make('site.deals.create');
+	}
+
 }

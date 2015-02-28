@@ -552,6 +552,10 @@
    <!-- ScreenFull-->
    <script src="{{asset('assets/vendor/screenfull/screenfull.min.js')}}"></script>
    <!-- START Page Custom Script-->
+   <script src="{{asset('assets/vendor/wizard/js/bwizard.min.js')}}"></script>
+   <!-- Form Validation-->
+   <script src="{{asset('assets/vendor/parsley/parsley.min.js')}}"></script>
+   <!-- START Page Custom Script-->
    <!--  Flot Charts-->
    <script src="{{asset('assets/vendor/flot/jquery.flot.min.js')}}"></script>
    <script src="{{asset('assets/vendor/flot/jquery.flot.tooltip.min.js')}}"></script>

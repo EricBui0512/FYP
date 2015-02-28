@@ -1,1 +1,7 @@
-E:\wamp\www\booking\app/views/outlets/show.blade.php
+@extends('site.layouts.retailer')
+@section('title')
+	Detail Outlet
+@stop
+@section('container')
+
+@stop

@@ -48,7 +48,7 @@
                            </div>
                            <div class="form-group">
                               <label class="col-lg-2 control-label">Website</label>
-                              <div class="col-lg-8">
+                              <div class="col-lg-8 ">
                                  <input type="url" placeholder="Website" class="form-control">
                               </div>
                            </div>
@@ -61,11 +61,11 @@
 	                              <textarea class="form-control"  rows="5">Description</textarea>
 	                           </div>
                         	</div>
-                        	<div class="form-group">
+                        	<div class="form-group height-200">
 	                           <label class="col-sm-2 control-label">Sumary
 	                              
 	                           </label>
-	                           <div class="col-sm-8">
+	                           <div class="col-sm-8 ">
 	                              <textarea class="form-control" rows="5">Sumary</textarea>
 	                           </div>
                         	</div>

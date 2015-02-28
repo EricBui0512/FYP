@@ -24,7 +24,49 @@
              
           </ul>
           <!-- END SubMenu item-->
-       </li>       
+       </li>
+       <li>
+          <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
+             <em class="fa fa-flask"></em>
+             <span class="item-text">Manager Service</span>
+          </a>
+          <!-- START SubMenu item-->
+          <ul class="nav collapse ">
+             <li>
+                <a href="{{{URL::to('service/create')}}}" title="Buttons" data-toggle="" class="no-submenu">
+                   <span class="item-text">Create service</span>
+                </a>
+             </li>
+             <li>
+                <a href="{{{URL::to('service/list')}}}" title="Notifications" data-toggle="" class="no-submenu">
+                   <span class="item-text">List service</span>
+                </a>
+             </li>
+             
+          </ul>
+          <!-- END SubMenu item-->
+        </li>
+        <li>
+          <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
+             <em class="fa fa-flask"></em>
+             <span class="item-text">Manager Deals</span>
+          </a>
+          <!-- START SubMenu item-->
+          <ul class="nav collapse ">
+             <li>
+                <a href="{{{URL::to('deals/create')}}}" title="Buttons" data-toggle="" class="no-submenu">
+                   <span class="item-text">Create Deals</span>
+                </a>
+             </li>
+             <li>
+                <a href="{{{URL::to('deals/list')}}}" title="Notifications" data-toggle="" class="no-submenu">
+                   <span class="item-text">List Deals</span>
+                </a>
+             </li>
+             
+          </ul>
+          <!-- END SubMenu item-->
+        </li>            
     </ul>
 @stop
 @section('content')

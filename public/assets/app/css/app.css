@@ -3987,6 +3987,7 @@ textarea.bootstrap-tagsinput {
   padding: 10px;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  height: 200px!important
 }
 /* Fullscreen MArkdown area editor */
 html.markdownarea-fullscreen,
@@ -5266,4 +5267,4 @@ fieldset[disabled] .fc-button.active {
   padding-top: 4px;
   padding-left: 10px;
 }
-/*.icon-add:before{content: "\f067";}*/
+.well{background-color: #ffffff;}

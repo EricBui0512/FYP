@@ -53,7 +53,7 @@
 	                          </li>
 	                          <li><a href="#">Edit</a>
 	                          </li>
-	                          <li><a href="#">Detail</a>
+	                          <li><a href="{{URL::to('outlet/detail/1')}}">Detail</a>
 	                          </li>
 	                       </ul>
 	                    </div>
@@ -86,7 +86,7 @@
 	                          </li>
 	                          <li><a href="#">Edit</a>
 	                          </li>
-	                          <li><a href="#">Detail</a>
+	                          <li><a href="{{URL::to('outlet/detail/1')}}">Detail</a>
 	                          </li>
 	                       </ul>
 	                    </div>
@@ -118,7 +118,7 @@
 	                          </li>
 	                          <li><a href="#">Edit</a>
 	                          </li>
-	                          <li><a href="#">Detail</a>
+	                          <li><a href="{{URL::to('outlet/detail/1')}}">Detail</a>
 	                          </li>
 	                       </ul>
 	                    </div>
