@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 22:47:44
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-28 11:32:59
+ * @Last Modified time: 2015-02-28 11:41:06
  */
 class AdminCommonController extends AdminController {
 
@@ -621,5 +621,10 @@ class AdminCommonController extends AdminController {
         ->make();
     }
 
+    public function getHtmlCity( $countryId ) {
 
+        $cities = City::ByCountry( $countryId );
+
+        return View::make( 'admin/cities/_city', compact('cities'));
+    }
 }
