@@ -418,8 +418,8 @@ class AdminCommonController extends AdminController {
     {
         // Title
         $title = 'Address Manager';
-        $countries = array_merge( array( '0' => '' ), Country::lists('country','id'));
-        $cities = array_merge( array( '0' => '' ), City::lists('city','id'));
+        $countries = array_merge( array( '0' => 'All' ), Country::lists('country','id'));
+        $cities = array( '0' => 'All' );
         // Show the page
         return View::make('admin/addresses/index', compact('title','countries','cities'));
     }
@@ -594,7 +594,7 @@ class AdminCommonController extends AdminController {
      */
     public function getAddresses( $countryId = 0, $cityId = 0 )
     {
-        $fields = array('id', 'address', 'district', 'postal_code', 'created_at', 'updated_at');
+        $fields = array('addresses.id', 'address', 'district', 'postal_code', 'addresses.created_at', 'addresses.updated_at');
 
         $query = Address::select( $fields );
 

@@ -38,7 +38,7 @@ $(document).ready(function() {
             method: 'GET',
             async: true,
             success: function(data) {
-            	console.log(data);
+            	$('.cities-list').html(data);
             },
             statusCode: {
                 404: function() {
@@ -55,6 +55,7 @@ $(document).ready(function() {
     $('#cities-list').on('change', function() {
         country = $("#countries-list").val();
         city = $(this).val();
+        oTable.fnDestroy();
         loadData(city, country);
     });
 });
