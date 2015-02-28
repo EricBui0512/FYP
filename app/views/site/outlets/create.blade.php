@@ -56,7 +56,7 @@
 	                              
 	                           </label>
 	                           <div class="col-sm-8">
-	                              <textarea data-uk-markdownarea="{mode:'tab'}">Description</textarea>
+	                              <textarea class="form-control"  rows="5">Description</textarea>
 	                           </div>
                         	</div>
                         	<div class="form-group">
@@ -64,7 +64,7 @@
 	                              
 	                           </label>
 	                           <div class="col-sm-8">
-	                              <textarea data-uk-markdownarea="{mode:'tab'}">Sumary</textarea>
+	                              <textarea class="form-control" rows="5">Sumary</textarea>
 	                           </div>
                         	</div>
                            
