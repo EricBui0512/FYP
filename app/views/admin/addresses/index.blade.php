@@ -15,14 +15,14 @@
 			</div>
 		</h3>
 	</div>
-	<div class="row padding">
+	<div class="row padding-bottom20">
 		<label for="country" class="col-md-1 control-label">Country</label>
 		<div class="col-md-2">
-			{{ Form::select('country_id', $countries, 257, array('class'=>'form-control','id'=>'countries-list'))}}
+			{{ Form::select('country_id', $countries, 0, array('class'=>'form-control','id'=>'countries-list'))}}
 		</div>
 		<label for="country" class="col-md-1 control-label">City</label>
-		<div class="col-md-2">
-			{{ Form::select('city_id', $cities, 1, array('class'=>'form-control','id'=>'cities-list'))}}
+		<div class="col-md-2 cities-list">
+			{{ Form::select('city_id', $cities, 0, array('class'=>'form-control','id'=>'cities-list'))}}
 		</div>
 	</div>
 	<table id="addresses" class="table table-striped table-hover">
