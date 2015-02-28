@@ -49,6 +49,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/wysihtml5/bootstrap-wysihtml5.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/datatables-bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/colorbox.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/select2/select2.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('assets/css/admin/style.css')}}">
 
 	<style>
@@ -164,6 +165,7 @@
     <script src="{{asset('assets/js/datatables.fnReloadAjax.js')}}"></script>
     <script src="{{asset('assets/js/jquery.colorbox.js')}}"></script>
     <script src="{{asset('assets/js/prettify.js')}}"></script>
+    <script src="{{asset('assets/vendor/select2/select2.min.js')}}"></script>
 
     <script type="text/javascript">
     	$('.wysihtml5').wysihtml5();

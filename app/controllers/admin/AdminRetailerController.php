@@ -83,8 +83,8 @@ class AdminRetailerController extends AdminController {
      */
     public function getData()
     {
-        $retailers = Retailer::select(array('retailers.id', 'addresses.address', 'business_categories.name AS category', 'retailers.name',
-        				'company_register_id', 'retailers.website',  'retailers.created_at', 'retailers.updated_at'))
+        $retailers = Retailer::select(array('retailers.name' , 'retailers.id', 'addresses.address','company_register_id', 'business_categories.name AS category',
+        				 'retailers.website',  'retailers.created_at'))
         			->leftJoin('addresses', 'addresses.id', '=', 'retailers.address_id')
         			->leftJoin('business_categories', 'business_categories.id', '=', 'retailers.category_id');
 

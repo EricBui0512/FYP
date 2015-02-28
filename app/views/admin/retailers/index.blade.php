@@ -10,20 +10,19 @@
 	<div class="page-header">
 		<h3>
 			{{{ $title }}}
-
-			<div class="pull-right">
-				<a href="{{{ URL::to('admin/countries/create') }}}" class="btn btn-small btn-info iframe"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
-			</div>
 		</h3>
 	</div>
 
-	<table id="countries" class="table table-striped table-hover">
+	<table id="retailers" class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th class="col-md-4">Name</th>
-				<th class="col-md-2">Created at</th>
-				<th class="col-md-2">Updated at</th>
-				<th class="col-md-2">Actions</th>
+				<th class="col-md-2">Name</th>
+				<th class="col-md-2">Address</th>
+				<th class="col-md-2">Company Register ID</th>
+				<th class="col-md-2">Business</th>
+				<th class="col-md-1">Website</th>
+				<th class="col-md-2">Create at</th>
+				<th class="col-md-1">Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -36,7 +35,7 @@
 	<script type="text/javascript">
 		var oTable;
 		$(document).ready(function() {
-				oTable = $('#countries').dataTable( {
+				oTable = $('#retailers').dataTable( {
 				// "sDom": "<'row'<'col-md-6'l>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
 				"sPaginationType": "bootstrap",
 				"oLanguage": {
@@ -44,7 +43,7 @@
 				},
 				"bProcessing": true,
 		        "bServerSide": true,
-		        "sAjaxSource": "{{ URL::to('admin/countries/data') }}",
+		        "sAjaxSource": "{{ URL::to('admin/retailers/data') }}",
 	     		"fnDrawCallback": function ( oSettings ) {
 		        	$('.container').on('click', '.dataTable .btn-xs, .btn-info.iframe', function() {
 		        		if ($(this).hasClass('btn-danger') || $(this).hasClass('btn-warning')) {
