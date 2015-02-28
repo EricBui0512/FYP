@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:06:32
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-28 09:29:26
+ * @Last Modified time: 2015-02-28 11:29:50
  */
 
 class AdminOutletsController extends AdminController {

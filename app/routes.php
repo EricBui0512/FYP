@@ -96,7 +96,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::post('addresses/{address}/edit', 'AdminCommonController@updateAddress');
     Route::get('addresses/{address}/delete', 'AdminCommonController@deleteAddress');
     Route::post('addresses/{address}/delete', 'AdminCommonController@destroyAddress');
-    Route::get('addresses/data', 'AdminCommonController@getAddresses');
+    Route::get('addresses/data/{countryId}/{cityId}', 'AdminCommonController@getAddresses')
+        ->where('cityId', '\d+')->where('countryId','\d+');
     Route::get('addresses', 'AdminCommonController@listAddress');
     
     Route::get('outlets/data', 'AdminOutletsController@getData');
