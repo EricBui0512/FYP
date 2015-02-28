@@ -102,6 +102,8 @@
                             <ul class="dropdown-menu">
                                 <li{{ (Request::is('admin/retailers*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/retailers') }}}"><span class="glyphicon glyphicon-user"></span> Retailers</a></li>
                                 <li{{ (Request::is('admin/outlets*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/outlets') }}}"><span class="glyphicon glyphicon-user"></span> Outlets</a></li>
+                                <li{{ (Request::is('admin/services*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/services') }}}"><span class="glyphicon glyphicon-user"></span> Services</a></li>
+                                <li{{ (Request::is('admin/service-condition*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/service-condition') }}}"><span class="glyphicon glyphicon-user"></span> Services Conditions</a></li>
                             </ul>
                         </li>
     					<li class="dropdown{{ (Request::is('admin/users*|admin/roles*|admin/permissionss*') ? ' active' : '') }}">
