@@ -49,6 +49,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/wysihtml5/bootstrap-wysihtml5.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/datatables-bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/colorbox.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/admin/style.css')}}">
 
 	<style>
 	body {
