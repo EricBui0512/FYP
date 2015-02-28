@@ -28,4 +28,15 @@ class Retailer extends \Eloquent {
 
 		return $this->belongsTo('Admin');
 	}
+
+	public static function getFull() {
+
+  		$retailer = Retailer::select( array( 'retailers.id', 'admin_id', 'category_id',
+		  		'company_register_id', 'retailers.name', 'website', 'retailers.created_at',
+		  		'retailers.updated_at', 'cities.id AS city_id', 'cities.country_id') )
+  			->leftJoin( 'addresses', 'addresses.id', '=', 'retailers.address_id')
+  			->leftJoin( 'cities', 'citites.id', '=', 'addresses.city_id');
+
+  		return $retailer;
+	}
 }

@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:17:58
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-28 15:36:15
+ * @Last Modified time: 2015-02-28 17:16:09
  */
 class AdminRetailerController extends AdminController {
 	
@@ -27,15 +27,18 @@ class AdminRetailerController extends AdminController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($retailer)
+	public function edit($id)
 	{
 		$title = 'Edit Retailer';
 
-		$retailer = Retailer::find($id);
+		$retailer = Retailer::getFull();
 
-		$cats = BusinessCategory::all();
+		$countries = Country::lists('country', 'id' );
+		$cities = City::where( 'country_id', $retailer->country_id )->lists('city', 'id');
 
-		return View::make('admin.retailers.edit', compact('retailer', 'cats', 'title'));
+		$cats = BusinessCategory::lists( 'name', 'id');
+
+		return View::make('admin.retailers.edit', compact('retailer', 'cats', 'title', 'countries', 'cities'));
 	}
 
 	/**

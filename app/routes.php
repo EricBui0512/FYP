@@ -106,6 +106,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::resource('outlets', 'AdminOutletsController');
 
     Route::get('retailers/data', 'AdminRetailerController@getData');
+    Route::get('retailers/{retailerId}/delete', 'AdminRetailerController@getData');
     Route::resource('retailers', 'AdminRetailerController');
 
     # Service Management
