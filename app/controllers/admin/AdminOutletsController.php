@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:06:32
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-28 11:29:50
+ * @Last Modified time: 2015-02-28 15:09:32
  */
 
 class AdminOutletsController extends AdminController {
@@ -20,49 +20,6 @@ class AdminOutletsController extends AdminController {
 		return View::make('admin.outlets.index', compact('title'));
 	}
 
-	/**
-	 * Show the form for creating a new outlet
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		$title = 'Crate a outlet';
-
-		return View::make('admin.outlets.create_edit', compact('title'));
-	}
-
-	/**
-	 * Store a newly created outlet in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$validator = Validator::make($data = Input::all(), Outlet::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
-
-		Outlet::create($data);
-
-		return Redirect::route('outlets.index');
-	}
-
-	/**
-	 * Display the specified outlet.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$outlet = Outlet::findOrFail($id);
-
-		return View::make('outlets.show', compact('outlet'));
-	}
 
 	/**
 	 * Show the form for editing the specified outlet.

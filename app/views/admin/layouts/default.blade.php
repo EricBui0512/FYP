@@ -49,6 +49,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/wysihtml5/bootstrap-wysihtml5.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/datatables-bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/colorbox.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/select2/select2.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('assets/css/admin/style.css')}}">
 
 	<style>
@@ -102,6 +103,8 @@
                             <ul class="dropdown-menu">
                                 <li{{ (Request::is('admin/retailers*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/retailers') }}}"><span class="glyphicon glyphicon-user"></span> Retailers</a></li>
                                 <li{{ (Request::is('admin/outlets*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/outlets') }}}"><span class="glyphicon glyphicon-user"></span> Outlets</a></li>
+                                <li{{ (Request::is('admin/services*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/services') }}}"><span class="glyphicon glyphicon-user"></span> Services</a></li>
+                                <li{{ (Request::is('admin/service-condition*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/service-condition') }}}"><span class="glyphicon glyphicon-user"></span> Services Conditions</a></li>
                             </ul>
                         </li>
     					<li class="dropdown{{ (Request::is('admin/users*|admin/roles*|admin/permissionss*') ? ' active' : '') }}">
@@ -162,6 +165,7 @@
     <script src="{{asset('assets/js/datatables.fnReloadAjax.js')}}"></script>
     <script src="{{asset('assets/js/jquery.colorbox.js')}}"></script>
     <script src="{{asset('assets/js/prettify.js')}}"></script>
+    <script src="{{asset('assets/vendor/select2/select2.min.js')}}"></script>
 
     <script type="text/javascript">
     	$('.wysihtml5').wysihtml5();
