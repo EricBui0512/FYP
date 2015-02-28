@@ -18,6 +18,8 @@
 Route::model('user', 'User');
 Route::model('role', 'Role');
 Route::model('country', 'Country');
+Route::model('city', 'City');
+Route::model('outlet', 'Outlet');
 
 /** ------------------------------------------
  *  Route constraint patterns
@@ -76,9 +78,23 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::get('countries/data', 'AdminCommonController@getCountries');
     Route::controller('countries', 'AdminCommonController');
 
+    # City Management
+    Route::get('cities/create', 'AdminCommonController@createCity');
+    Route::post('cities/create', 'AdminCommonController@storeCity');
+    Route::get('cities/{city}/edit', 'AdminCommonController@editCity');
+    Route::post('cities/{city}/edit', 'AdminCommonController@updateCity');
+    Route::get('cities/{city}/delete', 'AdminCommonController@deleteCity');
+    Route::post('cities/{city}/delete', 'AdminCommonController@destroyCity');
+    Route::get('cities/data', 'AdminCommonController@getCities');
+    Route::get('cities', 'AdminCommonController@listCity');
+    
+    Route::get('outlets/data', 'AdminOutletsController@getData');
+    Route::resource('outlets', 'AdminOutletsController');
+
+
+
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');
-
 
 });
 
