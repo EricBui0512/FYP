@@ -88,6 +88,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::post('cities/{city}/delete', 'AdminCommonController@destroyCity');
     Route::get('cities/data', 'AdminCommonController@getCities');
     Route::get('cities', 'AdminCommonController@listCity');
+    Route::get('cities/html/{countryId}', 'AdminCommonController@getHtmlCity')
+        ->where( 'countryId', '\d+');
 
      # Address Management
     Route::get('addresses/create', 'AdminCommonController@createAddress');
