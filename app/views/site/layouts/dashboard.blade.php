@@ -60,7 +60,7 @@
          <div class="navbar-header">
             <a href="index.html" class="navbar-brand">
                <div class="brand-logo">
-                  <img src="../assets/app/img/logo.png" alt="App Logo" class="img-responsive">
+                  <img src="{{asset('assets/img/index/logo.png')}}" alt="App Logo" class="img-responsive">
                </div>
                <div class="brand-logo-collapsed">
                   <img src="../assets/app/img/logo-single.png" alt="App Logo" class="img-responsive">
