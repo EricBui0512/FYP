@@ -101,6 +101,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 
 Route::group(array('before' => 'auth|role:retailer'), function()
 {
+    Route::get('user/dashboard','UserController@getDasboard');
+    
     Route::resource('retailer', 'RetailersController');
 
     Route::resource('outlet', 'OutletsController');
@@ -112,6 +114,8 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::put('service/{service}', array( 'as' => 'service.edit', 'uses' => 'RetailersController@updateService'));
     Route::delete('service/{service}', array( 'as' => 'service.delete', 'uses' => 'RetailersController@destroyService'));
     Route::get('service', array( 'as' => 'service.index', 'uses' => 'RetailersController@listService'));
+    #outlet manager
+    Route::get('outlet/create', array( 'as' => 'outlet.create', 'uses' => 'OutletsController@create'));
 });
 
 Route::group( array( 'before' => 'auth|role:user'), function() {
@@ -129,7 +133,7 @@ Route::group( array( 'before' => 'auth|role:user'), function() {
  *  Frontend Routes
  *  ------------------------------------------
  */
-Route::get('user/dashboard','UserController@getDasboard');
+
 // User reset routes
 Route::get('user/reset/{token}', 'UserController@getReset');
 // User password reset
