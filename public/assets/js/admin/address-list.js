@@ -1,8 +1,8 @@
 var oTable;
-var city,country = 0 ;
+var city, country = 0;
 $(document).ready(function() {
-    function loadData(city,country) {
-        $('#addresses').dataTable({
+    function loadData(city, country) {
+        oTable = $('#addresses').dataTable({
             // "sDom": "<'row'<'col-md-6'l>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
             "sPaginationType": "bootstrap",
             "oLanguage": {
@@ -10,7 +10,7 @@ $(document).ready(function() {
             },
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": "/admin/addresses/data/"+city+"/"+country,
+            "sAjaxSource": "/admin/addresses/data/" + country + "/" + city,
             "fnDrawCallback": function(oSettings) {
                 $('.container').on('click', '.dataTable .btn-xs, .btn-info.iframe', function() {
                     if ($(this).hasClass('btn-danger') || $(this).hasClass('btn-warning')) {
@@ -30,30 +30,39 @@ $(document).ready(function() {
             }
         });
     }
-    loadData(0,0);
- //    $('#countries-list').on('change', function() {
-	//   	country = $(this).val();
-	//   	$.ajax({
- //            url: '/add',
- //            method: 'POST',
- //            async: true,
- //            success: function(data) {
-                
- //            },
- //            statusCode: {
- //                404: function() {
- //                   // error
- //                }
- //            },
- //            complete: function() {
- //                //complete
- //            }
- //        });
-	//   	loadData(0,country);
-	// });
-	$('#cities-list').on('change', function() {
-	  	country = $("#countries-list").val();
-	  	city = $(this).val();
-	  	loadData(city,country);
-	});
+    loadData(0, 0);
+    $('#countries-list').on('change', function() {
+        country = $(this).val();
+        $.ajax({
+            url: '/admin/cities/html/' + country,
+            method: 'GET',
+            async: true,
+            success: function(data) {
+                $('.cities-list').html(data);
+                console.log($('#cities-list').val());
+                $('#cities-list').on('change', function() {
+                    country = $("#countries-list").val();
+                    city = $(this).val();
+                    oTable.fnDestroy();
+                    loadData(city, country);
+                });
+            },
+            statusCode: {
+                404: function() {
+                    // error
+                }
+            },
+            complete: function() {
+                //complete
+            }
+        });
+        oTable.fnDestroy();
+        loadData(0, country);
+    });
+    $('#cities-list').on('change', function() {
+        country = $("#countries-list").val();
+        city = $(this).val();
+        oTable.fnDestroy();
+        loadData(city, country);
+    });
 });

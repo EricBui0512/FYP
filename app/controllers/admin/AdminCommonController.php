@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 22:47:44
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-28 11:41:06
+ * @Last Modified time: 2015-02-28 12:06:47
  */
 class AdminCommonController extends AdminController {
 
@@ -418,8 +418,8 @@ class AdminCommonController extends AdminController {
     {
         // Title
         $title = 'Address Manager';
-        $countries = array_merge( array( '0' => '' ), Country::lists('country','id'));
-        $cities = array_merge( array( '0' => '' ), City::lists('city','id'));
+        $countries = array_merge( array( '0' => 'All' ), Country::lists('country','id'));
+        $cities = array( '0' => 'All' );
         // Show the page
         return View::make('admin/addresses/index', compact('title','countries','cities'));
     }
@@ -594,7 +594,7 @@ class AdminCommonController extends AdminController {
      */
     public function getAddresses( $countryId = 0, $cityId = 0 )
     {
-        $fields = array('id', 'address', 'district', 'postal_code', 'created_at', 'updated_at');
+        $fields = array('addresses.id', 'address', 'district', 'postal_code', 'addresses.created_at', 'addresses.updated_at');
 
         $query = Address::select( $fields );
 
@@ -607,6 +607,7 @@ class AdminCommonController extends AdminController {
         {
             $query = $query->byCity( $cityId );
         }
+
         $addresses = $query->orderBy( 'city_id');
         
         return Datatables::of($addresses)
@@ -623,7 +624,7 @@ class AdminCommonController extends AdminController {
 
     public function getHtmlCity( $countryId ) {
 
-        $cities = City::ByCountry( $countryId );
+        $cities = array_merge(array( '0' => 'All' ), City::ByCountry( $countryId )->lists('city', 'id'));
 
         return View::make( 'admin/cities/_city', compact('cities'));
     }
