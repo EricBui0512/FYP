@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 22:47:44
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-28 12:01:29
+ * @Last Modified time: 2015-02-28 12:06:47
  */
 class AdminCommonController extends AdminController {
 
@@ -624,7 +624,7 @@ class AdminCommonController extends AdminController {
 
     public function getHtmlCity( $countryId ) {
 
-        $cities = array_merge(array( '' => '' ), City::ByCountry( $countryId )->lists('city', 'id'));
+        $cities = array_merge(array( '0' => 'All' ), City::ByCountry( $countryId )->lists('city', 'id'));
 
         return View::make( 'admin/cities/_city', compact('cities'));
     }
