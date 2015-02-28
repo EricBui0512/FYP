@@ -9,7 +9,7 @@ class Address extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = ['address', 'city_id','district', 'postal_code'];
 
 	public function city() {
 

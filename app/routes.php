@@ -19,6 +19,7 @@ Route::model('user', 'User');
 Route::model('role', 'Role');
 Route::model('country', 'Country');
 Route::model('city', 'City');
+Route::model('address', 'Address');
 Route::model('outlet', 'Outlet');
 
 /** ------------------------------------------
@@ -87,10 +88,19 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::post('cities/{city}/delete', 'AdminCommonController@destroyCity');
     Route::get('cities/data', 'AdminCommonController@getCities');
     Route::get('cities', 'AdminCommonController@listCity');
+
+     # Address Management
+    Route::get('addresses/create', 'AdminCommonController@createAddress');
+    Route::post('addresses/create', 'AdminCommonController@storeAddress');
+    Route::get('addresses/{address}/edit', 'AdminCommonController@editAddress');
+    Route::post('addresses/{address}/edit', 'AdminCommonController@updateAddress');
+    Route::get('addresses/{address}/delete', 'AdminCommonController@deleteAddress');
+    Route::post('addresses/{address}/delete', 'AdminCommonController@destroyAddress');
+    Route::get('addresses/data', 'AdminCommonController@getAddresses');
+    Route::get('addresses', 'AdminCommonController@listAddress');
     
     Route::get('outlets/data', 'AdminOutletsController@getData');
     Route::resource('outlets', 'AdminOutletsController');
-
 
 
     # Admin Dashboard
