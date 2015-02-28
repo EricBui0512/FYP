@@ -418,9 +418,10 @@ class AdminCommonController extends AdminController {
     {
         // Title
         $title = 'Address Manager';
-
+        $countries = array_merge( array( '0' => '' ), Country::lists('country','id'));
+        $cities = array_merge( array( '0' => '' ), City::lists('city','id'));
         // Show the page
-        return View::make('admin/addresses/index', compact('title'));
+        return View::make('admin/addresses/index', compact('title','countries','cities'));
     }
 
 

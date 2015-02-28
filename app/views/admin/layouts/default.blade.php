@@ -91,7 +91,7 @@
     						<ul class="dropdown-menu">
     							<li{{ (Request::is('admin/countries*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/countries') }}}"><span class="glyphicon glyphicon-user"></span> Countries</a></li>
     							<li{{ (Request::is('admin/cities*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/cities') }}}"><span class="glyphicon glyphicon-user"></span> Cities</a></li>
-    							<li{{ (Request::is('admin/address*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/address') }}}"><span class="glyphicon glyphicon-user"></span> Address</a></li>
+    							<li{{ (Request::is('admin/addresses*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/addresses') }}}"><span class="glyphicon glyphicon-user"></span> Address</a></li>
     						</ul>
     					</li>
                         <li class="dropdown{{ (Request::is('admin/outlets*|admin/retailers*') ? ' active' : '') }}">
