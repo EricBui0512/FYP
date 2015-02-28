@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 22:47:44
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-28 11:41:06
+ * @Last Modified time: 2015-02-28 12:01:29
  */
 class AdminCommonController extends AdminController {
 
@@ -607,6 +607,7 @@ class AdminCommonController extends AdminController {
         {
             $query = $query->byCity( $cityId );
         }
+
         $addresses = $query->orderBy( 'city_id');
         
         return Datatables::of($addresses)
@@ -623,7 +624,7 @@ class AdminCommonController extends AdminController {
 
     public function getHtmlCity( $countryId ) {
 
-        $cities = City::ByCountry( $countryId );
+        $cities = array_merge(array( '' => '' ), City::ByCountry( $countryId )->lists('city', 'id'));
 
         return View::make( 'admin/cities/_city', compact('cities'));
     }
