@@ -4,10 +4,10 @@
 @section('content')
 
     {{-- Delete Country Form --}}
-    <form id="deleteForm" class="form-horizontal" method="post" action="@if (isset($country)){{ URL::to('admin/countries/' . $country->id . '/delete') }}@endif" autocomplete="off">
+    <form id="deleteForm" class="form-horizontal" method="post" action="@if (isset($retailer)){{ URL::to('admin/retailers/' . $retailer->id . '/delete') }}@endif" autocomplete="off">
         <!-- CSRF Token -->
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-        <input type="hidden" name="id" value="{{ $country->id }}" />
+        <input type="hidden" name="id" value="{{ $retailer->id }}" />
         <!-- ./ csrf token -->
 
         <!-- Form Actions -->
