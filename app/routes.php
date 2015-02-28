@@ -129,6 +129,7 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::get('service', array( 'as' => 'service.index', 'uses' => 'RetailersController@listService'));
     #outlet manager
     Route::get('outlet/create', array( 'as' => 'outlet.create', 'uses' => 'OutletsController@create'));
+    Route::get('outlet/list', array( 'as' => 'outlet.create', 'uses' => 'OutletsController@getList'));
 });
 
 Route::group( array( 'before' => 'auth|role:user'), function() {
