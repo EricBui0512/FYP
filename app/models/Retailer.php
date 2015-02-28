@@ -29,7 +29,7 @@ class Retailer extends \Eloquent {
 		return $this->belongsTo('Admin');
 	}
 
-	public static function getFull( $id ) {
+	public static function findOne( $id ) {
 
   		$retailer = Retailer::select( array( 'retailers.id', 'admin_id', 'category_id',
 		  		'company_register_id', 'retailers.name', 'website', 'retailers.created_at',
