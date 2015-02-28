@@ -34,11 +34,18 @@ $(document).ready(function() {
     $('#countries-list').on('change', function() {
         country = $(this).val();
         $.ajax({
-            url: '/admin/cities/html/'+country,
+            url: '/admin/cities/html/' + country,
             method: 'GET',
             async: true,
             success: function(data) {
-            	$('.cities-list').html(data);
+                $('.cities-list').html(data);
+                console.log($('#cities-list').val());
+                $('#cities-list').on('change', function() {
+                    country = $("#countries-list").val();
+                    city = $(this).val();
+                    oTable.fnDestroy();
+                    loadData(city, country);
+                });
             },
             statusCode: {
                 404: function() {
@@ -49,7 +56,7 @@ $(document).ready(function() {
                 //complete
             }
         });
-    	oTable.fnDestroy();
+        oTable.fnDestroy();
         loadData(0, country);
     });
     $('#cities-list').on('change', function() {
