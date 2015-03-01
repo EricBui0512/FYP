@@ -5,22 +5,23 @@ class Deal extends \Eloquent {
 	// Add your validation rules here
 	public static $rules = [
 		'service_id' => 'required',
-		// 'outlet_id' => 'required|integer',
-		// 'payment_date' => 'required|date',
-		// 'payment_type' => 'required',
+		'title' => 'required',
 		'amount' => 'required|regex:/[\d]{1,5}.[\d]{2}/',
-		'time_slot' => 'date_format:m/d/Y',
-		'remind_time' => 'date_format:m/d/Y'
+		'discount' => 'regex:/[\d]{1,5}.[\d]{2}/',
+		'time_slot' => 'date',
+		'remind_time' => 'date'
 	];
 
     
 	// Don't forget to fill this array
-	protected $fillable = [ 'outlet_id', 'amount',
+	protected $fillable = [ 'service_id', 'amount', 'discount',
 			'special_request', 'time_slot', 'remind_time' ];
 
 	public function scopeOwner( $query )
 	{
-		return $query->where( 'consumer_id', Auth::id() );
+		return $query->leftJoin('services', 'services.id', '=', 'deails.service_id')
+			->leftJoin('outlets','outlets.id','=','services.outlet_id')
+			->where('outlets.admin_id', Auth::id());
 	}
 
 	public function service() {

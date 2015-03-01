@@ -8,7 +8,7 @@ class ServiceCondition extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = ['special_condition', 'condition1','condition2'];
 
 	public function service()
 	{

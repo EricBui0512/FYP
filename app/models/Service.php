@@ -42,7 +42,7 @@ class Service extends \Eloquent {
 
 	public function findOne( $id )
 	{
-		$service = Service::select( array( 'services.id','outlet_id','name','price',
+		$service = Service::select( array( 'services.id','outlet_id','services.name','price',
 				'active', 'time_operate', 'services.created_at','services.updated_at',
 				'service_details.summary','service_details.highlights',
 				'service_conditions.special_condition','service_conditions.condition1',
