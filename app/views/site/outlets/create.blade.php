@@ -8,7 +8,8 @@
                   <div class="panel panel-default">
                      <div class="panel-heading">Outlet form</div>
                      <div class="panel-body">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" method="POST">
+                        <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                            <div class="form-group">
                               <label class="col-lg-2 control-label">Country</label>
                               <div class="col-lg-2">
