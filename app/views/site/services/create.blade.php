@@ -30,7 +30,7 @@
                     <!-- START Wizard Step inputs -->
                     <div>
                        <fieldset>
-                          <legend>Service</legend>
+                          <!-- <legend>Service</legend> -->
                           <!-- START row -->
                            <div >
 		                        <div class="form-group">
@@ -65,7 +65,7 @@
                     <!-- START Wizard Step inputs -->
                     <div>
                        <fieldset>
-                          <legend>Detail</legend>
+                          <!-- <legend>Detail</legend> -->
                           <!-- START row -->
                           <div >                           
 		                        <div class="form-group">
@@ -88,7 +88,7 @@
 		                        <!-- START Wizard Step inputs -->
 		                        <div>
                        <fieldset>
-                            <legend>Service Condition</legend>
+                            <!-- <legend>Service Condition</legend> -->
                               <!-- START row -->
                             <div>           
 		                        <div class="form-group">
