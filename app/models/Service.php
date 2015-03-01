@@ -19,6 +19,11 @@ class Service extends \Eloquent {
 	{
 		return $query->leftJoin('outlets', 'outlets.id', '=', 'services.outlet_id')->where( 'admin_id', Auth::id() );
 	}
+
+	public function scopeActive( $query )
+	{
+		return $query->where('active',1);
+	}
 	
 	public function outlets()
 	{

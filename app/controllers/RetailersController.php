@@ -146,7 +146,7 @@ class RetailersController extends \BaseController {
 	 */
 	public function createService()
 	{
-        $outlets = Outlet::owner()->lists('name', 'id');
+        $outlets = Outlet::active()->owner()->lists('name', 'id');
 
 		return View::make('site.services.create', compact('outlets'));
 	}
@@ -208,9 +208,11 @@ class RetailersController extends \BaseController {
 	 */
 	public function editService($id)
 	{
+        $outlets = Outlet::active()->owner()->lists('name', 'id');
+
 		$service = Service::find($id);
 
-		return View::make('site.services.edit', compact('service'));
+		return View::make('site.services.edit', compact('service', 'outlets'));
 	}
 
 	/**
@@ -223,17 +225,31 @@ class RetailersController extends \BaseController {
 	{
 		$service = Service::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Service::$rules);
+        $detail = Input::only('highlights','summary');
 
-		if ($validator->fails())
-		{
+        $condition = Input::only('special_condition','condition1','condition2');
+        $data = Input::except('highlights','special_condition','condition1','condition2');
 
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
+        $validator = Validator::make( $data, Service::$rules );
 
-		$service->update($data);
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
 
-		return Redirect::route('service.index');
+        // update detail service
+        $serviceDetail = ServiceDetail::where('id', $service->detail_id)
+                ->update( $detail );
+
+        // create condition service
+        $serviceCondition = ServiceCondition::where('id', $service->condition_id)
+                ->update( $condition );
+
+        unset( $data['summary']);
+
+        $service->update($data);
+
+        return Redirect::route('service.index');
 	}
 
 	/**
@@ -505,6 +521,7 @@ class RetailersController extends \BaseController {
             
             // Title
             $title = Lang::get('admin/addresses/title.address_update');
+            
             // mode
             $mode = 'edit';
 
@@ -526,7 +543,7 @@ class RetailersController extends \BaseController {
     {
 
         // Validate the inputs
-        $validator = Validator::make(Input::all(), City::$rules);
+        $validator = Validator::make(Input::all(), Address::$rules);
 
         // Check if the form validates with success
         if ($validator->passes())
