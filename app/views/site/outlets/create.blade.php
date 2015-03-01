@@ -6,9 +6,9 @@
 	<div class="col-sm-12">
                   <!-- START panel-->
                   <div class="panel panel-default">
-                     <div class="panel-heading">Outlet form</div>
+                     <div class="panel-heading">Create Outlet</div>
                      <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{URL::to('outlet/create')}}">
+                        <form class="form-horizontal" method="POST" action="{{URL::to('outlet')}}">
                         <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                            <div class="form-group">
                               <label class="col-lg-2 control-label">Country</label>
@@ -28,10 +28,18 @@
                                <a href="" class="col-lg-1  icon-add"><em class="fa fa-plus"></em></a><small>&nbsp; new address</small>
                               
                            </div>
+
+                           <div class="form-group">
+                              <label class="col-lg-2 control-label">Retailer Name</label>
+                              <div class="col-lg-8">
+                                 {{ Form::select('retailer_id', $outlets, 0, array('class' => 'form-control')) }}
+                              </div>
+                           </div>
+
                            <div class="form-group">
                               <label class="col-lg-2 control-label">Name</label>
                               <div class="col-lg-8">
-                                 <input type="text" placeholder="Name" class="form-control">
+                                 <input type="text" placeholder="Name" name="name" class="form-control">
                               </div>
                            </div>
                            <div class="form-group">
@@ -41,12 +49,19 @@
                               </div>
                            </div>
                            
+                            <div class="form-group">
+                              <label class="col-lg-2 control-label">Outlet Register ID</label>
+                              <div class="col-lg-8">
+                                 <input type="text" placeholder="Outlet Register ID" name="outlet_register_id" class="form-control">
+                              </div>
+                           </div>
+
                            <div class="form-group">
 	                           <label class="col-sm-2 control-label">Description
 	                              
 	                           </label>
 	                           <div class="col-sm-8">
-	                              <textarea class="form-control"  rows="5">Description</textarea>
+	                              <textarea class="form-control" name="full_description" rows="5">Description</textarea>
 	                           </div>
                         	</div>
                         	<div class="form-group height-200">
@@ -54,7 +69,7 @@
 	                              
 	                           </label>
 	                           <div class="col-sm-8 ">
-	                              <textarea class="form-control" rows="5">Sumary</textarea>
+	                              <textarea class="form-control" name="summary" rows="5">Sumary</textarea>
 	                           </div>
                         	</div>
                            

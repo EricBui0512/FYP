@@ -32,9 +32,11 @@ class OutletsController extends \BaseController {
 	 */
 	public function create()
 	{
-		$countries=Country::lists('country','id');
-		$cities=City::lists('city','id');
-		return View::make('site.outlets.create',compact('countries','cities'));
+		$countries = Country::lists('country','id');
+		$cities = City::lists('city','id');
+		$outlets = Outlet::owner()->lists('name', 'id');
+
+		return View::make('site.outlets.create',compact('countries','cities', 'outlets'));
 	}
 
 	/**
@@ -44,7 +46,11 @@ class OutletsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Outlet::$rules);
+
+		$data = Input::except( 'summary' );
+		$description = Input::only('full_description', 'summary');
+
+		$validator = Validator::make($data, Outlet::$rules);
 
 		if ($validator->fails())
 		{
@@ -52,7 +58,12 @@ class OutletsController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
+		unset( $data['full_description'] );
+
+		$desc = OutletDescription::create( $description );
+
 		$data['admin_id'] = $this->adminId;
+		$data['description_id'] = $desc->id;
 
 		Outlet::create($data);
 
