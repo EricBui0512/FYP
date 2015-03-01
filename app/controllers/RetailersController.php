@@ -150,9 +150,10 @@ class RetailersController extends \BaseController {
 	 */
 	public function listService()
 	{
+        $title = Lang::get('site/services/title.service_management');
 		$services = Service::owner()->get();
 
-		return View::make('site.services.index', compact('services'));
+		return View::make('site.services.index', compact('services', 'title'));
 	}
 
 	/**
@@ -162,9 +163,10 @@ class RetailersController extends \BaseController {
 	 */
 	public function createService()
 	{
+        $title = Lang::get('site/services/title.create_a_new_service');
         $outlets = Outlet::active()->owner()->lists('name', 'id');
 
-		return View::make('site.services.create', compact('outlets'));
+		return View::make('site.services.create', compact('outlets', 'title'));
 	}
 
 	/**
@@ -198,9 +200,13 @@ class RetailersController extends \BaseController {
 
 		unset( $data['summary']);
 
-		Service::create($data);
+		if(Service::create($data))
+        {
+            return Redirect::route('service.index')->with('success', Lang::get('site/services/messages.create.success'));
+        }
 
-		return Redirect::route('service.index');
+        return Redirect::route('service.create')->with('error', Lang::get('site/services/messages.create.error'));
+
 	}
 
 	/**
@@ -224,11 +230,13 @@ class RetailersController extends \BaseController {
 	 */
 	public function editService($id)
 	{
+        $title = Lang::get('site/services/title.create_a_new_service');
+
         $outlets = Outlet::active()->owner()->lists('name', 'id');
 
 		$service = Service::find($id);
 
-		return View::make('site.services.edit', compact('service', 'outlets'));
+		return View::make('site.services.edit', compact('service', 'outlets', 'title'));
 	}
 
 	/**
@@ -263,9 +271,12 @@ class RetailersController extends \BaseController {
 
         unset( $data['summary']);
 
-        $service->update($data);
+        if($service->update($data))
+        {
+            return Redirect::route('service.index')->with('success', Lang::get('site/services/messages.update.success'));
+        }
 
-        return Redirect::route('service.index');
+        return Redirect::route('service.edit')->with('error', Lang::get('site/services/messages.update.error'));
 	}
 
 	/**

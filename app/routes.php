@@ -145,7 +145,6 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::get('outlet/create', array( 'as' => 'outlet.create', 'uses' => 'OutletsController@create'));
     Route::post('outlet/create', array( 'as' => 'outlet.create', 'uses' => 'OutletsController@create'));
 
-    Route::get('outlet/list', array( 'as' => 'outlet.list', 'uses' => 'OutletsController@getList'));
     Route::get('outlet/detail/{id}', array( 'as' => 'outlet.detail', 'uses' => 'OutletsController@show'));
     
     #deals manager
