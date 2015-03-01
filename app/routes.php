@@ -116,7 +116,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::post('services/{service}/edit', 'AdminRetailerController@updateService');
     Route::get('services/{service}/delete', 'AdminRetailerController@deleteService');
     Route::post('services/{service}/delete', 'AdminRetailerController@destroyService');
-    Route::get('services/data', 'AdminRetailerController@getServicees')
+    Route::get('services/data/{outletId}', 'AdminRetailerController@getServicees')
         ->where('cityId', '\d+')->where('countryId','\d+');
     Route::get('services', 'AdminRetailerController@listService');
 

@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:17:58
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-28 17:16:09
+ * @Last Modified time: 2015-02-28 23:12:46
  */
 class AdminRetailerController extends AdminController {
 	
@@ -31,7 +31,7 @@ class AdminRetailerController extends AdminController {
 	{
 		$title = 'Edit Retailer';
 
-		$retailer = Retailer::getFull();
+		$retailer = Retailer::findOne( $id );
 
 		$countries = Country::lists('country', 'id' );
 		$cities = City::where( 'country_id', $retailer->country_id )->lists('city', 'id');
@@ -104,7 +104,9 @@ class AdminRetailerController extends AdminController {
 
     	$title = 'Manage Service';
 
-    	$outlets = Outlet::owner();
+    	$services = Service::all();
+
+    	$outlets = Outlet::lists( 'name', 'id' );
 
     	return View::make( 'admin.services.index', compact('title', 'outlets'));
     }
@@ -115,13 +117,15 @@ class AdminRetailerController extends AdminController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function editService($id)
+	public function editService( $id )
 	{
 		$title = 'Edit Service';
 
-		$service = Service::find($id);
+		$service = Service::findOne( $id );
 
-		return View::make('admin.services.edit', compact('service', 'title'));
+		$outlets = Outlet::lists( 'name', 'id' );
+
+		return View::make('admin.services.edit', compact('service', 'title', 'outlets' ));
 	}
 
 	/**
@@ -134,12 +138,19 @@ class AdminRetailerController extends AdminController {
 	{
 		$service = Service::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Service::$rules);
+		$detail = Input::only('highlights','summary');
+		$condition = Input::only('special_condition','condition1','condition2');
+		$data = Input::except('highlights','summary','special_condition','condition1','condition2');
+
+		$validator = Validator::make($data, Service::$rules);
 
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
+
+		ServiceDetail::where('id', (int)$data['detail_id'])->update( $detail );
+		ServiceCondition::where('id', (int)$data['condition_id'])->update( $condition );
 
 		$service->update($data);
 
@@ -164,22 +175,25 @@ class AdminRetailerController extends AdminController {
      *
      * @return Datatables JSON
      */
-    public function getDataService()
+    public function getDataService( $outletId = 0 )
     {
-        $services = Retailer::select(array('retailers.id', 'addresses.address', 'business_categories.name AS category', 'retailers.name',
-        				'company_register_id', 'retailers.website',  'retailers.created_at', 'retailers.updated_at'))
-        			->leftJoin('addresses', 'addresses.id', '=', 'retailers.address_id')
-        			->leftJoin('business_categories', 'business_categories.id', '=', 'retailers.category_id');
+        $services = Retailer::select(array('id','name','price','active','time_operate'));
 
-        return Datatables::of($retailers)
-        // ->edit_column('created_at','{{{ Carbon::now()->diffForHumans(Carbon::createFromFormat(\'Y-m-d H\', $test)) }}}')
+        if ( $outletId )
+        {
+        	$services->where( 'outlet_id', $outletId );
+        }
 
-        ->add_column('actions', '<a href="{{{ URL::to(\'admin/retailers/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-xs btn-default">{{{ Lang::get(\'button.edit\') }}}</a>
-                                <a href="{{{ URL::to(\'admin/retailers/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-xs btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
-            ')
+        return Datatables::of($services)
 
-        ->remove_column('id')
+	        ->edit_column('active','{{{ $active ? "Yes":"No" }}}')
 
-        ->make();
+	        ->add_column('actions', '<a href="{{{ URL::to(\'admin/services/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-xs btn-default">{{{ Lang::get(\'button.edit\') }}}</a>
+	                                <a href="{{{ URL::to(\'admin/services/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-xs btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
+	            ')
+
+	        ->remove_column('id')
+
+	        ->make();
     }
 }
