@@ -216,3 +216,4 @@ Route::get('dashboard','UserController@getDashboard');
    
 # Index Page - Last route, no matches
 Route::get('/', array('before' => 'detectLang','uses' => 'SiteController@getIndex'));
+Route::post('/getCities', array('before' => 'detectLang','uses' => 'SiteController@postGetCities'));

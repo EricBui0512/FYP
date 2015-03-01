@@ -46,8 +46,8 @@
     <!-- JQUERY -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-    </script>
-
+     <script src="{{asset('assets/js/consumer.js')}}" ></script>
+     <script src="{{asset('assets/js/common.js')}}" ></script>
 </head>
 
 
@@ -111,30 +111,23 @@
         <div class="container ">
             <!-- HEADING -->
             <h1 class="intro"></h1>
-             <div id="locationField"></div>             
+             <div id="locationField"></div>      
                 <div class="row form-search" >
+                    {{Form::open(array('url'=>'Consumers/search'))}}
+                    <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                     <div class="text-left">
                         <div class="col-sm-3">
                           <div class="form-group">
                             <label for="email" accesskey="E">Service </label>
-                            <select class="form-control" name="room" id="room">
-                              <option selected="selected" disabled="disabled">Select a Service</option>
-                              <option value="Single">WINTER HOT STONE</option>
-                              <option value="Double">ARCTIC BERRY PEEL FACIAL</option>
-                              <option value="Deluxe">TRIPLE BODY BOOST</option>
-                            </select>
+                            {{Form::select('category',BusinessCategory::getKeyValueData(),Country::DEFAULT_COUNTRY,array('class'=>'form-control'))}}
                           </div>
                         </div>
+                        
                         <div class="col-sm-3">
                           <div class="form-group">
                             <label for="room">Countries</label>
                             <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-original-title="" title=""> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                            <select class="form-control" name="room" id="room">
-                              <option selected="selected" disabled="disabled">Select a countries</option>
-                              <option value="Single">Việt Nam</option>
-                              <option value="Double">Singapore</option>
-                              <option value="Deluxe">Maylaysia</option>
-                            </select>
+                            {{Form::select('country',Country::getKeyValueData(),Country::DEFAULT_COUNTRY,array('class'=>'form-control'))}}
                           </div>
                         </div>
                         <div class="col-sm-3">
@@ -142,12 +135,7 @@
                             <label for="checkin">City</label>
                             <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Check-In is from 11:00" data-original-title="" title=""> <i class="fa fa-info-circle fa-lg"> </i> </div>
                             <i class="fa fa-calendar infield"></i>
-                            <select class="form-control" name="room" id="room">
-                              <option selected="selected" disabled="disabled">Select a countries</option>
-                              <option value="Single">Hà Nội</option>
-                              <option value="Double">Hồ Chí Minh</option>
-                              <option value="Deluxe">Đà Nẵng</option>
-                            </select>
+                            {{Form::select('city',array(),null,array('class'=>'form-control'))}}
                           </div>
                         </div>
                         <div class="col-sm-2">
@@ -155,6 +143,7 @@
                           <button type="submit" class="btn bt-spa btn-block bt-search">Search</button>
                         </div> 
                     </div>
+                    {{Form::close()}}
                 </div>
                     <!-- <div class="input-group">
                           <input id="autocomplete" placeholder="Try adding countries, regions, continents"

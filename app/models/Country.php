@@ -1,7 +1,7 @@
 <?php
 
 class Country extends \Eloquent {
-
+	const DEFAULT_COUNTRY = 210;
 	// Add your validation rules here
 	public static $rules = [
 		// 'title' => 'required'
@@ -18,5 +18,8 @@ class Country extends \Eloquent {
 	public function cities()
 	{
 		return $this->hasMany('City');
+	}
+	public static function getKeyValueData(){
+		return Country::lists('country','id');
 	}
 }
