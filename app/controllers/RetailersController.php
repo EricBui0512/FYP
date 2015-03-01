@@ -146,14 +146,28 @@ class RetailersController extends \BaseController {
 	public function storeService()
 	{
 
-		$validator = Validator::make( $data = Input::all(), Service::$rules );
+		$detail = Input::only('highlights','summary');
+		$condition = Input::only('special_condition','condition1','condition2');
+		$data = Input::except('highlights','special_condition','condition1','condition2');
+
+		$validator = Validator::make( $data, Service::$rules );
 
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
+		// create detail service
+		$serviceDetail = ServiceDetail::create( $detail );
+
+		// create condition service
+		$serviceCondition = ServiceCondition::create( $condition );
+
 		$data['admin_id'] = $this->adminId;
+		$data['detail_id'] = $serviceDetail->id;
+		$data['condition_id'] = $serviceCondition->id;
+
+		unset( $data['summary']);
 
 		Service::create($data);
 
