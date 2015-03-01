@@ -70,7 +70,7 @@ class OutletsController extends \BaseController {
 
 		if ( Outlet::create($data) )
 		{
-			return Redirect::route('outlet.index')->with('success', Lng::get('site/outlets/messages.create.success'));
+			return Redirect::route('outlet.index')->with('success', Lang::get('site/outlets/messages.create.success'));
 		}
 
 		return Redirect::to('outlet/create')->with('error', Lang::get('site/outlets/messages.create.error'));
@@ -139,7 +139,7 @@ class OutletsController extends \BaseController {
 
 		if ( $outlet->update($data) )
 		{
-			return Redirect::route('outlets.index')->with('success', Lng::get('site/outlets/messages.update.success'));
+			return Redirect::route('outlets.index')->with('success', Lang::get('site/outlets/messages.update.success'));
 		}
 
 		return Redirect::route('outlet.edit')->with('error', Lang::get('site/outlets/messages.update.error'));
@@ -155,7 +155,7 @@ class OutletsController extends \BaseController {
 	{
 		if ( Outlet::destroy($id) )
 		{
-			return Redirect::route('outlets.index')->with('success', Lng::get('site/outlets/messages.delete.success'));
+			return Redirect::route('outlets.index')->with('success', Lang::get('site/outlets/messages.delete.success'));
 		}
 
 		return Redirect::route('outlet.index')->with('error', Lang::get('site/outlets/messages.delete.error'));

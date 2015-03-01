@@ -19,9 +19,11 @@ class RetailersController extends \BaseController {
 	 */
 	public function index()
 	{
+        $title = Lng::get( 'site/retailers/title.retailer_management');
+
 		$retailers = Retailer::owner()->get();
 
-		return View::make('site.retailers.index', compact('retailers'));
+		return View::make('site.retailers.index', compact('retailers', 'title'));
 	}
 
     /**
@@ -31,7 +33,8 @@ class RetailersController extends \BaseController {
      */
     public function getDashboard()
     {
-        $user = Auth::user();    
+        $user = Auth::user();
+
         return View::make('site.layouts.retailer', compact('user'));
     }
 
@@ -42,7 +45,9 @@ class RetailersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('site.retailers.create');
+        $title = Lang::get('site/retailers/title.create_a_new_retailer');
+
+		return View::make('site.retailers.create', compact('title'));
 	}
 
 	/**
@@ -61,9 +66,12 @@ class RetailersController extends \BaseController {
 
 		$data['admin_id'] = $this->adminId;
 
-		Retailer::create($data);
+		if ( Retailer::create($data) )
+        {
+            return Redirect::route('retailer.index')->with('success', Lang::get('site/retailers/messages.create.success'));
+        }
 
-		return Redirect::route('retailer.index');
+        return Redirect::route('retailer.index')->with('error', Lang::get('site/retailers/messages.create.error'));
 	}
 
 	/**
@@ -87,9 +95,11 @@ class RetailersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+        $title = Lang::get('site/retailers/messages.title.retailer_update');
+
 		$retailer = Retailer::find($id);
 
-		return View::make('site.retailers.edit', compact('retailer'));
+		return View::make('site.retailers.edit', compact('retailer', 'title'));
 	}
 
 	/**
@@ -109,9 +119,12 @@ class RetailersController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		$retailer->update($data);
+		if ( $retailer->update($data) )
+        {
+            return Redirect::route('retailer.index')->with('success', Lang::get('site/retailers/messages.update.success'));
+        }
 
-		return Redirect::route('retailer.index');
+		return Redirect::route('retailer.edit')->with('error', Lang::get('site/retailers/messages.update.error'));
 	}
 
 	/**
@@ -122,9 +135,12 @@ class RetailersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		Retailer::destroy($id);
+		if ( Retailer::destroy($id) )
+        {
+            return Redirect::route('retailer.index')->with('success', Lang::get('site/retailers/messages.delete.success'));
+        }
 
-		return Redirect::route('retailer.index');
+		return Redirect::route('retailer.index')->with('error', Lang::get('site/retailers/messages.delete.error'));
 	}
 
 	/**
