@@ -4,12 +4,15 @@ class RetailersController extends \BaseController {
 
 	protected $adminId = null;
 
+    protected $address;
+
 	public function __construct()
 	{
 
 		parent::__construct();
 
 		$this->adminId = Auth::id();
+        $this->address = new Address;
 	}
 
 	/**
@@ -467,8 +470,11 @@ class RetailersController extends \BaseController {
         $title = 'Address Manager';
         $countries = array_merge( array( '0' => 'All' ), Country::lists('country','id'));
         $cities = array( '0' => 'All' );
+
+        $listAddress = Address::whereUser_id(Auth::user()->id)->get();
+        
         // Show the page
-        return View::make('admin/addresses/index', compact('title','countries','cities'));
+        return View::make('site/addresses/index', compact('title','countries','cities','listAddress'));
     }
 
 
@@ -508,28 +514,21 @@ class RetailersController extends \BaseController {
             $inputs = Input::except('csrf_token');
 
             $this->address->city_id = $inputs['city_id'];
-            $this->address->district = $inputs['district'];
+            // $this->address->district = $inputs['district'];
             $this->address->address = $inputs['address'];
             $this->address->postal_code = $inputs['postal_code'];
-
+            $this->address->user_id = Auth::user()->id;
             $this->address->save();
 
-            // Was the role created?
-            if ($this->address->id)
-            {
-                // Redirect to the new role page
-                return Redirect::to('admin/addresses/' . $this->address->id . '/edit')->with('success', Lang::get('admin/addresses/messages.create.success'));
-            }
-
             // Redirect to the new country page
-            return Redirect::to('admin/addresses/create')->with('error', Lang::get('admin/addresses/messages.create.error'));
+            return Redirect::to('address/create')->with('error', Lang::get('address/messages.create.error'));
 
             // Redirect to the country create page
-            return Redirect::to('admin/addresses/create')->withInput()->with('error', Lang::get('admin/addresses/messages.' . $error));
+            return Redirect::to('address/create')->withInput()->with('error', Lang::get('address/messages.' . $error));
         }
 
         // Form validation failed
-        return Redirect::to('admin/addresses/create')->withInput()->withErrors($validator);
+        return Redirect::to('address/create')->withInput()->withErrors($validator);
     }
 
 

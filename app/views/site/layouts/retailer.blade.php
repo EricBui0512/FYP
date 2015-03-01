@@ -16,7 +16,7 @@
                   </a>
                </li>
                <li>
-                  <a href="{{{URL::to('outlet/list')}}}" title="Notifications" data-toggle="" class="no-submenu">
+                  <a href="{{{URL::to('address')}}}" title="Notifications" data-toggle="" class="no-submenu">
                      <span class="item-text">List Address</span>
                   </a>
                </li>
