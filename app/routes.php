@@ -149,7 +149,7 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::get('outlet/detail/{id}', array( 'as' => 'outlet.detail', 'uses' => 'OutletsController@show'));
     
     #deals manager
-    Route::get('deal', array('as'=> 'deal.index','uses' => 'RetailersController@listDeal'));
+    Route::get('deal', array('as'=> 'deals.index','uses' => 'RetailersController@listDeal'));
     Route::get('deal/create', 'RetailersController@createDeal');
     Route::post('deal/create','RetailersController@storeDeal');
 

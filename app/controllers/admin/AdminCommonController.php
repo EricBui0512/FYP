@@ -534,6 +534,8 @@ class AdminCommonController extends AdminController {
             $address->district = $inputs['district'];
             $address->address = $inputs['address'];
             $address->postal_code = $inputs['postal_code'];
+            $address->user_id = Auth::user()->id;
+
 
             // Was the role updated?
             if ($address->save())

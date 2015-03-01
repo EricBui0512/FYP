@@ -1,7 +1,4 @@
 @extends('site.layouts.retailer')
-@section('title')
-	Create Deals
-@stop
 @section('container')
 	<div class="col-sm-12">
       <!-- START panel-->

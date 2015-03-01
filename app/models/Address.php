@@ -38,4 +38,16 @@ class Address extends \Eloquent {
 		return null;
 		
 	}
+
+	public static function getAddressByUser( $retailerId )
+	{
+		$address = $this->whereUser_id($retailerId )->get();
+		if ( ! ( empty( $address ) ) )
+		{
+			return $address;
+		}
+		return null;
+		
+	}
+
 }

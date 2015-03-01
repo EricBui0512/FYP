@@ -16,7 +16,7 @@
                   </a>
                </li>
                <li>
-                  <a href="{{{URL::to('outlet/list')}}}" title="Notifications" data-toggle="" class="no-submenu">
+                  <a href="{{{URL::to('address')}}}" title="Notifications" data-toggle="" class="no-submenu">
                      <span class="item-text">List Address</span>
                   </a>
                </li>
@@ -74,12 +74,12 @@
           <!-- START SubMenu item-->
           <ul class="nav collapse ">
              <li>
-                <a href="{{{URL::to('deals/create')}}}" title="Buttons" data-toggle="" class="no-submenu">
+                <a href="{{{URL::to('deal/create')}}}" title="Buttons" data-toggle="" class="no-submenu">
                    <span class="item-text">Create Deals</span>
                 </a>
              </li>
              <li>
-                <a href="{{{URL::to('deals/list')}}}" title="Notifications" data-toggle="" class="no-submenu">
+                <a href="{{{URL::to('deal/list')}}}" title="Notifications" data-toggle="" class="no-submenu">
                    <span class="item-text">List Deals</span>
                 </a>
              </li>
