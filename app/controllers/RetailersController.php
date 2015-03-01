@@ -24,6 +24,17 @@ class RetailersController extends \BaseController {
 		return View::make('site.retailers.index', compact('retailers'));
 	}
 
+    /**
+     * Users settings page
+     *
+     * @return View
+     */
+    public function getDashboard()
+    {
+        $user = Auth::user();    
+        return View::make('site.layouts.retailer', compact('user'));
+    }
+
 	/**
 	 * Show the form for creating a new retailer
 	 *
@@ -238,6 +249,19 @@ class RetailersController extends \BaseController {
 		return Redirect::route('service.index');
 	}
 
+	
+	/**
+	 * Remove the specified service from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function createDeals()
+	{
+		return View::make('site.deals.create');
+	}
+
+
     /**
      * Display a listing of services
      *
@@ -420,7 +444,7 @@ class RetailersController extends \BaseController {
         $cities = array_merge( array( '0' => '' ), City::lists('city','id'));
 
         // Show the page
-        return View::make('admin/addresses/create_edit', compact('title', 'countries', 'cities'));
+        return View::make('site.addresses.create_edit', compact('title', 'countries', 'cities'));
     }
 
     /**
@@ -574,7 +598,7 @@ class RetailersController extends \BaseController {
      */
     public function getAddresses( $countryId = 0, $cityId = 0 )
     {
-        $fields = array('addresses.id', 'address', 'district', 'postal_code', 'addresses.created_at', 'addresses.updated_at');
+        $fields = array('id', 'address', 'district', 'postal_code', 'addresses.created_at', 'addresses.updated_at');
 
         $query = Address::select( $fields );
 
@@ -586,20 +610,10 @@ class RetailersController extends \BaseController {
         if ( $cityId )
         {
             $query = $query->byCity( $cityId );
-        }
+        }       
+        $addresses = array_merge(array( '0' => 'All' ),$query->orderBy( 'city_id')->lists('address','id'));
 
-        $addresses = $query->orderBy( 'city_id');
-        
-        return Datatables::of($addresses)
-        // ->edit_column('created_at','{{{ Carbon::now()->diffForHumans(Carbon::createFromFormat(\'Y-m-d H\', $test)) }}}')
-
-        ->add_column('actions', '<a href="{{{ URL::to(\'admin/addresses/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-xs btn-default">{{{ Lang::get(\'button.edit\') }}}</a>
-                                <a href="{{{ URL::to(\'admin/addresses/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-xs btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
-            ')
-
-        ->remove_column('id')
-
-        ->make();
+        return $addresses;
     }
 
     public function getHtmlCity( $countryId ) {
