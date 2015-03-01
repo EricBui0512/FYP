@@ -39,4 +39,8 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
         $this->seed();
         Mail::pretend(true);
     }
+    public function testThatTrueIsTrue()
+    {
+      $this->assertTrue(true);
+    }
 }

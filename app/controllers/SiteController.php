@@ -38,4 +38,14 @@ class SiteController extends BaseController {
 
 
     }
+
+    public function postGetCities(){
+        $country_id = Input::get('country_id');
+        $cities = City::where('country_id','=',$country_id)->get();
+        $data_string = "";
+        foreach ($cities as $item) {
+            $data_string.="<option value='$item->id'>$item->city</option>";
+        }
+        return $data_string;
+    }
 }

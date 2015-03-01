@@ -14,4 +14,7 @@ class BusinessCategory extends \Eloquent {
 
 		return $this->hasMany('Retailer');
 	}
+	public static function getKeyValueData(){
+		return BusinessCategory::lists('name','id');
+	}
 }
