@@ -7,7 +7,7 @@
        <li>
           <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
              <em class="fa fa-flask"></em>
-             <span class="item-text">Manager Outlet</span>
+             <span class="item-text">Manage Outlet</span>
           </a>
           <!-- START SubMenu item-->
           <ul class="nav collapse ">
@@ -28,7 +28,7 @@
        <li>
           <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
              <em class="fa fa-flask"></em>
-             <span class="item-text">Manager Service</span>
+             <span class="item-text">Manage Service</span>
           </a>
           <!-- START SubMenu item-->
           <ul class="nav collapse ">
@@ -49,7 +49,7 @@
         <li>
           <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
              <em class="fa fa-flask"></em>
-             <span class="item-text">Manager Deals</span>
+             <span class="item-text">Manage Deals</span>
           </a>
           <!-- START SubMenu item-->
           <ul class="nav collapse ">
