@@ -8,7 +8,12 @@ class ServiceDetail extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = ['summary','highlights'];
 
 	protected $table = 'service_details';
+
+	public function service()
+	{
+		return $this->belongsTo('Service');
+	}
 }

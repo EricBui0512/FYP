@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:06:32
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-28 15:09:32
+ * @Last Modified time: 2015-02-28 23:39:05
  */
 
 class AdminOutletsController extends AdminController {
@@ -31,7 +31,11 @@ class AdminOutletsController extends AdminController {
 	{
 		$outlet = Outlet::find($id);
 
-		return View::make('outlets.edit', compact('outlet'));
+		$retailers = Retailer::all();
+
+		$addresses = Address::getHtmlByOutlet( $outlet->address_id );
+
+		return View::make('outlets.edit', compact('outlet', 'retailer', 'addresses'));
 	}
 
 	/**

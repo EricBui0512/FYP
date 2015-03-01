@@ -128,7 +128,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 
 Route::group(array('before' => 'auth|role:retailer'), function()
 {
-    Route::get('user/dashboard','UserController@getDasboard');
+    Route::get('retailer/dashboard',array('as' => 'retailer.dashboard', 'uses'=>'RetailersController@getDashboard'));
     
     Route::resource('retailer', 'RetailersController');
 
@@ -147,9 +147,11 @@ Route::group(array('before' => 'auth|role:retailer'), function()
 
     Route::get('outlet/list', array( 'as' => 'outlet.list', 'uses' => 'OutletsController@getList'));
     Route::get('outlet/detail/{id}', array( 'as' => 'outlet.detail', 'uses' => 'OutletsController@show'));
-     #deals manager
-    Route::get('deals/create', array( 'as' => 'deals.create', 'uses' => 'RetailersController@createDeals'));
-    Route::post('deals/create', array( 'as' => 'deals.create', 'uses' => 'RetailersController@storeDeals'));
+    
+    #deals manager
+    Route::get('deal', array('as'=> 'deal.index','uses' => 'RetailersController@listDeal'));
+    Route::get('deal/create', 'RetailersController@createDeal');
+    Route::post('deal/create','RetailersController@storeDeal');
 
      # Address Management
     Route::get('address/create', array( 'as' => 'address.create', 'uses' =>'RetailersController@createAddress'));
@@ -165,12 +167,12 @@ Route::group(array('before' => 'auth|role:retailer'), function()
 
 Route::group( array( 'before' => 'auth|role:user'), function() {
 
-
-    Route::get( 'deal', array('as' => 'deal.index', 'uses' => 'ConsumersController@listDeal'));
-    Route::get( 'deal/{outletId}', array('as' => 'deal.crate', 'uses' => 'ConsumersController@createDeal'))->where( 'outletId', '\d+');
-    Route::post( 'deal/{outletId}', array('as' => 'deal.crate', 'uses' => 'ConsumersController@storeDeal'))->where( 'outletId', '\d+');
+    Route::get('user/dashboard',array('as' => 'user.dashboard','uses' => 'ConsumersController@getDashboard'));
+    // Route::get( 'deal', array('as' => 'deal.index', 'uses' => 'ConsumersController@listDeal'));
+    // Route::get( 'deal/{outletId}', array('as' => 'deal.crate', 'uses' => 'ConsumersController@createDeal'))->where( 'outletId', '\d+');
+    // Route::post( 'deal/{outletId}', array('as' => 'deal.crate', 'uses' => 'ConsumersController@storeDeal'))->where( 'outletId', '\d+');
    
-    Route::delete( 'deal/{id}', array('as' => 'deal.cancel', 'uses' => 'ConsumersController@cancelDeal'))->where( 'id', '\d+');
+    // Route::delete( 'deal/{id}', array('as' => 'deal.cancel', 'uses' => 'ConsumersController@cancelDeal'))->where( 'id', '\d+');
 
 });
 
@@ -210,5 +212,7 @@ Route::get('contact-us', function()
     return View::make('site/contact-us');
 });
 
+Route::get('dashboard','UserController@getDashboard');
+   
 # Index Page - Last route, no matches
 Route::get('/', array('before' => 'detectLang','uses' => 'SiteController@getIndex'));

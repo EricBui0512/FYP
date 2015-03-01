@@ -5,8 +5,10 @@
       <div class="panel panel-default">
            <div class="panel-heading">Create Service</div>
            <div class="panel-body">
-              <form action="/" method="POST" action="{{URL::to('service/create')}}">
+
+              <form method="POST" action="{{URL::to('service/create')}}">
               <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+
                  <div data-toggle="wizard" class="form-wizard wizard-horizontal">
                     <!-- START wizard steps indicator-->
                     <ol class="row">
@@ -49,12 +51,8 @@
 		                        <div class="form-group">
 		                           <label>Outlet</label>
 		                           <div class="controls">
-		                              	<select name="outlet" class="form-control m-b">
-					                        <option>Option 1</option>
-					                        <option>Option 2</option>
-					                        <option>Option 3</option>
-					                        <option>Option 4</option>
-				                  		</select>
+                                  {{ Form::Select( 'outlet_id', $outlets, 0, array('class' => 'form-control m-b'))}}
+		                      
 		                           </div>
 		                        </div>
 		                  	</div>
@@ -70,8 +68,8 @@
                           <!-- START row -->
                           <div >                           
 		                        <div class="form-group">
-		                           <label>Sumary</label>
-		                           <textarea data-uk-markdownarea="{mode:'tab'}" name="sumary"></textarea>
+		                           <label>Summary</label>
+		                           <textarea data-uk-markdownarea="{mode:'tab'}" name="summary"></textarea>
 		                        </div>
 		                        <div class="form-group">
 		                           <label>Highlights</label>
@@ -94,7 +92,7 @@
                             <div>           
 		                        <div class="form-group">
 		                           <label>Special Condition</label>
-		                           <textarea data-uk-markdownarea="{mode:'tab'}" name="specialcondition"></textarea>
+		                           <textarea data-uk-markdownarea="{mode:'tab'}" name="special_condition"></textarea>
 		                        </div>
 		                        <div class="form-group">
 		                           <label>Condition 1</label>
@@ -104,10 +102,7 @@
 		                           <label>Condition 2</label>
 		                           <textarea data-uk-markdownarea="{mode:'tab'}" name="condition2"></textarea>
 		                        </div>
-		                        <div class="form-group">
-		                           <label>Deal Condition</label>
-		                           <textarea data-uk-markdownarea="{mode:'tab'}" name="dealcondition"></textarea>
-		                        </div>
+		                      
                             </div>
                           <!-- END row -->
                        </fieldset>
@@ -120,7 +115,7 @@
                           <!-- <p>In vulputate mattis ipsum vitae vehicula. Praesent at arcu non arcu convallis pellentesque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
                           <br>
                           <p>
-                             <button type="button" class="btn btn-info bt-spa">Create</button>
+                             <button type="submit" class="btn btn-info bt-spa">Create</button>
                           </p>
                        </div>
                     </div>
