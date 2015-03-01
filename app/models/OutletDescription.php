@@ -8,7 +8,7 @@ class OutletDescription extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = ['full_description', 'summary'];
 
 	protected $table = 'outlet_descriptions';
 

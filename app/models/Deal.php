@@ -14,7 +14,7 @@ class Deal extends \Eloquent {
 
     
 	// Don't forget to fill this array
-	protected $fillable = [ 'service_id', 'amount', 'discount',
+	protected $fillable = [ 'service_id', 'amount', 'discount', 'title',
 			'special_request', 'time_slot', 'remind_time' ];
 
 	public function scopeOwner( $query )
