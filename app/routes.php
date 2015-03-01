@@ -150,9 +150,17 @@ Route::group(array('before' => 'auth|role:retailer'), function()
      #deals manager
     Route::get('deals/create', array( 'as' => 'deals.create', 'uses' => 'RetailersController@createDeals'));
     Route::post('deals/create', array( 'as' => 'deals.create', 'uses' => 'RetailersController@storeDeals'));
+
      # Address Management
-    Route::get('address/create', array( 'as' => 'address.create', 'uses' => 'RetailersController@createAddress'));
-    Route::post('address/create', array( 'as' => 'address.create', 'uses' => 'RetailersController@storeAddress'));
+    Route::get('address/create', array( 'as' => 'address.create', 'uses' =>'RetailersController@createAddress'));
+    Route::post('address/create', array( 'as' => 'address.create', 'uses' =>'RetailersController@storeAddress'));
+    Route::get('address/{address}/edit', array( 'as' => 'address.edit', 'uses' =>'RetailersController@editAddress'));
+    Route::post('address/{address}/edit', array( 'as' => 'address.edit', 'uses' =>'RetailersController@updateAddress'));
+    Route::get('addresses/{address}/delete', array( 'as' => 'address.delete', 'uses' =>'RetailersController@deleteAddress'));
+    Route::post('address/{address}/delete', array( 'as' => 'address.delete', 'uses' =>'RetailersController@destroyAddress'));
+    Route::get('address/data/{countryId}/{cityId}', array( 'as' => 'address.data', 'uses' =>'RetailersController@getAddresses'))
+        ->where('cityId', '\d+')->where('countryId','\d+');
+    Route::get('address', array( 'as' => 'address.list', 'uses' =>'RetailersController@listAddress'));
 });
 
 Route::group( array( 'before' => 'auth|role:user'), function() {
