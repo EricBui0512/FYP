@@ -136,19 +136,23 @@ Route::group(array('before' => 'auth|role:retailer'), function()
 
     # Service manager
     Route::get('service/create', array( 'as' => 'service.create', 'uses' => 'RetailersController@createService'));
-    Route::post('service', array( 'as' => 'service.create', 'uses' => 'RetailersController@storeService'));
+    Route::post('service/create', array( 'as' => 'service.create', 'uses' => 'RetailersController@storeService'));
     Route::get('service/{service}/edit', array( 'as' => 'service.edit', 'uses' => 'RetailersController@editService'));
     Route::put('service/{service}', array( 'as' => 'service.edit', 'uses' => 'RetailersController@updateService'));
     Route::delete('service/{service}', array( 'as' => 'service.delete', 'uses' => 'RetailersController@destroyService'));
     Route::get('service', array( 'as' => 'service.index', 'uses' => 'RetailersController@listService'));
     #outlet manager
     Route::get('outlet/create', array( 'as' => 'outlet.create', 'uses' => 'OutletsController@create'));
+    Route::post('outlet/create', array( 'as' => 'outlet.create', 'uses' => 'OutletsController@create'));
 
     Route::get('outlet/list', array( 'as' => 'outlet.list', 'uses' => 'OutletsController@getList'));
     Route::get('outlet/detail/{id}', array( 'as' => 'outlet.detail', 'uses' => 'OutletsController@show'));
      #deals manager
-    Route::get('deals/create', array( 'as' => 'outlet.create', 'uses' => 'RetailersController@createDeals'));
-   
+    Route::get('deals/create', array( 'as' => 'deals.create', 'uses' => 'RetailersController@createDeals'));
+    Route::post('deals/create', array( 'as' => 'deals.create', 'uses' => 'RetailersController@storeDeals'));
+     # Address Management
+    Route::get('address/create', array( 'as' => 'address.create', 'uses' => 'RetailersController@createAddress'));
+    Route::post('address/create', array( 'as' => 'address.create', 'uses' => 'RetailersController@storeAddress'));
 });
 
 Route::group( array( 'before' => 'auth|role:user'), function() {

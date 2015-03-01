@@ -3,7 +3,27 @@
     <ul class="nav">
        <!-- START Menu-->
        <li class="nav-heading">Dashboard</li>      
-      
+        <li>
+            <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
+               <em class="fa fa-flask"></em>
+               <span class="item-text">Manage Address</span>
+            </a>
+            <!-- START SubMenu item-->
+            <ul class="nav collapse ">
+               <li>
+                  <a href="{{{URL::to('address/create')}}}" title="Buttons" data-toggle="" class="no-submenu">
+                     <span class="item-text">Create Address</span>
+                  </a>
+               </li>
+               <li>
+                  <a href="{{{URL::to('outlet/list')}}}" title="Notifications" data-toggle="" class="no-submenu">
+                     <span class="item-text">List Address</span>
+                  </a>
+               </li>
+               
+            </ul>
+            <!-- END SubMenu item-->
+         </li>
        <li>
           <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
              <em class="fa fa-flask"></em>

@@ -8,7 +8,7 @@
                   <div class="panel panel-default">
                      <div class="panel-heading">Outlet form</div>
                      <div class="panel-body">
-                        <form class="form-horizontal" method="POST">
+                        <form class="form-horizontal" method="POST" action="{{URL::to('outlet/create')}}">
                         <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                            <div class="form-group">
                               <label class="col-lg-2 control-label">Country</label>
