@@ -13,29 +13,16 @@
                            <div class="form-group">
                               <label class="col-lg-2 control-label">Country</label>
                               <div class="col-lg-2">
-                                <select name="account" class="form-control m-b">
-	                                <option>Option 1</option>
-	                                <option>Option 2</option>
-	                                <option>Option 3</option>
-	                                <option>Option 4</option>
-                              	</select>
+                                 {{ Form::select('country_id', $countries,257,array('class'=>'form-control m-b','id'=>'country_id','name'=>'country') )}}
                               </div>
                               <label class="col-md-1 control-label">City</label>
                               <div class="col-lg-2">
-                                <select name="account" class="form-control m-b">
-	                                <option>Option 1</option>
-	                                <option>Option 2</option>
-	                                <option>Option 3</option>
-	                                <option>Option 4</option>
-                              	</select>
+                                {{ Form::select('city_id', $cities,0,array('class'=>'form-control m-b','name'=>'city_id','id'=>'city_id') )}}
                               </div>
                               <label class="col-lg-1 control-label">Address</label>
                               <div class="col-lg-2">
-                                <select name="account" class="form-control m-b">
-	                                <option>Option 1</option>
-	                                <option>Option 2</option>
-	                                <option>Option 3</option>
-	                                <option>Option 4</option>
+                                <select name="address_id" class="form-control m-b" id="address_id">
+	                               
                               	</select>
                               </div>
                                <a href="" class="col-lg-1  icon-add"><em class="fa fa-plus"></em></a><small>&nbsp; new address</small>
@@ -82,3 +69,7 @@
                   <!-- END panel-->
                </div>
 @stop  
+{{-- Scripts --}}
+@section('script')
+<script src="{{asset('assets/js/retailer/address.js')}}"></script>
+@stop

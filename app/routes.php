@@ -158,7 +158,7 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::post('address/{address}/edit', array( 'as' => 'address.edit', 'uses' =>'RetailersController@updateAddress'));
     Route::get('addresses/{address}/delete', array( 'as' => 'address.delete', 'uses' =>'RetailersController@deleteAddress'));
     Route::post('address/{address}/delete', array( 'as' => 'address.delete', 'uses' =>'RetailersController@destroyAddress'));
-    Route::get('address/data/{countryId}/{cityId}', array( 'as' => 'address.data', 'uses' =>'RetailersController@getAddresses'))
+    Route::get('address/get/{countryId}/{cityId}', array( 'as' => 'address.get', 'uses' =>'RetailersController@getAddresses'))
         ->where('cityId', '\d+')->where('countryId','\d+');
     Route::get('address', array( 'as' => 'address.list', 'uses' =>'RetailersController@listAddress'));
 });

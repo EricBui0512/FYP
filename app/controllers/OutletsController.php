@@ -32,7 +32,9 @@ class OutletsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('site.outlets.create');
+		$countries=Country::lists('country','id');
+		$cities=City::lists('city','id');
+		return View::make('site.outlets.create',compact('countries','cities'));
 	}
 
 	/**

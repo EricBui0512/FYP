@@ -568,6 +568,7 @@
    <!-- App Main-->
    <script src="{{asset('assets/app/js/app.js')}}"></script>
    <!-- END Scripts-->
+   @yield('script')
 </body>
 
 </html>

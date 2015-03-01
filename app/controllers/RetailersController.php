@@ -221,7 +221,7 @@ class RetailersController extends \BaseController {
 
 		return Redirect::route('service.index');
 	}
-
+	
 	/**
 	 * Remove the specified service from storage.
 	 *
@@ -476,7 +476,7 @@ class RetailersController extends \BaseController {
      */
     public function getAddresses( $countryId = 0, $cityId = 0 )
     {
-        $fields = array('addresses.id', 'address', 'district', 'postal_code', 'addresses.created_at', 'addresses.updated_at');
+        $fields = array('id', 'address', 'district', 'postal_code', 'addresses.created_at', 'addresses.updated_at');
 
         $query = Address::select( $fields );
 
@@ -488,20 +488,10 @@ class RetailersController extends \BaseController {
         if ( $cityId )
         {
             $query = $query->byCity( $cityId );
-        }
+        }       
+        $addresses = array_merge(array( '0' => 'All' ),$query->orderBy( 'city_id')->lists('address','id'));
 
-        $addresses = $query->orderBy( 'city_id');
-        
-        return Datatables::of($addresses)
-        // ->edit_column('created_at','{{{ Carbon::now()->diffForHumans(Carbon::createFromFormat(\'Y-m-d H\', $test)) }}}')
-
-        ->add_column('actions', '<a href="{{{ URL::to(\'admin/addresses/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-xs btn-default">{{{ Lang::get(\'button.edit\') }}}</a>
-                                <a href="{{{ URL::to(\'admin/addresses/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-xs btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
-            ')
-
-        ->remove_column('id')
-
-        ->make();
+        return $addresses;
     }
 
     public function getHtmlCity( $countryId ) {
