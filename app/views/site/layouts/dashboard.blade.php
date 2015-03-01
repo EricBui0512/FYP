@@ -517,14 +517,14 @@
       <section>
          <!-- START Page content-->
          <div class="content-wrapper">
-            <h3>
+           <!--  <h3>
                <div class="pull-right text-center">
                   <div class="text-sm mb-sm">500 ratings</div>
                   <div data-bar-color="#cfdbe2" data-height="18" data-bar-width="3" data-bar-spacing="2" class="inlinesparkline">2,3,4,7,5,7,8,9,5,7,8,4,7</div>
                </div>@yield('title')
-               <!-- <small>Hi, User. Welcome back!</small> -->
+               <small>Hi, User. Welcome back!</small>
             </h3>
-            <div data-toggle="notify" data-onload data-message="&lt;b&gt;This is notify!&lt;/b&gt; Dismiss with a click or wait for it to disappear." data-options="{&quot;status&quot;:&quot;warning&quot;, &quot;pos&quot;:&quot;bottom-right&quot;}" class="hidden-xs"></div>
+            <div data-toggle="notify" data-onload data-message="&lt;b&gt;This is notify!&lt;/b&gt; Dismiss with a click or wait for it to disappear." data-options="{&quot;status&quot;:&quot;warning&quot;, &quot;pos&quot;:&quot;bottom-right&quot;}" class="hidden-xs"></div> -->
             @yield('content')
            
          </div>

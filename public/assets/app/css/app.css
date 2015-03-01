@@ -3769,8 +3769,8 @@ textarea.bootstrap-tagsinput {
   padding: 0 15px;
 }
 .form-wizard > ol > li {
-  min-height: 50px;
-  padding-top: 15px;
+  max-height: 50px;
+  /*padding-top: 15px;*/
   padding-bottom: 15px;
   background-color: #fcfcfc;
   cursor: pointer;
