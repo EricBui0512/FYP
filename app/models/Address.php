@@ -25,4 +25,17 @@ class Address extends \Eloquent {
 	{
 		return $this->belongsTo('City');
 	}
+
+	public static function getHtmlByOutlet( $addressId )
+	{
+		$address = $this->find( $addressId );
+
+		if ( ! ( empty( $address ) ) )
+		{
+			return $this->where('city_id', $address->city_id)->lists('address','id');
+		}
+
+		return null;
+		
+	}
 }

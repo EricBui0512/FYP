@@ -25,6 +25,21 @@ class Service extends \Eloquent {
 		return $this->belongsTo( 'Outlet' );
 	}
 
+	public function deals()
+	{
+		return $this->hasMany('Deal');
+	}
+
+	public function detail()
+	{
+		return $this->hasOne('ServiceDetail');
+	}
+
+	public function condition()
+	{
+		return $this->hasOne('ServiceCondition');
+	}
+
 	public function findOne( $id )
 	{
 		$service = Service::select( array( 'services.id','outlet_id','name','price',

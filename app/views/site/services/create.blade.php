@@ -5,7 +5,7 @@
       <div class="panel panel-default">
            <div class="panel-heading">Create Service</div>
            <div class="panel-body">
-              <form action="/" method="POST">
+              <form action="{{ URL::to('service') }}" method="POST">
                  <div data-toggle="wizard" class="form-wizard wizard-horizontal">
                     <!-- START wizard steps indicator-->
                     <ol class="row">

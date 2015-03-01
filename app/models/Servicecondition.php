@@ -10,4 +10,9 @@ class ServiceCondition extends \Eloquent {
 	// Don't forget to fill this array
 	protected $fillable = [];
 
+	public function service()
+	{
+		return $this->belongsTo('Service');
+	}
+
 }

@@ -11,4 +11,9 @@ class ServiceDetail extends \Eloquent {
 	protected $fillable = [];
 
 	protected $table = 'service_details';
+
+	public function service()
+	{
+		return $this->belongsTo('Service');
+	}
 }
