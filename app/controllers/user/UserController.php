@@ -38,16 +38,7 @@ class UserController extends BaseController {
         // Show the page
         return View::make('site/user/index', compact('user'));
     }
-    /**
-     * Users settings page
-     *
-     * @return View
-     */
-    public function getDasboard()
-    {
-        $user = Auth::user();    
-        return View::make('site/layouts/retailer', compact('user'));
-    }
+    
     /**
      * Users Signup
      *
@@ -348,5 +339,28 @@ class UserController extends BaseController {
             $redirect .= (empty($url3)? '' : '/' . $url3);
         }
         return $redirect;
+    }
+
+    /**
+     * Users settings page
+     *
+     * @return View
+     */
+    public function getDashboard()
+    {
+        $user = Auth::user();
+        
+        if ( $user->user_type === Config::get('constants.USER_TYPE_RETAILER') )
+        {
+            return Redirect::route('retailer.dashboard');
+        }
+        elseif ( $user->user_type === Config::get('constants.USER_TYPE_ADMIN') )
+        {
+            return Redirect::to('admin');
+        }
+        else
+        {
+            return Redirect::route('user.dashboard');
+        }
     }
 }

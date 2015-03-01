@@ -24,6 +24,17 @@ class RetailersController extends \BaseController {
 		return View::make('site.retailers.index', compact('retailers'));
 	}
 
+    /**
+     * Users settings page
+     *
+     * @return View
+     */
+    public function getDashboard()
+    {
+        $user = Auth::user();    
+        return View::make('site.layouts.retailer', compact('user'));
+    }
+
 	/**
 	 * Show the form for creating a new retailer
 	 *
@@ -420,7 +431,7 @@ class RetailersController extends \BaseController {
         $cities = array_merge( array( '0' => '' ), City::lists('city','id'));
 
         // Show the page
-        return View::make('admin/addresses/create_edit', compact('title', 'countries', 'cities'));
+        return View::make('site.addresses.create_edit', compact('title', 'countries', 'cities'));
     }
 
     /**
