@@ -4,7 +4,7 @@
 @stop
 @section('container')
 	<div class="panel panel-default">
-       <div class="panel-heading">List Outlets
+       <div class="panel-heading">{{$title}}
           <a href="#" data-perform="panel-dismiss" data-toggle="tooltip" title="Close Panel" class="pull-right">
              <em class="fa fa-times"></em>
           </a>
