@@ -290,9 +290,14 @@ class RetailersController extends \BaseController {
 	 */
 	public function destroyService($id)
 	{
-		Service::destroy($id);
-
-		return Redirect::route('service.index');
+		if (Service::destroy($id))
+        {
+            return Redirect::route('service.index')->with('success', Lang::get('site/services/messages.delete.success'));
+        }
+        else
+        {
+		  return Redirect::route('service.index')->with('error', Lang::get('site/services/messages.delete.error'));
+        }
 	}
 
 	
@@ -348,9 +353,12 @@ class RetailersController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
-        Deal::create($data);
+        if (Deal::create($data))
+        {
+            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.create.success'));
+        }
 
-        return Redirect::route('deal.index');
+        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.create.error'));
     }
 
 
@@ -384,9 +392,12 @@ class RetailersController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
-        $deal->update($data);
+        if ( $deal->update($data) )
+        {
+            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.update.success'));
+        }
 
-        return Redirect::route('deal.index');
+        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.update.error'));
     }
 
     /**
@@ -397,9 +408,12 @@ class RetailersController extends \BaseController {
      */
     public function destroyDeal($id)
     {
-        Deal::destroy($id);
+        if (Deal::destroy($id))
+        {
+            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.delete.success'));
+        }
 
-        return Redirect::route('deal.index');
+        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.delete.error'));
     }
 	/**
      * Show a list of all the countries formatted for Datatables.
@@ -521,10 +535,8 @@ class RetailersController extends \BaseController {
             $this->address->save();
 
             // Redirect to the new country page
-            return Redirect::to('address/create')->with('error', Lang::get('address/messages.create.error'));
+            return Redirect::to('address/create')->with('error', Lang::get('site/address/messages.create.error'));
 
-            // Redirect to the country create page
-            return Redirect::to('address/create')->withInput()->with('error', Lang::get('address/messages.' . $error));
         }
 
         // Form validation failed
@@ -627,11 +639,11 @@ class RetailersController extends \BaseController {
         if ( $address->delete() )
         {
             // Redirect to the role management page
-            return Redirect::to('admin/addresses')->with('success', Lang::get('admin/addresses/messages.delete.success'));
+            return Redirect::to('admin/addresses')->with('success', Lang::get('site/addresses/messages.delete.success'));
         }
 
         // There was a problem deleting the role
-        return Redirect::to('admin/addresses')->with('error', Lang::get('admin/addresses/messages.delete.error'));
+        return Redirect::to('admin/addresses')->with('error', Lang::get('site/addresses/messages.delete.error'));
     }
 
     /**
