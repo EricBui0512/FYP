@@ -485,7 +485,7 @@ class RetailersController extends \BaseController {
         $countries = array_merge( array( '0' => 'All' ), Country::lists('country','id'));
         $cities = array( '0' => 'All' );
 
-        $listAddress = Address::whereUser_id(Auth::user()->id)->get();
+        $listAddress = Address::owner();
         
         // Show the page
         return View::make('site/addresses/index', compact('title','countries','cities','listAddress'));
@@ -525,14 +525,13 @@ class RetailersController extends \BaseController {
         if ($validator->passes())
         {
             // Get the inputs, with some exceptions
-            $inputs = Input::except('csrf_token');
+            $data = Input::except('csrf_token');
 
-            $this->address->city_id = $inputs['city_id'];
-            // $this->address->district = $inputs['district'];
-            $this->address->address = $inputs['address'];
-            $this->address->postal_code = $inputs['postal_code'];
-            $this->address->user_id = Auth::user()->id;
-            $this->address->save();
+            if (Address::create( $data ))
+            {
+               // Redirect to the new country page
+                return Redirect::to('address')->with('success', Lang::get('site/address/messages.create.success'));
+            }
 
             // Redirect to the new country page
             return Redirect::to('address/create')->with('error', Lang::get('site/address/messages.create.error'));
@@ -550,24 +549,27 @@ class RetailersController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function editAddress($address)
+    public function editAddress($id)
     {
+        $address = Address::find( $id );
+        
         if ( ! empty( $address ) )
         {
+
             $countries = array_merge( array( '0' => '' ), Country::lists('country','id'));
             $cities = array_merge( array( '0' => '' ), City::lists('city','id'));
             
             // Title
-            $title = Lang::get('admin/addresses/title.address_update');
+            $title = Lang::get('site/addresses/title.address_update');
             
             // mode
             $mode = 'edit';
 
-            return View::make('admin/addresses/create_edit', compact('city', 'title', 'mode', 'countries', 'cities', 'address'));
+            return View::make('site/addresses/create_edit', compact('city', 'title', 'mode', 'countries', 'cities', 'address'));
         }
         else
         {
-            return Redirect::to('admin/addresses')->with('error', Lang::get('admin/addresses/messages.does_not_exist'));
+            return Redirect::to('site/addresses')->with('error', Lang::get('site/addresses/messages.does_not_exist'));
         }
     }
 
@@ -598,17 +600,17 @@ class RetailersController extends \BaseController {
             if ($address->save())
             {
                 // Redirect to the role page
-                return Redirect::to('admin/addresses/' . $address->id . '/edit')->with('success', Lang::get('admin/addresses/messages.update.success'));
+                return Redirect::to('addresses/' . $address->id . '/edit')->with('success', Lang::get('site/addresses/messages.update.success'));
             }
             else
             {
                 // Redirect to the role page
-                return Redirect::to('admin/cities/' . $address->id . '/edit')->with('error', Lang::get('admin/cities/messages.update.error'));
+                return Redirect::to('cities/' . $address->id . '/edit')->with('error', Lang::get('site/cities/messages.update.error'));
             }
         }
 
         // Form validation failed
-        return Redirect::to('admin/cities/' . $address->id . '/edit')->withInput()->withErrors($validator);
+        return Redirect::to('cities/' . $address->id . '/edit')->withInput()->withErrors($validator);
     }
 
     /**
@@ -617,13 +619,13 @@ class RetailersController extends \BaseController {
      * @param $role
      * @return Response
      */
-    public function deleteAddress($address)
+    public function deleteAddress($id)
     {
         // Title
         $title = 'Delete Address';
 
         // Show the page
-        return View::make('admin/addresses/delete', compact('address', 'title'));
+        return View::make('site/addresses/delete', compact('id', 'title'));
     }
 
     /**
@@ -633,17 +635,17 @@ class RetailersController extends \BaseController {
      * @internal param $id
      * @return Response
      */
-    public function destroyAddress( $address )
+    public function destroyAddress( $id )
     {
         // Was the role deleted?
-        if ( $address->delete() )
+        if ( Address::destroy( $id ) )
         {
             // Redirect to the role management page
-            return Redirect::to('admin/addresses')->with('success', Lang::get('site/addresses/messages.delete.success'));
+            return Redirect::to('addresses')->with('success', Lang::get('site/addresses/messages.delete.success'));
         }
 
         // There was a problem deleting the role
-        return Redirect::to('admin/addresses')->with('error', Lang::get('site/addresses/messages.delete.error'));
+        return Redirect::to('addresses')->with('error', Lang::get('site/addresses/messages.delete.error'));
     }
 
     /**

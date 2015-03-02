@@ -21,6 +21,12 @@ class Address extends \Eloquent {
 		return $query->where( 'city_id', $cityId );
 	}
 
+	public function scopeOwner()
+	{
+		return $this->leftJoin('outlets', 'outlets.address_id', '=', 'addresses.id')
+			->where( 'admin_id', Auth::id() );
+	}
+
 	public function city()
 	{
 		return $this->belongsTo('City');
@@ -42,6 +48,7 @@ class Address extends \Eloquent {
 	public static function getAddressByUser( $retailerId )
 	{
 		$address = $this->whereUser_id($retailerId )->get();
+
 		if ( ! ( empty( $address ) ) )
 		{
 			return $address;
