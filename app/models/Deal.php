@@ -29,6 +29,11 @@ class Deal extends \Eloquent {
 		return $this->belongsTo('Service');
 	}
 
+	public function feedback()
+	{
+		return $this->hasMany('Feedback');
+	}
+
 	public static function search( $categoryId, $countryId, $cityId, $keyWord = null )
 	{
 		$query = Deal::select( array( 'deals.id','deals.title','deals.amount','deals.discount','images.image_path') )
