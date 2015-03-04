@@ -45,16 +45,4 @@ class Address extends \Eloquent {
 		
 	}
 
-	public static function getAddressByUser( $retailerId )
-	{
-		$address = $this->whereUser_id($retailerId )->get();
-
-		if ( ! ( empty( $address ) ) )
-		{
-			return $address;
-		}
-		return null;
-		
-	}
-
 }

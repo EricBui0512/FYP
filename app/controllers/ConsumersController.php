@@ -73,8 +73,67 @@ class ConsumersController extends \BaseController {
         }
 
         // Form validation failed
-        return Redirect::to('address/create')->withInput()->withErrors($validator);
+        return Redirect::to('feedback/create')->withInput()->withErrors($validator);
     }
 
+    public function listTrans()
+    {
+        $trans = DealTransaction::owner();
 
+        return View::make('site.dealtransactions.index', compact('trans'));
+    }
+
+    public function crateTrans( $dealId )
+    {
+        return View::make('site.dealtransactions.create', compact('dealId'));
+    }
+
+    public function storeTrans()
+    {
+        // Validate the inputs
+        $validator = Validator::make(Input::all(), DealTransaction::$rules);
+
+        // Check if the form validates with success
+        if ($validator->passes())
+        {
+            $user = Auth::user();
+
+            // Get the inputs, with some exceptions
+            $data = Input::except('csrf_token');
+            $data['consumer_id'] = $user->id;
+            $data['consumer_email'] = $user->email;
+
+            if(DealTransaction::create($data))
+            {
+
+                // TODO return ajax view
+            }
+
+        }
+
+        // Form validation failed
+        return Redirect::to('transaction/create')->withInput()->withErrors($validator);
+    }
+
+    public function cancelTrans()
+    {
+        $inputs = Input::all();
+
+        $cancel = new Cancellation;
+
+        $cancel->tran_id = $inputs['tran_id'];
+        $cancel->who_id = $inputs['who_id'];
+        $cancel->reason = $inputs['reason'];
+        $cancel->who = $inputs['who'];
+
+        if ( $cancel->save() )
+        {
+            DealTransaction::delete();
+
+            return Redirect::to('transaction')->with('success', 'Cancel the successfully');
+        }
+
+        return Redirect::to('transaction')->with('error', 'There was an issue cancelling the transaction. Please try again.');
+
+    }
 }
