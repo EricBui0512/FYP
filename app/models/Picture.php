@@ -1,7 +1,8 @@
 <?php
 
-class Image extends \Eloquent {
+class Picture extends \Eloquent {
 
+	public $table = 'images';
 	// Add your validation rules here
 	public static $rules = [
 		// 'title' => 'required'

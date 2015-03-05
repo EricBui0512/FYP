@@ -34,7 +34,7 @@ class Deal extends \Eloquent {
 		return $this->hasMany('Feedback');
 	}
 
-	public static function search( $categoryId, $countryId, $cityId, $keyWord = null )
+	public static function search( $categoryId = null, $countryId = null, $cityId = null, $keyWord = null )
 	{
 		$query = Deal::select( array( 'deals.id','deals.title','deals.amount','deals.discount','images.image_path') )
 			->leftJoin('services', 'services.id','=','deals.service_id')
@@ -46,16 +46,29 @@ class Deal extends \Eloquent {
 			->leftJoin('outlets','outlets.id','=','services.outlet_id')
 			->leftJoin('addresses','addresses.id','=','outlets.address_id')
 			->leftJoin('cities', 'cities.id','=','addresses.city_id')
-			->leftJoin('retailers','retailers.id','=','outlets.retailer_id')
-			->where('retailers.category_id', $categoryId)
-			->where('cities.id', $cityId)
-			->where('cities.country_id', $countryId);
-
+			->leftJoin('retailers','retailers.id','=','outlets.retailer_id');
+		
+		if ( $categoryId )
+		{
+			$query = $query->where('retailers.category_id', $categoryId);
+		}	
+		if ( $cityId )
+		{
+			$query = $query->where('cities.id', $cityId);
+		}
+		if ( $countryId )
+		{
+			$query = $query->where('cities.country_id', $countryId);
+		}
 		if ( $keyWord )
 		{
 			$query = $query->where('deals.name', 'LIKE', "%$keyWord%");
 		}
-
+		if ( ! $categoryId && ! $countryId )
+		{
+			$query = $query->take(10);
+		}
+		
 		return $query->get();
 	}
 
