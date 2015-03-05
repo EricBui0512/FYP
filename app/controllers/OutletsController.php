@@ -32,11 +32,14 @@ class OutletsController extends \BaseController {
 	 */
 	public function create()
 	{
+
+		$title = Lang::get('site/outlets/title.create_a_new_outlet');
+
 		$countries = Country::lists('country','id');
 		$cities = City::lists('city','id');
 		$outlets = Outlet::owner()->lists('name', 'id');
 
-		return View::make('site.outlets.create',compact('countries','cities', 'outlets'));
+		return View::make('site.outlets.create',compact('countries','cities', 'outlets', 'title'));
 	}
 
 	/**
@@ -65,9 +68,13 @@ class OutletsController extends \BaseController {
 		$data['admin_id'] = $this->adminId;
 		$data['description_id'] = $desc->id;
 
-		Outlet::create($data);
+		if ( Outlet::create($data) )
+		{
+			return Redirect::route('outlet.index')->with('success', Lang::get('site/outlets/messages.create.success'));
+		}
 
-		return Redirect::route('outlet.index');
+		return Redirect::to('outlet/create')->with('error', Lang::get('site/outlets/messages.create.error'));
+
 	}
 
 	/**
@@ -82,6 +89,7 @@ class OutletsController extends \BaseController {
 
 		return View::make('site.outlets.show', compact('outlet'));
 	}
+
 	/**
 	 * Display the specified outlet.
 	 *
@@ -90,9 +98,11 @@ class OutletsController extends \BaseController {
 	 */
 	public function getList()
 	{
-		// $outlet = Outlet::findOrFail($id);
+		$outlets = Outlet::owner();
 
-		return View::make('site.outlets.index');
+		$title = Lang::get('site/outlets/title.outlet_management');
+
+		return View::make('site.outlets.index', compact('outlets', 'title'));
 	}
 
 	/**
@@ -105,7 +115,9 @@ class OutletsController extends \BaseController {
 	{
 		$outlet = Outlet::find($id);
 
-		return View::make('site.outlets.edit', compact('outlet'));
+		$title = Lang::get('site/outlets/title.outlet_update');
+
+		return View::make('site.outlets.edit', compact('outlet', 'title'));
 	}
 
 	/**
@@ -125,9 +137,12 @@ class OutletsController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		$outlet->update($data);
+		if ( $outlet->update($data) )
+		{
+			return Redirect::route('outlets.index')->with('success', Lang::get('site/outlets/messages.update.success'));
+		}
 
-		return Redirect::route('outlets.index');
+		return Redirect::route('outlet.edit')->with('error', Lang::get('site/outlets/messages.update.error'));
 	}
 	public function uploadimage()
 		{
@@ -141,9 +156,13 @@ class OutletsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		Outlet::destroy($id);
+		if ( Outlet::destroy($id) )
+		{
+			return Redirect::route('outlets.index')->with('success', Lang::get('site/outlets/messages.delete.success'));
+		}
 
-		return Redirect::route('outlets.index');
+		return Redirect::route('outlet.index')->with('error', Lang::get('site/outlets/messages.delete.error'));
+
 	}
 
 }

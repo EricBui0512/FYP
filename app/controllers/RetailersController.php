@@ -22,9 +22,11 @@ class RetailersController extends \BaseController {
 	 */
 	public function index()
 	{
+        $title = Lng::get( 'site/retailers/title.retailer_management');
+
 		$retailers = Retailer::owner()->get();
 
-		return View::make('site.retailers.index', compact('retailers'));
+		return View::make('site.retailers.index', compact('retailers', 'title'));
 	}
 
     /**
@@ -34,7 +36,8 @@ class RetailersController extends \BaseController {
      */
     public function getDashboard()
     {
-        $user = Auth::user();    
+        $user = Auth::user();
+
         return View::make('site.layouts.retailer', compact('user'));
     }
 
@@ -45,7 +48,9 @@ class RetailersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('site.retailers.create');
+        $title = Lang::get('site/retailers/title.create_a_new_retailer');
+
+		return View::make('site.retailers.create', compact('title'));
 	}
 
 	/**
@@ -64,9 +69,12 @@ class RetailersController extends \BaseController {
 
 		$data['admin_id'] = $this->adminId;
 
-		Retailer::create($data);
+		if ( Retailer::create($data) )
+        {
+            return Redirect::route('retailer.index')->with('success', Lang::get('site/retailers/messages.create.success'));
+        }
 
-		return Redirect::route('retailer.index');
+        return Redirect::route('retailer.index')->with('error', Lang::get('site/retailers/messages.create.error'));
 	}
 
 	/**
@@ -90,9 +98,11 @@ class RetailersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+        $title = Lang::get('site/retailers/messages.title.retailer_update');
+
 		$retailer = Retailer::find($id);
 
-		return View::make('site.retailers.edit', compact('retailer'));
+		return View::make('site.retailers.edit', compact('retailer', 'title'));
 	}
 
 	/**
@@ -112,9 +122,12 @@ class RetailersController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		$retailer->update($data);
+		if ( $retailer->update($data) )
+        {
+            return Redirect::route('retailer.index')->with('success', Lang::get('site/retailers/messages.update.success'));
+        }
 
-		return Redirect::route('retailer.index');
+		return Redirect::route('retailer.edit')->with('error', Lang::get('site/retailers/messages.update.error'));
 	}
 
 	/**
@@ -125,9 +138,12 @@ class RetailersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		Retailer::destroy($id);
+		if ( Retailer::destroy($id) )
+        {
+            return Redirect::route('retailer.index')->with('success', Lang::get('site/retailers/messages.delete.success'));
+        }
 
-		return Redirect::route('retailer.index');
+		return Redirect::route('retailer.index')->with('error', Lang::get('site/retailers/messages.delete.error'));
 	}
 
 	/**
@@ -137,9 +153,10 @@ class RetailersController extends \BaseController {
 	 */
 	public function listService()
 	{
+        $title = Lang::get('site/services/title.service_management');
 		$services = Service::owner()->get();
 
-		return View::make('site.services.index', compact('services'));
+		return View::make('site.services.index', compact('services', 'title'));
 	}
 
 	/**
@@ -149,9 +166,10 @@ class RetailersController extends \BaseController {
 	 */
 	public function createService()
 	{
-        $outlets = Outlet::owner()->lists('name', 'id');
+        $title = Lang::get('site/services/title.create_a_new_service');
+        $outlets = Outlet::active()->owner()->lists('name', 'id');
 
-		return View::make('site.services.create', compact('outlets'));
+		return View::make('site.services.create', compact('outlets', 'title'));
 	}
 
 	/**
@@ -185,9 +203,13 @@ class RetailersController extends \BaseController {
 
 		unset( $data['summary']);
 
-		Service::create($data);
+		if(Service::create($data))
+        {
+            return Redirect::route('service.index')->with('success', Lang::get('site/services/messages.create.success'));
+        }
 
-		return Redirect::route('service.index');
+        return Redirect::route('service.create')->with('error', Lang::get('site/services/messages.create.error'));
+
 	}
 
 	/**
@@ -211,9 +233,13 @@ class RetailersController extends \BaseController {
 	 */
 	public function editService($id)
 	{
+        $title = Lang::get('site/services/title.create_a_new_service');
+
+        $outlets = Outlet::active()->owner()->lists('name', 'id');
+
 		$service = Service::find($id);
 
-		return View::make('site.services.edit', compact('service'));
+		return View::make('site.services.edit', compact('service', 'outlets', 'title'));
 	}
 
 	/**
@@ -226,17 +252,34 @@ class RetailersController extends \BaseController {
 	{
 		$service = Service::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Service::$rules);
+        $detail = Input::only('highlights','summary');
 
-		if ($validator->fails())
-		{
+        $condition = Input::only('special_condition','condition1','condition2');
+        $data = Input::except('highlights','special_condition','condition1','condition2');
 
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
+        $validator = Validator::make( $data, Service::$rules );
 
-		$service->update($data);
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
 
-		return Redirect::route('service.index');
+        // update detail service
+        $serviceDetail = ServiceDetail::where('id', $service->detail_id)
+                ->update( $detail );
+
+        // create condition service
+        $serviceCondition = ServiceCondition::where('id', $service->condition_id)
+                ->update( $condition );
+
+        unset( $data['summary']);
+
+        if($service->update($data))
+        {
+            return Redirect::route('service.index')->with('success', Lang::get('site/services/messages.update.success'));
+        }
+
+        return Redirect::route('service.edit')->with('error', Lang::get('site/services/messages.update.error'));
 	}
 
 	/**
@@ -247,9 +290,14 @@ class RetailersController extends \BaseController {
 	 */
 	public function destroyService($id)
 	{
-		Service::destroy($id);
-
-		return Redirect::route('service.index');
+		if (Service::destroy($id))
+        {
+            return Redirect::route('service.index')->with('success', Lang::get('site/services/messages.delete.success'));
+        }
+        else
+        {
+		  return Redirect::route('service.index')->with('error', Lang::get('site/services/messages.delete.error'));
+        }
 	}
 
 	
@@ -305,9 +353,12 @@ class RetailersController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
-        Deal::create($data);
+        if (Deal::create($data))
+        {
+            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.create.success'));
+        }
 
-        return Redirect::route('deal.index');
+        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.create.error'));
     }
 
 
@@ -341,9 +392,12 @@ class RetailersController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
-        $deal->update($data);
+        if ( $deal->update($data) )
+        {
+            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.update.success'));
+        }
 
-        return Redirect::route('deal.index');
+        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.update.error'));
     }
 
     /**
@@ -354,9 +408,12 @@ class RetailersController extends \BaseController {
      */
     public function destroyDeal($id)
     {
-        Deal::destroy($id);
+        if (Deal::destroy($id))
+        {
+            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.delete.success'));
+        }
 
-        return Redirect::route('deal.index');
+        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.delete.error'));
     }
 	/**
      * Show a list of all the countries formatted for Datatables.
@@ -428,7 +485,7 @@ class RetailersController extends \BaseController {
         $countries = array_merge( array( '0' => 'All' ), Country::lists('country','id'));
         $cities = array( '0' => 'All' );
 
-        $listAddress = Address::whereUser_id(Auth::user()->id)->get();
+        $listAddress = Address::owner();
         
         // Show the page
         return View::make('site/addresses/index', compact('title','countries','cities','listAddress'));
@@ -468,20 +525,17 @@ class RetailersController extends \BaseController {
         if ($validator->passes())
         {
             // Get the inputs, with some exceptions
-            $inputs = Input::except('csrf_token');
+            $data = Input::except('csrf_token');
 
-            $this->address->city_id = $inputs['city_id'];
-            // $this->address->district = $inputs['district'];
-            $this->address->address = $inputs['address'];
-            $this->address->postal_code = $inputs['postal_code'];
-            $this->address->user_id = Auth::user()->id;
-            $this->address->save();
+            if (Address::create( $data ))
+            {
+               // Redirect to the new country page
+                return Redirect::to('address')->with('success', Lang::get('site/address/messages.create.success'));
+            }
 
             // Redirect to the new country page
-            return Redirect::to('address/create')->with('error', Lang::get('address/messages.create.error'));
+            return Redirect::to('address/create')->with('error', Lang::get('site/address/messages.create.error'));
 
-            // Redirect to the country create page
-            return Redirect::to('address/create')->withInput()->with('error', Lang::get('address/messages.' . $error));
         }
 
         // Form validation failed
@@ -495,23 +549,27 @@ class RetailersController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function editAddress($address)
+    public function editAddress($id)
     {
+        $address = Address::find( $id );
+        
         if ( ! empty( $address ) )
         {
+
             $countries = array_merge( array( '0' => '' ), Country::lists('country','id'));
             $cities = array_merge( array( '0' => '' ), City::lists('city','id'));
             
             // Title
-            $title = Lang::get('admin/addresses/title.address_update');
+            $title = Lang::get('site/addresses/title.address_update');
+            
             // mode
             $mode = 'edit';
 
-            return View::make('admin/addresses/create_edit', compact('city', 'title', 'mode', 'countries', 'cities', 'address'));
+            return View::make('site/addresses/create_edit', compact('city', 'title', 'mode', 'countries', 'cities', 'address'));
         }
         else
         {
-            return Redirect::to('admin/addresses')->with('error', Lang::get('admin/addresses/messages.does_not_exist'));
+            return Redirect::to('site/addresses')->with('error', Lang::get('site/addresses/messages.does_not_exist'));
         }
     }
 
@@ -525,7 +583,7 @@ class RetailersController extends \BaseController {
     {
 
         // Validate the inputs
-        $validator = Validator::make(Input::all(), City::$rules);
+        $validator = Validator::make(Input::all(), Address::$rules);
 
         // Check if the form validates with success
         if ($validator->passes())
@@ -542,17 +600,17 @@ class RetailersController extends \BaseController {
             if ($address->save())
             {
                 // Redirect to the role page
-                return Redirect::to('admin/addresses/' . $address->id . '/edit')->with('success', Lang::get('admin/addresses/messages.update.success'));
+                return Redirect::to('addresses/' . $address->id . '/edit')->with('success', Lang::get('site/addresses/messages.update.success'));
             }
             else
             {
                 // Redirect to the role page
-                return Redirect::to('admin/cities/' . $address->id . '/edit')->with('error', Lang::get('admin/cities/messages.update.error'));
+                return Redirect::to('cities/' . $address->id . '/edit')->with('error', Lang::get('site/cities/messages.update.error'));
             }
         }
 
         // Form validation failed
-        return Redirect::to('admin/cities/' . $address->id . '/edit')->withInput()->withErrors($validator);
+        return Redirect::to('cities/' . $address->id . '/edit')->withInput()->withErrors($validator);
     }
 
     /**
@@ -561,13 +619,13 @@ class RetailersController extends \BaseController {
      * @param $role
      * @return Response
      */
-    public function deleteAddress($address)
+    public function deleteAddress($id)
     {
         // Title
         $title = 'Delete Address';
 
         // Show the page
-        return View::make('admin/addresses/delete', compact('address', 'title'));
+        return View::make('site/addresses/delete', compact('id', 'title'));
     }
 
     /**
@@ -577,17 +635,17 @@ class RetailersController extends \BaseController {
      * @internal param $id
      * @return Response
      */
-    public function destroyAddress( $address )
+    public function destroyAddress( $id )
     {
         // Was the role deleted?
-        if ( $address->delete() )
+        if ( Address::destroy( $id ) )
         {
             // Redirect to the role management page
-            return Redirect::to('admin/addresses')->with('success', Lang::get('admin/addresses/messages.delete.success'));
+            return Redirect::to('addresses')->with('success', Lang::get('site/addresses/messages.delete.success'));
         }
 
         // There was a problem deleting the role
-        return Redirect::to('admin/addresses')->with('error', Lang::get('admin/addresses/messages.delete.error'));
+        return Redirect::to('addresses')->with('error', Lang::get('site/addresses/messages.delete.error'));
     }
 
     /**

@@ -6,7 +6,7 @@
 	<div class="col-sm-12">
                   <!-- START panel-->
                   <div class="panel panel-default">
-                     <div class="panel-heading">Create Outlet</div>
+                     <div class="panel-heading">{{$title}}</div>
                      <div class="panel-body">
                         <form class="form-horizontal" method="POST" action="{{URL::to('outlet')}}">
                         <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">

@@ -4,6 +4,7 @@ return array(
 
 	'already_exists' => 'Deal already exists!',
 	'does_not_exist' => 'Deal does not exist.',
+	'name_required'  => 'The name field is required',
 
 	'create' => array(
 		'error'   => 'Deal was not created, please try again.',

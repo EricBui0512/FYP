@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 22:47:44
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-02-28 12:06:47
+ * @Last Modified time: 2015-03-01 22:22:57
  */
 class AdminCommonController extends AdminController {
 
@@ -93,8 +93,6 @@ class AdminCommonController extends AdminController {
             // Redirect to the new country page
             return Redirect::to('admin/countries/create')->with('error', Lang::get('admin/countries/messages.create.error'));
 
-            // Redirect to the country create page
-            return Redirect::to('admin/countries/create')->withInput()->with('error', Lang::get('admin/countries/messages.' . $error));
         }
 
         // Form validation failed

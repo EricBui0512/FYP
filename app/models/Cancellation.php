@@ -4,10 +4,10 @@ class Cancellation extends \Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
+		'tran_id' => 'integer'
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = ['tran_id','who_id','reason','who'];
 
 }
