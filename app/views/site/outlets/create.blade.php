@@ -48,7 +48,20 @@
                                  <input type="url" placeholder="Website" class="form-control">
                               </div>
                            </div>
-                           
+                           <div class="form-group">
+                              {{ Form::label('image', 'Image',array('class'=>'col-lg-2 control-label')) }}
+                               <div class="col-lg-10">
+                                <input multiple class="image" type="file" name="images" data-url="{{URL::to('outlet/uploadimage')}}" >
+                               
+                                 <div id="progress">
+                                   <div class="bar" style="width: 0%;"></div>
+                                   <div >
+                                   <p class="ulimage">0%</p> 
+                                   </div>
+                                  {{ $errors->first('image',  '<div class="alert alert-danger">:message</div>') }}
+                                   </div>
+                               </div>
+                           </div>
                             <div class="form-group">
                               <label class="col-lg-2 control-label">Outlet Register ID</label>
                               <div class="col-lg-8">

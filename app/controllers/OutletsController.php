@@ -129,7 +129,10 @@ class OutletsController extends \BaseController {
 
 		return Redirect::route('outlets.index');
 	}
-
+	public function uploadimage()
+		{
+			
+		}
 	/**
 	 * Remove the specified outlet from storage.
 	 *

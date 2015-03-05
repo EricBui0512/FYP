@@ -2764,5 +2764,34 @@
   function adjustLayout() {
     $('.wrapper > section').css('min-height', $(window).height());
   }
+  // upload file
+   $('.image').fileupload({
+      dataType: 'json',
+        method:'post',
+        add: function (e, data) {
+        var jqXHR = data.submit()
+            .error(function (jqXHR, textStatus, errorThrown) {/* ... */})
+            .complete(function (result, textStatus, jqXHR) {
+              $('#loading').modal('hide');
+              console.log(result.responseJSON.image);
+              $('.images').val(result.responseJSON.image);
+              $('.image_thumbnail').val(result.responseJSON.image_thumbnail);
+              // console.log();
+            });
+        },
+        done: function (e, data) {
+
+        },
+        progressall: function (e, data) {
+           $('#loading').modal('show');
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            // console.log(progress);
+            $('#progress .bar').css(
+                'width',
+                progress + '%'
+            );
+            $('.ulimage').html(progress+' %');
+        }
+    });
 
 }(jQuery, window, document));
