@@ -147,7 +147,8 @@ class OutletsController extends \BaseController {
 	public function uploadimage()
 		{
 			$imagearray=array();
-			$files   = Input::file('images');		
+			$files   = Input::file('images');	
+			
 			$filename = str_random(20);
 			$array[0]=$files;
 			$extension = $array[0]->getClientOriginalExtension();	   

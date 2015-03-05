@@ -2774,8 +2774,8 @@
             .complete(function (result, textStatus, jqXHR) {
               $('#loading').modal('hide');
               console.log(result.responseJSON.image);
-              $('.images').val(result.responseJSON.image);
-              $('.image_thumbnail').val(result.responseJSON.image_thumbnail);
+              // $('.images').val(result.responseJSON.image);
+              // $('.image_thumbnail').val(result.responseJSON.image_thumbnail);
               // console.log();
             });
         },

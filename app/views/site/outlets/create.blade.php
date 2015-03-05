@@ -51,8 +51,7 @@
                            <div class="form-group">
                               {{ Form::label('image', 'Image',array('class'=>'col-lg-2 control-label')) }}
                                <div class="col-lg-10">
-                                <input multiple class="image" type="file" name="images" data-url="{{URL::to('outlet/uploadimage')}}" >
-                               
+                                <input multiple class="image" type="file" name="images" data-url="{{URL::to('outlet/uploadimage')}}" >            
                                  <div id="progress">
                                    <div class="bar" style="width: 0%;"></div>
                                    <div >
