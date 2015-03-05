@@ -566,7 +566,6 @@
    <script src="{{asset('assets/js/jquery.fileupload.js')}}"></script>
    <script src="{{asset('assets/js/jquery.iframe-transport.js')}}"></script>
    <script src="{{asset('assets/js/jquery.fileupload-process.js')}}"></script>
-   <script src="{{asset('assets/js/jquery.fileupload-image.js')}}"></script>
   
    <!--[if lt IE 8]><script src="js/excanvas.min.js')}}"></script><![endif]-->
    <!-- END Page Custom Script-->
