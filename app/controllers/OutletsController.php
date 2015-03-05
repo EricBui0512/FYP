@@ -145,22 +145,25 @@ class OutletsController extends \BaseController {
 		return Redirect::route('outlet.edit')->with('error', Lang::get('site/outlets/messages.update.error'));
 	}
 	public function uploadimage()
-		{
-			$imagearray=array();
-			$files   = Input::file('images');	
+	{
+		$imagearray = array();
+		$files   = Input::file('images');	
+		
+		$filename = strtolower(str_random(20));
+		$array[0] = $files;
+		$extension = $array[0]->getClientOriginalExtension();	   
+		$filenameimage = $filename.'.' . $extension;
+		$filenamethumbnail = $filename.'.'.$extension;
+	    $destinationPath = 'upload';
+	    $imagearray['image']='/'.$destinationPath.'/'.$filename.'.'.$extension;
+	    $imagearray['image_thumbnail']='/'.$destinationPath.'/'.$filenamethumbnail;
+	    
+	    Image::make($files->getRealPath())->resize(420,null)->save($destinationPath.'/'.$filenameimage);
+	    Image::make($files->getRealPath())->resize(180, 180)->save($destinationPath.'/'.$filenamethumbnail);
+		
+		return json_encode($imagearray);
+	}
 
-			$filename = str_random(20);
-			$array[0]=$files;
-			$extension = $array[0]->getClientOriginalExtension();	   
-			$filenameimage = $filename.'.' . $extension;
-			$filenamethumbnail = $filename.'thumbnail.'.$extension;
-		    $destinationPath = 'uploads/outlet';
-		    $imagearray['image']='/'.$destinationPath.'/'.$filename.'.'.$extension;
-		    $imagearray['image_thumbnail']='/'.$destinationPath.'/'.$filenamethumbnail;
-		    Image::make($files->getRealPath())->resize(420,249)->save($destinationPath.'/'.$filenameimage);
-		    Image::make($files->getRealPath())->resize(180,180)->save($destinationPath.'/'.$filenamethumbnail);
-			return json_encode($imagearray);
-		}
 	/**
 	 * Remove the specified outlet from storage.
 	 *
