@@ -32,6 +32,10 @@ class Address extends \Eloquent {
 		return $this->belongsTo('City');
 	}
 
+	public function outlet()
+	{
+		return $this->hasOne('Outlet');
+	}
 	public static function getHtmlByOutlet( $addressId )
 	{
 		$address = $this->find( $addressId );

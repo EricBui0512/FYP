@@ -144,11 +144,13 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     #outlet manager
     Route::get('outlet/create', array( 'as' => 'outlet.create', 'uses' => 'OutletsController@create'));
     Route::post('outlet/create', array( 'as' => 'outlet.create', 'uses' => 'OutletsController@create'));
+    Route::post('outlet/{outlet}', 'OutletsController@update');
 
     Route::get('outlet/detail/{id}', array( 'as' => 'outlet.detail', 'uses' => 'OutletsController@show'));
     Route::get('outlet', array( 'as' => 'outlet.list', 'uses' => 'OutletsController@getList'));
     Route::post('outlet/uploadimage', array( 'as' => 'outlet.uploadimage', 'uses' => 'OutletsController@uploadimage'));
-    
+    Route::post('outlet/delimg', 'OutletsController@deleteImage');
+
     #deals manager
     Route::get('deal', array('as'=> 'deals.index','uses' => 'RetailersController@listDeal'));
     Route::get('deal/create', 'RetailersController@createDeal');

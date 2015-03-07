@@ -14,7 +14,7 @@ class Outlet extends Eloquent {
 
 	// Don't forget to fill this array
 	protected $fillable = [ 'name', 'admin_id', 'address_id', 'retailer_id', 'photo_id',
-			'description_id', 'outlet_register_id', 'website', 'operation_hour', 'rate', 'active'];
+			'description_id', 'outlet_register_id', 'website', 'operation_hour', 'rate', 'status'];
 
 	public function scopeOwner( $query ) {
 
@@ -23,7 +23,7 @@ class Outlet extends Eloquent {
 
 	public function scopeActive( $query ) {
 
-		return $query->where( 'active', 1 );
+		return $query->where( 'status', 'active' );
 	}
 
 	public function services() {
@@ -35,5 +35,19 @@ class Outlet extends Eloquent {
 
 		return $this->belongsTo('OutletDescription');
 	}
+
+	public function address() {
+
+		return $this->belongsTo('Address'); 
+	}
 	
+	public function createTmp()
+	{
+		$this->name = '';
+		$this->status = 'new';
+		$this->admin_id = Auth::id();
+		$this->save();
+
+		return $this->id;
+	}
 }

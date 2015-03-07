@@ -32,14 +32,10 @@ class OutletsController extends \BaseController {
 	 */
 	public function create()
 	{
+		$outObj = new Outlet();
+		$tmpId = $outObj->createTmp();
 
-		$title = Lang::get('site/outlets/title.create_a_new_outlet');
-
-		$countries = Country::lists('country','id');
-		$cities = City::lists('city','id');
-		$outlets = Outlet::owner()->lists('name', 'id');
-
-		return View::make('site.outlets.create',compact('countries','cities', 'outlets', 'title'));
+		return Redirect::to( "outlet/$tmpId/edit" )->with('title', Lang::get('site/outlets/title.create_a_new_outlet'));
 	}
 
 	/**
@@ -98,8 +94,7 @@ class OutletsController extends \BaseController {
 	 */
 	public function getList()
 	{
-		$outlets = Outlet::owner();
-
+		$outlets = Outlet::owner()->active()->get();
 		$title = Lang::get('site/outlets/title.outlet_management');
 
 		return View::make('site.outlets.index', compact('outlets', 'title'));
@@ -111,13 +106,29 @@ class OutletsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit( $outlet )
 	{
-		$outlet = Outlet::find($id);
+		$title = Session::get('title');
+		$countries = Country::lists('country','id');
+		$cities = City::lists('city','id');
+		$retailers = Retailer::owner()->lists('name', 'id');
+		$addresses = Address::select(array('addresses.id', 'addresses.address'))->lists('address',  'id');
+		$images = Picture::where('ref_id', $outlet->id)
+				->where('image_type', 'outlet')
+				->get();
 
-		$title = Lang::get('site/outlets/title.outlet_update');
+		if ( ! $title )
+		{
+			$title = Lang::get('site/outlets/title.outlet_update');
+		}
+		else
+		{
+			Session::forget('title');
+		}
 
-		return View::make('site.outlets.edit', compact('outlet', 'title'));
+		return View::make('site.outlets.edit',compact('countries','cities', 'outlet', 'title', 'retailers', 'addresses'))
+			->nest('imageForm', 'site.partials.image.create', ['refId' => $outlet->id, 'type' => 'outlet', 'images' => $images]);
+
 	}
 
 	/**
@@ -126,9 +137,11 @@ class OutletsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($outlet)
 	{
-		$outlet = Outlet::findOrFail($id);
+
+		$data = Input::except( 'summary' );
+		$description = Input::only('full_description', 'summary');
 
 		$validator = Validator::make($data = Input::all(), Outlet::$rules);
 
@@ -137,33 +150,56 @@ class OutletsController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
+		if ($outlet->description_id) {
+			$desc = OutletDescription::where('id', $outlet->description_id)->update($description);
+		}
+		else {
+			$desc = OutletDescription::create( $description );
+		}
+
+		unset( $data['full_description'] );
+		$data['description_id'] = $desc->id;
+		$data['status'] = 'store';
+
 		if ( $outlet->update($data) )
 		{
-			return Redirect::route('outlets.index')->with('success', Lang::get('site/outlets/messages.update.success'));
+			return Redirect::to('outlet')->with('success', Lang::get('site/outlets/messages.update.success'));
 		}
 
 		return Redirect::route('outlet.edit')->with('error', Lang::get('site/outlets/messages.update.error'));
-	}
-	public function uploadimage()
-	{
-		$imagearray = array();
-		$files   = Input::file('images');	
 		
-		$filename = strtolower(str_random(20));
-		$array[0] = $files;
-		$extension = $array[0]->getClientOriginalExtension();	   
-		$filenameimage = $filename.'.' . $extension;
-		$filenamethumbnail = $filename.'.'.$extension;
-	    $destinationPath = 'upload';
-	    $imagearray['image']='/'.$destinationPath.'/'.$filename.'.'.$extension;
-	    $imagearray['image_thumbnail']='/'.$destinationPath.'/'.$filenamethumbnail;
-	    
-	    Image::make($files->getRealPath())->resize(420,null)->save($destinationPath.'/'.$filenameimage);
-	    Image::make($files->getRealPath())->resize(180, 180)->save($destinationPath.'/'.$filenamethumbnail);
-		
-		return json_encode($imagearray);
 	}
 
+	public function uploadimage()
+	{
+		$picture = array();
+		$files   = Input::file('images');	
+		
+		$strRand = strtolower(str_random(20));
+		$array[0] = $files;
+		$extension = $array[0]->getClientOriginalExtension();	   
+		$fileName = $strRand.'.' . $extension;
+	    
+	    $uploadPath = 'upload';
+
+	    $picture['image_path'] = $uploadPath . '/normal/' . $fileName;
+	    $picture['thumbnail_path'] =  $uploadPath . '/thumbnail/' . $fileName;
+	    $picture['image_type'] = Input::get('type');
+	    $picture['ref_id'] = Input::get('ref_id');
+
+	    Image::make($files->getRealPath())->resize(420,null)->save( $picture['image_path'] );
+	    Image::make($files->getRealPath())->resize(64, 64)->save( $picture['thumbnail_path'] );
+		
+		Picture::create( $picture );
+
+		return json_encode($picture);
+	}
+
+	public function deleteImage()
+	{
+		$id = Input::get('id');
+		Picture::destroy( $id );
+	}
 	/**
 	 * Remove the specified outlet from storage.
 	 *
