@@ -85,7 +85,7 @@
                         </li> 
                         @if (!Auth::check())              
                             <li class=""><a href="" data-toggle="modal" data-target=".bs-example-modal-lg">Login</a></li> 
-                            <li class=""><a href="{{{ URL::to('user/signup') }}}" class="btn btn-default btn-block" >Sign up</a></li> 
+                            <li class=""><a href="{{{ URL::to('account/signup') }}}" class="btn btn-default btn-block" >Sign up</a></li> 
                         @else
                             <li class="">
                                     <div >
