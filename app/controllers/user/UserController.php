@@ -44,7 +44,7 @@ class UserController extends BaseController {
      *
      * @return View
      */
-    public function Signup()
+    public function signup()
     {   
         return View::make('site/user/signup');
     }
@@ -75,7 +75,7 @@ class UserController extends BaseController {
         } else {
             $error = $user->errors()->all(':message');
 
-            return Redirect::to('user/create')
+            return Redirect::to('account/create')
                 ->withInput(Input::except('password'))
                 ->with('error', $error);
         }

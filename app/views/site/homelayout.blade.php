@@ -88,12 +88,12 @@
                             <li class=""><a href="{{{ URL::to('user/signup') }}}" class="btn btn-default btn-block" >Sign up</a></li> 
                         @else
                             <li class="">
-                                    <div >
+                                    <div class="margin-t5">
                                         <div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                            {{{ Auth::user()->username }}}<span class="caret"></span>
                                         </div>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="{{{ URL::to('dashboard') }}}">Daskboard</a></li>
+                                            <li><a href="{{{ URL::to('dashboard') }}}">Dashboard</a></li>
                                            
                                             <li class="divider"></li>
                                             <li><a href="{{{ URL::to('user/logout') }}}">Logout</a></li>
@@ -269,10 +269,12 @@
                                             </p>
                                         </div>
                                         <div class="section">
-                                            <a href="#" class="btn btn-primary custom-button red-btn">Demo</a>
-                                            <br>
-                                            <a href="#" class="btn btn-primary custom-button green-btn">Buy</a>
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-6">
+                                            <a href="#" class="btn btn-primary custom-button green-btn">Detail</a>
+                                            </div>
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>

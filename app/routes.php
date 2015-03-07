@@ -192,8 +192,9 @@ Route::post('user/{user}/edit', 'UserController@postEdit');
 Route::post('user/login', 'UserController@postLogin');
 
 //:: Sign up Routes ::
-Route::get('user/signup', 'UserController@Signup');
+Route::get('user/signup', 'UserController@signup');
 //:: create user Routes::
+Route::get('user/create/{type}', 'UserController@userCreate');
 Route::get('user/create/{type}', 'UserController@userCreate');
 # User RESTful Routes (Login, Logout, Register, etc)
 Route::controller('user', 'UserController');
