@@ -2769,14 +2769,21 @@
       dataType: 'json',
         method:'post',
         add: function (e, data) {
+
         var jqXHR = data.submit()
             .error(function (jqXHR, textStatus, errorThrown) {/* ... */})
             .complete(function (result, textStatus, jqXHR) {
               $('#loading').modal('hide');
-              console.log(result.responseJSON.image);
-              // $('.images').val(result.responseJSON.image);
-              // $('.image_thumbnail').val(result.responseJSON.image_thumbnail);
-              // console.log();
+              console.log(result);
+              var html, json = result.responseJSON;
+              html = '<div class="col-lg-2 ele-'+json.id+'">';
+              html += ' <div id="progress">';
+              html += '     <image id="picture" alt="" src="/'+ json.thumbnail_path +'" height="64" width="64"/>';
+              html += '     </div>';
+              html += '     <a href="javascript:void(0)" id="'+json.id+'" class="col-lg-1 icon-add del-img"><em class="fa fa-minus"></em></a>';
+              html += ' </div>';
+              
+              $('.list-images').append( html );
             });
         },
         done: function (e, data) {
@@ -2793,5 +2800,12 @@
             $('.ulimage').html(progress+' %');
         }
     });
+    
+    $('.del-img').on('click', function(){
+      var id = $(this).attr('id');
 
+      $.post( '/outlet/delimg', {id: id}, function() {
+        $('.ele-' + id ).remove();
+      });
+    });
 }(jQuery, window, document));
