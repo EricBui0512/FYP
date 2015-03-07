@@ -28,17 +28,23 @@ class SiteController extends BaseController {
 	public function getIndex()
 	{
         // get list outlet active
-		$outlets = Outlet::active();
-		
+		$deals = Deal::search();
         // Show the page
-		return View::make('site/homelayout',compact('outlets'));
+		return View::make('site/homelayout',compact('deals'));
 	}
 
     public function postSearch() {
 
 
     }
-
+    public function getSearch() {
+        $category=Input::get('category');
+        $country=Input::get('country');
+        $city=Input::get('city');
+        $deals=Deal::search($category,$country,$city);
+        // Show the page
+        return View::make('site/homelayout',compact('deals'));
+    }
     public function postGetCities(){
         $country_id = Input::get('country_id');
         $cities = City::where('country_id','=',$country_id)->get();
