@@ -24,8 +24,7 @@
                               <label class="col-lg-2 control-label">Name</label>
                               <div class="col-lg-8">
                                  <input type="text" placeholder="Name" name="name" class="form-control" value="{{{ Input::old('name', isset($outlet) ? $outlet->name : null) }}}">
-									{{ $errors->first('name', '<span class="help-inline">:message</span>') }}
-
+									               {{ $errors->first('name', '<span class="help-inline">:message</span>') }}
                               </div>
                            </div>
                            <div class="form-group">

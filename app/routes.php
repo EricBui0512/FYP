@@ -152,8 +152,10 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::post('outlet/delimg', 'OutletsController@deleteImage');
 
     #deals manager
-    Route::get('deal', array('as'=> 'deals.index','uses' => 'RetailersController@listDeal'));
+    Route::get('deal', array('as'=> 'deal.index','uses' => 'RetailersController@listDeal'));
     Route::get('deal/create', 'RetailersController@createDeal');
+    Route::post('deal/create','RetailersController@storeDeal');
+    Route::get('deal/{deal}/edit', 'RetailersController@editDeal');
     Route::post('deal/create','RetailersController@storeDeal');
 
      # Address Management

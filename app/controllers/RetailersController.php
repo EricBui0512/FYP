@@ -320,9 +320,10 @@ class RetailersController extends \BaseController {
      */
     public function listDeal()
     {
-        $deals = Deal::owner();
+        $title = 'Deals Manage';
+        $deals = Deal::owner()->get();
 
-        return View::make('site.deals.index', compact('deals'));
+        return View::make('site.deals.index', compact('deals','title'));
     }
 
     /**
@@ -371,8 +372,9 @@ class RetailersController extends \BaseController {
     public function editDeal($id)
     {
         $deal = Deal::find($id);
+        $services = Service::select(array('services.name','services.id'))->owner()->lists('name','id');
 
-        return View::make('site.deals.edit', compact('deal'));
+        return View::make('site.deals.edit', compact('deal', 'services'));
     }
 
     /**
