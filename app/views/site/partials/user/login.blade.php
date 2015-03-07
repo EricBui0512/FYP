@@ -12,16 +12,15 @@
             <input type="text" class="form-control" placeholder="{{ Lang::get('confide::confide.username_e_mail') }}" name="email" id="email" value="{{ Input::old('email') }}">
             <label>Password</label><a href="forgot" class="pull-right"><i class="icon-question-sign"></i>&nbsp;Forgot Password</a> 
             <input type="password" class="form-control" tabindex="2" placeholder="{{ Lang::get('confide::confide.password') }}" name="password" id="password">
-           
                 <div class="checkbox">
                     <label for="remember">{{ Lang::get('confide::confide.login.remember') }}
                         <input type="hidden" name="remember" value="0">
                         <input tabindex="4" type="checkbox" name="remember" id="remember" value="1">
                     </label>
                 </div>
-            
             <br>
             <button tabindex="3" class="btn btn-default " type="submit">Sign In&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></button>
+            <a href="" tabindex="3" class="btn btn-default " >Sign Up&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
         <!-- <div class="span3">
             <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Social</h4>
             <div class="socials clearfix">
