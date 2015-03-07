@@ -8,10 +8,11 @@
                 <div id="locationField"></div> 
                 <div class="box" >
                 @if($type=='trailer') 
-                <h3 class="margin-b20 margin-t20">Create a Free Retailer Account</h3>
+                <h3 class="margin-b20 text-center ttu">Create a Free Retailer Account</h3>
                 @else
-                <h3 class="margin-b20 margin-t20">Create a Free Customer Account</h3>
+                <h3 class="margin-b20 text-center ttu">Create a Free Customer Account</h3>
                 @endif
+                <div class="break-line margin-b20"></div>
                 <form method="POST" action="{{{ URL::to('user') }}}" accept-charset="UTF-8" class="form-horizontal ">
     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
     <fieldset>
@@ -64,7 +65,7 @@
         <div class="form-group text-l">
             <div  class="col-sm-3 control-label"></div>
             <div class="col-sm-9">
-                <button type="submit" class="btn bt-spa">{{{ Lang::get('confide::confide.signup.submit') }}}</button>
+                <button type="submit" class="btn bt-spa btn-lg pull-right ttu">{{{ Lang::get('confide::confide.signup.submit') }}}</button>
             </div>
         </div>
     </fieldset>
@@ -74,4 +75,7 @@
             </div>
             <div class="col-md-2"></div> 
         </div>
+        <script type="text/javascript">
+            $('body').addClass("signup-body");
+        </script>
 @stop

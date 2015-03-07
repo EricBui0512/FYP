@@ -36,7 +36,6 @@
     <!-- JQUERY -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-    </script>
 </head>
 <body  class="signup">
     <div class="preloader" style="display: none;">
@@ -45,7 +44,7 @@
     <!-- =========================
    HOME SECTION       
 ============================== -->
-    <header class="header"  style="background-color:#ffffff;">
+    <header class="header">
         <!-- TOP BAR -->
         <div id="main-nav" class="navbar navbar-inverse bs-docs-nav fixed booking-navbar" >
             <div class="container">
@@ -64,7 +63,7 @@
                 <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
                     <ul class="nav navbar-nav navbar-right responsive-nav main-nav-list">    
                            
-                            <li class=""><p>Already have an Spa Online account?</p><a href="" class="float-r" data-toggle="modal" data-target=".bs-example-modal-lg">Login</a></li> 
+                           <li><a href="/user/login" class="btn btn-block">Login</a></li> 
                     </ul>
                 </nav>
             </div>
