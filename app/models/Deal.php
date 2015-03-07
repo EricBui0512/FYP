@@ -66,7 +66,7 @@ class Deal extends \Eloquent {
 		}
 		if ( ! $categoryId && ! $countryId )
 		{
-			$query = $query->take(10)->orderBy('id', 'desc');
+			$query = $query->take(12)->orderBy('id', 'desc');
 		}
 		
 		return $query->get();

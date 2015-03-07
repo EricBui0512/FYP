@@ -182,7 +182,8 @@ Route::group( array( 'before' => 'auth|role:user'), function() {
  *  Frontend Routes
  *  ------------------------------------------
  */
-
+// Site reset routes
+Route::post('/search', 'SiteController@getSearch');
 // User reset routes
 Route::get('user/reset/{token}', 'UserController@getReset');
 // User password reset

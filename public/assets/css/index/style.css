@@ -386,7 +386,6 @@ input:focus {
 -----------------------------------------*/
 
 .header {
-  background: rgba(0, 0, 0, 0.5);
   min-height: 600px;
   position: relative;
   overflow: hidden;
@@ -422,7 +421,7 @@ input:focus {
 }
 .navbar-inverse .navbar-nav>li>a {
   color: #A2185B;
-  padding: 0;
+  padding: 0 15px;
   line-height: 35px;
 }
 .navbar-brand {
@@ -468,6 +467,7 @@ input:focus {
   margin-top: 25%;
   line-height: 65px;
   z-index: 0;
+    margin-bottom: 50px;
 }
 
 /* Short Messages */
@@ -1502,7 +1502,10 @@ footer {
 	border-radius: 4px;
 	border: 3px solid #F0F0ED;
 	color: #000;
-}
+	padding: 30px;
+	background: #fff;
+}.
+
 /*!
  * Bootstrap Responsive v2.3.2
  *
