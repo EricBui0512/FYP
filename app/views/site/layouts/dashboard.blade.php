@@ -563,6 +563,10 @@
    <script src="{{asset('assets/vendor/flot/jquery.flot.pie.min.js')}}"></script>
    <script src="{{asset('assets/vendor/flot/jquery.flot.time.min.js')}}"></script>
    <script src="{{asset('assets/vendor/flot/jquery.flot.categories.min.js')}}"></script>
+   <script src="{{asset('assets/js/jquery.fileupload.js')}}"></script>
+   <script src="{{asset('assets/js/jquery.iframe-transport.js')}}"></script>
+   <script src="{{asset('assets/js/jquery.fileupload-process.js')}}"></script>
+  
    <!--[if lt IE 8]><script src="js/excanvas.min.js')}}"></script><![endif]-->
    <!-- END Page Custom Script-->
    <!-- App Main-->

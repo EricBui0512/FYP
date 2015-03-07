@@ -146,6 +146,8 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::post('outlet/create', array( 'as' => 'outlet.create', 'uses' => 'OutletsController@create'));
 
     Route::get('outlet/detail/{id}', array( 'as' => 'outlet.detail', 'uses' => 'OutletsController@show'));
+    Route::get('outlet', array( 'as' => 'outlet.list', 'uses' => 'OutletsController@getList'));
+    Route::post('outlet/uploadimage', array( 'as' => 'outlet.uploadimage', 'uses' => 'OutletsController@uploadimage'));
     
     #deals manager
     Route::get('deal', array('as'=> 'deals.index','uses' => 'RetailersController@listDeal'));
@@ -190,8 +192,9 @@ Route::post('user/{user}/edit', 'UserController@postEdit');
 Route::post('user/login', 'UserController@postLogin');
 
 //:: Sign up Routes ::
-Route::get('user/signup', 'UserController@Signup');
+Route::get('user/signup', 'UserController@signup');
 //:: create user Routes::
+Route::get('user/create/{type}', 'UserController@userCreate');
 Route::get('user/create/{type}', 'UserController@userCreate');
 # User RESTful Routes (Login, Logout, Register, etc)
 Route::controller('user', 'UserController');

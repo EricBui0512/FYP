@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.41-0ubuntu0.12.04.1)
 # Database: booking
-# Generation Time: 2015-03-01 03:08:01 +0000
+# Generation Time: 2015-03-05 14:15:08 +0000
 # ************************************************************
 
 
@@ -45,7 +45,9 @@ VALUES
   (2,2,'','225 Nguyễn Chí Thanh, Hai Chau','','2015-02-26 09:23:22','2015-02-26 09:23:22'),
   (3,2,'','123 Nguyen Van Linh, Hai Chau','','2015-02-26 09:23:22','2015-02-26 09:23:22'),
   (4,2,'','328 Hoang Dieu, Hai Chau','','2015-02-26 09:23:22','2015-02-26 09:23:22'),
-  (5,3,'','423 Nguyen Huu Tho, Hai Chau','','2015-02-26 09:23:22','2015-02-26 09:23:22');
+  (5,2,'','423 Nguyen Huu Tho, Hai Chau','','2015-02-26 09:23:22','2015-02-26 09:23:22'),
+  (6,2,'','dafdfad','2342','2015-03-02 15:49:44','2015-03-02 15:49:44'),
+  (7,2,'','dddddddd','dddd','2015-03-02 15:50:39','2015-03-02 15:50:39');
 
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -112,7 +114,7 @@ DROP TABLE IF EXISTS `cancellations`;
 
 CREATE TABLE `cancellations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `deal_id` int(10) unsigned NOT NULL,
+  `tran_id` int(10) unsigned NOT NULL,
   `who_id` int(10) unsigned NOT NULL,
   `reason` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `who` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
@@ -213,6 +215,26 @@ VALUES
 UNLOCK TABLES;
 
 
+# Dump of table company
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `company`;
+
+CREATE TABLE `company` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `address` varchar(500) NOT NULL DEFAULT '',
+  `phone` varchar(15) NOT NULL DEFAULT '',
+  `fax` varchar(15) DEFAULT NULL,
+  `fb_link` varchar(100) DEFAULT NULL,
+  `twitter_link` varchar(100) DEFAULT NULL,
+  `gplus_link` varchar(100) DEFAULT NULL,
+  `contact_email` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
 # Dump of table countries
 # ------------------------------------------------------------
 
@@ -290,7 +312,7 @@ VALUES
   (57,'Cuba','2015-02-26 09:23:21','2015-02-26 09:23:21'),
   (58,'Cyprus','2015-02-26 09:23:21','2015-02-26 09:23:21'),
   (59,'Czech Republic','2015-02-26 09:23:21','2015-02-26 09:23:21'),
-  (60,'Côte dIvoire','2015-02-26 09:23:21','2015-02-26 09:23:21'),
+  (60,'Côte d’Ivoire','2015-02-26 09:23:21','2015-02-26 09:23:21'),
   (61,'Denmark','2015-02-26 09:23:21','2015-02-26 09:23:21'),
   (62,'Djibouti','2015-02-26 09:23:21','2015-02-26 09:23:21'),
   (63,'Dominica','2015-02-26 09:23:21','2015-02-26 09:23:21'),
@@ -507,15 +529,15 @@ DROP TABLE IF EXISTS `deal_transactions`;
 
 CREATE TABLE `deal_transactions` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `deal_id` int(11) DEFAULT NULL,
-  `consumer_id` int(11) unsigned DEFAULT NULL,
-  `consumer_email` varchar(255) DEFAULT NULL,
+  `deal_id` int(11) NOT NULL,
+  `consumer_id` int(11) unsigned NOT NULL,
+  `consumer_email` varchar(255) NOT NULL DEFAULT '',
   `payment_date` datetime DEFAULT NULL,
   `payment_type` varchar(100) DEFAULT NULL,
   `payment_status` tinyint(1) DEFAULT '0',
   `num` smallint(4) DEFAULT NULL,
   `amount` decimal(10,2) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT '1',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
   `crated_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -531,9 +553,8 @@ DROP TABLE IF EXISTS `deals`;
 
 CREATE TABLE `deals` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(500) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `service_id` int(10) unsigned NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(500) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `amount` decimal(10,2) NOT NULL,
   `discount` decimal(10,2) DEFAULT NULL,
   `special_request` longtext COLLATE utf8_unicode_ci,
@@ -547,14 +568,12 @@ CREATE TABLE `deals` (
 LOCK TABLES `deals` WRITE;
 /*!40000 ALTER TABLE `deals` DISABLE KEYS */;
 
-INSERT INTO `deals` (`id`, `name`, `service_id`, `title`, `amount`, `discount`, `special_request`, `time_slot`, `remind_time`, `created_at`, `updated_at`)
+INSERT INTO `deals` (`id`, `service_id`, `title`, `amount`, `discount`, `special_request`, `time_slot`, `remind_time`, `created_at`, `updated_at`)
 VALUES
-  (1,'',0,'3',199.21,NULL,NULL,'0000-00-00 00:00:00',NULL,'2015-02-27 07:47:59','2015-02-27 07:47:59'),
-  (2,'',0,'3',199.21,NULL,NULL,'0000-00-00 00:00:00',NULL,'2015-02-27 09:39:29','2015-02-27 09:39:29'),
-  (3,'',0,'3',199.21,NULL,NULL,'0000-00-00 00:00:00',NULL,'2015-02-27 09:40:36','2015-02-27 09:40:36'),
-  (4,'',0,'3',199.21,NULL,NULL,'0000-00-00 00:00:00',NULL,'2015-02-27 09:41:29','2015-02-27 09:41:29'),
-  (5,'',0,'3',199.21,NULL,NULL,'0000-00-00 00:00:00',NULL,'2015-02-27 09:53:55','2015-02-27 09:53:55'),
-  (6,'',0,'3',199.21,NULL,NULL,'0000-00-00 00:00:00',NULL,'2015-02-27 09:56:33','2015-02-27 10:39:16');
+  (7,18,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage',460000.00,240000.00,'Từ xa xưa người dân tộc Dao đỏ tại vùng núi SAPA đã nổi tiếng với bài thuốc tắm cổ truyền và bảo vệ sức khoẻ. Người Dao cho rằng:         \r\n\r\n- Đàn ông tắm thứ thuốc này hết đau lưng, mỏi gối. Tăng cường sinh lực, tinh thần sảng khoái, phấn chấn.     ','2015-03-12 00:00:00','2015-03-28 00:00:00','2015-03-01 07:42:55','2015-03-01 07:42:55'),
+  (8,1,'Chọn 1 trong 4 dịch vụ làm đẹp tại Kay Spa',460000.00,240000.00,'','2015-03-31 00:00:00','2015-03-30 00:00:00','2015-03-01 08:34:00','2015-03-01 08:34:00'),
+  (9,19,'Chọn 1 trong 4 dịch vụ làm đẹp tại Kay Spa',460000.00,240000.00,'','2015-03-31 00:00:00','2015-03-30 00:00:00','2015-03-01 08:34:40','2015-03-01 08:34:40'),
+  (10,19,'Chăm sóc da body & mặt tại Cham Spa & Massage',460000.00,240000.00,'','2015-03-31 00:00:00','2015-03-30 00:00:00','2015-03-01 08:35:27','2015-03-01 08:35:27');
 
 /*!40000 ALTER TABLE `deals` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -569,7 +588,6 @@ CREATE TABLE `feedbacks` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `deal_id` int(10) unsigned NOT NULL,
   `consumer_id` int(10) unsigned NOT NULL,
-  `service_id` int(10) unsigned NOT NULL,
   `feed_back` longtext COLLATE utf8_unicode_ci NOT NULL,
   `rate` decimal(10,2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT '0000-00-00 00:00:00',
@@ -588,6 +606,7 @@ CREATE TABLE `images` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ref_id` int(11) DEFAULT NULL,
   `image_path` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `thumbnail_path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image_type` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -597,9 +616,9 @@ CREATE TABLE `images` (
 LOCK TABLES `images` WRITE;
 /*!40000 ALTER TABLE `images` DISABLE KEYS */;
 
-INSERT INTO `images` (`id`, `ref_id`, `image_path`, `image_type`, `created_at`, `updated_at`)
+INSERT INTO `images` (`id`, `ref_id`, `image_path`, `thumbnail_path`, `image_type`, `created_at`, `updated_at`)
 VALUES
-  (1,NULL,'asset/upload/D4C21840-5F68-48EA-A63E-7AC4C3D9B43A.JPG',NULL,'2015-02-26 09:23:22','2015-02-26 09:23:22');
+  (1,1,'asset/upload/D4C21840-5F68-48EA-A63E-7AC4C3D9B43A.JPG',NULL,'service','2015-02-26 09:23:22','2015-02-26 09:23:22');
 
 /*!40000 ALTER TABLE `images` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -645,9 +664,11 @@ LOCK TABLES `outlet_descriptions` WRITE;
 
 INSERT INTO `outlet_descriptions` (`id`, `full_description`, `summary`, `created_at`, `updated_at`)
 VALUES
-  (1,'S? d?ng các lo?i m? ph?m và d??c ph?m hoàn toàn t? thiên nhiên. Không gian spa sang tr?ng, hi?n ??i. ??i ng? nhân viên chuyên nghi?p, thân thi?n','S? d?ng các lo?i m? ph?m và d??c ph?m hoàn toàn t? thiên nhiên. Không gian spa sang tr?ng, hi?n ??i. ??i ng? nhân viên chuyên nghi?p, thân thi?n','2015-02-26 09:23:22','2015-02-26 09:23:22'),
-  (2,'N?i ti?ng v?i các d?ch v? ch?m sóc da m?t, ch?m sóc chuyên sâu v?i nuskin. Spa ?em l?i cho khách hàng nh?ng phút giây th? giãn tuy?t v?i nh?t. Nhân viên ???c ?ào t?o chuyên nghi?p','N?i ti?ng v?i các d?ch v? ch?m sóc da m?t, ch?m sóc chuyên sâu v?i nuskin. Spa ?em l?i cho khách hàng nh?ng phút giây th? giãn tuy?t v?i nh?t. Nhân viên ???c ?ào t?o chuyên nghi?p','2015-02-26 09:23:22','2015-02-26 09:23:22'),
-  (3,'Không gian r?ng rãi, sang tr?ng. Có nhi?u d?ch v? làm ??p, ch?m sóc s?c kh?e, ?em l?i giây phút th? giãn cho b?n. Ph?c v? chu ?áo, chuyên nghi?p','Không gian r?ng rãi, sang tr?ng. Có nhi?u d?ch v? làm ??p, ch?m sóc s?c kh?e, ?em l?i giây phút th? giãn cho b?n. Ph?c v? chu ?áo, chuyên nghi?p','2015-02-26 09:23:22','2015-02-26 09:23:22');
+  (1,'Sử dụng các loại mỹ phẩm và dược phẩm hoàn toàn từ thiên nhiên. Không gian spa sang trọng, hiện đại. Đội ngũ nhân viên chuyên nghiệp, thân thiện','Sử dụng các loại mỹ phẩm và dược phẩm hoàn toàn từ thiên nhiên. Không gian spa sang trọng, hiện đại. Đội ngũ nhân viên chuyên nghiệp, thân thiện','2015-02-26 09:23:22','2015-02-26 09:23:22'),
+  (2,'Nổi tiếng với các dịch vụ chăm sóc da mặt, chăm sóc chuyên sâu với nuskin. Spa đem lại cho khách hàng những phút giây thư giãn tuyệt vời nhất. Nhân viên được đào tạo chuyên nghiệp','Nổi tiếng với các dịch vụ chăm sóc da mặt, chăm sóc chuyên sâu với nuskin. Spa đem lại cho khách hàng những phút giây thư giãn tuyệt vời nhất. Nhân viên được đào tạo chuyên nghiệp','2015-02-26 09:23:22','2015-02-26 09:23:22'),
+  (3,'Không gian rộng rãi, sang trọng. Có nhiều dịch vụ làm đẹp, chăm sóc sức khỏe, đem lại giây phút thư giãn cho bạn. Phục vụ chu đáo, chuyên nghiệp','Không gian rộng rãi, sang trọng. Có nhiều dịch vụ làm đẹp, chăm sóc sức khỏe, đem lại giây phút thư giãn cho bạn. Phục vụ chu đáo, chuyên nghiệp','2015-02-26 09:23:22','2015-02-26 09:23:22'),
+  (4,'Description','Sumary','2015-03-01 09:12:02','2015-03-01 09:12:02'),
+  (5,'Description 2','Sumary','2015-03-01 09:13:37','2015-03-01 09:13:37');
 
 /*!40000 ALTER TABLE `outlet_descriptions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -667,6 +688,7 @@ CREATE TABLE `outlets` (
   `description_id` int(10) unsigned DEFAULT NULL,
   `outlet_register_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `website` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `operation_hour` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `rate` float(8,2) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
@@ -678,13 +700,16 @@ CREATE TABLE `outlets` (
 LOCK TABLES `outlets` WRITE;
 /*!40000 ALTER TABLE `outlets` DISABLE KEYS */;
 
-INSERT INTO `outlets` (`id`, `name`, `admin_id`, `address_id`, `retailer_id`, `description_id`, `outlet_register_id`, `website`, `operation_hour`, `rate`, `active`, `created_at`, `updated_at`)
+INSERT INTO `outlets` (`id`, `name`, `admin_id`, `address_id`, `retailer_id`, `description_id`, `outlet_register_id`, `website`, `phone`, `operation_hour`, `rate`, `active`, `created_at`, `updated_at`)
 VALUES
-  (1,'Minh Toan Graxy - Spa Beauty',2,3,0,1,'MTID001','www.minhtoan.com.vn','',NULL,1,'2015-02-26 09:23:22','2015-02-26 09:23:22'),
-  (2,'Minh Toan Graxy - Spa One',2,1,0,1,'MTID002','www.minhtoan.com.vn','',NULL,1,'2015-02-26 09:23:22','2015-02-26 09:23:22'),
-  (3,'Minh Toan Graxy - Spa Two',2,4,0,1,'MTID003','www.minhtoan.com.vn','',NULL,1,'2015-02-26 09:23:22','2015-02-26 09:23:22'),
-  (4,'Phi Lu - Spa Beauty',2,4,0,1,'PLID001','www.philu.com.vn','',NULL,1,'2015-02-26 09:23:22','2015-02-26 09:23:22'),
-  (5,'Golden Hill - Spa Beautify',2,1,1,NULL,'GL0004','www.goldenhill.com.vn','',NULL,0,'2015-02-26 16:38:46','2015-02-26 16:38:46');
+  (1,'Minh Toan Graxy - Spa Beauty',2,3,1,1,'MTID001','www.minhtoan.com.vn',NULL,'',NULL,1,'2015-02-26 09:23:22','2015-02-26 09:23:22'),
+  (2,'Minh Toan Graxy - Spa One',2,1,1,1,'MTID002','www.minhtoan.com.vn',NULL,'',NULL,1,'2015-02-26 09:23:22','2015-02-26 09:23:22'),
+  (3,'Minh Toan Graxy - Spa Two',2,4,2,1,'MTID003','www.minhtoan.com.vn',NULL,'',NULL,1,'2015-02-26 09:23:22','2015-02-26 09:23:22'),
+  (4,'Phi Lu - Spa Beauty',1,4,2,1,'PLID001','www.philu.com.vn',NULL,'',NULL,1,'2015-02-26 09:23:22','2015-02-26 09:23:22'),
+  (5,'Golden Hill - Spa Beautify',2,1,1,NULL,'GL0004','www.goldenhill.com.vn',NULL,'',NULL,0,'2015-02-26 16:38:46','2015-02-26 16:38:46'),
+  (6,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage',2,2,1,NULL,'PL00012','',NULL,'',NULL,0,'2015-03-01 09:08:27','2015-03-01 09:08:27'),
+  (7,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage 22',2,1,2,4,'PL000444','',NULL,'',NULL,0,'2015-03-01 09:12:02','2015-03-01 09:12:02'),
+  (8,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage 22',2,3,2,5,'PL00042542','',NULL,'',NULL,0,'2015-03-01 09:13:37','2015-03-01 09:13:37');
 
 /*!40000 ALTER TABLE `outlets` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -767,6 +792,27 @@ VALUES
 UNLOCK TABLES;
 
 
+# Dump of table promotion
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `promotion`;
+
+CREATE TABLE `promotion` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `big` varchar(255) DEFAULT NULL,
+  `normal` varchar(255) DEFAULT NULL,
+  `thumnail` varchar(255) DEFAULT NULL,
+  `short_description` varchar(1000) DEFAULT NULL,
+  `long_description` longtext,
+  `position` varchar(100) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
 # Dump of table retailers
 # ------------------------------------------------------------
 
@@ -841,6 +887,17 @@ CREATE TABLE `service_conditions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+LOCK TABLES `service_conditions` WRITE;
+/*!40000 ALTER TABLE `service_conditions` DISABLE KEYS */;
+
+INSERT INTO `service_conditions` (`id`, `special_condition`, `condition1`, `condition2`, `created_at`, `updated_at`)
+VALUES
+  (1,NULL,'','','2015-03-01 04:32:21','2015-03-01 04:32:21'),
+  (2,NULL,'','','2015-03-01 04:38:24','2015-03-01 04:38:24'),
+  (3,'Cham Spa & Massage\r\nĐịa chỉ: Thửa đất số 2,3 Lô B2.9 Khu đô thị mới Hoà Xuân - Cẩm Lệ - Đà Nẵng\r\nĐiện thoại: 0511.221.7777\r\nGiờ mở cửa: 10h - 23h\r\nHạn sử dụng: 10/03/2015\r\nÁp dụng: 01 phiếu/01 lần/01 người. Không bù tiền.\r\nKhách hàng có thể mua nhiều phiếu để sử dụng nhiều lần\r\nPhiếu không có giá trị quy đổi thành tiền, không hoàn tiền thừa, không áp dụng chung với các chương trình khuyến mãi khác.\r\nKhách hàng vui lòng đặt chỗ trước khi đến để được phục vụ tốt nhất.','','','2015-03-01 04:40:48','2015-03-01 04:40:48');
+
+/*!40000 ALTER TABLE `service_conditions` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table service_details
@@ -857,6 +914,18 @@ CREATE TABLE `service_details` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+LOCK TABLES `service_details` WRITE;
+/*!40000 ALTER TABLE `service_details` DISABLE KEYS */;
+
+INSERT INTO `service_details` (`id`, `summary`, `highlights`, `created_at`, `updated_at`)
+VALUES
+  (1,'','','2015-03-01 04:32:21','2015-03-01 04:32:21'),
+  (2,'Gói tắm ngâm thuốc lá Dao đỏ kết hợp massage liên kết điều trị tại Cham Spa được ví như một bài thuốc quý vừa có tác dụng chữa bệnh, vừa làm đẹp cho cơ thể và tăng cường sức khỏe.\r\nQuý trình dịch vụ gồm 2 phần với 120 phút (Vui lòng theo dõi thông tin chi tiết).\r\nGói dịch vụ còn kèm theo một suất ăn nhẹ: 1 bát cháo giải cảm, 1 đĩa trái cây và thức uống dinh dưỡng và sử dụng hồ bơi, hồ bơi Jacuzzi gia nhiệt nước nóng.\r\nCham Spa & Massage với trang thiết bị hiện đại, kiến trúc cổ kính độc đáo mới lạ với đội ngũ nhân viên được đào tạo chuyên nghiệp, thân thiện sẽ mang đến cho bạn những phút giây thư giãn tuyệt vời.\r\nCham Spa & Massage đang có các ưu đãi phát hành thẻ cho Khách hàng bao gồm thẻ Thẻ Bạch Kim (20,000,000đ); Thẻ Vàng (10,000,000đ); Thẻ Bạc (4,000,000đ); không giới hạn số lần sử dụng trong ngày & đặc biệt khuyến mãi phát hành thẻ phụ.\r\nÁp dụng cho nam & nữ. Tiền tip tùy ý','','2015-03-01 04:36:01','2015-03-01 04:36:01'),
+  (3,'Gói tắm ngâm thuốc lá Dao đỏ kết hợp massage liên kết điều trị tại Cham Spa được ví như một bài thuốc quý vừa có tác dụng chữa bệnh, vừa làm đẹp cho cơ thể và tăng cường sức khỏe.\r\nQuý trình dịch vụ gồm 2 phần với 120 phút (Vui lòng theo dõi thông tin chi tiết).\r\nGói dịch vụ còn kèm theo một suất ăn nhẹ: 1 bát cháo giải cảm, 1 đĩa trái cây và thức uống dinh dưỡng và sử dụng hồ bơi, hồ bơi Jacuzzi gia nhiệt nước nóng.\r\nCham Spa & Massage với trang thiết bị hiện đại, kiến trúc cổ kính độc đáo mới lạ với đội ngũ nhân viên được đào tạo chuyên nghiệp, thân thiện sẽ mang đến cho bạn những phút giây thư giãn tuyệt vời.\r\nCham Spa & Massage đang có các ưu đãi phát hành thẻ cho Khách hàng bao gồm thẻ Thẻ Bạch Kim (20,000,000đ); Thẻ Vàng (10,000,000đ); Thẻ Bạc (4,000,000đ); không giới hạn số lần sử dụng trong ngày & đặc biệt khuyến mãi phát hành thẻ phụ.\r\nÁp dụng cho nam & nữ. Tiền tip tùy ý','','2015-03-01 04:38:24','2015-03-01 04:38:24'),
+  (4,'Gói tắm ngâm thuốc lá Dao đỏ kết hợp massage liên kết điều trị tại Cham Spa được ví như một bài thuốc quý vừa có tác dụng chữa bệnh, vừa làm đẹp cho cơ thể và tăng cường sức khỏe.\r\nQuý trình dịch vụ gồm 2 phần với 120 phút (Vui lòng theo dõi thông tin chi tiết).\r\nGói dịch vụ còn kèm theo một suất ăn nhẹ: 1 bát cháo giải cảm, 1 đĩa trái cây và thức uống dinh dưỡng và sử dụng hồ bơi, hồ bơi Jacuzzi gia nhiệt nước nóng.\r\nCham Spa & Massage với trang thiết bị hiện đại, kiến trúc cổ kính độc đáo mới lạ với đội ngũ nhân viên được đào tạo chuyên nghiệp, thân thiện sẽ mang đến cho bạn những phút giây thư giãn tuyệt vời.\r\nCham Spa & Massage đang có các ưu đãi phát hành thẻ cho Khách hàng bao gồm thẻ Thẻ Bạch Kim (20,000,000đ); Thẻ Vàng (10,000,000đ); Thẻ Bạc (4,000,000đ); không giới hạn số lần sử dụng trong ngày & đặc biệt khuyến mãi phát hành thẻ phụ.\r\nÁp dụng cho nam & nữ. Tiền tip tùy ý','','2015-03-01 04:40:48','2015-03-01 04:40:48');
+
+/*!40000 ALTER TABLE `service_details` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table services
@@ -871,7 +940,7 @@ CREATE TABLE `services` (
   `detail_id` int(10) unsigned DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '0',
+  `active` tinyint(1) NOT NULL DEFAULT '1',
   `time_operate` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `created_at` timestamp NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NULL DEFAULT '0000-00-00 00:00:00',
@@ -883,12 +952,13 @@ LOCK TABLES `services` WRITE;
 
 INSERT INTO `services` (`id`, `outlet_id`, `condition_id`, `detail_id`, `name`, `price`, `active`, `time_operate`, `created_at`, `updated_at`)
 VALUES
-  (1,3,NULL,NULL,'Xông h?i th?o d??c',NULL,1,'','2015-02-26 09:23:22','2015-02-26 09:23:22'),
+  (1,3,NULL,NULL,'Xông hơi thảo dược',NULL,1,'','2015-02-26 09:23:22','2015-02-26 09:23:22'),
   (2,4,NULL,NULL,'Waxing nách',NULL,1,'','2015-02-26 09:23:22','2015-02-26 09:23:23'),
-  (3,2,NULL,NULL,'M?t n? cao bí ?ao',NULL,1,'','2015-02-26 09:23:23','2015-02-26 09:23:23'),
-  (15,1,NULL,NULL,'Update',10.30,0,'','2015-02-27 02:07:08','2015-02-27 02:07:08'),
-  (16,1,NULL,NULL,'Update',10.00,0,'','2015-02-27 02:07:08','2015-02-27 02:07:08'),
-  (17,1,NULL,NULL,'Update',10000.30,0,'','2015-02-27 02:07:08','2015-02-27 02:07:08');
+  (3,2,NULL,NULL,'Mặt nạ cao bí đao',NULL,1,'','2015-02-26 09:23:23','2015-02-26 09:23:23'),
+  (18,1,1,1,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage',230000.00,1,'','2015-03-01 04:32:21','2015-03-01 04:32:21'),
+  (19,3,2,3,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage 22',230000.00,1,'','2015-03-01 04:38:24','2015-03-01 04:38:24'),
+  (20,3,3,4,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage 22',230000.00,1,'','2015-03-01 04:40:49','2015-03-01 04:40:49'),
+  (21,0,NULL,NULL,NULL,NULL,1,'','2015-03-01 07:41:44','2015-03-01 07:41:44');
 
 /*!40000 ALTER TABLE `services` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -937,9 +1007,9 @@ LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` (`id`, `address_id`, `first_name`, `last_name`, `username`, `email`, `password`, `confirmation_code`, `remember_token`, `confirmed`, `user_type`, `created_at`, `updated_at`)
 VALUES
-  (1,0,'','','admin','admin@example.org','$2y$10$qFqrC0yPGBzKEBJqwNgi0eQlrKcAkDtlvTt9iTBWbq/Adi7H3X/P2','c87f3a63d171cd7c813893a3b7e1ee94','MIwT9WEmpo1dI041jTo0HuvmHeBsn75iImGfGdU8ooEzfyGQrj0tPJPNMM5f',1,'admin','2015-02-26 09:23:20','2015-02-28 15:04:30'),
-  (2,0,'','','dungho','dungho@gmail.com','$2y$10$fTf6tPUrEsZAn/7NnR9OfOyGFrDdf6DOR871xWmR4RvzwiELYr6.e','b3ca5572a88af9895e746fa3d8c4419f','KxzOgKusIaJHZFS5ByOrg1IpYFk1djqtWOe598FSAyDTP1go5Hpu4Q8mU9xF',1,'retailer','2015-02-26 09:23:20','2015-02-28 15:40:57'),
-  (3,0,'','','user','user@example.org','$2y$10$qHaYhAag/kWGHlnggiPhlua28W8kT9C1MTJJYJ4aeLXMZmmSk2QRm','10d928cd1834b6b6b70974b6b8e28f37','wq3XKUbs0xMXQLgNNUi3I6SssDIofsUWS7jCYkSC51gU60d1qu3XZWtFKX2i',1,'user','2015-02-26 09:23:20','2015-02-28 14:25:27');
+  (1,0,'','','admin','admin@example.org','$2y$10$qFqrC0yPGBzKEBJqwNgi0eQlrKcAkDtlvTt9iTBWbq/Adi7H3X/P2','c87f3a63d171cd7c813893a3b7e1ee94','sDq1LOBQnLnsvKUewEcpriv7VzjweDQbMctvQAjAIGuGZOjYfxTdYTl8ezuZ',1,'admin','2015-02-26 09:23:20','2015-03-01 08:28:02'),
+  (2,0,'','','dungho','dungho@gmail.com','$2y$10$fTf6tPUrEsZAn/7NnR9OfOyGFrDdf6DOR871xWmR4RvzwiELYr6.e','b3ca5572a88af9895e746fa3d8c4419f','bgUt2ZpWpg8AL2A6KdYY6NLhXvtuTAv1u7mE970mKKOEKJexsKPeXUmfGIp1',1,'retailer','2015-02-26 09:23:20','2015-03-04 15:34:58'),
+  (3,0,'','','user','user@example.org','$2y$10$qHaYhAag/kWGHlnggiPhlua28W8kT9C1MTJJYJ4aeLXMZmmSk2QRm','10d928cd1834b6b6b70974b6b8e28f37','Lm3vtAzG42g1tHqEMjXYxUb4Kodj7NivVI3817bemyeEDnm3ks1BchTVEIZZ',1,'user','2015-02-26 09:23:20','2015-03-01 08:26:14');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;

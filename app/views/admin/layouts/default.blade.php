@@ -88,7 +88,7 @@
     					<!-- <li{{ (Request::is('admin/comments*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/comments') }}}"><span class="glyphicon glyphicon-bullhorn"></span> Comments</a></li> -->
     					<li class="dropdown{{ (Request::is('admin/countries*|admin/cities*|admin/address*') ? ' active' : '') }}">
     						<a class="dropdown-toggle" data-toggle="dropdown" href="{{{ URL::to('admin/countries') }}}">
-    							<span class="glyphicon glyphicon-user"></span> Manager <span class="caret"></span>
+    							<span class="glyphicon glyphicon-user"></span> Manage <span class="caret"></span>
     						</a>
     						<ul class="dropdown-menu">
     							<li{{ (Request::is('admin/countries*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/countries') }}}"><span class="glyphicon glyphicon-user"></span> Countries</a></li>

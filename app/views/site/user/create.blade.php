@@ -78,4 +78,5 @@
         <script type="text/javascript">
             $('body').addClass("signup-body");
         </script>
+
 @stop
