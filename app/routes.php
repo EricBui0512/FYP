@@ -189,13 +189,13 @@ Route::post('user/reset/{token}', 'UserController@postReset');
 Route::post('user/{user}/edit', 'UserController@postEdit');
 
 //:: User Account Routes ::
-Route::post('account/login', 'UserController@postLogin');
+Route::post('user/login', 'UserController@postLogin');
 
 //:: Sign up Routes ::
-Route::get('account/signup', 'UserController@signup');
+Route::get('user/signup', 'UserController@signup');
 //:: create user Routes::
-Route::get('account/{type}', 'UserController@userCreate');
-Route::get('account/{type}', 'UserController@userCreate');
+Route::get('user/create/{type}', 'UserController@userCreate');
+Route::get('user/create/{type}', 'UserController@userCreate');
 # User RESTful Routes (Login, Logout, Register, etc)
 Route::controller('user', 'UserController');
 
