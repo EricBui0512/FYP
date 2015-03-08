@@ -37,8 +37,9 @@ class RetailersController extends \BaseController {
     public function getDashboard()
     {
         $user = Auth::user();
+        $deals = Deal::dashboardDeal();
 
-        return View::make('site.retailers.dashboard', compact('user'));
+        return View::make('site.retailers.dashboard', compact('user', 'deals'));
     }
 
 	/**

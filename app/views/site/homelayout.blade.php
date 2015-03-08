@@ -67,7 +67,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="./" class="navbar-brand">
+                    <a href="{{{ URL::to('/')}}}" class="navbar-brand">
                         <img src="{{asset('assets/img/index/logo.png')}}">
                         <!-- <div class="logo">Booking.com</div> -->
                     </a>
