@@ -11,24 +11,28 @@
                   <label class="col-lg-2 control-label">Title</label>
                   <div class="col-lg-8">
                      <input type="text" placeholder="Title" class="form-control" name="title">
+                     {{ $errors->first('title', '<span class="help-inline">:message</span>') }}
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg-2 control-label">Service</label>
                   <div class="col-lg-8">
                      {{ Form::select('service_id', $services, 0, array('class' => 'form-control m-b') ) }}
+                     {{ $errors->first('service_id', '<span class="help-inline">:message</span>') }}
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg-2 control-label">Amount</label>
                   <div class="col-lg-8">
                      <input type="text" placeholder="Amount" class="form-control" name="amount">
+                     {{ $errors->first('amount', '<span class="help-inline">:message</span>') }}
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg-2 control-label">Discount</label>
                   <div class="col-lg-8">
                      <input type="text" placeholder="Discount" class="form-control" name="discount">
+                     {{ $errors->first('discount', '<span class="help-inline">:message</span>') }}
                   </div>
                </div>
                <div class="form-group">

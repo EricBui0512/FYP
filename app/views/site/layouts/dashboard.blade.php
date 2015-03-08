@@ -63,7 +63,7 @@
                   <img src="{{asset('assets/img/index/logo.png')}}" alt="App Logo" class="img-responsive">
                </div>
                <div class="brand-logo-collapsed">
-                  <img src="../assets/app/img/logo-single.png" alt="App Logo" class="img-responsive">
+                  <img src="/assets/app/img/logo-single.png" alt="App Logo" class="img-responsive">
                </div>
             </a>
          </div>
@@ -101,7 +101,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="../assets/app/img/user/01.jpg" alt="Image" class="media-object img-circle thumb32">
+                                       <img src="/assets/app/img/user/01.jpg" alt="Image" class="media-object img-circle thumb32">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">5m</small>
@@ -118,7 +118,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="../assets/app/img/user/04.jpg" alt="Image" class="media-object img-circle thumb32">
+                                       <img src="/assets/app/img/user/04.jpg" alt="Image" class="media-object img-circle thumb32">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">3h</small>
@@ -135,7 +135,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="../assets/app/img/user/03.jpg" alt="Image" class="media-object img-circle thumb32">
+                                       <img src="/assets/app/img/user/03.jpg" alt="Image" class="media-object img-circle thumb32">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">3h</small>
@@ -152,7 +152,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="../assets/app/img/user/05.jpg" alt="Image" class="media-object img-circle thumb32">
+                                       <img src="/assets/app/img/user/05.jpg" alt="Image" class="media-object img-circle thumb32">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">4h</small>
@@ -169,7 +169,7 @@
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
-                                       <img src="../assets/app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb32">
+                                       <img src="/assets/app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb32">
                                     </div>
                                     <div class="media-body clearfix">
                                        <small class="pull-right">yesterday</small>
@@ -317,7 +317,7 @@
                <!-- User picture-->
                <div class="user-block-picture">
                   <div class="user-block-status">
-                     <img src="../assets/app/img/user/02.jpg" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                     <img src="/assets/app/img/user/02.jpg" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
                      <div class="circle circle-success circle-lg"></div>
                   </div>
                   <!-- Status when collapsed-->
@@ -364,7 +364,7 @@
                      </span>
                      <span class="pull-left">
                         <!-- Contact avatar-->
-                        <img src="../assets/app/img/user/05.jpg" alt="Image" class="media-object img-circle thumb32">
+                        <img src="/assets/app/img/user/05.jpg" alt="Image" class="media-object img-circle thumb32">
                      </span>
                      <!-- Contact info-->
                      <span class="media-body">
@@ -383,7 +383,7 @@
                      </span>
                      <span class="pull-left">
                         <!-- Contact avatar-->
-                        <img src="../assets/app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb32">
+                        <img src="/assets/app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb32">
                      </span>
                      <!-- Contact info-->
                      <span class="media-body">
@@ -402,7 +402,7 @@
                      </span>
                      <span class="pull-left">
                         <!-- Contact avatar-->
-                        <img src="../assets/app/img/user/07.jpg" alt="Image" class="media-object img-circle thumb32">
+                        <img src="/assets/app/img/user/07.jpg" alt="Image" class="media-object img-circle thumb32">
                      </span>
                      <!-- Contact info-->
                      <span class="media-body">
@@ -421,7 +421,7 @@
                      </span>
                      <span class="pull-left">
                         <!-- Contact avatar-->
-                        <img src="../assets/app/img/user/08.jpg" alt="Image" class="media-object img-circle thumb32">
+                        <img src="/assets/app/img/user/08.jpg" alt="Image" class="media-object img-circle thumb32">
                      </span>
                      <!-- Contact info-->
                      <span class="media-body">
@@ -447,7 +447,7 @@
                      </span>
                      <span class="pull-left">
                         <!-- Contact avatar-->
-                        <img src="../assets/app/img/user/09.jpg" alt="Image" class="media-object img-circle thumb32">
+                        <img src="/assets/app/img/user/09.jpg" alt="Image" class="media-object img-circle thumb32">
                      </span>
                      <!-- Contact info-->
                      <span class="media-body">
@@ -466,7 +466,7 @@
                      </span>
                      <span class="pull-left">
                         <!-- Contact avatar-->
-                        <img src="../assets/app/img/user/10.jpg" alt="Image" class="media-object img-circle thumb32">
+                        <img src="/assets/app/img/user/10.jpg" alt="Image" class="media-object img-circle thumb32">
                      </span>
                      <!-- Contact info-->
                      <span class="media-body">
