@@ -20,7 +20,7 @@ class Deal extends \Eloquent {
 	public function scopeOwner( $query )
 	{
 		return $query->select(array('deals.*'))
-			->leftJoin('services', 'services.id	', '=', 'deals.service_id')
+			->leftJoin('services', 'services.id', '=', 'deals.service_id')
 			->leftJoin('outlets','outlets.id','=','services.outlet_id')
 			->where('outlets.admin_id', Auth::id());
 	}
