@@ -9,7 +9,7 @@ class Picture extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = ['ref_id', 'image_path', 'thumbnail_path','image_type'];
+	protected $fillable = ['ref_id', 'image_path', 'big_path', 'thumbnail_path','image_type'];
 
 	public static function getByRefId( $refId, $type )
 	{

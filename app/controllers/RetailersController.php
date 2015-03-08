@@ -38,7 +38,7 @@ class RetailersController extends \BaseController {
     {
         $user = Auth::user();
 
-        return View::make('site.layouts.retailer', compact('user'));
+        return View::make('site.retailers.dashboard', compact('user'));
     }
 
 	/**
@@ -448,12 +448,12 @@ class RetailersController extends \BaseController {
         // Title
         $title = 'Address Manager';
         $countries = array_merge( array( '0' => 'All' ), Country::lists('country','id'));
-        $cities = array( '0' => 'All' );
+        $cities = array( '' => 'All' );
 
-        $listAddress = Address::owner();
-        
+        $addresses = Address::owner()->get();
+
         // Show the page
-        return View::make('site/addresses/index', compact('title','countries','cities','listAddress'));
+        return View::make('site/addresses/index', compact('title','countries','cities','addresses'));
     }
 
 
@@ -468,8 +468,8 @@ class RetailersController extends \BaseController {
         // Title
         $title = 'Create a new address';
 
-        $countries = array_merge( array( '0' => '' ), Country::lists('country','id'));
-        $cities = array_merge( array( '0' => '' ), City::lists('city','id'));
+        $countries = array( null => '' ) + Country::lists('country','id');
+        $cities = array( null => '' ) + City::lists('city','id');
 
         // Show the page
         return View::make('site.addresses.create_edit', compact('title', 'countries', 'cities'));
@@ -521,8 +521,8 @@ class RetailersController extends \BaseController {
         if ( ! empty( $address ) )
         {
 
-            $countries = array_merge( array( '0' => '' ), Country::lists('country','id'));
-            $cities = array_merge( array( '0' => '' ), City::lists('city','id'));
+            $countries = array( '' => '' ) + Country::lists('country','id');
+            $cities = array( '' => '' ) + City::lists('city','id');
             
             // Title
             $title = Lang::get('site/addresses/title.address_update');
@@ -530,7 +530,7 @@ class RetailersController extends \BaseController {
             // mode
             $mode = 'edit';
 
-            return View::make('site/addresses/create_edit', compact('city', 'title', 'mode', 'countries', 'cities', 'address'));
+            return View::make('site/addresses/create_edit', compact( 'title', 'mode', 'countries', 'cities', 'address'));
         }
         else
         {

@@ -19,7 +19,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				@foreach ($listAddress as $key => $address)
+				@foreach ($addresses as $key => $address)
                 <tr>
                    	<td>{{$address->address}}</td>
                    	<td>{{$address->district}}</td>
@@ -32,12 +32,12 @@
 	                       <a href="#" data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle">
 	                          <em class="fa fa-angle-down"></em>Action</a>
 	                       <ul class="dropdown-menu pull-right text-left">
-	                          <li><a href="{{URL::to('address/'.$address->id)}}">Delete</a>
-	                          </li>
+	                          <!-- <li><a href="{{URL::to('address/'.$address->id)}}">Delete</a>
+	                          </li> -->
 	                          <li><a href="{{URL::to('address/$address->id')}}">Edit</a>
 	                          </li>
-	                          <li><a href="{{URL::to('address/$address->id')}}">Detail</a>
-	                          </li>
+	                        <!--   <li><a href="{{URL::to('address/$address->id')}}">Detail</a>
+	                          </li> -->
 	                       </ul>
 	                    </div>
 	                </td>                   

@@ -78,7 +78,7 @@ class ConsumersController extends \BaseController {
 
     public function listTrans()
     {
-        $trans = DealTransaction::owner();
+        $trans = DealTransaction::owner()->get();
 
         return View::make('site.dealtransactions.index', compact('trans'));
     }

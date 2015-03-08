@@ -162,11 +162,13 @@ class OutletsController extends \BaseController {
 	    $uploadPath = 'upload';
 
 	    $picture['image_path'] = $uploadPath . '/normal/' . $fileName;
+	    $picture['big_path'] =  $uploadPath . '/big/' . $fileName;
 	    $picture['thumbnail_path'] =  $uploadPath . '/thumbnail/' . $fileName;
 	    $picture['image_type'] = Input::get('type');
 	    $picture['ref_id'] = Input::get('ref_id');
 
-	    Image::make($files->getRealPath())->resize(420,null)->save( $picture['image_path'] );
+	    Image::make($files->getRealPath())->resize(480,480)->save( $picture['big_path'] );
+	    Image::make($files->getRealPath())->resize(308,308)->save( $picture['image_path'] );
 	    Image::make($files->getRealPath())->resize(64, 64)->save( $picture['thumbnail_path'] );
 		
 		Picture::create( $picture );
