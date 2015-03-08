@@ -33,18 +33,22 @@ class SiteController extends BaseController {
 		return View::make('site/homelayout',compact('deals'));
 	}
 
-    public function postSearch() {
-
-
-    }
     public function getSearch() {
         $category=Input::get('category');
         $country=Input::get('country');
         $city=Input::get('city');
         $deals=Deal::search($category,$country,$city);
         // Show the page
-        return View::make('site/homelayout',compact('deals'));
+        return View::make('site.homelayout',compact('deals'));
     }
+
+    public function getDetail($id) {
+        $detail=Deal::detail($id);
+        // echo ($detail);die;
+        // Show the page
+        return View::make('site.deals.show',compact('detail'));
+    }
+
     public function postGetCities(){
         $country_id = Input::get('country_id');
         $cities = City::where('country_id','=',$country_id)->get();

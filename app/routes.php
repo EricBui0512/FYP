@@ -182,6 +182,8 @@ Route::group( array( 'before' => 'auth|role:user'), function() {
  */
 // Site reset routes
 Route::post('/search', 'SiteController@getSearch');
+// Site reset routes
+Route::get('/detail/{id}', 'SiteController@getDetail');
 // User reset routes
 Route::get('user/reset/{token}', 'UserController@getReset');
 // User password reset

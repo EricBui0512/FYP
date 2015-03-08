@@ -85,7 +85,7 @@ class Deal extends \Eloquent {
 			->leftJoin('images', function( $join )
 			{
 				$join->on('images.ref_id', '=', 'services.id')
-					->where( 'images.image_type', '=', '"service"');
+					->where( 'images.image_type', '=', 'service');
 			})
 			->leftJoin('outlets','outlets.id','=','services.outlet_id')
 			->leftJoin('addresses','addresses.id','=','outlets.address_id')
