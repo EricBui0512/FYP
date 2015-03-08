@@ -112,8 +112,15 @@
                     </ul>
 
                     <div class="tab-content">
-                      <div role="tabpanel" class="tab-pane active" id="conditions">..duc.</div>
-                      <div role="tabpanel" class="tab-pane" id="detail">...</div>
+                      <div role="tabpanel" class="tab-pane active" id="conditions">
+                          {{$detail->special_condition}}
+                          {{$detail->condition1}}
+                          
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="detail">
+                          {{$detail->summary}}
+                          {{$detail->highlights}}
+                      </div>
                     </div>
                 </div>
                 <script>
