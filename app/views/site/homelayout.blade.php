@@ -185,7 +185,7 @@
                                             <div class="section">
                                             <div class="row">
                                                 <div class="col-sm-6 col-sm-offset-6">
-                                                <a href="#" class="btn btn-primary custom-button green-btn">Detail</a>
+                                                <a href="{{URL::to('detail/'.$deal->id)}}" class="btn btn-primary custom-button green-btn">Detail</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -227,31 +227,31 @@
 <!-- =========================
    FOOTER             
 ============================== -->
-    <!-- <footer> -->
-        <!-- <div class="container"> -->
+    <footer>
+        <div class="container">
             <!-- COMPANY ADDRESS-->
-            <!-- <div class="col-md-5 company-details">
+            <div class="col-md-5 company-details">
                 <div class="icon-top red-text">
                     <i class="icon-fontawesome-webfont-302"></i>
                 </div>
                 PO Box 16122 Collins Street West, Victoria 8007 Australia
-            </div> -->
+            </div>
             <!-- COMPANY EMAIL-->
-            <!-- <div class="col-md-2 company-details">
+            <div class="col-md-2 company-details">
                 <div class="icon-top green-text">
                     <i class="icon-fontawesome-webfont-329"></i>
                 </div>
                 contact@designlab.co
-            </div> -->
+            </div>
             <!-- COMPANY PHONE NUMBER -->
-            <!-- <div class="col-md-2 company-details">
+            <div class="col-md-2 company-details">
                 <div class="icon-top blue-text">
                     <i class="icon-fontawesome-webfont-101"></i>
                 </div>
                 +613 0000 0000
-            </div> -->
+            </div>
             <!-- SOCIAL ICON AND COPYRIGHT -->
-            <!-- <div class="col-lg-3 col-sm-3 copyright">
+            <div class="col-lg-3 col-sm-3 copyright">
                 <ul class="social">
                     <li><a href=""><i class="icon-facebook"></i></a>
                     </li>
@@ -266,9 +266,9 @@
                 </ul>
                 ©2013 Zerif LLC
             </div>
-        </div> -->
+        </div>
         <!-- / END CONTAINER -->
-    <!-- </footer> -->
+    </footer>
     <!-- / END FOOOTER  -->
 
     <!-- SCRIPTS -->
