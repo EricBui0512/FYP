@@ -150,7 +150,6 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::get('outlet/detail/{id}', array( 'as' => 'outlet.detail', 'uses' => 'OutletsController@show'));
     Route::get('outlet', array( 'as' => 'outlet.list', 'uses' => 'OutletsController@getList'));
     Route::post('outlet/uploadimage', array( 'as' => 'outlet.uploadimage', 'uses' => 'OutletsController@uploadimage'));
-    Route::post('outlet/delimg', 'OutletsController@deleteImage');
 
     #deals manager
     Route::get('deal', array('as'=> 'deal.index','uses' => 'RetailersController@listDeal'));
@@ -225,4 +224,5 @@ Route::post('/getCities', array('before' => 'detectLang','uses' => 'SiteControll
 
 Route::get('transaction/create', 'ConsumersController@createTrans');
 Route::post('transaction', 'ConsumersController@storeTrans');
+    Route::post('image/delete', array( 'as' => 'image.delete', 'uses' => 'OutletsController@deleteImage'));
 

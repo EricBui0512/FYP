@@ -8,12 +8,13 @@ class Service extends \Eloquent {
 		'name' => 'required',
 		'condition_id' => 'integer',
 		'detail_id' => 'integer',
-		'price' => 'regex:/[\d]{1,5}.[\d]{2}/'
+		'price' => 'regex:/[\d]{1,5}.[\d]{2}/',
+		'summary' => 'required'
 	];
 
 	// Don't forget to fill this array
 	protected $fillable = [ 'name', 'outlet_id', 'condition_id',
-			'detail_id', 'admin_id', 'active', 'price', 'time_operate' ];
+			'detail_id', 'active', 'price', 'time_operate' ];
 
 	public function scopeOwner( $query )
 	{
@@ -22,7 +23,7 @@ class Service extends \Eloquent {
 
 	public function scopeActive( $query )
 	{
-		return $query->where('active',1);
+		return $query->where('services.status','active');
 	}
 	
 	public function outlets()
@@ -37,12 +38,12 @@ class Service extends \Eloquent {
 
 	public function detail()
 	{
-		return $this->hasOne('ServiceDetail');
+		return $this->belongsTo('ServiceDetail');
 	}
 
 	public function condition()
 	{
-		return $this->hasOne('ServiceCondition');
+		return $this->belongsTo('ServiceCondition');
 	}
 
 	public function findOne( $id )
@@ -58,5 +59,15 @@ class Service extends \Eloquent {
 			->first();
 
 		return $service;
+	}
+
+	public function createTmp()
+	{
+
+		$this->name = '';
+		$this->status = 'new';
+		$this->save();
+
+		return $this->id;
 	}
 }

@@ -58,7 +58,7 @@
                 </a>
              </li>
              <li>
-                <a href="{{{URL::to('service/list')}}}" title="Notifications" data-toggle="" class="no-submenu">
+                <a href="{{{URL::to('service')}}}" title="Notifications" data-toggle="" class="no-submenu">
                    <span class="item-text">List service</span>
                 </a>
              </li>

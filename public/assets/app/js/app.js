@@ -2764,6 +2764,20 @@
   function adjustLayout() {
     $('.wrapper > section').css('min-height', $(window).height());
   }
+  function delImg() {
+    $('.del-img').on('click', function(){
+      var id = $(this).attr('id'),
+          normalImg = $(this).attr('data-normal'),
+          thumbImg = $(this).attr('data-thumb'),
+          token = $('input[name=_token]').val();
+
+      if ( confirm('Are you sure?') ) {
+        $.post( '/image/delete', {id: id, normal: normalImg, thumb: thumbImg, _token: token}, function() {
+          $('.ele-' + id ).remove();
+        });
+      }
+    });
+  }
   // upload file
    $('.image').fileupload({
       dataType: 'json',
@@ -2784,6 +2798,8 @@
               html += ' </div>';
               
               $('.list-images').append( html );
+              $('.ulimage').html('%0');
+              delImg();
             });
         },
         done: function (e, data) {
@@ -2800,12 +2816,6 @@
             $('.ulimage').html(progress+' %');
         }
     });
+    delImg();
     
-    $('.del-img').on('click', function(){
-      var id = $(this).attr('id');
-
-      $.post( '/outlet/delimg', {id: id}, function() {
-        $('.ele-' + id ).remove();
-      });
-    });
 }(jQuery, window, document));

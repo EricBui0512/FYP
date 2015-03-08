@@ -78,9 +78,7 @@ class OutletsController extends \BaseController {
 		$cities = City::lists('city','id');
 		$retailers = Retailer::owner()->lists('name', 'id');
 		$addresses = Address::select(array('addresses.id', 'addresses.address'))->lists('address',  'id');
-		$images = Picture::where('ref_id', $outlet->id)
-				->where('image_type', 'outlet')
-				->get();
+		$images = Picture::getByRefId( $outlet->id, 'outlet');
 
 		if ( ! $title )
 		{
@@ -179,6 +177,9 @@ class OutletsController extends \BaseController {
 	public function deleteImage()
 	{
 		$id = Input::get('id');
+		$normal = Input::get('normal');
+		$thumb = Input::get('thumb');
+
 		Picture::destroy( $id );
 	}
 	/**
