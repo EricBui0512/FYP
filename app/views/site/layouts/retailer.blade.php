@@ -2,7 +2,9 @@
 @section('menu')
     <ul class="nav">
        <!-- START Menu-->
-       <li class="nav-heading">Dashboard</li>      
+        <li>
+          <a href="{{{URL::to('retailer/dashboard')}}}">Dashboard</a>
+        </li>      
         <li>
             <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
                <em class="fa fa-flask"></em>

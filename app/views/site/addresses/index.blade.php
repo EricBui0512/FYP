@@ -5,7 +5,7 @@
 <div class="col-sm-12">
       <!-- START panel-->
     <div class="panel panel-default">
-        <div class="panel-heading">Address Form</div>
+        <div class="panel-heading">Address List</div>
         <div class="panel-body">
 			<table id="addresses" class="table table-striped table-hover">
 				<thead>
@@ -26,7 +26,6 @@
                    	<td>{{$address->postal_code}}</td>
                    	<td>{{$address->created_at}}</td> 
                    	<td>{{$address->updated_at}}</td> 
-                   	<td></td>
                    	<td class="text-center">
 	                    <div class="btn-group">
 	                       <a href="#" data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle">
@@ -46,6 +45,14 @@
              </tbody>
 			</table>
 		</div>
+		<div class="panel-footer">
+          <div class="row">
+            <div class="col-lg-12 text-center">
+              {{ $addresses->links() }}
+	          </div>
+             
+          </div>
+       </div>
 	</div>
 </div>
 @stop

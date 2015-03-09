@@ -14,7 +14,9 @@ List Outlet
           <div class="list-group-item">
             <div class="media">
               <div class="media-body clearfix">
-                <div class="media-heading text-warning m0">{{ $deal->title }}</div>
+                <div class="media-heading text-warning m0">
+                  <a href="{{{ URL::to('deal/tran/' . $deal->id)}}}">{{ $deal->title }}</a>
+                </div>
                 <div>
                   <img height="308" width="308" src="/{{{ $deal->image_path }}}" alt="">
                 </div>
@@ -26,9 +28,8 @@ List Outlet
         <!-- END list group-->
         <!-- START panel footer-->
         <div class="panel-footer clearfix">
-          <a href="javascript:void(0);" class="pull-left">
-            <small>{{ $deal->tran}} Transaction</small>
-          </a>
+            <small>{{ $deal->tran_day}} transaction on day</small> &nbsp;|&nbsp;
+            <small>{{ $deal->tran_week}} transaction on week</small>
         </div>
         <!-- END panel-footer-->
       </div>

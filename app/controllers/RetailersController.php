@@ -155,7 +155,7 @@ class RetailersController extends \BaseController {
 	public function listService()
 	{
         $title = Lang::get('site/services/title.service_management');
-		$services = Service::select(array('services.*'))->active()->owner()->get();
+		$services = Service::select(array('services.*'))->active()->owner()->paginate(10);
 
 		return View::make('site.services.index', compact('services', 'title'));
 	}
@@ -285,7 +285,7 @@ class RetailersController extends \BaseController {
     public function listDeal()
     {
         $title = 'Deals Manage';
-        $deals = Deal::owner()->get();
+        $deals = Deal::owner()->paginate(10);
 
         return View::make('site.deals.index', compact('deals','title'));
     }
@@ -451,7 +451,7 @@ class RetailersController extends \BaseController {
         $countries = array_merge( array( '0' => 'All' ), Country::lists('country','id'));
         $cities = array( '' => 'All' );
 
-        $addresses = Address::owner()->get();
+        $addresses = Address::owner()->paginate(10);
 
         // Show the page
         return View::make('site/addresses/index', compact('title','countries','cities','addresses'));

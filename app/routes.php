@@ -157,6 +157,7 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::post('deal/create','RetailersController@storeDeal');
     Route::get('deal/{deal}/edit', 'RetailersController@editDeal');
     Route::post('deal/create','RetailersController@storeDeal');
+    Route::get('deal/tran/{deal}','OutletsController@listTranByDeal');
 
      # Address Management
     Route::get('address/create', array( 'as' => 'address.create', 'uses' =>'RetailersController@createAddress'));
