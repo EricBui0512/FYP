@@ -69,11 +69,11 @@
                           <div >                           
 		                        <div class="form-group">
 		                           <label>Summary</label>
-		                           <textarea data-uk-markdownarea="{mode:'tab'}" name="summary"></textarea>
+		                           <textarea name="summary" class="ckeditor"></textarea>
 		                        </div>
 		                        <div class="form-group">
 		                           <label>Highlights</label>
-		                           <textarea data-uk-markdownarea="{mode:'tab'}" name="highlights"></textarea>
+		                           <textarea  name="highlights" class="ckeditor"></textarea>
 		                        </div>
 		                        <div class="form-group">
 		                           <label>Detailcol</label>
@@ -92,15 +92,15 @@
                             <div>           
 		                        <div class="form-group">
 		                           <label>Special Condition</label>
-		                           <textarea data-uk-markdownarea="{mode:'tab'}" name="special_condition"></textarea>
+		                           <textarea  name="special_condition" class="ckeditor"></textarea>
 		                        </div>
 		                        <div class="form-group">
 		                           <label>Condition 1</label>
-		                           <textarea data-uk-markdownarea="{mode:'tab'}" name="condition1"></textarea>
+		                           <textarea  name="condition1" class="ckeditor"></textarea>
 		                        </div>
 		                        <div class="form-group">
 		                           <label>Condition 2</label>
-		                           <textarea data-uk-markdownarea="{mode:'tab'}" name="condition2"></textarea>
+		                           <textarea  name="condition2" class="ckeditor"></textarea>
 		                        </div>
 		                      
                             </div>
