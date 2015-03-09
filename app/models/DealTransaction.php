@@ -23,5 +23,10 @@ class DealTransaction extends \Eloquent {
 	public function scopeOwner()
 	{
 		return $this->where('consumer_id', Auth::id());
-	}	
+	}
+
+	public static function byDeal( $id )
+	{
+		return DealTransaction::where( 'deal_id', $id )->paginate(10);
+	}
 }

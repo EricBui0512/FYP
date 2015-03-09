@@ -102,8 +102,9 @@ class Deal extends \Eloquent {
 
 	public static function dashboardDeal()
 	{
-		$deal = Deal::select(array('deals.title', 'deals.time_slot', 'images.image_path',
-			DB::raw('(select count(deal_transactions.id) from deal_transactions where deals.id = deal_transactions.deal_id) AS tran')))
+		$deal = Deal::select(array('deals.id', 'deals.title', 'deals.time_slot', 'images.image_path',
+			DB::raw('(select count(deal_transactions.id) from deal_transactions where deals.id = deal_transactions.deal_id AND DATE_FORMAT( deal_transactions.created_at, "%Y-%m-%d") = CURRENT_DATE()) AS tran_day'),
+			DB::raw('(select count(deal_transactions.id) from deal_transactions where deals.id = deal_transactions.deal_id AND DATE_SUB( deal_transactions.created_at, INTERVAL 7 DAY) <= CURRENT_DATE()) AS tran_week')))
 			->leftJoin('services', 'services.id','=', 'deals.service_id')
 			->leftJoin('outlets', 'outlets.id', '=', 'services.outlet_id')
 			->leftJoin('images', function($join) {
