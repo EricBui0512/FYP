@@ -1,7 +1,7 @@
 @extends('site.layouts.retailer')
 
 @section('container')
-	<div class="col-sm-12">
+  <div class="col-sm-12">
       <div class="panel panel-default">
            <div class="panel-heading">Create Service</div>
            <div class="panel-body">
@@ -36,27 +36,27 @@
                           <!-- <legend>Service</legend> -->
                           <!-- START row -->
                            <div >
-		                        <div class="form-group">
-		                           <label>Name</label>
-		                           <div class="controls">
-		                              <input type="text" placeholder="Name" class="form-control" name="name">
-		                           </div>
-		                        </div>
-		                        <div class="form-group">
-		                           <label>Price</label>
-		                           <div class="controls">
-		                              <input type="text" placeholder="price" class="form-control" name="price">
-		                           </div>
-		                        </div>
-		                        <div class="form-group">
-		                           <label>Outlet</label>
-		                           <div class="controls">
+                            <div class="form-group">
+                               <label>Name</label>
+                               <div class="controls">
+                                  <input type="text" placeholder="Name" class="form-control" name="name">
+                               </div>
+                            </div>
+                            <div class="form-group">
+                               <label>Price</label>
+                               <div class="controls">
+                                  <input type="text" placeholder="price" class="form-control" name="price">
+                               </div>
+                            </div>
+                            <div class="form-group">
+                               <label>Outlet</label>
+                               <div class="controls">
                                   {{ Form::Select( 'outlet_id', $outlets, 0, array('class' => 'form-control m-b'))}}
-		                      
-		                           </div>
-		                        </div>
-		                  	</div>
-              				<!-- END Wizard Step inputs -->
+                          
+                               </div>
+                            </div>
+                        </div>
+                      <!-- END Wizard Step inputs -->
                           <!-- END row -->
                        </fieldset>
                     </div>
@@ -67,42 +67,42 @@
                           <!-- <legend>Detail</legend> -->
                           <!-- START row -->
                           <div >                           
-		                        <div class="form-group">
-		                           <label>Summary</label>
-		                           <textarea name="summary" class="ckeditor"></textarea>
-		                        </div>
-		                        <div class="form-group">
-		                           <label>Highlights</label>
-		                           <textarea  name="highlights" class="ckeditor"></textarea>
-		                        </div>
-		                        <div class="form-group">
-		                           <label>Detailcol</label>
-		                           <input type="text" name="detailcol" placeholder="Detailcol" class="form-control">
-		                        </div>
-		                              </div>
-		                              <!-- END row -->
-		                           </fieldset>
-		                        </div>
-		                        <!-- END Wizard Step inputs -->
-		                        <!-- START Wizard Step inputs -->
-		                        <div>
+                            <div class="form-group">
+                               <label>Summary</label>
+                               <textarea name="summary" class="ckeditor"></textarea>
+                            </div>
+                            <div class="form-group">
+                               <label>Highlights</label>
+                               <textarea  name="highlights" class="ckeditor"></textarea>
+                            </div>
+                            <div class="form-group">
+                               <label>Detailcol</label>
+                               <input type="text" name="detailcol" placeholder="Detailcol" class="form-control">
+                            </div>
+                                  </div>
+                                  <!-- END row -->
+                               </fieldset>
+                            </div>
+                            <!-- END Wizard Step inputs -->
+                            <!-- START Wizard Step inputs -->
+                            <div>
                        <fieldset>
                             <!-- <legend>Service Condition</legend> -->
                               <!-- START row -->
                             <div>           
-		                        <div class="form-group">
-		                           <label>Special Condition</label>
-		                           <textarea  name="special_condition" class="ckeditor"></textarea>
-		                        </div>
-		                        <div class="form-group">
-		                           <label>Condition 1</label>
-		                           <textarea  name="condition1" class="ckeditor"></textarea>
-		                        </div>
-		                        <div class="form-group">
-		                           <label>Condition 2</label>
-		                           <textarea  name="condition2" class="ckeditor"></textarea>
-		                        </div>
-		                      
+                            <div class="form-group">
+                               <label>Special Condition</label>
+                               <textarea  name="special_condition" class="ckeditor"></textarea>
+                            </div>
+                            <div class="form-group">
+                               <label>Condition 1</label>
+                               <textarea  name="condition1" class="ckeditor"></textarea>
+                            </div>
+                            <div class="form-group">
+                               <label>Condition 2</label>
+                               <textarea  name="condition2" class="ckeditor"></textarea>
+                            </div>
+                          
                             </div>
                           <!-- END row -->
                        </fieldset>
