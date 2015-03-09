@@ -33,11 +33,19 @@
 					</div>
 					<!-- ./ city -->
 
+					<div class="form-group {{{ $errors->has('district') ? 'error' : '' }}}">
+						<label class="col-md-2 control-label" for="district">District</label>
+						<div class="col-lg-8">
+							<input class="form-control" type="text" name="district" id="district" value="{{{ Input::old('district', isset($address) ? $address->district : null) }}}" />
+							{{ $errors->first('district', '<span class="help-inline">:message</span>') }}
+						</div>
+					</div>
+
 					<!-- Address -->
 					<div class="form-group {{{ $errors->has('address') ? 'error' : '' }}}">
 						<label class="col-md-2 control-label" for="address">Address</label>
 						<div class="col-lg-8">
-							<input class="form-control" type="text" name="address" id="address" value="{{{ Input::old('address', isset($city) ? $city->address : null) }}}" />
+							<input class="form-control" type="text" name="address" id="address" value="{{{ Input::old('address', isset($address) ? $address->address : null) }}}" />
 							{{ $errors->first('address', '<span class="help-inline">:message</span>') }}
 						</div>
 					</div>

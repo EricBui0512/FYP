@@ -14,6 +14,6 @@ class ServiceDetail extends \Eloquent {
 
 	public function service()
 	{
-		return $this->belongsTo('Service');
+		return $this->hasOne('Service');
 	}
 }

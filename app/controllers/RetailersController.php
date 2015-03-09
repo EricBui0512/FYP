@@ -37,8 +37,9 @@ class RetailersController extends \BaseController {
     public function getDashboard()
     {
         $user = Auth::user();
+        $deals = Deal::dashboardDeal();
 
-        return View::make('site.layouts.retailer', compact('user'));
+        return View::make('site.retailers.dashboard', compact('user', 'deals'));
     }
 
 	/**
@@ -154,7 +155,7 @@ class RetailersController extends \BaseController {
 	public function listService()
 	{
         $title = Lang::get('site/services/title.service_management');
-		$services = Service::owner()->get();
+		$services = Service::select(array('services.*'))->active()->owner()->get();
 
 		return View::make('site.services.index', compact('services', 'title'));
 	}
@@ -166,51 +167,14 @@ class RetailersController extends \BaseController {
 	 */
 	public function createService()
 	{
+        $service = new Service;
+        $id = $service->createTmp();
+
         $title = Lang::get('site/services/title.create_a_new_service');
-        $outlets = Outlet::active()->owner()->lists('name', 'id');
 
-		return View::make('site.services.create', compact('outlets', 'title'));
+        return Redirect::to('service/' . $id . '/edit')->with('title', $title);
 	}
 
-	/**
-	 * Store a newly created service in storage.
-	 *
-	 * @return Response
-	 */
-	public function storeService()
-	{
-
-		$detail = Input::only('highlights','summary');
-
-		$condition = Input::only('special_condition','condition1','condition2');
-		$data = Input::except('highlights','special_condition','condition1','condition2');
-
-		$validator = Validator::make( $data, Service::$rules );
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
-
-		// create detail service
-		$serviceDetail = ServiceDetail::create( $detail );
-
-		// create condition service
-		$serviceCondition = ServiceCondition::create( $condition );
-
-		$data['detail_id'] = $serviceDetail->id;
-		$data['condition_id'] = $serviceCondition->id;
-
-		unset( $data['summary']);
-
-		if(Service::create($data))
-        {
-            return Redirect::route('service.index')->with('success', Lang::get('site/services/messages.create.success'));
-        }
-
-        return Redirect::route('service.create')->with('error', Lang::get('site/services/messages.create.error'));
-
-	}
 
 	/**
 	 * Display the specified service.
@@ -231,15 +195,15 @@ class RetailersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function editService($id)
+	public function editService($service)
 	{
         $title = Lang::get('site/services/title.create_a_new_service');
 
         $outlets = Outlet::active()->owner()->lists('name', 'id');
+        $images = Picture::getByRefId( $service->id, 'service');
 
-		$service = Service::find($id);
-
-		return View::make('site.services.edit', compact('service', 'outlets', 'title'));
+		return View::make('site.services.edit', compact('service', 'outlets', 'title'))
+            ->nest('imageForm', 'site.partials.image.create', ['refId' => $service->id, 'type' => 'service', 'images' => $images]);
 	}
 
 	/**
@@ -248,9 +212,9 @@ class RetailersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function updateService($id)
+	public function updateService($service)
 	{
-		$service = Service::findOrFail($id);
+		// $service = Service::findOrFail($id);
 
         $detail = Input::only('highlights','summary');
 
@@ -485,12 +449,12 @@ class RetailersController extends \BaseController {
         // Title
         $title = 'Address Manager';
         $countries = array_merge( array( '0' => 'All' ), Country::lists('country','id'));
-        $cities = array( '0' => 'All' );
+        $cities = array( '' => 'All' );
 
-        $listAddress = Address::owner();
-        
+        $addresses = Address::owner()->get();
+
         // Show the page
-        return View::make('site/addresses/index', compact('title','countries','cities','listAddress'));
+        return View::make('site/addresses/index', compact('title','countries','cities','addresses'));
     }
 
 
@@ -505,8 +469,8 @@ class RetailersController extends \BaseController {
         // Title
         $title = 'Create a new address';
 
-        $countries = array_merge( array( '0' => '' ), Country::lists('country','id'));
-        $cities = array_merge( array( '0' => '' ), City::lists('city','id'));
+        $countries = array( null => '' ) + Country::lists('country','id');
+        $cities = array( null => '' ) + City::lists('city','id');
 
         // Show the page
         return View::make('site.addresses.create_edit', compact('title', 'countries', 'cities'));
@@ -558,8 +522,8 @@ class RetailersController extends \BaseController {
         if ( ! empty( $address ) )
         {
 
-            $countries = array_merge( array( '0' => '' ), Country::lists('country','id'));
-            $cities = array_merge( array( '0' => '' ), City::lists('city','id'));
+            $countries = array( '' => '' ) + Country::lists('country','id');
+            $cities = array( '' => '' ) + City::lists('city','id');
             
             // Title
             $title = Lang::get('site/addresses/title.address_update');
@@ -567,7 +531,7 @@ class RetailersController extends \BaseController {
             // mode
             $mode = 'edit';
 
-            return View::make('site/addresses/create_edit', compact('city', 'title', 'mode', 'countries', 'cities', 'address'));
+            return View::make('site/addresses/create_edit', compact( 'title', 'mode', 'countries', 'cities', 'address'));
         }
         else
         {

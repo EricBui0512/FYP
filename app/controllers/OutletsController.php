@@ -39,41 +39,6 @@ class OutletsController extends \BaseController {
 	}
 
 	/**
-	 * Store a newly created outlet in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-
-		$data = Input::except( 'summary' );
-		$description = Input::only('full_description', 'summary');
-
-		$validator = Validator::make($data, Outlet::$rules);
-
-		if ($validator->fails())
-		{
-
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
-
-		unset( $data['full_description'] );
-
-		$desc = OutletDescription::create( $description );
-
-		$data['admin_id'] = $this->adminId;
-		$data['description_id'] = $desc->id;
-
-		if ( Outlet::create($data) )
-		{
-			return Redirect::route('outlet.index')->with('success', Lang::get('site/outlets/messages.create.success'));
-		}
-
-		return Redirect::to('outlet/create')->with('error', Lang::get('site/outlets/messages.create.error'));
-
-	}
-
-	/**
 	 * Display the specified outlet.
 	 *
 	 * @param  int  $id
@@ -113,9 +78,7 @@ class OutletsController extends \BaseController {
 		$cities = City::lists('city','id');
 		$retailers = Retailer::owner()->lists('name', 'id');
 		$addresses = Address::select(array('addresses.id', 'addresses.address'))->lists('address',  'id');
-		$images = Picture::where('ref_id', $outlet->id)
-				->where('image_type', 'outlet')
-				->get();
+		$images = Picture::getByRefId( $outlet->id, 'outlet');
 
 		if ( ! $title )
 		{
@@ -150,16 +113,32 @@ class OutletsController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		if ($outlet->description_id) {
+		if ($outlet->description_id)
+		{
 			$desc = OutletDescription::where('id', $outlet->description_id)->update($description);
 		}
-		else {
+		else
+		{
 			$desc = OutletDescription::create( $description );
 		}
 
+		$addressData = array( 'city_id' => $data['city_id'], 'address' => $data['address']);
+		
+		if ( $outlet->address_id )
+		{
+			$address = Address::where( 'id', $outlet->address_id )->update( $addressData );
+		}
+		else
+		{
+			$address = Address::create( $addressData );
+		}
+		
 		unset( $data['full_description'] );
+		unset( $data['address']);
+
 		$data['description_id'] = $desc->id;
-		$data['status'] = 'store';
+		$data['address_id'] = $address->id;
+		$data['status'] = 'active';
 
 		if ( $outlet->update($data) )
 		{
@@ -183,11 +162,13 @@ class OutletsController extends \BaseController {
 	    $uploadPath = 'upload';
 
 	    $picture['image_path'] = $uploadPath . '/normal/' . $fileName;
+	    $picture['big_path'] =  $uploadPath . '/big/' . $fileName;
 	    $picture['thumbnail_path'] =  $uploadPath . '/thumbnail/' . $fileName;
 	    $picture['image_type'] = Input::get('type');
 	    $picture['ref_id'] = Input::get('ref_id');
 
-	    Image::make($files->getRealPath())->resize(420,null)->save( $picture['image_path'] );
+	    Image::make($files->getRealPath())->resize(480,480)->save( $picture['big_path'] );
+	    Image::make($files->getRealPath())->resize(308,308)->save( $picture['image_path'] );
 	    Image::make($files->getRealPath())->resize(64, 64)->save( $picture['thumbnail_path'] );
 		
 		Picture::create( $picture );
@@ -198,6 +179,9 @@ class OutletsController extends \BaseController {
 	public function deleteImage()
 	{
 		$id = Input::get('id');
+		$normal = Input::get('normal');
+		$thumb = Input::get('thumb');
+
 		Picture::destroy( $id );
 	}
 	/**

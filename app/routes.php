@@ -21,6 +21,7 @@ Route::model('country', 'Country');
 Route::model('city', 'City');
 Route::model('address', 'Address');
 Route::model('outlet', 'Outlet');
+Route::model('service', 'Service');
 
 /** ------------------------------------------
  *  Route constraint patterns
@@ -113,7 +114,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::get('services/create', 'AdminRetailerController@createService');
     Route::post('services/create', 'AdminRetailerController@storeService');
     Route::get('services/{service}/edit', 'AdminRetailerController@editService');
-    Route::post('services/{service}/edit', 'AdminRetailerController@updateService');
+    Route::post('services/{service}', 'AdminRetailerController@updateService');
     Route::get('services/{service}/delete', 'AdminRetailerController@deleteService');
     Route::post('services/{service}/delete', 'AdminRetailerController@destroyService');
     Route::get('services/data/{outletId}', 'AdminRetailerController@getServicees')
@@ -136,9 +137,9 @@ Route::group(array('before' => 'auth|role:retailer'), function()
 
     # Service manager
     Route::get('service/create', array( 'as' => 'service.create', 'uses' => 'RetailersController@createService'));
-    Route::post('service/create', array( 'as' => 'service.create', 'uses' => 'RetailersController@storeService'));
+    // Route::post('service/create', array( 'as' => 'service.create', 'uses' => 'RetailersController@storeService'));
     Route::get('service/{service}/edit', array( 'as' => 'service.edit', 'uses' => 'RetailersController@editService'));
-    Route::put('service/{service}', array( 'as' => 'service.edit', 'uses' => 'RetailersController@updateService'));
+    Route::post('service/{service}', array( 'as' => 'service.edit', 'uses' => 'RetailersController@updateService'));
     Route::delete('service/{service}', array( 'as' => 'service.delete', 'uses' => 'RetailersController@destroyService'));
     Route::get('service', array( 'as' => 'service.index', 'uses' => 'RetailersController@listService'));
     #outlet manager
@@ -149,7 +150,6 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::get('outlet/detail/{id}', array( 'as' => 'outlet.detail', 'uses' => 'OutletsController@show'));
     Route::get('outlet', array( 'as' => 'outlet.list', 'uses' => 'OutletsController@getList'));
     Route::post('outlet/uploadimage', array( 'as' => 'outlet.uploadimage', 'uses' => 'OutletsController@uploadimage'));
-    Route::post('outlet/delimg', 'OutletsController@deleteImage');
 
     #deals manager
     Route::get('deal', array('as'=> 'deal.index','uses' => 'RetailersController@listDeal'));
@@ -226,4 +226,5 @@ Route::post('/getCities', array('before' => 'detectLang','uses' => 'SiteControll
 
 Route::get('transaction/create', 'ConsumersController@createTrans');
 Route::post('transaction', 'ConsumersController@storeTrans');
+    Route::post('image/delete', array( 'as' => 'image.delete', 'uses' => 'OutletsController@deleteImage'));
 

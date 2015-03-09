@@ -20,7 +20,7 @@ class Deal extends \Eloquent {
 	public function scopeOwner( $query )
 	{
 		return $query->select(array('deals.*'))
-			->leftJoin('services', 'services.id	', '=', 'deals.service_id')
+			->leftJoin('services', 'services.id', '=', 'deals.service_id')
 			->leftJoin('outlets','outlets.id','=','services.outlet_id')
 			->where('outlets.admin_id', Auth::id());
 	}
@@ -97,6 +97,24 @@ class Deal extends \Eloquent {
 			->leftJoin('service_conditions','service_conditions.id','=','services.condition_id')
 			->where('deals.id', $id)->first();
 
+		return $deal;
+	}
+
+	public static function dashboardDeal()
+	{
+		$deal = Deal::select(array('deals.title', 'deals.time_slot', 'images.image_path',
+			DB::raw('(select count(deal_transactions.id) from deal_transactions where deals.id = deal_transactions.deal_id) AS tran')))
+			->leftJoin('services', 'services.id','=', 'deals.service_id')
+			->leftJoin('outlets', 'outlets.id', '=', 'services.outlet_id')
+			->leftJoin('images', function($join) {
+				$join->on('images.ref_id','=','services.id')
+					->where('images.image_type', '=', 'service');
+			})
+			->where('admin_id', Auth::id())
+			->where('time_slot', '>=', date('Y-m-d'))
+			->get();
+// $d = DB::getQueryLog();
+// var_dump($d);die;
 		return $deal;
 	}
 }
