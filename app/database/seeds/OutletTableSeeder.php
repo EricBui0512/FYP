@@ -42,9 +42,9 @@ class OutletTableSeeder extends Seeder {
             $outlet->outlet_register_id = $value['outlet_register_id']; 
             $outlet->website = $value['website'];
             $outlet->admin_id = $adminId;
-            $outlet->photo_id = 1;
             $outlet->description_id = 1;
-            $outlet->active = 1;
+            $outlet->status = 'active';
+            $outlet->retailer_id = $value['retailer_id'];
 
             $outlet->save();
         }

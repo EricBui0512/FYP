@@ -36,6 +36,10 @@ class Address extends \Eloquent {
 	{
 		return $this->hasOne('Outlet');
 	}
+	public function getCity()
+	{
+		return $this->hasOne('City','id','city_id');
+	}
 	public static function getHtmlByOutlet( $addressId )
 	{
 		$address = $this->find( $addressId );

@@ -35,10 +35,10 @@ class AdminRetailerController extends AdminController {
 
 		$countries = Country::lists('country', 'id' );
 		$cities = City::where( 'country_id', $retailer->country_id )->lists('city', 'id');
+		$addresses = Address::where( 'city_id', $retailer->city_id )->lists('address', 'id');
 
 		$cats = BusinessCategory::lists( 'name', 'id');
-
-		return View::make('admin.retailers.edit', compact('retailer', 'cats', 'title', 'countries', 'cities'));
+		return View::make('admin.retailers.edit', compact('retailer', 'cats', 'title', 'countries', 'cities','addresses'));
 	}
 
 	/**
@@ -52,15 +52,17 @@ class AdminRetailerController extends AdminController {
 		$retailer = Retailer::findOrFail($id);
 
 		$validator = Validator::make($data = Input::all(), Retailer::$rules);
-
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
-
 		$retailer->update($data);
+		$countries = Country::lists('country', 'id' );
+		$cities = City::where( 'country_id', $retailer->country_id )->lists('city', 'id');
+		$addresses = Address::where( 'city_id', $retailer->city_id )->lists('address', 'id');
 
-		return Redirect::route('admin.retailers.index');
+		$cats = BusinessCategory::lists( 'name', 'id');
+		return Redirect::to('admin/retailers/' . $retailer->id . '/edit')->with('success','Update retailer');
 	}
 
 	/**

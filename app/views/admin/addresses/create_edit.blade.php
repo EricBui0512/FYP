@@ -17,7 +17,7 @@
 				<div class="form-group {{{ $errors->has('country_id') ? 'error' : '' }}}">
 					<label class="col-md-2 control-label" for="country_id">Country</label>
 					<div class="col-md-10">
-						{{ Form::select('country_id', $countries,257,array('class'=>'form-control','id'=>'country_id') )}}
+						{{ Form::select('country_id', $countries,isset($address) ? $address->getCity->country_id  : 0,array('class'=>'form-control','id'=>'country_id') )}}
 						{{ $errors->first('country_id', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
@@ -27,17 +27,27 @@
 				<div class="form-group {{{ $errors->has('city_id') ? 'error' : '' }}}">
 					<label class="col-md-2 control-label" for="city_id">City</label>
 					<div class="col-md-10 city-form">
-						{{ Form::select('city_id', $cities,0,array('class'=>'form-control') )}}
+						{{ Form::select('city_id', $cities,isset($address) ? $address->city_id  : 0,array('class'=>'form-control') )}}
 						{{ $errors->first('city_id', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
 				<!-- ./ city -->
-
+					
+				<!-- Distric -->
+				<div class="form-group {{{ $errors->has('district') ? 'error' : '' }}}">
+					<label class="col-md-2 control-label" for="district">District</label>
+					<div class="col-md-10">
+						<input class="form-control" type="text" name="district" id="district" value="{{{ Input::old('district', isset($address) ? $address->district : null) }}}" />
+						{{ $errors->first('district', '<span class="help-inline">:message</span>') }}
+					</div>
+				</div>
+				<!-- ./ Distric -->
+					
 				<!-- Address -->
 				<div class="form-group {{{ $errors->has('address') ? 'error' : '' }}}">
 					<label class="col-md-2 control-label" for="address">Address</label>
 					<div class="col-md-10">
-						<input class="form-control" type="text" name="address" id="address" value="{{{ Input::old('address', isset($city) ? $city->address : null) }}}" />
+						<input class="form-control" type="text" name="address" id="address" value="{{{ Input::old('address', isset($address) ? $address->address : null) }}}" />
 						{{ $errors->first('address', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
@@ -47,7 +57,7 @@
 				<div class="form-group {{{ $errors->has('postal_code') ? 'error' : '' }}}">
 					<label class="col-md-2 control-label" for="address">Postal Code</label>
 					<div class="col-md-10">
-						<input class="form-control" type="text" name="postal_code" id="postal_code" value="{{{ Input::old('postal_code', isset($city) ? $city->postal_code : null) }}}" />
+						<input class="form-control" type="text" name="postal_code" id="postal_code" value="{{{ Input::old('postal_code', isset($address) ? $address->postal_code : null) }}}" />
 						{{ $errors->first('postal_code', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
