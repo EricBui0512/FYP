@@ -496,7 +496,6 @@ class AdminCommonController extends AdminController {
         {
             $countries = array_merge( array( '0' => '' ), Country::lists('country','id'));
             $cities = array_merge( array( '0' => '' ), City::lists('city','id'));
-            
             // Title
             $title = Lang::get('admin/addresses/title.address_update');
             // mode
