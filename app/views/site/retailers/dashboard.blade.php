@@ -3,37 +3,35 @@
 List Outlet
 @stop
 @section('container')
-<section class="col-md-12">
-    @foreach ( $deals as $deal )
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        
-        <!-- START list group-->
-        <div class="list-group">
-          <!-- START list group item-->
-          <div class="list-group-item">
-            <div class="media">
-              <div class="media-body clearfix">
-                <div class="media-heading text-warning m0">
-                  <a href="{{{ URL::to('deal/tran/' . $deal->id)}}}">{{ $deal->title }}</a>
+<div class="content-wrapper">
+  @foreach ( $outletsArray as $outlet )
+  
+    <h3>{{ $outlet['name'] }}</h3>
+    <fieldset class="row">
+      @foreach ( $outlet['deal'] as $deal )
+        <div class="col-md-4">
+          <div data-toggle="play-animation" data-play="fadeInLeft" data-offset="0" data-delay="100" class="panel widget anim-running anim-done" style="">
+             <div class="panel-body bg-primary">
+                <div class="row row-table row-flush">
+                   <div class="col-xs-11">
+                      <p ><a class="mb0 bg-primary" href="{{{ URL::to('deal/tran/' . $deal->id)}}}">{{ $deal->title }}</a>
+                      </p>
+                   </div>
                 </div>
-                <div>
-                  <img height="308" width="308" src="/{{{ $deal->image_path }}}" alt="">
+             </div>
+             <div class="panel-body">
+                <!-- Bar chart-->
+                <div class="text-center">
+                  <small>{{ $deal->tran_day}} transaction on day</small> &nbsp;|&nbsp;
+                  <small>{{ $deal->tran_week}} transaction on week</small>
                 </div>
-              </div>
-            </div>
+             </div>
           </div>
-          <!-- END list group item-->
+        
         </div>
-        <!-- END list group-->
-        <!-- START panel footer-->
-        <div class="panel-footer clearfix">
-            <small>{{ $deal->tran_day}} transaction on day</small> &nbsp;|&nbsp;
-            <small>{{ $deal->tran_week}} transaction on week</small>
-        </div>
-        <!-- END panel-footer-->
-      </div>
-    </div>
+      @endforeach
+    </fieldset>
   @endforeach
-</section>
+  </div>
+<!-- </section> -->
 @stop

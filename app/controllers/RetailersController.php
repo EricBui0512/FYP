@@ -37,9 +37,31 @@ class RetailersController extends \BaseController {
     public function getDashboard()
     {
         $user = Auth::user();
+        $outletsArray = array();
+        $dealsArray = array();
+        
+        $outlets = Outlet::owner()->get();
         $deals = Deal::dashboardDeal();
 
-        return View::make('site.retailers.dashboard', compact('user', 'deals'));
+        foreach ( $outlets as $outlet )
+        {
+            $dealsArray = array();
+
+            foreach ($deals as $deal )
+            {
+                if ( $outlet->id == $deal->outlet_id )
+                {
+                    $dealsArray[] = $deal;
+                }
+            }
+
+            if ( count( $dealsArray ) )
+            {
+                $outletsArray[$outlet->id] = array( 'name' => $outlet->name, 'deal' => $dealsArray );
+            }
+        }
+
+        return View::make('site.retailers.dashboard', compact('user', 'outletsArray'));
     }
 
 	/**
