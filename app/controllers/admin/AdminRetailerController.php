@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:17:58
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-03-01 21:46:45
+ * @Last Modified time: 2015-03-11 23:20:45
  */
 class AdminRetailerController extends AdminController {
 	
@@ -110,7 +110,7 @@ class AdminRetailerController extends AdminController {
 
     	$outlets = Outlet::lists( 'name', 'id' );
 
-    	return View::make( 'admin.services.index', compact('title', 'outlets'));
+    	return View::make( 'admin.services.index', compact('title', 'outlets', 'services'));
     }
 
     /**
@@ -177,18 +177,19 @@ class AdminRetailerController extends AdminController {
      *
      * @return Datatables JSON
      */
-    public function getDataService( $outletId = 0 )
+    public function getDataService( )
     {
-        $services = Retailer::select(array('id','name','price','active','time_operate'));
+        $services = Service::select(array('id','name','price','status','time_operate', 'created_at', 'updated_at'))
+        	->where('status', 'active');
 
-        if ( $outletId )
-        {
-        	$services->where( 'outlet_id', $outletId );
-        }
+        // if ( $outletId )
+        // {
+        // 	$services->where( 'outlet_id', $outletId );
+        // }
 
         return Datatables::of($services)
 
-	        ->edit_column('active','{{{ $active ? "Yes":"No" }}}')
+	        // ->edit_column('active','{{{ $active ? "Yes":"No" }}}')
 
 	        ->add_column('actions', '<a href="{{{ URL::to(\'admin/services/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-xs btn-default">{{{ Lang::get(\'button.edit\') }}}</a>
 	                                <a href="{{{ URL::to(\'admin/services/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-xs btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
