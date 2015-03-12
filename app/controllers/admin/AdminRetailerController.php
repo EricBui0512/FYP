@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:17:58
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-03-11 23:20:45
+ * @Last Modified time: 2015-03-12 17:36:34
  */
 class AdminRetailerController extends AdminController {
 	
@@ -119,15 +119,17 @@ class AdminRetailerController extends AdminController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function editService( $id )
+	public function editService( $service )
 	{
 		$title = 'Edit Service';
 
-		$service = Service::findOne( $id );
-
 		$outlets = Outlet::lists( 'name', 'id' );
+		$images = Picture::getByRefId( $service->id, 'service');
 
-		return View::make('admin.services.edit', compact('service', 'title', 'outlets' ));
+		return View::make('admin.services.edit', compact('service', 'outlets', 'title'))
+            ->nest('imageForm', 'site.partials.image.create', ['refId' => $service->id, 'type' => 'service', 'images' => $images]);
+
+		// return View::make('admin.services.edit', compact('service', 'title', 'outlets' ));
 	}
 
 	/**
@@ -193,6 +195,35 @@ class AdminRetailerController extends AdminController {
 
 	        ->add_column('actions', '<a href="{{{ URL::to(\'admin/services/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-xs btn-default">{{{ Lang::get(\'button.edit\') }}}</a>
 	                                <a href="{{{ URL::to(\'admin/services/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-xs btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
+	            ')
+
+	        ->remove_column('id')
+
+	        ->make();
+    }
+
+    public function listDeal() {
+
+    	$title = 'Manage Deal';
+
+    	return View::make( 'admin.deals.index', compact('title'));
+    }
+
+    public function getDataDeal( )
+    {
+        $deals = Deal::select(array('id','title','amount','discount','time_slot', 'created_at', 'updated_at'));
+
+        // if ( $outletId )
+        // {
+        // 	$services->where( 'outlet_id', $outletId );
+        // }
+
+        return Datatables::of($deals)
+
+	        // ->edit_column('active','{{{ $active ? "Yes":"No" }}}')
+
+	        ->add_column('actions', '<a href="{{{ URL::to(\'admin/deals/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-xs btn-default">{{{ Lang::get(\'button.edit\') }}}</a>
+	                                <a href="{{{ URL::to(\'admin/deals/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-xs btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
 	            ')
 
 	        ->remove_column('id')

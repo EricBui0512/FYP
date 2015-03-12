@@ -112,14 +112,22 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::resource('retailers', 'AdminRetailerController');
 
     # Service Management
-    Route::get('services/create', 'AdminRetailerController@createService');
-    Route::post('services/create', 'AdminRetailerController@storeService');
+    // Route::get('services/create', 'AdminRetailerController@createService');
+    // Route::post('services/create', 'AdminRetailerController@storeService');
     Route::get('services/{service}/edit', 'AdminRetailerController@editService');
     Route::post('services/{service}', 'AdminRetailerController@updateService');
     Route::get('services/{service}/delete', 'AdminRetailerController@deleteService');
     Route::post('services/{service}/delete', 'AdminRetailerController@destroyService');
     Route::get('services/data', 'AdminRetailerController@getDataService');
     Route::get('services', 'AdminRetailerController@listService');
+
+     # Deal Management
+    Route::get('deals/{deal}/edit', 'AdminRetailerController@editDeal');
+    Route::post('deals/{deal}', 'AdminRetailerController@updateDeal');
+    Route::get('deals/{deal}/delete', 'AdminRetailerController@deleteDeal');
+    Route::post('deals/{deal}/delete', 'AdminRetailerController@destroyDeal');
+    Route::get('deals/data', 'AdminRetailerController@getDataDeal');
+    Route::get('deals', 'AdminRetailerController@listDeal');
 
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');
