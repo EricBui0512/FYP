@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:17:58
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-03-12 17:36:34
+ * @Last Modified time: 2015-03-12 17:54:41
  */
 class AdminRetailerController extends AdminController {
 	
@@ -208,6 +208,24 @@ class AdminRetailerController extends AdminController {
 
     	return View::make( 'admin.deals.index', compact('title'));
     }
+
+    /**
+	 * Show the form for editing the specified deal.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function editDeal( $id )
+	{
+		$title = 'Edit Deal';
+
+		$deal = Deal::find( $id );
+
+		$services = Service::select(array('services.name','services.id'))->lists('name','id');
+
+        return View::make('admin.deals.edit', compact('deal', 'services', 'title'));
+
+	}
 
     public function getDataDeal( )
     {

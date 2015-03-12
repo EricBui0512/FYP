@@ -8,124 +8,85 @@
 		<!-- CSRF Token -->
 		<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 		<!-- ./ csrf token -->
-		<!-- Tabs -->
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#tab-create" data-toggle="tab">Service</a></li>
-			<li><a href="#tab-detail" data-toggle="tab">Detail</a></li>
-			<li><a href="#tab-condition" data-toggle="tab">Service Condition</a></li>
-		</ul>
+		
 		<!-- ./ tabs -->
 		<!-- Tabs Content -->
 		<div class="tab-content">
-			<!-- Service tab -->
+			<!-- deal tab -->
 			<div class="tab-pane active" id="tab-create">
-				<!-- country -->
-				<div class="form-group {{{ $errors->has('name') ? 'error' : '' }}}">
-					<label class="col-md-2 control-label" for="name">Name</label>
+				<!-- title -->
+				<div class="form-group {{{ $errors->has('title') ? 'error' : '' }}}">
+					<label class="col-md-2 control-label" for="title">Title</label>
 					<div class="col-md-10">
-						<input class="form-control" type="text" name="name" id="name" value="{{{ Input::old('name', isset($service) ? $service->name : null) }}}" />
-						{{ $errors->first('name', '<span class="help-inline">:message</span>') }}
+						<input class="form-control" type="text" name="title" id="title" value="{{{ Input::old('title', isset($deal) ? $deal->title : null) }}}" />
+						{{ $errors->first('title', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
-				<!-- ./ country -->
+				<!-- ./ title -->
 
-				<!-- city -->
-				<div class="form-group {{{ $errors->has('price') ? 'error' : '' }}}">
-					<label class="col-md-2 control-label" for="price">Price</label>
+				<!-- service -->
+				<div class="form-group {{{ $errors->has('service_id') ? 'error' : '' }}}">
+					<label class="col-md-2 control-label" for="service_id">Service</label>
 					<div class="col-md-10">
-						<input class="form-control" type="text" name="price" id="price" value="{{{ Input::old('price', isset($service) ? $service->price : null) }}}" />
-						{{ $errors->first('price', '<span class="help-inline">:message</span>') }}
+                    	{{ Form::select('service_id', $services, isset($deal) ? $deal->service_id : 0, array('class' => 'form-control m-b') ) }}
+						{{ $errors->first('service_id', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
-				<!-- ./ city -->
-					
-				<!-- Distric -->
-				<div class="form-group {{{ $errors->has('outlet_id') ? 'error' : '' }}}">
-					<label class="col-md-2 control-label" for="district">Outlet Name</label>
+				<!-- ./ service -->
+
+				<!-- amount -->
+				<div class="form-group {{{ $errors->has('amount') ? 'error' : '' }}}">
+					<label class="col-md-2 control-label" for="amount">Amount</label>
 					<div class="col-md-10">
-						{{ Form::Select( 'outlet_id', $outlets, (isset($service->outlet_id))?$service->outlet_id:0, array('class' => 'form-control m-b'))}}
-						{{ $errors->first('outlet_id', '<span class="help-inline">:message</span>') }}</div>
+						<input class="form-control" type="text" name="amount" id="amount" value="{{{ Input::old('amount', isset($deal) ? $deal->amount : null) }}}" />
+						{{ $errors->first('amount', '<span class="help-inline">:message</span>') }}
+					</div>
 				</div>
-				<!-- ./ Distric -->
+				<!-- ./ amount -->
+
+				<!-- discount -->
+				<div class="form-group {{{ $errors->has('discount') ? 'error' : '' }}}">
+					<label class="col-md-2 control-label" for="discount">Discount</label>
+					<div class="col-md-10">
+						<input class="form-control" type="text" name="discount" id="discount" value="{{{ Input::old('discount', isset($deal) ? $deal->discount : null) }}}" />
+						{{ $errors->first('discount', '<span class="help-inline">:message</span>') }}
+					</div>
+				</div>
+				<!-- ./ discount -->
 					
-				<!-- Images -->
-				<div class="form-group">
-		            {{ Form::label('image', 'Image',array('class'=>'col-lg-2 control-label')) }}
-		            <div class="col-lg-10">
-		              {{ $imageForm }}
-		            </div>
-	          	</div>
-				<!-- ./ Images -->
+				<!-- special request -->
+				<div class="form-group {{{ $errors->has('special_request') ? 'error' : '' }}}">
+					<label class="col-md-2 control-label" for="district">Special Request</label>
+					<div class="col-md-10">
+						<textarea placeholder="Special Request" class="form-control" rows="5" name="special_request">
+                     		{{ isset($deal) ? $deal->special_request : null }}
+                     	</textarea>
+						{{ $errors->first('special_request', '<span class="help-inline">:message</span>') }}</div>
+				</div>
+				<!-- ./ special request -->
+					
+				<!-- time slot -->
+				<div class="form-group {{{ $errors->has('time_slot') ? 'error' : '' }}}">
+					<label class="col-md-2 control-label" for="time_slot">Time Slod</label>
+					<div class="col-md-10">
+						<input class="form-control" type="date" name="time_slot" id="time_slot" value="{{{ Input::old('time_slot', isset($deal) ? $deal->time_slot : null) }}}" />
+						{{ $errors->first('time_slot', '<span class="help-inline">:message</span>') }}
+					</div>
+				</div>
+				<!-- ./ time slot -->
+				
+				<!-- remind time -->
+				<div class="form-group {{{ $errors->has('remind_time') ? 'error' : '' }}}">
+					<label class="col-md-2 control-label" for="remind_time">Remind Time</label>
+					<div class="col-md-10">
+						<input class="form-control" type="text" name="remind_time" id="remind_time" value="{{{ Input::old('remind_time', isset($deal) ? $deal->remind_time : null) }}}" />
+						{{ $errors->first('remind_time', '<span class="help-inline">:message</span>') }}
+					</div>
+				</div>
+				<!-- ./ remind time -->
 
 			</div>
-			<!-- ./ Service tab -->
-
-			<!-- Detail tab -->
-			<div class="tab-pane" id="tab-detail">
-				<!-- summary -->
-				<div class="form-group {{{ $errors->has('summary') ? 'error' : '' }}}">
-					<label class="col-md-2 control-label" for="summary">Summary</label>
-					<div class="col-md-10">
-						<textarea data-uk-markdownarea="{mode:'tab'}" name="summary" cols="75" rows="5">
-							{{ Input::old('summary',isset($service->detail->summary) ? $service->detail->summary:'')}}
-						</textarea>
-						{{ $errors->first('summary', '<span class="help-inline">:message</span>') }}
-					</div>
-				</div>
-				<!-- ./ summary -->
-
-				<!-- highlights -->
-				<div class="form-group {{{ $errors->has('highlights') ? 'error' : '' }}}">
-					<label class="col-md-2 control-label" for="highlights">Highlights</label>
-					<div class="col-md-10">
-						<textarea data-uk-markdownarea="{mode:'tab'}" name="highlights" cols="75" rows="5">
-							{{ Input::old('highlights',isset($service->detail->highlights) ? $service->detail->highlights:'')}}
-						</textarea>
-						{{ $errors->first('highlights', '<span class="help-inline">:message</span>') }}
-					</div>
-				</div>
-				<!-- ./ highlights -->
-					
-			</div>
-			<!-- ./ detail tab -->
-
-			<!-- condition tab -->
-			<div class="tab-pane" id="tab-condition">
-				<!-- special_condition -->
-				<div class="form-group {{{ $errors->has('special_condition') ? 'error' : '' }}}">
-					<label class="col-md-2 control-label" for="special_condition">Special Condition</label>
-					<div class="col-md-10">
-						<textarea data-uk-markdownarea="{mode:'tab'}" name="special_condition" cols="75" rows="5">
-							{{ Input::old('special_condition',isset($service->detail->special_condition) ? $service->detail->special_condition:'')}}
-						</textarea>
-						{{ $errors->first('special_condition', '<span class="help-inline">:message</span>') }}
-					</div>
-				</div>
-				<!-- ./ special_condition -->
-
-				<!-- condition1 -->
-				<div class="form-group {{{ $errors->has('condition1') ? 'error' : '' }}}">
-					<label class="col-md-2 control-label" for="condition1">Condition1</label>
-					<div class="col-md-10">
-						<textarea data-uk-markdownarea="{mode:'tab'}" name="condition1" cols="75" rows="5">
-							{{ Input::old('condition1',isset($service->detail->condition1) ? $service->detail->condition1:'')}}
-						</textarea>
-						{{ $errors->first('condition1', '<span class="help-inline">:message</span>') }}
-					</div>
-				</div>
-				<!-- ./ condition1 -->
-
-				<!-- condition2 -->
-				<div class="form-group {{{ $errors->has('condition2') ? 'error' : '' }}}">
-					<label class="col-md-2 control-label" for="condition2">Condition2</label>
-					<div class="col-md-10">
-						<textarea data-uk-markdownarea="{mode:'tab'}" name="condition2" cols="75" rows="5">
-							{{ Input::old('condition2',isset($service->detail->condition2) ? $service->detail->condition2:'')}}
-						</textarea>
-						{{ $errors->first('condition2', '<span class="help-inline">:message</span>') }}
-					</div>
-				</div>
-				<!-- ./ condition2 -->
+			<!-- ./ deal tab -->
 					
 			</div>
 			<!-- ./ condition tab -->
