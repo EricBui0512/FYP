@@ -74,14 +74,14 @@
 							<div >
 								<div class="form-group">
 									<label>Summary</label>
-									<textarea data-uk-markdownarea="{mode:'tab'}" name="summary">
+									<textarea class="ckeditor" name="summary">
 									{{ Input::old('summary',isset($service->detail->summary) ? $service->detail->summary:'')}}
 									</textarea>
 									{{ $errors->first('summary', '<span class="help-inline">:message</span>') }}
 								</div>
 								<div class="form-group">
 									<label>Highlights</label>
-									<textarea data-uk-markdownarea="{mode:'tab'}" name="highlights">
+									<textarea class="ckeditor" name="highlights">
 									{{ Input::old('highlights',isset($service->detail->highlights) ? $service->detail->highlights:'')}}
 									</textarea>
 								</div>
@@ -99,19 +99,19 @@
 							<div>
 								<div class="form-group">
 									<label>Special Condition</label>
-									<textarea data-uk-markdownarea="{mode:'tab'}" name="special_condition">
+									<textarea class="ckeditor" name="special_condition">
 										{{ Input::old('special_condition',isset($service->condition->special_condition) ? $service->condition->special_condition:'')}}
 									</textarea>
 								</div>
 								<div class="form-group">
 									<label>Condition 1</label>
-									<textarea data-uk-markdownarea="{mode:'tab'}" name="condition1">
+									<textarea class="ckeditor" name="condition1">
 										{{ Input::old('condition1',isset($service->condition->condition1) ? $service->condition->condition1:'')}}
 									</textarea>
 								</div>
 								<div class="form-group">
 									<label>Condition 2</label>
-									<textarea data-uk-markdownarea="{mode:'tab'}" name="condition2">
+									<textarea class="ckeditor" name="condition2">
 										{{ Input::old('condition2',isset($service->condition->condition2) ? $service->condition->condition2:'')}}
 									</textarea>
 								</div>

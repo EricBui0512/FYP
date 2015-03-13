@@ -6,12 +6,12 @@
           <a href="{{{URL::to('retailer/dashboard')}}}">Dashboard</a>
         </li>      
         <li>
-            <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
+            <!-- <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
                <em class="fa fa-flask"></em>
                <span class="item-text">Manage Address</span>
-            </a>
+            </a> -->
             <!-- START SubMenu item-->
-            <ul class="nav collapse ">
+           <!--  <ul class="nav collapse ">
                <li>
                   <a href="{{{URL::to('address/create')}}}" title="Buttons" data-toggle="" class="no-submenu">
                      <span class="item-text">Create Address</span>
@@ -23,7 +23,7 @@
                   </a>
                </li>
                
-            </ul>
+            </ul> -->
             <!-- END SubMenu item-->
          </li>
        <li>

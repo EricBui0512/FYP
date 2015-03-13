@@ -51,7 +51,7 @@
    <script src="{{asset('assets/vendor/codemirror/mode/xml/xml.js')}}"></script>
    <script src="{{asset('assets/vendor/codemirror/mode/gfm/gfm.js')}}"></script>
    <script src="{{asset('assets/vendor/marked/marked.js')}}"></script>-->
-   <script src="{{asset('assets/js/ckeditor/ckeditor.js')}}"></script>
+   <script src="//cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
 </head>
 
 <body>
