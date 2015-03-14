@@ -42,7 +42,7 @@ class Address extends \Eloquent {
 	}
 	public static function getHtmlByOutlet( $addressId )
 	{
-		$address = $this->find( $addressId );
+		$address = Address::find( $addressId );
 
 		if ( ! ( empty( $address ) ) )
 		{
