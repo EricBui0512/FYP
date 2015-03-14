@@ -14,15 +14,15 @@
        </div>
        <!-- START table-responsive-->
        <div class="table-responsive">
-          <table id="table-ext-1" class="table table-bordered table-hover">
+          <table class="table table-striped table-hover">
              <thead>
                 <tr>
-                   <th>ID</th>
-                   <th>Name</th>
-                   <th>Website</th>
-                   <td>Phone</td>
-                   <th>Create day</th>
-                   <th>Action</th>         
+                   <th class="col-md-1">ID</th>
+                   <th class="col-md-4">Name</th>
+                   <th class="col-md-3">Website</th>
+                   <th class="col-md-1">Phone</th>
+                   <th class="col-md-2">Create day</th>
+                   <th class="col-md-1">Action</th>         
                 </tr>
              </thead>
              <tbody>
@@ -56,19 +56,9 @@
        <!-- END table-responsive-->
        <div class="panel-footer">
           <div class="row">
-            <div class="col-lg-2 ">
-	            <ul class="pagination pagination-sm">
-	               <li class="active"><a href="#">1</a>
-	               </li>
-	               <li><a href="#">2</a>
-	               </li>
-	               <li><a href="#">3</a>
-	               </li>
-	               <li><a href="#">»</a>
-	               </li>
-	            </ul>
-	        </div>
-             <div class="col-lg-8"></div>
+            <div class="col-lg-12 text-center">
+              {{ $outlets->links() }}
+	          </div>
              
           </div>
        </div>

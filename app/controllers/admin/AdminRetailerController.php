@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:17:58
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-03-01 21:46:45
+ * @Last Modified time: 2015-03-12 17:54:41
  */
 class AdminRetailerController extends AdminController {
 	
@@ -35,10 +35,10 @@ class AdminRetailerController extends AdminController {
 
 		$countries = Country::lists('country', 'id' );
 		$cities = City::where( 'country_id', $retailer->country_id )->lists('city', 'id');
+		$addresses = Address::where( 'city_id', $retailer->city_id )->lists('address', 'id');
 
 		$cats = BusinessCategory::lists( 'name', 'id');
-
-		return View::make('admin.retailers.edit', compact('retailer', 'cats', 'title', 'countries', 'cities'));
+		return View::make('admin.retailers.edit', compact('retailer', 'cats', 'title', 'countries', 'cities','addresses'));
 	}
 
 	/**
@@ -52,15 +52,17 @@ class AdminRetailerController extends AdminController {
 		$retailer = Retailer::findOrFail($id);
 
 		$validator = Validator::make($data = Input::all(), Retailer::$rules);
-
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
-
 		$retailer->update($data);
+		$countries = Country::lists('country', 'id' );
+		$cities = City::where( 'country_id', $retailer->country_id )->lists('city', 'id');
+		$addresses = Address::where( 'city_id', $retailer->city_id )->lists('address', 'id');
 
-		return Redirect::route('admin.retailers.index');
+		$cats = BusinessCategory::lists( 'name', 'id');
+		return Redirect::to('admin/retailers/' . $retailer->id . '/edit')->with('success','Update retailer');
 	}
 
 	/**
@@ -108,7 +110,7 @@ class AdminRetailerController extends AdminController {
 
     	$outlets = Outlet::lists( 'name', 'id' );
 
-    	return View::make( 'admin.services.index', compact('title', 'outlets'));
+    	return View::make( 'admin.services.index', compact('title', 'outlets', 'services'));
     }
 
     /**
@@ -117,15 +119,17 @@ class AdminRetailerController extends AdminController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function editService( $id )
+	public function editService( $service )
 	{
 		$title = 'Edit Service';
 
-		$service = Service::findOne( $id );
-
 		$outlets = Outlet::lists( 'name', 'id' );
+		$images = Picture::getByRefId( $service->id, 'service');
 
-		return View::make('admin.services.edit', compact('service', 'title', 'outlets' ));
+		return View::make('admin.services.edit', compact('service', 'outlets', 'title'))
+            ->nest('imageForm', 'site.partials.image.create', ['refId' => $service->id, 'type' => 'service', 'images' => $images]);
+
+		// return View::make('admin.services.edit', compact('service', 'title', 'outlets' ));
 	}
 
 	/**
@@ -175,21 +179,69 @@ class AdminRetailerController extends AdminController {
      *
      * @return Datatables JSON
      */
-    public function getDataService( $outletId = 0 )
+    public function getDataService( )
     {
-        $services = Retailer::select(array('id','name','price','active','time_operate'));
+        $services = Service::select(array('id','name','price','status','time_operate', 'created_at', 'updated_at'))
+        	->where('status', 'active');
 
-        if ( $outletId )
-        {
-        	$services->where( 'outlet_id', $outletId );
-        }
+        // if ( $outletId )
+        // {
+        // 	$services->where( 'outlet_id', $outletId );
+        // }
 
         return Datatables::of($services)
 
-	        ->edit_column('active','{{{ $active ? "Yes":"No" }}}')
+	        // ->edit_column('active','{{{ $active ? "Yes":"No" }}}')
 
 	        ->add_column('actions', '<a href="{{{ URL::to(\'admin/services/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-xs btn-default">{{{ Lang::get(\'button.edit\') }}}</a>
 	                                <a href="{{{ URL::to(\'admin/services/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-xs btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
+	            ')
+
+	        ->remove_column('id')
+
+	        ->make();
+    }
+
+    public function listDeal() {
+
+    	$title = 'Manage Deal';
+
+    	return View::make( 'admin.deals.index', compact('title'));
+    }
+
+    /**
+	 * Show the form for editing the specified deal.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function editDeal( $id )
+	{
+		$title = 'Edit Deal';
+
+		$deal = Deal::find( $id );
+
+		$services = Service::select(array('services.name','services.id'))->lists('name','id');
+
+        return View::make('admin.deals.edit', compact('deal', 'services', 'title'));
+
+	}
+
+    public function getDataDeal( )
+    {
+        $deals = Deal::select(array('id','title','amount','discount','time_slot', 'created_at', 'updated_at'));
+
+        // if ( $outletId )
+        // {
+        // 	$services->where( 'outlet_id', $outletId );
+        // }
+
+        return Datatables::of($deals)
+
+	        // ->edit_column('active','{{{ $active ? "Yes":"No" }}}')
+
+	        ->add_column('actions', '<a href="{{{ URL::to(\'admin/deals/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-xs btn-default">{{{ Lang::get(\'button.edit\') }}}</a>
+	                                <a href="{{{ URL::to(\'admin/deals/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-xs btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
 	            ')
 
 	        ->remove_column('id')

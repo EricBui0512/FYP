@@ -23,6 +23,7 @@
    <link rel="stylesheet" href="{{asset('assets/vendor/slider/css/slider.css')}}">
    <link rel="stylesheet" href="{{asset('assets/vendor/chosen/chosen.min.css')}}">
    <link rel="stylesheet" href="{{asset('assets/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
+
    <!-- Codemirror -->
    <link rel="stylesheet" href="{{asset('assets/vendor/codemirror/lib/codemirror.css')}}">
    <!-- Bootstrap tags-->
@@ -34,6 +35,7 @@
    <link rel="stylesheet" href="{{asset('assets/vendor/animo/animate+animo.css')}}">
    <link rel="stylesheet" href="{{asset('assets/vendor/csspinner/csspinner.min.css')}}">
    <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
+   <link rel="stylesheet" href="{{asset('assets/css/framework.css')}}">
    <!-- START Page Custom CSS-->
    <!-- END Page Custom CSS-->
    <!-- App CSS-->
@@ -42,13 +44,14 @@
    <script src="{{asset('assets/vendor/modernizr/modernizr.js')}}" ></script>
    <!-- FastClick for mobiles-->
    <script src="{{asset('assets/vendor/fastclick/fastclick.js')}}"></script>
-    <!-- Markdown Area Codemirror and dependencies -->
+    <!-- Markdown Area Codemirror and dependencies 
    <script src="{{asset('assets/vendor/codemirror/lib/codemirror.js')}}"></script>
    <script src="{{asset('assets/vendor/codemirror/addon/mode/overlay.js')}}"></script>
    <script src="{{asset('assets/vendor/codemirror/mode/markdown/markdown.js')}}"></script>
    <script src="{{asset('assets/vendor/codemirror/mode/xml/xml.js')}}"></script>
    <script src="{{asset('assets/vendor/codemirror/mode/gfm/gfm.js')}}"></script>
-   <script src="{{asset('assets/vendor/marked/marked.js')}}"></script>
+   <script src="{{asset('assets/vendor/marked/marked.js')}}"></script>-->
+   <script src="//cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
 </head>
 
 <body>

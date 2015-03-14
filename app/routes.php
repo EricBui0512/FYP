@@ -107,19 +107,27 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::resource('outlets', 'AdminOutletsController');
 
     Route::get('retailers/data', 'AdminRetailerController@getData');
+    Route::post('retailers/{retailerId}/edit', 'AdminRetailerController@update');
     Route::get('retailers/{retailerId}/delete', 'AdminRetailerController@getData');
     Route::resource('retailers', 'AdminRetailerController');
 
     # Service Management
-    Route::get('services/create', 'AdminRetailerController@createService');
-    Route::post('services/create', 'AdminRetailerController@storeService');
+    // Route::get('services/create', 'AdminRetailerController@createService');
+    // Route::post('services/create', 'AdminRetailerController@storeService');
     Route::get('services/{service}/edit', 'AdminRetailerController@editService');
     Route::post('services/{service}', 'AdminRetailerController@updateService');
     Route::get('services/{service}/delete', 'AdminRetailerController@deleteService');
     Route::post('services/{service}/delete', 'AdminRetailerController@destroyService');
-    Route::get('services/data/{outletId}', 'AdminRetailerController@getServicees')
-        ->where('cityId', '\d+')->where('countryId','\d+');
+    Route::get('services/data', 'AdminRetailerController@getDataService');
     Route::get('services', 'AdminRetailerController@listService');
+
+     # Deal Management
+    Route::get('deals/{deal}/edit', 'AdminRetailerController@editDeal');
+    Route::post('deals/{deal}', 'AdminRetailerController@updateDeal');
+    Route::get('deals/{deal}/delete', 'AdminRetailerController@deleteDeal');
+    Route::post('deals/{deal}/delete', 'AdminRetailerController@destroyDeal');
+    Route::get('deals/data', 'AdminRetailerController@getDataDeal');
+    Route::get('deals', 'AdminRetailerController@listDeal');
 
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');
@@ -157,6 +165,7 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::post('deal/create','RetailersController@storeDeal');
     Route::get('deal/{deal}/edit', 'RetailersController@editDeal');
     Route::post('deal/create','RetailersController@storeDeal');
+    Route::get('deal/tran/{deal}','OutletsController@listTranByDeal');
 
      # Address Management
     Route::get('address/create', array( 'as' => 'address.create', 'uses' =>'RetailersController@createAddress'));

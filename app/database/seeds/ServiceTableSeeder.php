@@ -21,7 +21,7 @@ class ServiceTableSeeder extends Seeder {
             $sv->name = $service;
             // $sv->admin_id = $adminId;
             $sv->outlet_id = rand(1,4);
-            $sv->active = 1;
+            $sv->status = 'active';
             $sv->created_at = new DateTime;
             $sv->updated_at = new DateTime;
 

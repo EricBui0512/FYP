@@ -13,19 +13,6 @@ class OutletsController extends \BaseController {
 	}
 
 	/**
-	 * Display a listing of outlets
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-
-		$outlets = Outlet::owner()->get();
-
-		return View::make('site.outlets.index', compact('outlets'));
-	}
-
-	/**
 	 * Show the form for creating a new outlet
 	 *
 	 * @return Response
@@ -59,7 +46,7 @@ class OutletsController extends \BaseController {
 	 */
 	public function getList()
 	{
-		$outlets = Outlet::owner()->active()->get();
+		$outlets = Outlet::owner()->active()->paginate(10);
 		$title = Lang::get('site/outlets/title.outlet_management');
 
 		return View::make('site.outlets.index', compact('outlets', 'title'));
@@ -201,4 +188,11 @@ class OutletsController extends \BaseController {
 
 	}
 
+	public function listTranByDeal( $id )
+	{
+		$trans = DealTransaction::byDeal( $id );
+		$deal = Deal::find( $id );
+
+		return View::make( 'site.transactions.index', compact('trans', 'deal'));
+	}
 }

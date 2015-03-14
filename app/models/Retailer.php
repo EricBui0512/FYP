@@ -9,7 +9,6 @@ class Retailer extends \Eloquent {
 		'company_register_id' => 'required',
 		'name' => 'required',
 		'website' => 'url',
-		'summary' => 'required'
 	];
 
 	// Don't forget to fill this array
@@ -32,7 +31,7 @@ class Retailer extends \Eloquent {
 
 	public static function findOne( $id ) {
 
-  		$retailer = Retailer::select( array( 'retailers.id', 'admin_id', 'category_id',
+  		$retailer = Retailer::select( array( 'retailers.id', 'admin_id', 'category_id','address_id',
 		  		'company_register_id', 'retailers.name', 'website', 'retailers.created_at',
 		  		'retailers.updated_at', 'cities.id AS city_id', 'cities.country_id') )
   			->leftJoin( 'addresses', 'addresses.id', '=', 'retailers.address_id')

@@ -538,7 +538,7 @@ CREATE TABLE `deal_transactions` (
   `qty` smallint(4) DEFAULT NULL,
   `amount` decimal(10,2) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
-  `crated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)

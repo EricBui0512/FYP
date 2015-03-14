@@ -47,7 +47,7 @@
 				<div class="form-group {{{ $errors->has('country_id') ? 'error' : '' }}}">
 					<label class="col-md-2 control-label" for="country_id">Country</label>
 					<div class="col-md-10">
-						{{ Form::select('country_id', $countries,257,array('class'=>'form-control','id'=>'country_id') )}}
+						{{ Form::select('country_id', $countries,isset($retailer) ? $retailer->country_id : '',array('class'=>'form-control','id'=>'country_id') )}}
 						{{ $errors->first('country_id', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
@@ -57,7 +57,7 @@
 				<div class="form-group {{{ $errors->has('city_id') ? 'error' : '' }}}">
 					<label class="col-md-2 control-label" for="city_id">City</label>
 					<div class="col-md-10">
-						{{ Form::select('city_id', $countries,257,array('class'=>'form-control','id'=>'city_id') )}}
+						{{ Form::select('city_id', $cities,isset($retailer) ? $retailer->city_id : '',array('class'=>'form-control','id'=>'city_id') )}}
 						{{ $errors->first('city_id', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
@@ -67,7 +67,7 @@
 				<div class="form-group {{{ $errors->has('address_id') ? 'error' : '' }}}">
 					<label class="col-md-2 control-label" for="address_id">Address</label>
 					<div class="col-md-10">
-						{{ Form::select('address_id', $cities,257,array('class'=>'form-control','id'=>'address_id') )}}
+						{{ Form::select('address_id', $addresses,isset($retailer) ? $retailer->address_id : '',array('class'=>'form-control','id'=>'address_id') )}}
 						{{ $errors->first('address_id', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>

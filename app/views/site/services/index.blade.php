@@ -52,23 +52,10 @@
           </table>
        </div>
        <!-- END table-responsive-->
-       <!-- <div class="panel-footer">
+       <div class="panel-footer">
           <div class="row">
-            <div class="col-lg-2 ">
-	            <ul class="pagination pagination-sm">
-	               <li class="active"><a href="#">1</a>
-	               </li>
-	               <li><a href="#">2</a>
-	               </li>
-	               <li><a href="#">3</a>
-	               </li>
-	               <li><a href="#">»</a>
-	               </li>
-	            </ul>
-	        </div>
-             <div class="col-lg-8"></div>
-             
+            <div class="col-lg-12">{{ $services->links() }}</div>
           </div>
-       </div> -->
+       </div>
 	</div>
 @stop  

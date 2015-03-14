@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
 
     <link rel="stylesheet" href="{{asset('assets/fonts/index/icon-fonts/styles.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/framework.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/index/pixeden-icons.css')}}">
 
     <!-- CUSTOM STYLES -->
@@ -56,7 +57,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="./" class="navbar-brand">
+                    <a href="{{{URL::to('/')}}}" class="navbar-brand">
                         <img src="{{asset('assets/img/index/logo.png')}}">
                         <!-- <div class="logo">Booking.com</div> -->
                     </a>
@@ -97,10 +98,10 @@
                     <img src="{{asset($detail->big_img)}}" class="img-responsive"> 
                 </div>
                 <div class="col-md-7">
-                    <p>{{$detail->title}}</p>
-                    <p>Amount : ${{$detail->amount}}</p>
-                    <p>Discount : ${{$detail->discount}}</p>
-                    <button type="button" class="btn btn-primary">Purchase</button>
+                    <h3>{{$detail->title}}</h3>
+                    <span class="tdlt fs13"> ${{$detail->amount}}</span>
+                    <span>${{$detail->discount}}</span>
+                    <button type="button" class="btn bt-spa">Purchase</button>
                 </div>
             </div>
             
