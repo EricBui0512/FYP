@@ -326,42 +326,34 @@ class OutletsController extends \BaseController {
         // $type = Input::get('type');
 
         $chats = array(
-                array( 'category' => 'Day 1', 'value' => 2),
-                array( 'category' => 'Day 2', 'value' => 2),
-                array( 'category' => 'Day 3', 'value' => 2),
-                array( 'category' => 'Day 4', 'value' => 2),
-                array( 'category' => 'Day 1', 'value' => 2),
-                array( 'category' => 'Day 2', 'value' => 2),
-                array( 'category' => 'Day 3', 'value' => 2),
-                array( 'category' => 'Day 4', 'value' => 2),
-                array( 'category' => 'Day 1', 'value' => 2),
-                array( 'category' => 'Day 2', 'value' => 2),
-                array( 'category' => 'Day 3', 'value' => 2),
-                array( 'category' => 'Day 4', 'value' => 2),
-                array( 'category' => 'Day 1', 'value' => 2),
-                array( 'category' => 'Day 2', 'value' => 2),
-                array( 'category' => 'Day 3', 'value' => 2),
-                array( 'category' => 'Day 4', 'value' => 2),
+                array( 'category' => '27/02', 'value' => 1),
+                array( 'category' => '28/02', 'value' => 2),
+                array( 'category' => '01/03', 'value' => 4),
+                array( 'category' => '02/03', 'value' => 6),
+                array( 'category' => '03/03', 'value' => 7),
+                array( 'category' => '04/03', 'value' => 8),
+                array( 'category' => '05/03', 'value' => 2),
+                array( 'category' => '06/03', 'value' => 8),
+                array( 'category' => '07/03', 'value' => 26),
+                array( 'category' => '08/03', 'value' => 17),
+                array( 'category' => '09/03', 'value' => 2),
+                array( 'category' => '10/03', 'value' => 2),
+                array( 'category' => '11/03', 'value' => 13),
+                array( 'category' => '12/03', 'value' => 34),
+                array( 'category' => '13/03', 'value' => 1),
+                array( 'category' => '14/03', 'value' => 20),
             );
 
-        if ( $type == 'day' ) {
+        if ( $type == 'month' ) {
             $chats = array(
-                array( 'category' => 'Day 1', 'value' => 12),
-                array( 'category' => 'Day 12', 'value' => 12),
-                array( 'category' => 'Day 3', 'value' => 12),
-                array( 'category' => 'Day 4', 'value' => 12),
-                array( 'category' => 'Day 1', 'value' => 12),
-                array( 'category' => 'Day 12', 'value' => 12),
-                array( 'category' => 'Day 3', 'value' => 12),
-                array( 'category' => 'Day 4', 'value' => 2),
-                array( 'category' => 'Day 1', 'value' => 2),
-                array( 'category' => 'Day 2', 'value' => 2),
-                array( 'category' => 'Day 3', 'value' => 2),
-                array( 'category' => 'Day 4', 'value' => 2),
-                array( 'category' => 'Day 1', 'value' => 2),
-                array( 'category' => 'Day 2', 'value' => 2),
-                array( 'category' => 'Day 3', 'value' => 2),
-                array( 'category' => 'Day 4', 'value' => 2),
+                array( 'category' => '02/2015', 'value' => 3),
+                array( 'category' => '03/2015', 'value' => 147),
+            );
+        }
+        else if ( $type == 'year') {
+
+        	$chats = array(
+                array( 'category' => '2015', 'value' => 150),
             );
         }
         echo json_encode($chats);

@@ -47,7 +47,8 @@ class Deal extends \Eloquent {
 			->leftJoin('outlets','outlets.id','=','services.outlet_id')
 			->leftJoin('addresses','addresses.id','=','outlets.address_id')
 			->leftJoin('cities', 'cities.id','=','addresses.city_id')
-			->leftJoin('retailers','retailers.id','=','outlets.retailer_id');
+			->leftJoin('retailers','retailers.id','=','outlets.retailer_id')
+			->where('deals.status', 'active');
 		
 		if ( $categoryId )
 		{
@@ -111,6 +112,7 @@ class Deal extends \Eloquent {
 				$join->on('images.ref_id','=','services.id')
 					->where('images.image_type', '=', 'service');
 			})
+			->where('deals.status', 'active')
 			->where('admin_id', Auth::id())
 			->where('time_slot', '>=', date('Y-m-d'))
 			->orderBy('outlets.id')
