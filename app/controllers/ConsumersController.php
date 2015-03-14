@@ -136,4 +136,11 @@ class ConsumersController extends \BaseController {
         return Redirect::to('transaction')->with('error', 'There was an issue cancelling the transaction. Please try again.');
 
     }
+
+    public function getTrans()
+    {
+        $transaction=new DealTransaction();
+        $transaction=$transaction->whereConsumer_id(Auth::user()->id)->get();
+        return View::make('site.purchase.listbill',compact('transaction'));
+    }
 }
