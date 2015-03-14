@@ -128,6 +128,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::post('deals/{deal}/delete', 'AdminRetailerController@destroyDeal');
     Route::get('deals/data', 'AdminRetailerController@getDataDeal');
     Route::get('deals', 'AdminRetailerController@listDeal');
+    Route::get('deals/active/{id}', 'AdminRetailerController@activeDeal');
 
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');
@@ -148,7 +149,7 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     // Route::post('service/create', array( 'as' => 'service.create', 'uses' => 'RetailersController@storeService'));
     Route::get('service/{service}/edit', array( 'as' => 'service.edit', 'uses' => 'RetailersController@editService'));
     Route::post('service/{service}', array( 'as' => 'service.edit', 'uses' => 'RetailersController@updateService'));
-    Route::delete('service/{service}', array( 'as' => 'service.delete', 'uses' => 'RetailersController@destroyService'));
+    Route::post('service/delete', array( 'as' => 'service.delete', 'uses' => 'RetailersController@destroyService'));
     Route::get('service', array( 'as' => 'service.index', 'uses' => 'RetailersController@listService'));
     #outlet manager
     Route::get('outlet/create', array( 'as' => 'outlet.create', 'uses' => 'OutletsController@create'));
@@ -160,12 +161,14 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::post('outlet/uploadimage', array( 'as' => 'outlet.uploadimage', 'uses' => 'OutletsController@uploadimage'));
 
     #deals manager
-    Route::get('deal', array('as'=> 'deal.index','uses' => 'RetailersController@listDeal'));
-    Route::get('deal/create', 'RetailersController@createDeal');
-    Route::post('deal/create','RetailersController@storeDeal');
-    Route::get('deal/{deal}/edit', 'RetailersController@editDeal');
-    Route::post('deal/create','RetailersController@storeDeal');
+    Route::get('deal', array('as'=> 'deal.index','uses' => 'OutletsController@listDeal'));
+    Route::get('deal/create', 'OutletsController@createDeal');
+    Route::post('deal/create','OutletsController@storeDeal');
+    Route::get('deal/{deal}/edit', 'OutletsController@editDeal');
+    Route::post('deal/create','OutletsController@storeDeal');
     Route::get('deal/tran/{deal}','OutletsController@listTranByDeal');
+    Route::get('deal/charts/{type}','OutletsController@getChartsData');
+    Route::get('deal/cancellation','OutletsController@cancellationDeal');
 
      # Address Management
     Route::get('address/create', array( 'as' => 'address.create', 'uses' =>'RetailersController@createAddress'));

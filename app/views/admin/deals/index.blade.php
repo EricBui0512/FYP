@@ -14,8 +14,9 @@
 				<th class="col-md-3">Title</th>
 				<th class="col-md-1">Amount</th>
 				<th class="col-md-1">Discount</th>
+				<th class="col-md-1">Status</th>
 				<th class="col-md-1">Time Slot</th>
-				<th class="col-md-2">Created at</th>
+				<th class="col-md-1">Created at</th>
 				<th class="col-md-2">Updated at</th>
 				<th class="col-md-2">Actions</th>
 			</tr>

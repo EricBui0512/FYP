@@ -107,6 +107,7 @@ class OutletsController extends \BaseController {
 		else
 		{
 			$desc = OutletDescription::create( $description );
+			$data['description_id'] = $desc->id;
 		}
 
 		$addressData = array( 'city_id' => $data['city_id'], 'address' => $data['address']);
@@ -118,13 +119,12 @@ class OutletsController extends \BaseController {
 		else
 		{
 			$address = Address::create( $addressData );
+			$data['address_id'] = $address->id;
 		}
 		
 		unset( $data['full_description'] );
 		unset( $data['address']);
 
-		$data['description_id'] = $desc->id;
-		$data['address_id'] = $address->id;
 		$data['status'] = 'active';
 
 		if ( $outlet->update($data) )
@@ -195,4 +195,175 @@ class OutletsController extends \BaseController {
 
 		return View::make( 'site.transactions.index', compact('trans', 'deal'));
 	}
+
+	/**
+	 * Remove the specified service from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function createDeals()
+	{
+		return View::make('site.deals.create');
+	}
+
+
+    /**
+     * Display a listing of services
+     *
+     * @return Response
+     */
+    public function listDeal()
+    {
+        $title = 'Deals Manage';
+        $deals = Deal::owner()->paginate(10);
+
+        return View::make('site.deals.index', compact('deals','title'));
+    }
+
+    /**
+     * Show the form for creating a new service
+     *
+     * @return Response
+     */
+    public function createDeal()
+    {
+
+        $services = Service::select(array('services.name','services.id'))->owner()->lists('name','id');
+
+        return View::make('site.deals.create', compact('services'));
+    }
+
+    /**
+     * Store a newly created service in storage.
+     *
+     * @return Response
+     */
+    public function storeDeal()
+    {
+
+        $validator = Validator::make( $data = Input::all(), Deal::$rules );
+
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        if (Deal::create($data))
+        {
+            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.create.success'));
+        }
+
+        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.create.error'));
+    }
+
+
+    /**
+     * Show the form for editing the specified service.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function editDeal($id)
+    {
+        $deal = Deal::find($id);
+        $services = Service::select(array('services.name','services.id'))->owner()->lists('name','id');
+
+        return View::make('site.deals.edit', compact('deal', 'services'));
+    }
+
+    /**
+     * Update the specified service in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function updateDeal($id)
+    {
+        $deal = Deals::findOrFail($id);
+
+        $validator = Validator::make($data = Input::all(), Deal::$rules);
+
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        if ( $deal->update($data) )
+        {
+            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.update.success'));
+        }
+
+        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.update.error'));
+    }
+
+    /**
+     * Remove the specified service from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroyDeal($id)
+    {
+        if (Deal::destroy($id))
+        {
+            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.delete.success'));
+        }
+
+        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.delete.error'));
+    }
+
+    public function cancellationDeal()
+    {
+    	$title = 'Cancellation Deal';
+        $deals = DealTransaction::cancellation();
+
+        return View::make('site.deals.cancellation', compact('deals','title'));
+    }
+
+    public function getChartsData( $type )
+    {
+        // $type = Input::get('type');
+
+        $chats = array(
+                array( 'category' => 'Day 1', 'value' => 2),
+                array( 'category' => 'Day 2', 'value' => 2),
+                array( 'category' => 'Day 3', 'value' => 2),
+                array( 'category' => 'Day 4', 'value' => 2),
+                array( 'category' => 'Day 1', 'value' => 2),
+                array( 'category' => 'Day 2', 'value' => 2),
+                array( 'category' => 'Day 3', 'value' => 2),
+                array( 'category' => 'Day 4', 'value' => 2),
+                array( 'category' => 'Day 1', 'value' => 2),
+                array( 'category' => 'Day 2', 'value' => 2),
+                array( 'category' => 'Day 3', 'value' => 2),
+                array( 'category' => 'Day 4', 'value' => 2),
+                array( 'category' => 'Day 1', 'value' => 2),
+                array( 'category' => 'Day 2', 'value' => 2),
+                array( 'category' => 'Day 3', 'value' => 2),
+                array( 'category' => 'Day 4', 'value' => 2),
+            );
+
+        if ( $type == 'day' ) {
+            $chats = array(
+                array( 'category' => 'Day 1', 'value' => 12),
+                array( 'category' => 'Day 12', 'value' => 12),
+                array( 'category' => 'Day 3', 'value' => 12),
+                array( 'category' => 'Day 4', 'value' => 12),
+                array( 'category' => 'Day 1', 'value' => 12),
+                array( 'category' => 'Day 12', 'value' => 12),
+                array( 'category' => 'Day 3', 'value' => 12),
+                array( 'category' => 'Day 4', 'value' => 2),
+                array( 'category' => 'Day 1', 'value' => 2),
+                array( 'category' => 'Day 2', 'value' => 2),
+                array( 'category' => 'Day 3', 'value' => 2),
+                array( 'category' => 'Day 4', 'value' => 2),
+                array( 'category' => 'Day 1', 'value' => 2),
+                array( 'category' => 'Day 2', 'value' => 2),
+                array( 'category' => 'Day 3', 'value' => 2),
+                array( 'category' => 'Day 4', 'value' => 2),
+            );
+        }
+        echo json_encode($chats);
+    }
 }

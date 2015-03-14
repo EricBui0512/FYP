@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:06:32
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-03-13 22:53:32
+ * @Last Modified time: 2015-03-14 16:05:39
  */
 
 class AdminOutletsController extends AdminController {
@@ -81,7 +81,8 @@ class AdminOutletsController extends AdminController {
     public function getData()
     {
 
-        $outlets = Outlet::select(array('id', 'name', 'outlet_register_id', 'website', 'operation_hour', 'rate', 'status', 'created_at', 'updated_at'));
+        $outlets = Outlet::select(array('id', 'name', 'outlet_register_id', 'website', 'operation_hour', 'rate', 'status', 'created_at', 'updated_at'))
+        		->where('status', 'active');
 
         return Datatables::of($outlets)
         // ->edit_column('created_at','{{{ Carbon::now()->diffForHumans(Carbon::createFromFormat(\'Y-m-d H\', $test)) }}}')

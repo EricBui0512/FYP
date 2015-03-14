@@ -89,7 +89,7 @@ Create Outlet
           <div class="form-group">
             <label class="col-lg-2 control-label">Address</label>
             <div class="col-lg-8">
-              <input type="text" placeholder="address" name="address" class="form-control" value="{{{ Input::old('address', isset($outlet->address) ? $outlet->address->address :  $outlet->addressw) }}}">
+              <input type="text" placeholder="address" name="address" class="form-control" value="{{{ Input::old('address', isset($outlet->address) ? $outlet->address->address : '') }}}">
               {{ $errors->first('address', '<span class="help-inline">:message</span>') }}
             </div>
           </div>

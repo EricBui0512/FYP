@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:17:58
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-03-12 17:54:41
+ * @Last Modified time: 2015-03-14 22:43:36
  */
 class AdminRetailerController extends AdminController {
 	
@@ -229,7 +229,7 @@ class AdminRetailerController extends AdminController {
 
     public function getDataDeal( )
     {
-        $deals = Deal::select(array('id','title','amount','discount','time_slot', 'created_at', 'updated_at'));
+        $deals = Deal::select(array('id','title','amount','discount','status', 'time_slot', 'created_at', 'updated_at'));
 
         // if ( $outletId )
         // {
@@ -242,10 +242,23 @@ class AdminRetailerController extends AdminController {
 
 	        ->add_column('actions', '<a href="{{{ URL::to(\'admin/deals/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-xs btn-default">{{{ Lang::get(\'button.edit\') }}}</a>
 	                                <a href="{{{ URL::to(\'admin/deals/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-xs btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
+	                                <a href="javascript:void(0)" id="{{{ $id }}}" class="btn btn-xs btn-success active {{{ $status==\'active\'? \'disabled\':\'\'}}}">Active</a>
 	            ')
 
 	        ->remove_column('id')
 
 	        ->make();
+    }
+
+    public function activeDeal( $id )
+    {
+    	if ( Deal::where('id', $id)->update(array('status' => 'active')) )
+    	{
+    		echo json_encode(array('code' => 0, 'messages' => 'Active successfully'));
+    	}
+    	else
+    	{
+			echo json_encode(array('code' => 1, 'messages' => "Can't active"));
+    	}
     }
 }

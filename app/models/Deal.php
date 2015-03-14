@@ -117,6 +117,7 @@ class Deal extends \Eloquent {
 			->get();
 // $d = DB::getQueryLog();
 // var_dump($d);die;
+
 		return $deal;
 	}
 }

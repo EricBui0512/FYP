@@ -85,6 +85,11 @@
                    <span class="item-text">List Deals</span>
                 </a>
              </li>
+             <li>
+                <a href="{{{URL::to('deal/cancellation')}}}" title="Notifications" data-toggle="" class="no-submenu">
+                   <span class="item-text">Cancellation</span>
+                </a>
+             </li>
              
           </ul>
           <!-- END SubMenu item-->

@@ -36,6 +36,10 @@ class RetailersController extends \BaseController {
      */
     public function getDashboard()
     {
+
+        $thisWeek = DealTransaction::thisWeek();
+        $pastWeek = DealTransaction::pastWeek();
+
         $user = Auth::user();
         $outletsArray = array();
         $dealsArray = array();
@@ -61,8 +65,10 @@ class RetailersController extends \BaseController {
             }
         }
 
-        return View::make('site.retailers.dashboard', compact('user', 'outletsArray'));
+        return View::make('site.retailers.dashboard', compact('user', 'outletsArray', 'thisWeek','pastWeek'));
     }
+
+    
 
 	/**
 	 * Show the form for creating a new retailer
@@ -242,7 +248,7 @@ class RetailersController extends \BaseController {
 
         $condition = Input::only('special_condition','condition1','condition2');
         $data = Input::except('highlights','special_condition','condition1','condition2');
-
+        
         $validator = Validator::make( $data, Service::$rules );
 
         if ($validator->fails())
@@ -250,14 +256,35 @@ class RetailersController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
-        // update detail service
-        $serviceDetail = ServiceDetail::where('id', $service->detail_id)
-                ->update( $detail );
+        if ( $service->detail_id)
+        {
+            // update detail service
+            ServiceDetail::where('id', $service->detail_id)
+                    ->update( $detail );
+        }
+        else
+        {
+            // update detail service
+            $serviceDetail = ServiceDetail::create( $detail );
 
-        // create condition service
-        $serviceCondition = ServiceCondition::where('id', $service->condition_id)
-                ->update( $condition );
+            $data['detail_id'] = $serviceDetail->id;
+        }
 
+        if ( $service->condition_id )
+        {
+            // create condition service
+            ServiceCondition::where('id', $service->condition_id)
+                    ->update( $condition );
+        }
+        else
+        {
+            $serviceCondition = ServiceCondition::create( $condition );
+
+            $data['condition_id'] = $serviceCondition->id;
+        }
+
+        // set active
+        $data['status'] = 'active';
         unset( $data['summary']);
 
         if($service->update($data))
@@ -274,135 +301,22 @@ class RetailersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroyService($id)
+	public function destroyService()
 	{
+        $id = Input::get('id');
+
 		if (Service::destroy($id))
         {
-            return Redirect::route('service.index')->with('success', Lang::get('site/services/messages.delete.success'));
+            echo json_encode( array('code' => 0, 'messages' =>  Lang::get('site/services/messages.delete.success') ));
         }
         else
         {
-		  return Redirect::route('service.index')->with('error', Lang::get('site/services/messages.delete.error'));
+            echo json_encode( array('code' => 1, 'messages' => Lang::get('site/services/messages.delete.error') ));
         }
 	}
 
 	
-	/**
-	 * Remove the specified service from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function createDeals()
-	{
-		return View::make('site.deals.create');
-	}
-
-
-    /**
-     * Display a listing of services
-     *
-     * @return Response
-     */
-    public function listDeal()
-    {
-        $title = 'Deals Manage';
-        $deals = Deal::owner()->paginate(10);
-
-        return View::make('site.deals.index', compact('deals','title'));
-    }
-
-    /**
-     * Show the form for creating a new service
-     *
-     * @return Response
-     */
-    public function createDeal()
-    {
-
-        $services = Service::select(array('services.name','services.id'))->owner()->lists('name','id');
-
-        return View::make('site.deals.create', compact('services'));
-    }
-
-    /**
-     * Store a newly created service in storage.
-     *
-     * @return Response
-     */
-    public function storeDeal()
-    {
-
-        $validator = Validator::make( $data = Input::all(), Deal::$rules );
-
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
-
-        if (Deal::create($data))
-        {
-            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.create.success'));
-        }
-
-        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.create.error'));
-    }
-
-
-    /**
-     * Show the form for editing the specified service.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function editDeal($id)
-    {
-        $deal = Deal::find($id);
-        $services = Service::select(array('services.name','services.id'))->owner()->lists('name','id');
-
-        return View::make('site.deals.edit', compact('deal', 'services'));
-    }
-
-    /**
-     * Update the specified service in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function updateDeal($id)
-    {
-        $deal = Deals::findOrFail($id);
-
-        $validator = Validator::make($data = Input::all(), Deal::$rules);
-
-        if ($validator->fails())
-        {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
-
-        if ( $deal->update($data) )
-        {
-            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.update.success'));
-        }
-
-        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.update.error'));
-    }
-
-    /**
-     * Remove the specified service from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroyDeal($id)
-    {
-        if (Deal::destroy($id))
-        {
-            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.delete.success'));
-        }
-
-        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.delete.error'));
-    }
+	
 	/**
      * Show a list of all the countries formatted for Datatables.
      *
