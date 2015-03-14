@@ -344,16 +344,21 @@ class OutletsController extends \BaseController {
                 array( 'category' => '14/03', 'value' => 20),
             );
 
-        if ( $type == 'month' ) {
+        if ( $type == 'week' ) {
             $chats = array(
-                array( 'category' => '02/2015', 'value' => 3),
-                array( 'category' => '03/2015', 'value' => 147),
+                array( 'category' => 'week 1 - 02', 'value' => 3),
+                array( 'category' => 'week 2 - 02', 'value' => 3),
+                array( 'category' => 'week 3 - 02', 'value' => 12),
+                array( 'category' => 'week 4 - 02', 'value' => 33),
+                array( 'category' => 'week 1 - 03', 'value' => 43),
+                array( 'category' => 'week 2 - 03', 'value' => 53),
             );
         }
-        else if ( $type == 'year') {
+        else if ( $type == 'month') {
 
         	$chats = array(
-                array( 'category' => '2015', 'value' => 150),
+                array( 'category' => '02/2015', 'value' => 3),
+                array( 'category' => '03/2015', 'value' => 147),
             );
         }
         echo json_encode($chats);
