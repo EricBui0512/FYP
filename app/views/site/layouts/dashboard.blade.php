@@ -58,7 +58,7 @@
       <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
          <!-- START navbar header-->
          <div class="navbar-header">
-            <a href="index.html" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                <div class="brand-logo">
                   <img src="{{asset('assets/img/index/logo.png')}}" alt="App Logo" class="img-responsive">
                </div>
