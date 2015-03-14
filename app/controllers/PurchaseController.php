@@ -40,10 +40,14 @@ class PurchaseController extends BaseController {
     public function createBill()
     {
         // Validate the inputs
+        
+
         $validator = Validator::make(Input::all(), DealTransaction::$rules);
         $detail=Deal::detail(Input::get('deal_id'));
-       if ($validator->passes())
-       {
+        if(!Auth::user())
+            return Redirect::to('purchase/'.$detail->id)->with('message', 'Login please!');;
+        if ($validator->passes())
+        {
             $data=Input::except('_token');
             $Bill=new DealTransaction();
             $Bill->deal_id=$data['deal_id'];
@@ -59,7 +63,7 @@ class PurchaseController extends BaseController {
                 return View::make('site.purchase.pay',compact('Bill'));
             }
             return Redirect::to('purchase/'.$detail->id)->withInput()->withErrors($validator);
-       }
+        }
 
         // Show the page
         

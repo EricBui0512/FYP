@@ -183,8 +183,7 @@ Route::group( array( 'before' => 'auth|role:user'), function() {
     // Route::resource('purchase', 'PurchaseController');
     Route::get('user/dashboard',array('as' => 'user.dashboard','uses' => 'ConsumersController@getDashboard'));
     Route::get('transaction', 'ConsumersController@listTrans');
-    Route::post('transaction/cancel', 'ConsumersController@cancelTrans');
-    Route::post('purchase/pay','PurchaseController@createBill');
+    Route::post('transaction/cancel', 'ConsumersController@cancelTrans');  
     Route::post('payment', array('as' => 'payment','uses' => 'PaymentController@postPayment'));
     // this is after make the payment, PayPal redirect back to your site
     Route::get('payment/status', array('as' => 'payment.status','uses' => 'PaymentController@getPaymentStatus'));
@@ -198,7 +197,7 @@ Route::group( array( 'before' => 'auth|role:user'), function() {
  */
 // 
 
-
+Route::post('purchase/pay','PurchaseController@createBill');
 Route::get('purchase/{id}', 'PurchaseController@getBill');
 
 // Site reset routes
