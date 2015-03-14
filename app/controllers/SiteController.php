@@ -43,10 +43,11 @@ class SiteController extends BaseController {
     }
 
     public function getDetail($id) {
+        $deal_id=$id;
         $detail=Deal::detail($id);
         // echo ($detail);die;
         // Show the page
-        return View::make('site.deals.show',compact('detail'));
+        return View::make('site.deals.show',compact('detail','deal_id'));
     }
 
     public function postGetCities(){

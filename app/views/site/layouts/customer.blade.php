@@ -1,5 +1,6 @@
 @extends('site.layouts.dashboard')
 @section('menu')
+   @if (Auth::check()) 
     <ul class="nav">
        <!-- START Menu-->
        <li class="nav-heading">Main navigation</li>
@@ -285,4 +286,5 @@
        </li>
        <!-- END Menu-->
     </ul>
+  @endif
 @stop
