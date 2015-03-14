@@ -15,16 +15,16 @@
 	                <h3>Do you want pay with paypal now!</h3>
 	                	<form method="post" action="{{URL::to('payment')}}" data-parsley-validate="" novalidate="" >
 	                		<input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
-	                		<input type="hidden" name="total" value="{{{ $Bill->total }}}">
-	                		<input type="hidden" name="qty" value="{{{ $Bill->qty }}}">
-	                		<input type="hidden" name="price" value="{{{ $Bill->amount }}}">
-	                		<input type="hidden" name="bill_id" value="{{{ $Bill->id }}}">
+	                		<input type="hidden" name="total" value="{{ $Bill->total }}">
+	                		<input type="hidden" name="qty" value="{{ $Bill->qty }}">
+	                		<input type="hidden" name="price" value="{{ $Bill->amount }}">
+	                		<input type="hidden" name="bill_id" value="{{ $Bill->id }}">
 		                   	<div class="row ">
 			                    <div class="panel-footer">
 				                   <div class="clearfix">
 				                      <div >
 				                         <button type="submit" class="btn btn-primary">Pay</button>
-				                         <button type="submit" class="btn btn-primary">Pay laster</button>
+				                         <a href="/" class="btn btn-default">Pay laster</a>
 				                      </div>
 				                   </div>
 		                		</div>

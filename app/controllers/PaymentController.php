@@ -133,6 +133,8 @@ class PaymentController extends BaseController {
 	    	$Bill->status=1;
 	    	$Bill->paypal_id=$payment_id;
 	    	$Bill->save();
+	    	return Redirect::route('original.route')
+            ->with('success', 'Payment success');
 	    }
 	    return Redirect::route('original.route')
 	        ->with('error', 'Payment failed');

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2015-03-14 20:42:16
+Date: 2015-03-14 21:17:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -521,25 +521,23 @@ CREATE TABLE `deal_transactions` (
   `total` decimal(10,0) DEFAULT NULL,
   `qty` smallint(4) DEFAULT NULL,
   `amount` decimal(10,2) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `status` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of deal_transactions
 -- ----------------------------
-INSERT INTO deal_transactions VALUES ('21', null, '7', '3', 'user@example.org', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 12:54:45', '2015-03-14 12:54:45', null);
-INSERT INTO deal_transactions VALUES ('22', null, '7', '3', 'user@example.org', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 13:04:03', '2015-03-14 13:04:03', null);
-INSERT INTO deal_transactions VALUES ('23', null, '7', '3', 'user@example.org', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 13:04:18', '2015-03-14 13:04:18', null);
-INSERT INTO deal_transactions VALUES ('24', null, '7', '3', 'user@example.org', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 13:04:33', '2015-03-14 13:04:33', null);
-INSERT INTO deal_transactions VALUES ('25', null, '7', '4', 'nguyenducdn67@gmail.com', null, null, null, '0', '1800', '3', '600.00', '1', '2015-03-14 13:06:01', '2015-03-14 13:06:01', null);
-INSERT INTO deal_transactions VALUES ('26', null, '9', '4', 'nguyenducdn67@gmail.com', null, null, null, '0', '200', '1', '200.00', '1', '2015-03-14 13:09:59', '2015-03-14 13:09:59', null);
-INSERT INTO deal_transactions VALUES ('27', null, '7', '4', 'nguyenducdn67@gmail.com', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 13:38:13', '2015-03-14 13:38:13', null);
-INSERT INTO deal_transactions VALUES ('28', null, '7', '4', 'nguyenducdn67@gmail.com', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 13:38:54', '2015-03-14 13:38:54', null);
-INSERT INTO deal_transactions VALUES ('29', null, '7', '4', 'nguyenducdn67@gmail.com', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 13:39:14', '2015-03-14 13:39:14', null);
+INSERT INTO deal_transactions VALUES ('49', null, '7', '4', 'nguyenducdn67@gmail.com', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 14:08:33', '2015-03-14 14:08:33', null);
+INSERT INTO deal_transactions VALUES ('50', null, '7', '4', 'nguyenducdn67@gmail.com', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 14:09:01', '2015-03-14 14:09:01', null);
+INSERT INTO deal_transactions VALUES ('51', null, '7', '4', 'nguyenducdn67@gmail.com', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 14:09:30', '2015-03-14 14:09:30', null);
+INSERT INTO deal_transactions VALUES ('52', null, '7', '4', 'nguyenducdn67@gmail.com', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 14:10:37', '2015-03-14 14:10:37', null);
+INSERT INTO deal_transactions VALUES ('53', null, '7', '4', 'nguyenducdn67@gmail.com', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 14:11:14', '2015-03-14 14:11:14', null);
+INSERT INTO deal_transactions VALUES ('54', null, '7', '4', 'nguyenducdn67@gmail.com', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 14:11:43', '2015-03-14 14:11:43', null);
+INSERT INTO deal_transactions VALUES ('55', 'PAY-5WV15133HU234794FKUCEECY', '7', '4', 'nguyenducdn67@gmail.com', null, null, null, '0', '600', '1', '600.00', '1', '2015-03-14 14:13:16', '2015-03-14 14:14:19', null);
 
 -- ----------------------------
 -- Table structure for `feedbacks`
@@ -897,4 +895,4 @@ CREATE TABLE `users` (
 INSERT INTO users VALUES ('1', '0', '', '', 'admin', 'admin@example.org', '$2y$10$LPUb/XF31wQ49gHSeNw88.cj7bufv0fuK/VkVlTdarf.2owSImlqm', '32fcfd898a9940fa86d4d8d43c980032', null, '1', 'admin', '2015-03-13 02:49:24', '2015-03-13 02:49:24');
 INSERT INTO users VALUES ('2', '0', '', '', 'dungho', 'dungho@gmail.com', '$2y$10$BRO.OM/xENyZlZSRwycB/eKRECLgxO37R5UwJ4SdLT03OJwZt7Uie', 'c59d8eacad506347d001c509ef41b35f', 'iC8UeECTZRfyTEbCFuxYrSUQJRlJnMD1xFWvmZE79V99ujZc2T3AuCqapXpP', '1', 'retailer', '2015-03-13 02:49:24', '2015-03-14 08:34:36');
 INSERT INTO users VALUES ('3', '0', '', '', 'user', 'user@example.org', '$2y$10$6z6DEVLCag0t9jrm4d.xuurMtGfOoFrBkDmLQW8J2eKwafP8dwQc2', 'd9fd998f4b2786bd603fe0a240cb40b1', 'QAk1OUFRZb7LYBfRKZJQZDGbOS2i3sUhXJSGLY0gDbc9iO1FdMTH6c76CEJk', '1', 'user', '2015-03-13 02:49:24', '2015-03-14 13:05:09');
-INSERT INTO users VALUES ('4', '0', '', '', 'duc', 'nguyenducdn67@gmail.com', '$2y$10$fY9vsHYLzpf3C1TnsPR7nusVeVNGjvGZWozL1zZfHf6TZmHlUXayO', '394cc568506c6ce051d01c36f2d6be70', 'DnuYiWVNvs2ULqQp3wpSzRV18lIC2nz4SqeF6gs59yJLeM12ZGsW9Voy6wRu', '1', 'user', '2015-03-13 02:50:02', '2015-03-14 10:38:17');
+INSERT INTO users VALUES ('4', '0', '', '', 'duc', 'nguyenducdn67@gmail.com', '$2y$10$fY9vsHYLzpf3C1TnsPR7nusVeVNGjvGZWozL1zZfHf6TZmHlUXayO', '394cc568506c6ce051d01c36f2d6be70', 'HYPrnlg2mxSUEpwndJKEGDZZz1wyhVuB8DhfiVl6jHD5ClwWQRFD5nqrp6uf', '1', 'user', '2015-03-13 02:50:02', '2015-03-14 13:47:48');

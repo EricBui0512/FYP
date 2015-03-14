@@ -52,11 +52,11 @@ class PurchaseController extends BaseController {
             $Bill->qty=$data['qty'];
             $Bill->amount=$data['amount'];
             $Bill->total=$data['amount']*$data['qty'];
-
              if ($Bill->save())
             {
+                // var_dump($Bill->id);die;
                // Redirect to the new country page
-                return View::make('site.purchase.pay','Bill');
+                return View::make('site.purchase.pay',compact('Bill'));
             }
             return Redirect::to('purchase/'.$detail->id)->withInput()->withErrors($validator);
        }
