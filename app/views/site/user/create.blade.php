@@ -31,11 +31,17 @@
 
                             @if($type == 'trailer')
                                 <div class="form-group">
-                                <label for="Spa" class="col-sm-3 control-label">Spa name </label>
-                                <div class="col-sm-9">
-                                    <input class="form-control" placeholder="Spa name" type="text" name="spaname" id="spaname" >
+                                    <label for="Spa" class="col-sm-3 control-label">Your company name </label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" placeholder="Your company name" type="text" name="spaname" id="spaname" >
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label for="Spa" class="col-sm-3 control-label">Business Category</label>
+                                    <div class="col-sm-9">
+                                        {{Form::select('category',BusinessCategory::getKeyValueData(),Country::DEFAULT_COUNTRY,array('class'=>'form-control'))}}
+                                    </div>
+                                </div>
                             @endif
 
                             <div class="form-group">

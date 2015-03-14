@@ -110,7 +110,7 @@
                 <div class="text-left">
                     <div class="col-sm-3">
                         <div class="form-group">
-                            <label for="email" accesskey="E">Service </label>
+                            <label for="email" accesskey="E">Category </label>
                             {{Form::select('category',BusinessCategory::getKeyValueData(),Country::DEFAULT_COUNTRY,array('class'=>'form-control'))}}
                         </div>
                     </div>
