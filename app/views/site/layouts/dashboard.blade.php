@@ -73,6 +73,7 @@
          <!-- END navbar header-->
          <!-- START Nav wrapper-->
          <div class="nav-wrapper">
+            @if (Auth::check()) 
             <!-- START Left navbar-->
             <ul class="nav navbar-nav">
                <li>
@@ -210,7 +211,16 @@
                <!-- END User avatar toggle-->
             </ul>
             <!-- END Left navbar-->
-
+            @else
+                <ul class="nav navbar-nav navbar-right">
+               <!-- Search icon-->
+               <li>
+                  <a href="#" data-toggle="navbar-search">
+                     Login
+                  </a>
+               </li>         
+            </ul>
+            @endif
          </div>
          <!-- END Nav wrapper-->
          <!-- START Search form-->
@@ -225,6 +235,7 @@
       </nav>
       <!-- END Top Navbar-->
       <!-- START aside-->
+      
       <aside class="aside">
          <!-- START Sidebar (left)-->
          <nav class="sidebar">

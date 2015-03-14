@@ -99,9 +99,9 @@
                 </div>
                 <div class="col-md-7">
                     <h3>{{$detail->title}}</h3>
-                    <span class="tdlt fs13"> ${{$detail->amount}}</span>
-                    <span>${{$detail->discount}}</span>
-                    <button type="button" class="btn bt-spa">Purchase</button>
+                    <p class="tdlt fs13"> ${{$detail->amount}}</p>
+                    <p>${{$detail->discount}}</p>
+                    <a href="{{URL::to('purchase/'.$deal_id)}}" class="btn bt-spa">Purchase</a>
                 </div>
             </div>
             
