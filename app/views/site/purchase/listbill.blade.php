@@ -1,16 +1,11 @@
 @extends('site.layouts.customer')
 @section('content')
 <!-- START row-->
-    <div class="row">
+<div class="row">
        <div class="panel panel-default">
        <div class="panel-heading">
-          <a href="#" data-perform="panel-dismiss" data-toggle="tooltip" title="Close Panel" class="pull-right">
-             <em class="fa fa-times"></em>
-          </a>
-          <a href="#" data-perform="panel-collapse" data-toggle="tooltip" title="Collapse Panel" class="pull-right">
-             <em class="fa fa-minus"></em>
-          </a>
-       </div>
+            <div class="panel-title">Transactions history</div>
+        </div>
        <!-- START table-responsive-->
        <div class="table-responsive">
           <table id="table-ext-11" class="table table-striped table-hover">
@@ -21,6 +16,7 @@
                    <th class="col-md-1">Quanity</th>
                    <th class="col-md-2">Total</th>
                    <th class="col-md-1">pay</th>         
+                   <th class="col-md-1">Action</th>         
                 </tr>
              </thead>
              <tbody>
@@ -29,6 +25,7 @@
                    	<td>ssss</td>
                    	<td>sss</td>
                    	<td>sss</td>
+                    <td>ssss</td>   
                     <td>ssss</td>   
                    	
                    	<td class="text-center">
@@ -58,6 +55,6 @@
        </div>
 	</div>
       
-    </div>
+</div>
     <!-- END row-->
 @stop

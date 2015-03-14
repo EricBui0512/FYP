@@ -187,9 +187,8 @@ Route::group( array( 'before' => 'auth|role:user'), function() {
     Route::post('payment', array('as' => 'payment','uses' => 'PaymentController@postPayment'));
     // this is after make the payment, PayPal redirect back to your site
     Route::get('payment/status', array('as' => 'payment.status','uses' => 'PaymentController@getPaymentStatus'));
+    Route::get('user/transaction', array('as' => 'user.transaction','uses' => 'ConsumersController@getTrans'));
 });
-
-
 
 /** ------------------------------------------
  *  Frontend Routes

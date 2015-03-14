@@ -7,16 +7,16 @@
           <a href="{{{URL::to('customer/dashboard')}}}">Dashboard</a>
         </li>      
        <li>
-          <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
+          <a href="#" class="no-submenu">
              <em class="fa fa-flask"></em>
              <span class="item-text">Profile</span>
           </a>
          
        </li>
        <li>
-          <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
-             <em class="fa fa-flask"></em>
-             <span class="item-text">Transaction listing</span>
+          <a href="{{URL::to('user/transaction')}}" class="no-submenu">
+             <em class="fa fa-cube"></em>
+             <span class="item-text">Transactions history</span>
           </a>
           
         </li>
