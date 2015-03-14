@@ -113,8 +113,6 @@
     						</a>
     						<ul class="dropdown-menu">
     							<li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/users') }}}"><span class="glyphicon glyphicon-user"></span> Users</a></li>
-    							<li{{ (Request::is('admin/roles*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/roles') }}}"><span class="glyphicon glyphicon-user"></span> Roles</a></li>
-    							<li{{ (Request::is('admin/permissions*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/permissions') }}}"><span class="glyphicon glyphicon-user"></span> Permissions</a></li>
     						</ul>
     					</li>
     				</ul>

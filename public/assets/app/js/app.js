@@ -2757,6 +2757,23 @@
     // Masked inputs initialization
     $.fn.inputmask && $('[data-toggle="masked"]').inputmask();
 
+    $('.dropdown-menu').on('click', '.delete', function() {
+
+      if ( confirm('Are you sure?')) {
+        var th = $(this),
+            action = th.attr('data-action'),
+            id = th.attr('id'),
+            token = $('input[name=_token]').val();
+        $.post(action, {id: id, _token: token}, function( data ){
+          var json = $.parseJSON( data );
+
+          if ( json.code == 0 ) {
+            th.closest('tr').remove();
+          }
+        });
+      }
+    });
+
   });
 
   // keeps the wrapper covering always the entire body
@@ -2817,5 +2834,6 @@
         }
     });
     delImg();
+
     
 }(jQuery, window, document));

@@ -2,7 +2,7 @@
 * @Author: Dung Ho
 * @Date:   2015-03-11 23:10:28
 * @Last Modified by:   Dung Ho
-* @Last Modified time: 2015-03-12 17:34:08
+* @Last Modified time: 2015-03-14 22:48:32
 */
 
 'use strict';
@@ -29,4 +29,24 @@ $(document).ready(function() {
      		}
 		});
 	});
+
+	$('#deal').on('click', '.active', function() {
+
+		var th = $(this), id = th.attr('id');
+
+		$.get('/admin/deals/active/' + id, function( data ) {
+
+			var json = $.parseJSON( data );
+
+			if ( json.code == 0 ) {
+
+				th.addClass('disabled').closest('tr').find("td:nth-child(4)").html('active');
+				alert( json.messages );
+			} else {
+				alert( json.messages );
+			}
+
+			
+		});
+	})
 });
