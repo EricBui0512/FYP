@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.41-0ubuntu0.12.04.1)
 # Database: booking
-# Generation Time: 2015-03-14 16:35:36 +0000
+# Generation Time: 2015-03-15 16:48:59 +0000
 # ************************************************************
 
 
@@ -27,13 +27,15 @@ DROP TABLE IF EXISTS `addresses`;
 
 CREATE TABLE `addresses` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `city_id` int(11) NOT NULL,
+  `city_id` int(11) unsigned NOT NULL,
   `district` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `address` varchar(500) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `postal_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_address_city_id` (`city_id`),
+  CONSTRAINT `fk_address_city_id` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `addresses` WRITE;
@@ -124,7 +126,11 @@ CREATE TABLE `cancellations` (
   `who` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_cancel_tran_id` (`tran_id`),
+  KEY `fk_cancel_who_id` (`who_id`),
+  CONSTRAINT `fk_cancel_tran_id` FOREIGN KEY (`tran_id`) REFERENCES `deal_transactions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cancel_who_id` FOREIGN KEY (`who_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `cancellations` WRITE;
@@ -147,12 +153,14 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `cities`;
 
 CREATE TABLE `cities` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `country_id` int(11) NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `country_id` int(11) unsigned NOT NULL,
   `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_city_country_id_idx` (`country_id`),
+  CONSTRAINT `fk_city_country_id` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `cities` WRITE;
@@ -257,7 +265,7 @@ CREATE TABLE `company` (
 DROP TABLE IF EXISTS `countries`;
 
 CREATE TABLE `countries` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `country` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -545,9 +553,9 @@ DROP TABLE IF EXISTS `deal_transactions`;
 
 CREATE TABLE `deal_transactions` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `deal_id` int(11) NOT NULL,
+  `deal_id` int(11) unsigned NOT NULL,
   `consumer_id` int(11) unsigned NOT NULL,
-  `phone_number` varchar(15),
+  `phone_number` varchar(15) DEFAULT NULL,
   `consumer_email` varchar(255) NOT NULL DEFAULT '',
   `payment_date` datetime DEFAULT NULL,
   `payment_type` varchar(100) DEFAULT NULL,
@@ -559,23 +567,27 @@ CREATE TABLE `deal_transactions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_deal_tran_deal_id` (`deal_id`),
+  KEY `fk_deal_tran_consumer_id` (`consumer_id`),
+  CONSTRAINT `fk_deal_tran_deal_id` FOREIGN KEY (`deal_id`) REFERENCES `deals` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_deal_tran_consumer_id` FOREIGN KEY (`consumer_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `deal_transactions` WRITE;
 /*!40000 ALTER TABLE `deal_transactions` DISABLE KEYS */;
 
-INSERT INTO `deal_transactions` (`id`, `deal_id`, `consumer_id`, `consumer_email`, `payment_date`, `payment_type`, `payment_status`, `qty`, `amount`, `status`, `created_at`, `updated_at`, `deleted_at`)
+INSERT INTO `deal_transactions` (`id`, `deal_id`, `consumer_id`, `phone_number`, `consumer_email`, `payment_date`, `payment_type`, `payment_status`, `qty`, `amount`, `total`, `status`, `created_at`, `updated_at`, `deleted_at`)
 VALUES
-  (2,7,2,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,1,'2015-03-06 00:00:00',NULL,NULL),
-  (3,7,2,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,1,'2015-03-05 00:00:00',NULL,NULL),
-  (4,7,2,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,1,'2015-03-08 00:00:00',NULL,NULL),
-  (5,8,2,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,1,'2015-03-03 00:00:00',NULL,NULL),
-  (6,8,2,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,1,'2015-03-08 00:00:00',NULL,NULL),
-  (7,8,2,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,1,'2015-03-09 00:00:00',NULL,NULL),
-  (8,8,2,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,1,'2015-03-10 00:00:00',NULL,NULL),
-  (9,8,2,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,1,'2015-03-10 00:00:00',NULL,NULL),
-  (10,8,2,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,1,'2015-03-10 00:00:00',NULL,NULL);
+  (2,7,2,NULL,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,NULL,1,'2015-03-06 00:00:00',NULL,NULL),
+  (3,7,2,NULL,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,NULL,1,'2015-03-05 00:00:00',NULL,NULL),
+  (4,7,2,NULL,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,NULL,1,'2015-03-08 00:00:00',NULL,NULL),
+  (5,8,2,NULL,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,NULL,1,'2015-03-03 00:00:00',NULL,NULL),
+  (6,8,2,NULL,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,NULL,1,'2015-03-08 00:00:00',NULL,NULL),
+  (7,8,2,NULL,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,NULL,1,'2015-03-09 00:00:00',NULL,NULL),
+  (8,8,2,NULL,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,NULL,1,'2015-03-10 00:00:00',NULL,NULL),
+  (9,8,2,NULL,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,NULL,1,'2015-03-10 00:00:00',NULL,NULL),
+  (10,8,2,NULL,'xvbxv@gmai.com',NULL,'dddd',1,1,33000.00,NULL,1,'2015-03-10 00:00:00',NULL,NULL);
 
 /*!40000 ALTER TABLE `deal_transactions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -598,7 +610,9 @@ CREATE TABLE `deals` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status` enum('new','active','drag') COLLATE utf8_unicode_ci DEFAULT 'new',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_deals_service_id_idx` (`service_id`),
+  CONSTRAINT `fk_deals_service_id` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `deals` WRITE;
@@ -630,7 +644,11 @@ CREATE TABLE `feedbacks` (
   `rate` decimal(10,2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_feedback_deal_id` (`deal_id`),
+  KEY `fk_feedback_consumer_id` (`consumer_id`),
+  CONSTRAINT `fk_feedback_deal_id` FOREIGN KEY (`deal_id`) REFERENCES `deals` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_feedback_consumer_id` FOREIGN KEY (`consumer_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
@@ -641,8 +659,8 @@ CREATE TABLE `feedbacks` (
 DROP TABLE IF EXISTS `images`;
 
 CREATE TABLE `images` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `ref_id` int(11) DEFAULT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ref_id` int(11) unsigned DEFAULT NULL,
   `image_path` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `thumbnail_path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image_type` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -697,7 +715,8 @@ VALUES
   ('2015_02_26_090619_init_database',1),
   ('2015_03_05_090619_init_database',2),
   ('2015_03_07_090619_init_database',3),
-  ('2015_03_08_150540_add_bigpath_to_images',4);
+  ('2015_03_08_150540_add_bigpath_to_images',4),
+  ('2015_03_14_090619_init_database',1);
 
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -742,11 +761,11 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `outlets`;
 
 CREATE TABLE `outlets` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `admin_id` int(11) NOT NULL,
-  `address_id` int(10) unsigned NOT NULL,
-  `retailer_id` int(10) unsigned NOT NULL,
+  `admin_id` int(11) unsigned NOT NULL,
+  `address_id` int(10) unsigned DEFAULT NULL,
+  `retailer_id` int(10) unsigned DEFAULT NULL,
   `description_id` int(10) unsigned DEFAULT NULL,
   `outlet_register_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `website` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -756,7 +775,15 @@ CREATE TABLE `outlets` (
   `status` enum('new','active','drag') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'new',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_outlet_admin_id_idx` (`admin_id`),
+  KEY `fk_outlet_address_id_idx` (`address_id`),
+  KEY `fk_outlet_retailer_id_idx` (`retailer_id`),
+  KEY `fk_outlet_description_id_idx` (`description_id`),
+  CONSTRAINT `fk_oultet_description_id` FOREIGN KEY (`description_id`) REFERENCES `outlet_descriptions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_outlet_address_id` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_outlet_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_outlet_retailer_id` FOREIGN KEY (`retailer_id`) REFERENCES `retailers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `outlets` WRITE;
@@ -768,16 +795,13 @@ VALUES
   (2,'Minh Toan Graxy - Spa One',2,1,1,1,'MTID002','www.minhtoan.com.vn',NULL,'',NULL,'active','2015-02-26 09:23:22','2015-02-26 09:23:22'),
   (3,'Minh Toan Graxy - Spa Two',2,4,2,1,'MTID003','www.minhtoan.com.vn',NULL,'',NULL,'active','2015-02-26 09:23:22','2015-02-26 09:23:22'),
   (4,'Phi Lu - Spa Beauty',2,4,2,1,'PLID001','www.philu.com.vn',NULL,'',NULL,'active','2015-02-26 09:23:22','2015-02-26 09:23:22'),
-  (5,'Golden Hill - Spa Beautify',2,1,1,NULL,'GL0004','www.goldenhill.com.vn',NULL,'',NULL,'active','2015-02-26 16:38:46','2015-02-26 16:38:46'),
-  (6,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage',2,2,1,NULL,'PL00012','',NULL,'',NULL,'active','2015-03-01 09:08:27','2015-03-01 09:08:27'),
+  (5,'Golden Hill - Spa Beautify',2,1,1,1,'GL0004','www.goldenhill.com.vn',NULL,'',NULL,'active','2015-02-26 16:38:46','2015-02-26 16:38:46'),
+  (6,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage',2,2,1,1,'PL00012','',NULL,'',NULL,'active','2015-03-01 09:08:27','2015-03-01 09:08:27'),
   (7,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage 22',2,1,2,4,'PL000444','',NULL,'',NULL,'','2015-03-01 09:12:02','2015-03-01 09:12:02'),
   (8,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage 22',2,3,2,5,'PL00042542','',NULL,'',NULL,'','2015-03-01 09:13:37','2015-03-01 09:13:37'),
   (20,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage',2,2,1,6,'sfgsfg','',NULL,'',NULL,'new','2015-03-07 08:48:32','2015-03-07 08:48:32'),
   (21,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage',2,2,1,7,'dfdafadf','',NULL,'',NULL,'new','2015-03-07 08:58:03','2015-03-07 09:14:01'),
   (23,'Spa Cham',2,8,2,8,'kdaif0003','',NULL,'',NULL,'active','2015-03-08 03:08:25','2015-03-08 03:52:43'),
-  (24,'',2,0,0,NULL,'','',NULL,'',NULL,'new','2015-03-13 15:04:55','2015-03-13 15:04:55'),
-  (25,'',2,0,0,NULL,'','',NULL,'',NULL,'new','2015-03-13 15:32:45','2015-03-13 15:32:45'),
-  (26,'',2,0,0,NULL,'','',NULL,'',NULL,'new','2015-03-14 07:39:05','2015-03-14 07:39:05'),
   (27,'Spa Cham d',2,11,2,9,'kdaif0003','','0813513545','',NULL,'active','2015-03-14 07:41:37','2015-03-14 07:54:11');
 
 /*!40000 ALTER TABLE `outlets` ENABLE KEYS */;
@@ -897,7 +921,13 @@ CREATE TABLE `retailers` (
   `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_retailer_admin_id_idx` (`admin_id`),
+  KEY `fk_category_id_idx` (`category_id`),
+  KEY `fk_address_id_idx` (`address_id`),
+  CONSTRAINT `fk_retailer_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `business_categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_address_id` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `retailers` WRITE;
@@ -1007,7 +1037,7 @@ DROP TABLE IF EXISTS `services`;
 
 CREATE TABLE `services` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `outlet_id` int(10) unsigned NOT NULL,
+  `outlet_id` int(10) unsigned DEFAULT NULL,
   `condition_id` int(10) unsigned DEFAULT NULL,
   `detail_id` int(10) unsigned DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1016,7 +1046,13 @@ CREATE TABLE `services` (
   `time_operate` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `created_at` timestamp NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_service_oultet_id_idx` (`outlet_id`),
+  KEY `fk_service_condition_id_idx` (`condition_id`),
+  KEY `fk_service_detail_id_idx` (`detail_id`),
+  CONSTRAINT `fk_service_condition_id` FOREIGN KEY (`condition_id`) REFERENCES `service_conditions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_service_detail_id` FOREIGN KEY (`detail_id`) REFERENCES `service_details` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_service_oultet_id` FOREIGN KEY (`outlet_id`) REFERENCES `outlets` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `services` WRITE;
@@ -1027,16 +1063,8 @@ VALUES
   (1,3,NULL,NULL,'Xông hơi thảo dược',NULL,'active','','2015-02-26 09:23:22','2015-02-26 09:23:22'),
   (3,2,NULL,NULL,'Mặt nạ cao bí đao',NULL,'active','','2015-02-26 09:23:23','2015-02-26 09:23:23'),
   (18,1,1,1,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage',230000.00,'active','','2015-03-01 04:32:21','2015-03-01 04:32:21'),
-  (20,3,3,4,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage 22',230000.00,'new','','2015-03-01 04:40:49','2015-03-01 04:40:49'),
-  (21,0,NULL,NULL,NULL,NULL,'new','','2015-03-01 07:41:44','2015-03-01 07:41:44'),
-  (22,0,NULL,NULL,'',NULL,'new','','2015-03-07 16:40:34','2015-03-07 16:40:34'),
-  (23,0,NULL,NULL,'',NULL,'new','','2015-03-07 17:22:29','2015-03-07 17:22:29'),
-  (24,0,NULL,NULL,'',NULL,'new','','2015-03-07 17:25:41','2015-03-07 17:25:41'),
-  (25,0,NULL,NULL,'',NULL,'new','','2015-03-08 04:26:42','2015-03-08 04:26:42'),
-  (26,0,NULL,NULL,'',NULL,'new','','2015-03-10 14:27:33','2015-03-10 14:27:33'),
-  (27,0,NULL,NULL,'',NULL,'new','','2015-03-13 03:36:11','2015-03-13 03:36:11'),
-  (28,0,NULL,NULL,'',NULL,'new','','2015-03-13 15:03:43','2015-03-13 15:03:43'),
-  (29,0,NULL,NULL,'',NULL,'new','','2015-03-14 04:48:32','2015-03-14 04:48:32'),
+  (19,3,3,4,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage 22',230000.00,'new','','2015-03-01 04:40:49','2015-03-01 04:40:49'),
+  (29,1,NULL,NULL,'',NULL,'new','','2015-03-14 04:48:32','2015-03-14 04:48:32'),
   (30,1,4,6,'Tắm ngâm thuốc lá người Dao đỏ kết hợp massage',230000.00,'active','','2015-03-14 08:09:15','2015-03-14 08:18:21');
 
 /*!40000 ALTER TABLE `services` ENABLE KEYS */;
@@ -1087,7 +1115,7 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` (`id`, `address_id`, `first_name`, `last_name`, `username`, `email`, `password`, `confirmation_code`, `remember_token`, `confirmed`, `user_type`, `created_at`, `updated_at`)
 VALUES
   (1,0,'','','admin','admin@example.org','$2y$10$qFqrC0yPGBzKEBJqwNgi0eQlrKcAkDtlvTt9iTBWbq/Adi7H3X/P2','c87f3a63d171cd7c813893a3b7e1ee94','Nw5WuhAhFhfQjjhv7Vy4bE61U3bpjOvebHYKB7uVh4Vw7jfcsJghYHdWRvEJ',1,'admin','2015-02-26 09:23:20','2015-03-14 16:02:01'),
-  (2,0,'','','dungho','dungho@gmail.com','$2y$10$fTf6tPUrEsZAn/7NnR9OfOyGFrDdf6DOR871xWmR4RvzwiELYr6.e','b3ca5572a88af9895e746fa3d8c4419f','bZrO560EGZ5vLjVjB1jKegQUFbcKbNAcYUTUOPxK3Vk9mDvHeOo20c1lJDzR',1,'retailer','2015-02-26 09:23:20','2015-03-14 15:16:25'),
+  (2,0,'','','dungho','dungho@gmail.com','$2y$10$fTf6tPUrEsZAn/7NnR9OfOyGFrDdf6DOR871xWmR4RvzwiELYr6.e','b3ca5572a88af9895e746fa3d8c4419f','uHRZkyvv7Xftnn5es0D6r5m55NECGwG8nUlWk6sKHaa2Q5cfomyv8Dkl4So9',1,'retailer','2015-02-26 09:23:20','2015-03-14 16:50:29'),
   (3,0,'','','user','user@example.org','$2y$10$qHaYhAag/kWGHlnggiPhlua28W8kT9C1MTJJYJ4aeLXMZmmSk2QRm','10d928cd1834b6b6b70974b6b8e28f37','Lm3vtAzG42g1tHqEMjXYxUb4Kodj7NivVI3817bemyeEDnm3ks1BchTVEIZZ',1,'user','2015-02-26 09:23:20','2015-03-01 08:26:14'),
   (4,0,'','','dung2','dung@gmail.com','$2y$10$gdI7WZXqadfVZc.KXKcpIu7YE4.y7NisMEhA6lbWVIML3YjaWHru.','c7fb73defb62e3c6bddac9d136598fce',NULL,1,'user','2015-03-07 01:55:18','2015-03-07 01:55:18'),
   (5,0,'','','dungho2','dung2@gmail.com','$2y$10$kGaPDaNDm7E6xYZj32E4kevxe8Jqpr18qCR7OrPQsxLgg.5aA.nBq','f52b785ef7880bdc25be42ef9a3cecd3',NULL,0,'user','2015-03-07 01:57:17','2015-03-07 01:57:17'),
