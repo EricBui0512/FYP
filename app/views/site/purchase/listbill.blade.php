@@ -11,24 +11,27 @@
           <table id="table-ext-11" class="table table-striped table-hover">
              <thead>
                 <tr>
-                   <th class="col-md-1">ID</th>
                    <th class="col-md-7">Title</th>
                    <th class="col-md-1">Quanity</th>
                    <th class="col-md-2">Total</th>
-                   <th class="col-md-1">pay</th>         
+                   <th class="col-md-1">Pay</th>         
                    <th class="col-md-1">Action</th>         
                 </tr>
              </thead>
              <tbody>
-               
+              @foreach ($transactions as $key => $transaction)         
                 <tr>
-                   	<td>ssss</td>
-                   	<td>sss</td>
-                   	<td>sss</td>
-                    <td>ssss</td>   
-                    <td>ssss</td>   
-                   	
-                   	<td class="text-center">
+                 	<td>{{Deal::find($transaction->deal_id)->title}}</td>
+                 	<td>{{$transaction->qty}}</td>
+                  <td>{{$transaction->total}}</td>   
+                  <td>
+                    @if($transaction->status)
+
+                    @else
+                      
+                    @endif
+                  </td>   	
+                 	<td class="text-center">
 	                    <div class="btn-group">
 	                       <a href="#" data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle">
 	                          <em class="fa fa-angle-down"></em>Action</a>
@@ -40,10 +43,9 @@
 	                          <!-- <li><a href="{{URL::to('service/detail/1')}}">Detail</a>
 	                          </li> -->
 	                       </ul>
-	                    </div>
-	                </td>                   
-                </tr>
-                
+	                    </div></td>                   
+                </tr> 
+              @endforeach
              </tbody>
           </table>
        </div>

@@ -79,4 +79,5 @@ class DealTransaction extends \Eloquent {
 
 		return $cancellations;
 	}
+
 }
