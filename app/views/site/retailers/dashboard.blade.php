@@ -58,7 +58,7 @@ List Outlet
               <div class="panel-heading">
                 <div class="row">
                   <div class="col-xs-12 text-center">
-                    <h3 class="media p">${{ $thisWeek->this_amount_week }}</h3>
+                    <h3 class="media p">${{ number_format($thisWeek->this_amount_week,2) }}</h3>
                     <h3 class="media p mt0">This Week</h3>
                   </div>
                 </div>
@@ -72,7 +72,7 @@ List Outlet
               <div class="panel-heading">
                 <div class="row">
                   <div class="col-xs-12 text-center">
-                    <h3 class="media p">${{ $pastWeek->past_amount_week }}</h3>
+                    <h3 class="media p">${{ number_format($pastWeek->past_amount_week,2) }}</h3>
                     <h3 class="media p mt0">Past Week</h3>
                   </div>
                   
