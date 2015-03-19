@@ -3,7 +3,10 @@
     <ul class="nav">
        <!-- START Menu-->
         <li>
-          <a href="{{{URL::to('retailer/dashboard')}}}">Dashboard</a>
+           <a href="{{{URL::to('retailer/dashboard')}}}" title="Elements">
+             <em class="fa fa-flask"></em>
+             <span class="item-text">Dashboard</span>
+          </a>
         </li>      
         <li>
             <!-- <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
