@@ -220,7 +220,6 @@ Route::post('user/login', 'UserController@postLogin');
 Route::get('user/signup', 'UserController@signup');
 //:: create user Routes::
 Route::get('user/create/{type}', 'UserController@userCreate');
-Route::get('user/create/{type}', 'UserController@userCreate');
 # User RESTful Routes (Login, Logout, Register, etc)
 Route::controller('user', 'UserController');
 
