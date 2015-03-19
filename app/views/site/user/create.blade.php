@@ -7,7 +7,7 @@
             <div class="col-md-8">
                 <div id="locationField"></div> 
                 <div class="box" >
-                @if($type=='trailer') 
+                @if($type=='retailer') 
                 <h3 class="margin-b20 text-center ttu">Create a Free Retailer Account</h3>
                 @else
                 <h3 class="margin-b20 text-center ttu">Create a Free Customer Account</h3>
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
 
-                            @if($type == 'trailer')
+                            @if($type == 'retailer')
                                 <div class="form-group">
                                     <label for="Spa" class="col-sm-3 control-label">Your company name </label>
                                     <div class="col-sm-9">
