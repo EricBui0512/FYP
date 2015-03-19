@@ -6,8 +6,18 @@
  * This service abstracts some interactions that occurs between Confide and
  * the Database.
  */
-class UserRepository
+class UserRepository implements IUserRepository
 {
+
+	public function __construct(\User $user)
+    {
+        $this->user = $user;
+    }
+     
+    public function __call($method, $args)
+    {
+        return call_user_func_array([$this->user, $method], $args);
+    }
 
 	/**
 	 * @param $code
@@ -136,4 +146,6 @@ class UserRepository
 	{
 		return $instance->save();
 	}
+
+
 }

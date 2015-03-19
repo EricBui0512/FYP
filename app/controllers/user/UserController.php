@@ -18,7 +18,7 @@ class UserController extends BaseController {
      * @param User $user
      * @param UserRepository $userRepo
      */
-    public function __construct(User $user, UserRepository $userRepo)
+    public function __construct(User $user, IUserRepository $userRepo)
     {
         parent::__construct();
         $this->user = $user;

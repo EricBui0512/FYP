@@ -6,13 +6,14 @@ class RetailersController extends \BaseController {
 
     protected $address;
 
-	public function __construct()
+	public function __construct(IRetailerRepository $retailer)
 	{
 
 		parent::__construct();
 
 		$this->adminId = Auth::id();
         $this->address = new Address;
+        $this->retailer = $retailer;
 	}
 
 	/**
@@ -24,7 +25,7 @@ class RetailersController extends \BaseController {
 	{
         $title = Lng::get( 'site/retailers/title.retailer_management');
 
-		$retailers = Retailer::owner()->get();
+		$retailers = $this->retailer->getCurrent();
 
 		return View::make('site.retailers.index', compact('retailers', 'title'));
 	}
