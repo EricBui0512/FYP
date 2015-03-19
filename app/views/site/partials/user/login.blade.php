@@ -20,7 +20,7 @@
                 </div>
             <br>
             <button tabindex="3" class="btn btn-default " type="submit">Sign In&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></button>
-            <a href="" tabindex="3" class="btn btn-default " >Sign Up&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+            <a href="/user/signup" tabindex="3" class="btn btn-default " >Sign Up&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
         <!-- <div class="span3">
             <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Social</h4>
             <div class="socials clearfix">
