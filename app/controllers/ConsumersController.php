@@ -139,8 +139,9 @@ class ConsumersController extends \BaseController {
 
     public function getTrans()
     {
-        $transaction=new DealTransaction();
-        $transaction=$transaction->whereConsumer_id(Auth::user()->id)->get();
-        return View::make('site.purchase.listbill',compact('transaction'));
+        $transactions=new DealTransaction();
+        $transactions=$transactions->whereConsumer_id(Auth::user()->id)->get();
+        // echo $transactions;die;
+        return View::make('site.purchase.listbill',compact('transactions'));
     }
 }
