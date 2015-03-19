@@ -9,9 +9,9 @@
 {{-- Content --}}
 @section('content')
 <div class="page-header">
-	<h1>Login into your account</h1>
 </div>
 <div class="container">
+
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			{{ Confide::makeLoginForm()->render() }}

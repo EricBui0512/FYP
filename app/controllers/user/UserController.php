@@ -74,8 +74,9 @@ class UserController extends BaseController {
                 ->with('success', Lang::get('user/user.user_account_created'));
         } else {
             $error = $user->errors()->all(':message');
+            $type = Input::get('type');
 
-            return Redirect::to('account/create')
+            return Redirect::to('user/create/' . $type)
                 ->withInput(Input::except('password'))
                 ->with('error', $error);
         }

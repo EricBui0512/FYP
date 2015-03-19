@@ -15,6 +15,7 @@
                 <div class="break-line margin-b20"></div>
                 <form method="POST" action="{{{ URL::to('user') }}}" accept-charset="UTF-8" class="form-horizontal ">
                     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+                    <input type="hidden" name="type" value="{{{ $type }}}">
                         <fieldset>
                             <div class="form-group ">
                                 <label for="username" class="col-sm-3 control-label">{{{ Lang::get('confide::confide.username') }}}</label>
@@ -33,7 +34,7 @@
                                 <div class="form-group">
                                     <label for="Spa" class="col-sm-3 control-label">Your company name </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" placeholder="Your company name" type="text" name="spaname" id="spaname" >
+                                        <input class="form-control" placeholder="Your company name" type="text" name="spaname" id="spaname" value="{{{ Input::old('spaname') }}}">
                                     </div>
                                 </div>
                                 <div class="form-group">

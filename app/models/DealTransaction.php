@@ -80,4 +80,25 @@ class DealTransaction extends \Eloquent {
 		return $cancellations;
 	}
 
+	public static function chartDay()
+	{
+		$trans = DealTransaction::select(array(
+				'deal_transactions.created_at',
+				DB::raw('count(deal_transactions.id) AS count')
+			))
+			->leftJoin('deals', 'deals.id', '=', 'deal_transactions.deal_id')
+			->leftJoin('services', 'services.id', '=', 'deals.service_id')
+			->leftJoin('outlets', 'outlets.id', '=', 'services.outlet_id')
+			->where('admin_id', Auth::id())
+			->whereRaw("DATE_FORMAT(deal_transactions.created_at,'%Y-%m-%d') >= DATE_SUB(CURDATE(), INTERVAL 15 DAY)")
+			->groupBy('deal_transactions.created_at')
+			->get();
+
+		return $cancellations;
+	}
+
+	public static function chartWeek()
+	{
+		
+	}
 }
