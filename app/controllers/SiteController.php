@@ -13,11 +13,12 @@ class SiteController extends BaseController {
      * @param Post $post
      * @param User $user
      */
-    public function __construct(User $user)
+    public function __construct(IUserRepository $user, IDealRepository $deal)
     {
         parent::__construct();
 
         $this->user = $user;
+        $this->deal = $deal;
     }
     
 	/**
@@ -28,7 +29,7 @@ class SiteController extends BaseController {
 	public function getIndex()
 	{
         // get list outlet active
-		$deals = Deal::search();
+		$deals = $this->deal->search();
         // Show the page
 		return View::make('site/homelayout',compact('deals'));
 	}
@@ -37,14 +38,14 @@ class SiteController extends BaseController {
         $category=Input::get('category');
         $country=Input::get('country');
         $city=Input::get('city');
-        $deals=Deal::search($category,$country,$city);
+        $deals=$this->deal->search($category,$country,$city);
         // Show the page
         return View::make('site.homelayout',compact('deals'));
     }
 
     public function getDetail($id) {
         $deal_id=$id;
-        $detail=Deal::detail($id);
+        $detail=$this->deal->detail($id);
         // echo ($detail);die;
         // Show the page
         return View::make('site.deals.show',compact('detail','deal_id'));

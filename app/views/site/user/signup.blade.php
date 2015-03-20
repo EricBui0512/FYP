@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <h4>Register as Retailer</h4>
-                                    <a href="{{{ URL::to('user/create/trailer') }}}" class="btn btn-lg btn-danger">Signup</a>
+                                    <a href="{{{ URL::to('user/create/retailer') }}}" class="btn btn-lg btn-danger">Signup</a>
                                 </div>
                             </div>
                             

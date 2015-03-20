@@ -90,7 +90,7 @@ class RetailersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make( $data = Input::all(), Retailer::$rules );
+		$validator = Validator::make( $data = Input::all(), $this->retailer->rules );
 
 		if ($validator->fails())
 		{
@@ -99,7 +99,7 @@ class RetailersController extends \BaseController {
 
 		$data['admin_id'] = $this->adminId;
 
-		if ( Retailer::create($data) )
+		if ( $this->retailer->create($data) )
         {
             return Redirect::route('retailer.index')->with('success', Lang::get('site/retailers/messages.create.success'));
         }
@@ -115,7 +115,7 @@ class RetailersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$retailer = Retailer::findOrFail($id);
+		$retailer = $this->retailer->findOrFail($id);
 
 		return View::make('site.retailers.show', compact('retailer'));
 	}
@@ -130,7 +130,7 @@ class RetailersController extends \BaseController {
 	{
         $title = Lang::get('site/retailers/messages.title.retailer_update');
 
-		$retailer = Retailer::find($id);
+		$retailer = $this->retailer->find($id);
 
 		return View::make('site.retailers.edit', compact('retailer', 'title'));
 	}
@@ -143,9 +143,9 @@ class RetailersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$retailer = Retailer::findOrFail($id);
+		$retailer = $this->retailer->findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Retailer::$rules);
+		$validator = Validator::make($data = Input::all(), $this->retailer->$rules);
 
 		if ($validator->fails())
 		{
@@ -168,7 +168,7 @@ class RetailersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		if ( Retailer::destroy($id) )
+		if ( $this->retailer->destroy($id) )
         {
             return Redirect::route('retailer.index')->with('success', Lang::get('site/retailers/messages.delete.success'));
         }
