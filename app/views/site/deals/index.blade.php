@@ -14,6 +14,7 @@
        </div>
        <!-- START table-responsive-->
        <div class="table-responsive">
+          <input type="hidden" value="{{{ Session::getToken() }}}" name="_token" >
           <table class="table table-striped table-hover">
              <thead>
                 <tr>
@@ -40,8 +41,8 @@
 	                          <em class="fa fa-angle-down"></em>Action</a>
 	                       <ul class="dropdown-menu pull-right text-left">
 	                          <li>
-	                          <!-- <a href="#">Delete</a> -->
-	                          </li>
+                              <a class="delete" data-action="{{{ URL::to('deal/delete')}}}" id="{{{ $deal->id }}}" href="javascript:void(0)">Delete</a>
+                            </li>
 	                          <li><a href="{{ URL::to('deal/' . $deal->id . '/edit') }}">Edit</a>
 	                          </li>
 	                          <!-- <li><a href="{{URL::to('deal/detail/1')}}">Detail</a> -->

@@ -156,7 +156,7 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::post('outlet/create', array( 'as' => 'outlet.create', 'uses' => 'OutletsController@create'));
     Route::post('outlet/{outlet}', 'OutletsController@update');
 
-    Route::get('outlet/detail/{id}', array( 'as' => 'outlet.detail', 'uses' => 'OutletsController@show'));
+    Route::post('outlet/delete', array( 'as' => 'outlet.delete', 'uses' => 'OutletsController@destroy'));
     Route::get('outlet', array( 'as' => 'outlet.list', 'uses' => 'OutletsController@getList'));
     Route::post('outlet/uploadimage', array( 'as' => 'outlet.uploadimage', 'uses' => 'OutletsController@uploadimage'));
 
@@ -169,6 +169,7 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::get('deal/tran/{deal}','OutletsController@listTranByDeal');
     Route::get('deal/charts/{type}','OutletsController@getChartsData');
     Route::get('deal/cancellation','OutletsController@cancellationDeal');
+    Route::post('deal/delete', array( 'as' => 'deal.delete', 'uses' => 'OutletsController@destroyDeal'));
 
      # Address Management
     Route::get('address/create', array( 'as' => 'address.create', 'uses' =>'RetailersController@createAddress'));

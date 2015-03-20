@@ -175,18 +175,21 @@ class OutletsController extends \BaseController {
 	/**
 	 * Remove the specified outlet from storage.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		if ( Outlet::destroy($id) )
-		{
-			return Redirect::route('outlets.index')->with('success', Lang::get('site/outlets/messages.delete.success'));
-		}
 
-		return Redirect::route('outlet.index')->with('error', Lang::get('site/outlets/messages.delete.error'));
+		$id = Input::get('id');
 
+		if (Outlet::destroy($id))
+        {
+            echo json_encode( array('code' => 0, 'messages' =>  Lang::get('site/outlets/messages.delete.success') ));
+        }
+        else
+        {
+            echo json_encode( array('code' => 1, 'messages' => Lang::get('site/outlets/messages.delete.error') ));
+        }
 	}
 
 	public function listTranByDeal( $id )
@@ -304,14 +307,18 @@ class OutletsController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function destroyDeal($id)
+    public function destroyDeal()
     {
-        if (Deal::destroy($id))
-        {
-            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.delete.success'));
-        }
+    	$id = Input::get('id');
 
-        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.delete.error'));
+		if (Deal::destroy($id))
+        {
+            echo json_encode( array('code' => 0, 'messages' =>  Lang::get('site/deals/messages.delete.success') ));
+        }
+        else
+        {
+            echo json_encode( array('code' => 1, 'messages' => Lang::get('site/deals/messages.delete.error') ));
+        }
     }
 
     public function cancellationDeal()

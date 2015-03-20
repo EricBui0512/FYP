@@ -14,6 +14,7 @@
        </div>
        <!-- START table-responsive-->
        <div class="table-responsive">
+          <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
           <table class="table table-striped table-hover">
              <thead>
                 <tr>
@@ -39,11 +40,9 @@
 	                       <a href="#" data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle">
 	                          <em class="fa fa-angle-down"></em>Action</a>
 	                       <ul class="dropdown-menu pull-right text-left">
-	                          <li><a href="#">Delete</a>
-	                          </li>
+	                          <li><a class="delete" data-action="{{{ URL::to('outlet/delete')}}}" id="{{{ $outlet->id }}}" href="javascript:void(0)">Delete</a>
+                            </li>
 	                          <li><a href="{{ URL::to('outlet/' . $outlet->id . '/edit') }}">Edit</a>
-	                          </li>
-	                          <li><a href="{{URL::to('outlet/detail/1')}}">Detail</a>
 	                          </li>
 	                       </ul>
 	                    </div>
