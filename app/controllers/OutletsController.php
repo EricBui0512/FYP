@@ -22,7 +22,7 @@ class OutletsController extends \BaseController {
 		$outObj = new Outlet();
 		$tmpId = $outObj->createTmp();
 
-		return Redirect::to( "outlet/$tmpId/edit" )->with('title', Lang::get('site/outlets/title.create_a_new_outlet'));
+		return Redirect::to( "outlet/$tmpId/edit" );
 	}
 
 	/**
@@ -60,20 +60,19 @@ class OutletsController extends \BaseController {
 	 */
 	public function edit( $outlet )
 	{
-		$title = Session::get('title');
 		$countries = Country::lists('country','id');
 		$cities = City::lists('city','id');
 		$retailers = Retailer::owner()->lists('name', 'id');
 		$addresses = Address::select(array('addresses.id', 'addresses.address'))->lists('address',  'id');
 		$images = Picture::getByRefId( $outlet->id, 'outlet');
 
-		if ( ! $title )
+		if ( $outlet->status == 'active')
 		{
 			$title = Lang::get('site/outlets/title.outlet_update');
 		}
 		else
 		{
-			Session::forget('title');
+			$title = Lang::get('site/outlets/title.create_a_new_outlet');
 		}
 
 		return View::make('site.outlets.edit',compact('countries','cities', 'outlet', 'title', 'retailers', 'addresses'))
@@ -158,7 +157,9 @@ class OutletsController extends \BaseController {
 	    Image::make($files->getRealPath())->resize(308,308)->save( $picture['image_path'] );
 	    Image::make($files->getRealPath())->resize(64, 64)->save( $picture['thumbnail_path'] );
 		
-		Picture::create( $picture );
+		$result = Picture::create( $picture );
+
+		$picture['id'] = $result->id;
 
 		return json_encode($picture);
 	}

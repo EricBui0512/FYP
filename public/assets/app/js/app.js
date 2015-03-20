@@ -2807,7 +2807,8 @@
               $('#loading').modal('hide');
               console.log(result);
               var html, json = result.responseJSON;
-              html = '<div class="col-lg-2 ele-'+json.id+'">';
+              console.log(json);
+              html = '<div class="col-lg-2 text-center ele-'+json.id+'">';
               html += ' <div id="progress">';
               html += '     <image id="picture" alt="" src="/'+ json.thumbnail_path +'" height="64" width="64"/>';
               html += '     </div>';

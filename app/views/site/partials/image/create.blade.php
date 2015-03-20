@@ -15,7 +15,7 @@
 @if( ! empty($images))
 	<div class="list-images">
 		@foreach( $images as $image )
-			<div class="col-lg-2 ele-{{ $image->id }}">
+			<div class="col-lg-2 text-center ele-{{ $image->id }}">
 				<div id="progress">
 					<image id="picture" alt="" src="/{{{ $image->thumbnail_path }}}" height="64" width="64"/>
 			   	</div>
