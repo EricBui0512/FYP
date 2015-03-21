@@ -4,12 +4,13 @@ class OutletsController extends \BaseController {
 
 	protected $adminId = null;
 
-	public function __construct()
+	public function __construct(IOutletRepository $outlet)
 	{
 
 		parent::__construct();
 
 		$this->adminId = Auth::id();
+		$this->outlet = $outlet;
 	}
 
 	/**
@@ -33,7 +34,7 @@ class OutletsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$outlet = Outlet::findOrFail($id);
+		$outlet = $this->outlet->findOrFail($id);
 
 		return View::make('site.outlets.show', compact('outlet'));
 	}
@@ -46,7 +47,7 @@ class OutletsController extends \BaseController {
 	 */
 	public function getList()
 	{
-		$outlets = Outlet::owner()->active()->paginate(10);
+		$outlets = $this->outlet->owner()->active()->paginate(10);
 		$title = Lang::get('site/outlets/title.outlet_management');
 
 		return View::make('site.outlets.index', compact('outlets', 'title'));
@@ -93,7 +94,7 @@ class OutletsController extends \BaseController {
 		$data = Input::except( 'summary' );
 		$description = Input::only('full_description', 'summary');
 
-		$validator = Validator::make($data = Input::all(), Outlet::$rules);
+		$validator = Validator::make($data = Input::all(), $this->outlet->$rules);
 
 		if ($validator->fails())
 		{
@@ -179,7 +180,7 @@ class OutletsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		if ( Outlet::destroy($id) )
+		if ( $this->outlet->destroy($id) )
 		{
 			return Redirect::route('outlets.index')->with('success', Lang::get('site/outlets/messages.delete.success'));
 		}

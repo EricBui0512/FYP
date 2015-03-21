@@ -38,33 +38,11 @@ class RetailersController extends \BaseController {
     public function getDashboard()
     {
 
-        $thisWeek = DealTransaction::thisWeek();
-        $pastWeek = DealTransaction::pastWeek();
+        $thisWeek = $this->retailer->getDashboardDataThisWeek();
+        $pastWeek = $this->retailer->getDashboardDataPastWeek();
 
         $user = Auth::user();
-        $outletsArray = array();
-        $dealsArray = array();
-        
-        $outlets = Outlet::owner()->get();
-        $deals = Deal::dashboardDeal();
-
-        foreach ( $outlets as $outlet )
-        {
-            $dealsArray = array();
-
-            foreach ($deals as $deal )
-            {
-                if ( $outlet->id == $deal->outlet_id )
-                {
-                    $dealsArray[] = $deal;
-                }
-            }
-
-            if ( count( $dealsArray ) )
-            {
-                $outletsArray[$outlet->id] = array( 'name' => $outlet->name, 'deal' => $dealsArray );
-            }
-        }
+        $outletsArray = $this->retailer->getOutletStatData();
 
         return View::make('site.retailers.dashboard', compact('user', 'outletsArray', 'thisWeek','pastWeek'));
     }
