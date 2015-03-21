@@ -113,6 +113,10 @@
                             <label for="email" accesskey="E" class="cf1">Spa Name, Address </label>
                             <input class="form-control" />
                         </div>
+                         <div class="form-group">
+                            <label for="checkin" class="cf1">Service Name</label>
+                            <input class="form-control" />
+                        </div>
                         <div class="form-group">
                             <label for="room" class="cf1">Appointment Date</label>
                             <input class="form-control" type="date"/>
@@ -135,10 +139,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="checkin" class="cf1">Service Name</label>
-                            <input class="form-control" />
-                        </div>
+                       
                             {{Form::close()}}
 
                         <button type="submit" class="btn btn-default pull-right mb20">BOOK NOW</button>
