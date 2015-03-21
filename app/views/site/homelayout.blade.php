@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/index/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/index/jquery.vegas.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/index/animate.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/fontawesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
 
     <link rel="stylesheet" href="{{asset('assets/fonts/index/icon-fonts/styles.css')}}">
@@ -80,7 +81,7 @@
                             <li class=""><a href="{{{ URL::to('user/signup') }}}" class="btn btn-default btn-block" >Sign up</a></li> 
                         @else
                             <li class="">
-                                    <div class="margin-t5">
+                                    <div class="margin-t5" style="margin:5px;">
                                         <div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                            {{{ Auth::user()->username }}}<span class="caret"></span>
                                         </div>
@@ -101,43 +102,82 @@
         <!-- BIG HEADING WITH CALL TO ACTION BUTTONS AND SHORT MESSAGES -->
         <div class="container ">
             <!-- HEADING -->
-            <h1 class="intro"></h1>
             <div id="locationField"></div>      
-            <div class="row form-search" >
-                {{Form::open(array('url'=>'search'))}}
-                <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-                <div class="text-left">
-                    <div class="col-sm-3">
+            <div class="row mt150">
+            <h3 class="mb10 cfMain sd-t2">Book a spa service now</h3>
+                <div class="text-left"> 
+                    <div class="col-sm-3 bgMain">
+                     {{Form::open(array('url'=>'search'))}}
+                        <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                         <div class="form-group">
-                            <label for="email" accesskey="E">Category </label>
-                            {{Form::select('category',BusinessCategory::getKeyValueData(),Country::DEFAULT_COUNTRY,array('class'=>'form-control'))}}
+                            <label for="email" accesskey="E" class="cf1">Spa Name, Address </label>
+                            <input class="form-control" />
                         </div>
+                        <div class="form-group">
+                            <label for="room" class="cf1">Appointment Date</label>
+                            <input class="form-control" type="date"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="room" class="cf1">Appointment Time Slot</label>
+                            <select class="form-control">
+                                <option value="08:00">08:00</option>
+                                <option value="08:00">09:00</option>
+                                <option value="08:00">10:00</option>
+                                <option value="08:00">11:00</option>
+                                <option value="08:00">12:00</option>
+                                <option value="08:00">13:00</option>
+                                <option value="08:00">14:00</option>
+                                <option value="08:00">15:00</option>
+                                <option value="08:00">16:00</option>
+                                <option value="08:00">17:00</option>
+                                <option value="08:00">18:00</option>
+                                <option value="08:00">19:00</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="checkin" class="cf1">Service Name</label>
+                            <input class="form-control" />
+                        </div>
+                            {{Form::close()}}
+
+                        <button type="submit" class="btn btn-default pull-right mb20">BOOK NOW</button>
                     </div>
 
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="room">Countries</label>
-                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-original-title="" title=""> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                    <div class="col-sm-9">
+                        <h1 style="line-height:40px !important;font-size:45px;" class="cf1 sd-t pa20">FIND + BOOK</h1>
+                        <p class="pl20 sd-t" style="font-size:30px; color:#fff">massage, therapy,yoga & more</p>
+                        <div class="col-sm-11 mt20 ml30 bg0p30">
+                            <div class="col-sm-3 ">
+                                <div class="form-group">
+                                    <label for="email" accesskey="E" class="cf1">Category </label>
+                                    {{Form::select('category',BusinessCategory::getKeyValueData(),Country::DEFAULT_COUNTRY,array('class'=>'form-control'))}}
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="room" class="cf1">Countries</label>
                             {{Form::select('country',Country::getKeyValueData(),Country::DEFAULT_COUNTRY,array('class'=>'form-control'))}}
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="checkin">City</label>
-                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Check-In is from 11:00" data-original-title="" title=""> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                            <i class="fa fa-calendar infield"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                   <label for="checkin" class="cf1">City</label>
                             {{Form::select('city',array(),null,array('class'=>'form-control'))}}
+                            {{Form::close()}}
+                                </div>
+                            </div>
+                            <div class="col-sm-3"> 
+                             <label for="checkin" class="cf1"></label>
+                                <button type="submit" class="btn bt-spa btn-block bt-search mt25"><i class="fa fa-search"></i>  Search</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-2">
-                        <button type="submit" class="btn bt-spa btn-block bt-search">Search</button>
-                    </div> 
                 </div>
-                {{Form::close()}}
             </div>                   
         </div>
     </header>
-
+    
 <!-- =========================
    PRODUCTS SECTION   
 ============================== -->
@@ -145,59 +185,165 @@
         <div class="color-overlay">
             <div class="container">
                 <!-- SECTION HEADER -->
-                <div class="section-header">
-                </div>
+              
                 <!-- / END SECTION HEADER -->
-
-                <!-- PRODUCTS -->
-                <div class="row wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
-                    @if(!count($deals))
-                        <h3> Sorry, we have'nt deal.</h3> 
-                    @else
-                        @foreach ($deals as $key => $deal)                    
-                        <div class="col-md-3">
-                            <div class="item" style="background-image:url({{asset($deal->image_path)}});">
-                                <div class="item-overlay">
+                <div class="row mt20">
+                    <div class="col-md-9">
+                        <div class="row">
+                             <h3 class="cf1 pa10 bgMain w300"><i class="fa fa-fire"></i> Hot Deals</h3>
+                              <!-- PRODUCTS -->
+                                <div class="row wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                                    @if(!count($deals))
+                                        <h3> Sorry, we have'nt deal.</h3> 
+                                    @else
+                                        @foreach ($deals as $key => $deal)                    
+                                        <div class="col-md-4">
+                                            <div class="item" style="background-image:url({{asset($deal->image_path)}});">
+                                                <div class="item-overlay">
+                                                </div>
+                                                <div class="item-content">
+                                                    <div class="item-top-content">
+                                                        <div class="item-top-content-inner">
+                                                            <div class="item-product">
+                                                                <div class="item-top-title">
+                                                                    <p >
+                                                                        {{$deal->title}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="item-product-price">
+                                                                <span class="price-num green-text">${{$deal->discount}}</span>
+                                                                <p class="subdescription">
+                                                                    ${{$deal->amount}}
+                                                                </p>
+                                                                <div class="old-price">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item-add-content">
+                                                        <div class="item-add-content-inner">
+                                                            <div class="section">
+                                                            <div class="row">
+                                                                <div class="col-sm-6 col-sm-offset-6">
+                                                                <a href="{{URL::to('detail/'.$deal->id)}}" class="btn btn-primary custom-button green-btn">Detail</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    @endif
                                 </div>
-                                <div class="item-content">
-                                    <div class="item-top-content">
-                                        <div class="item-top-content-inner">
-                                            <div class="item-product">
-                                                <div class="item-top-title">
-                                                    <p >
-                                                        {{$deal->title}}
-                                                    </p>
+                                <!-- END FIRST ROW -->
+                                <!-- / END PRODUCTS LIST -->
+                        </div>
+                           <div class="row">
+                             <h3 class="cf1 pa10 bgMain w300"><i class="fa fa-glass"></i>  Top Services</h3>
+                              <!-- PRODUCTS -->
+                                <div class="row wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                                    @if(!count($deals))
+                                        <h3> Sorry, we have'nt deal.</h3> 
+                                    @else
+                                        @foreach ($deals as $key => $deal)                    
+                                        <div class="col-md-4">
+                                            <div class="item" style="background-image:url({{asset($deal->image_path)}});">
+                                                <div class="item-overlay">
                                                 </div>
-                                            </div>
-                                            <div class="item-product-price">
-                                                <span class="price-num green-text">${{$deal->discount}}</span>
-                                                <p class="subdescription">
-                                                    ${{$deal->amount}}
-                                                </p>
-                                                <div class="old-price">
+                                                <div class="item-content">
+                                                    <div class="item-top-content">
+                                                        <div class="item-top-content-inner">
+                                                            <div class="item-product">
+                                                                <div class="item-top-title">
+                                                                    <p >
+                                                                        {{$deal->title}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="item-product-price">
+                                                                <span class="price-num green-text">${{$deal->discount}}</span>
+                                                                <p class="subdescription">
+                                                                    ${{$deal->amount}}
+                                                                </p>
+                                                                <div class="old-price">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item-add-content">
+                                                        <div class="item-add-content-inner">
+                                                            <div class="section">
+                                                            <div class="row">
+                                                                <div class="col-sm-6 col-sm-offset-6">
+                                                                <a href="{{URL::to('detail/'.$deal->id)}}" class="btn btn-primary custom-button green-btn">Detail</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <!-- END FIRST ROW -->
+                                <!-- / END PRODUCTS LIST -->
+                        </div>
+                           
+                    </div>
+                                <div class="col-md-3">
+                                    <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="mb20 cf1 pa10 bgMain"><i class="fa fa-leaf"></i>  Featured services</h4>
                                     </div>
-                                    <div class="item-add-content">
-                                        <div class="item-add-content-inner">
-                                            <div class="section">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-sm-offset-6">
-                                                <a href="{{URL::to('detail/'.$deal->id)}}" class="btn btn-primary custom-button green-btn">Detail</a>
-                                                </div>
-                                            </div>
+                                      <div class="col-sm-12">
+                                        <div class="thumbnail">
+                                          <img src="/assets/img/index/backgrounds/bg1.jpg" alt="...">
+                                          <div class="caption">
+                                            <h3>Thumbnail label</h3>
+                                            <p>...</p>
+                                            <p><a href="#" class="btn btn-primary" role="button">Book now!</a></p>
+                                          </div>
                                         </div>
+                                      </div>
+                                      <div class="col-sm-12">
+                                        <div class="thumbnail">
+                                          <img src="/assets/img/index/backgrounds/bg1.jpg" alt="...">
+                                          <div class="caption">
+                                            <h3>Thumbnail label</h3>
+                                            <p>...</p>
+                                            <p><a href="#" class="btn btn-primary" role="button">Book now!</a></p>
+                                          </div>
                                         </div>
+                                      </div>
+                                      <div class="col-sm-12">
+                                        <div class="thumbnail">
+                                          <img src="/assets/img/index/backgrounds/bg1.jpg" alt="...">
+                                          <div class="caption">
+                                            <h3>Thumbnail label</h3>
+                                            <p>...</p>
+                                            <p><a href="#" class="btn btn-primary" role="button">Book now!</a></p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-12">
+                                        <div class="thumbnail">
+                                          <img src="/assets/img/index/backgrounds/bg1.jpg" alt="...">
+                                          <div class="caption">
+                                            <h3>Thumbnail label</h3>
+                                            <p>...</p>
+                                            <p><a href="#" class="btn btn-primary" role="button">Book now!</a></p>
+                                          </div>
+                                        </div>
+                                      </div>    
+
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        @endforeach
-                    @endif
-                </div>
-                <!-- END FIRST ROW -->
-                <!-- / END PRODUCTS LIST -->
             </div>
             <!-- / END CONTAINER -->
         </div>

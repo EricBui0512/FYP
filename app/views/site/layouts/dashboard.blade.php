@@ -61,13 +61,11 @@
 	  <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
 		 <!-- START navbar header-->
 		 <div class="navbar-header">
-			<a href="/" class="navbar-brand">
+			<a class="navbar-brand" href="{{{ URL::to('') }}}" >
 			   <div class="brand-logo">
-				  <img src="{{asset('assets/img/index/logo.png')}}" alt="App Logo" class="img-responsive">
+			   		<img src="{{asset('assets/img/index/logo.png')}}" alt="App Logo" class="img-responsive" style="height:40px;">
 			   </div>
-			   <div class="brand-logo-collapsed">
-				  <img src="/assets/app/img/logo-single.png" alt="App Logo" class="img-responsive">
-			   </div>
+			  
 			</a>
 		 </div>
 		 <!-- END navbar header-->
@@ -77,9 +75,7 @@
 			<!-- START Left navbar-->
 			   
 			   <div class="collapse navbar-collapse navbar-ex1-collapse">
-                        <ul class="nav navbar-nav">
-                            <li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">Homepage</a></li>
-                        </ul>
+                    
                         <ul class="nav navbar-nav pull-right">
                             @if (Auth::check())
                                 <li><a href="{{{ URL::to('user') }}}">Logged in as {{{ Auth::user()->username }}}</a></li>
@@ -104,39 +100,15 @@
 			@endif
 		 </div>
 		 <!-- END Nav wrapper-->
-		 <!-- START Search form-->
-		 <form role="search" action="search.html" class="navbar-form">
-			<div class="form-group has-feedback">
-			   <input type="text" placeholder="Type and hit Enter.." class="form-control">
-			   <div data-toggle="navbar-search-dismiss" class="fa fa-times form-control-feedback"></div>
-			</div>
-			<button type="submit" class="hidden btn btn-default">Submit</button>
-		 </form>
-		 <!-- END Search form-->
+		
 	  </nav>
 	  <!-- END Top Navbar-->
 	  <!-- START aside-->
 	  
-	  <aside class="aside">
+	  <aside class="aside" style="margin-top:50px;">
 		 <!-- START Sidebar (left)-->
 		 <nav class="sidebar">
-			<!-- START user info-->
-			<div class="item user-block">
-			   <!-- User picture-->
-			   <div class="user-block-picture">
-				  <div class="user-block-status">
-					 <img src="/assets/app/img/user/02.jpg" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
-					 <div class="circle circle-success circle-lg"></div>
-				  </div>
-				  <!-- Status when collapsed-->
-			   </div>
-			   <!-- Name and Role-->
-			   <div class="user-block-info">
-				  <span class="user-block-name item-text">Welcome User</span>
-				  <span class="user-block-role">UX-Dev</span>
-			   </div>
-			</div>
-			<!-- END user info-->
+			
 			 @yield('menu')
 			
 		 </nav>
@@ -144,182 +116,7 @@
 	  </aside>
 	  <!-- End aside-->
 	  <!-- START aside-->
-	  <aside class="offsidebar">
-		 <!-- START Off Sidebar (right)-->
-		 <nav>
-			<div class="p-lg text-center">
-			   <em class="fa fa-user"></em>
-			   <strong>Connections</strong>
-			</div>
-			<ul class="nav">
-			   <!-- END user info-->
-			   <li class="p">
-				  <div class="form-group has-feedback">
-					 <input type="text" placeholder="Search contacts.." class="form-control input-sm">
-					 <em class="fa fa-search form-control-feedback text-muted"></em>
-				  </div>
-			   </li>
-			   <!-- START list title-->
-			   <li class="p">
-				  <small class="text-muted">ONLINE</small>
-			   </li>
-			   <!-- END list title-->
-			   <li>
-				  <!-- START User status-->
-				  <a href="#" class="media p mt0">
-					 <span class="pull-right">
-						<span class="circle circle-success circle-lg"></span>
-					 </span>
-					 <span class="pull-left">
-						<!-- Contact avatar-->
-						<img src="/assets/app/img/user/05.jpg" alt="Image" class="media-object img-circle thumb32">
-					 </span>
-					 <!-- Contact info-->
-					 <span class="media-body">
-						<span class="media-heading">
-						   <strong>Laura Sam</strong>
-						   <br>
-						   <small class="text-muted">Lead, Developer</small>
-						</span>
-					 </span>
-				  </a>
-				  <!-- END User status-->
-				  <!-- START User status-->
-				  <a href="#" class="media p mt0">
-					 <span class="pull-right">
-						<span class="circle circle-success circle-lg"></span>
-					 </span>
-					 <span class="pull-left">
-						<!-- Contact avatar-->
-						<img src="/assets/app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb32">
-					 </span>
-					 <!-- Contact info-->
-					 <span class="media-body">
-						<span class="media-heading">
-						   <strong>Beverley Pierce</strong>
-						   <br>
-						   <small class="text-muted">Writer</small>
-						</span>
-					 </span>
-				  </a>
-				  <!-- END User status-->
-				  <!-- START User status-->
-				  <a href="#" class="media p mt0">
-					 <span class="pull-right">
-						<span class="circle circle-danger circle-lg"></span>
-					 </span>
-					 <span class="pull-left">
-						<!-- Contact avatar-->
-						<img src="/assets/app/img/user/07.jpg" alt="Image" class="media-object img-circle thumb32">
-					 </span>
-					 <!-- Contact info-->
-					 <span class="media-body">
-						<span class="media-heading">
-						   <strong>Mika Long</strong>
-						   <br>
-						   <small class="text-muted">System Analyst</small>
-						</span>
-					 </span>
-				  </a>
-				  <!-- END User status-->
-				  <!-- START User status-->
-				  <a href="#" class="media p mt0">
-					 <span class="pull-right">
-						<span class="circle circle-warning circle-lg"></span>
-					 </span>
-					 <span class="pull-left">
-						<!-- Contact avatar-->
-						<img src="/assets/app/img/user/08.jpg" alt="Image" class="media-object img-circle thumb32">
-					 </span>
-					 <!-- Contact info-->
-					 <span class="media-body">
-						<span class="media-heading">
-						   <strong>Danielle Berry</strong>
-						   <br>
-						   <small class="text-muted">Developer</small>
-						</span>
-					 </span>
-				  </a>
-				  <!-- END User status-->
-			   </li>
-			   <!-- START list title-->
-			   <li class="p">
-				  <small class="text-muted">OFFLINE</small>
-			   </li>
-			   <!-- END list title-->
-			   <li>
-				  <!-- START User status-->
-				  <a href="#" class="media p mt0">
-					 <span class="pull-right">
-						<span class="circle circle-lg"></span>
-					 </span>
-					 <span class="pull-left">
-						<!-- Contact avatar-->
-						<img src="/assets/app/img/user/09.jpg" alt="Image" class="media-object img-circle thumb32">
-					 </span>
-					 <!-- Contact info-->
-					 <span class="media-body">
-						<span class="media-heading">
-						   <strong>Martin Cooper</strong>
-						   <br>
-						   <small class="text-muted">Designeer</small>
-						</span>
-					 </span>
-				  </a>
-				  <!-- END User status-->
-				  <!-- START User status-->
-				  <a href="#" class="media p mt0">
-					 <span class="pull-right">
-						<span class="circle circle-lg"></span>
-					 </span>
-					 <span class="pull-left">
-						<!-- Contact avatar-->
-						<img src="/assets/app/img/user/10.jpg" alt="Image" class="media-object img-circle thumb32">
-					 </span>
-					 <!-- Contact info-->
-					 <span class="media-body">
-						<span class="media-heading">
-						   <strong>Daniel Curtis</strong>
-						   <br>
-						   <small class="text-muted">Designer</small>
-						</span>
-					 </span>
-				  </a>
-				  <!-- END User status-->
-			   </li>
-			   <li>
-				  <div class="p-lg text-center">
-					 <!-- Optional link to list more users-->
-					 <a href="#" title="See more contacts" class="btn btn-purple btn-sm">
-						<strong>Load more..</strong>
-					 </a>
-				  </div>
-			   </li>
-			</ul>
-			<!-- Extra items-->
-			<div class="p">
-			   <p>
-				  <small class="text-muted">Tasks completion</small>
-			   </p>
-			   <div class="progress progress-xs m0">
-				  <div role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-success progress-80">
-					 <span class="sr-only">80% Complete</span>
-				  </div>
-			   </div>
-			</div>
-			<div class="p">
-			   <p>
-				  <small class="text-muted">Upload quota</small>
-			   </p>
-			   <div class="progress progress-xs m0">
-				  <div role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-warning progress-40">
-					 <span class="sr-only">40% Complete</span>
-				  </div>
-			   </div>
-			</div>
-		 </nav>
-		 <!-- END Off Sidebar (right)-->
-	  </aside>
+	 
 	  <!-- END aside-->
 	  <!-- START Main section-->
 	  <section>
