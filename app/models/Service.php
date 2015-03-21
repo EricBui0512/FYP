@@ -14,7 +14,7 @@ class Service extends \Eloquent {
 
 	// Don't forget to fill this array
 	protected $fillable = [ 'name', 'outlet_id', 'condition_id',
-			'detail_id', 'active', 'price', 'time_operate' ];
+			'detail_id', 'status', 'price', 'time_operate' ];
 
 	public function scopeOwner( $query )
 	{
