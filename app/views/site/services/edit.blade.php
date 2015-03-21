@@ -2,7 +2,7 @@
 @section('container')
 <div class="col-sm-12">
 	<div class="panel panel-default">
-		<div class="panel-heading">Create Service</div>
+		<div class="panel-heading">{{ $title }}</div>
 		<div class="panel-body">
 			<form method="POST" action="{{URL::to('service/' . $service->id)}}">
 				<input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
@@ -128,7 +128,7 @@
 							<!-- <p>In vulputate mattis ipsum vitae vehicula. Praesent at arcu non arcu convallis pellentesque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
 							<br>
 							<p>
-								<button type="submit" class="btn btn-info bt-spa">Create</button>
+								<button type="submit" class="btn btn-info bt-spa">{{ $service->status == 'active' ? 'Update' : 'Create'}}</button>
 							</p>
 						</div>
 					</div>

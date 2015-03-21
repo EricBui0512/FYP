@@ -3,7 +3,7 @@
 	<div class="col-sm-12">
       <!-- START panel-->
       <div class="panel panel-default">
-         <div class="panel-heading">Deals form</div>
+         <div class="panel-heading">Create a new Deal</div>
          <div class="panel-body">
             <form class="form-horizontal"  method="POST" action="{{URL::to('deal/create')}}">
                <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">

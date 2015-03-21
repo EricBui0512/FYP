@@ -177,9 +177,7 @@ class RetailersController extends \BaseController {
         $service = new Service;
         $id = $service->createTmp();
 
-        $title = Lang::get('site/services/title.create_a_new_service');
-
-        return Redirect::to('service/' . $id . '/edit')->with('title', $title);
+        return Redirect::to('service/' . $id . '/edit');
 	}
 
 
@@ -204,7 +202,14 @@ class RetailersController extends \BaseController {
 	 */
 	public function editService($service)
 	{
-        $title = Lang::get('site/services/title.create_a_new_service');
+        if ( $service->status == 'active')
+        {
+            $title = Lang::get('site/services/title.service_update');
+        }
+        else
+        {
+            $title = Lang::get('site/services/title.create_a_new_service');
+        }
 
         $outlets = Outlet::active()->owner()->lists('name', 'id');
         $images = Picture::getByRefId( $service->id, 'service');

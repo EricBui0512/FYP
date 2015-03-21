@@ -4,13 +4,12 @@ class OutletsController extends \BaseController {
 
 	protected $adminId = null;
 
-	public function __construct(IOutletRepository $outlet)
+	public function __construct()
 	{
 
 		parent::__construct();
 
 		$this->adminId = Auth::id();
-		$this->outlet = $outlet;
 	}
 
 	/**
@@ -23,7 +22,7 @@ class OutletsController extends \BaseController {
 		$outObj = new Outlet();
 		$tmpId = $outObj->createTmp();
 
-		return Redirect::to( "outlet/$tmpId/edit" )->with('title', Lang::get('site/outlets/title.create_a_new_outlet'));
+		return Redirect::to( "outlet/$tmpId/edit" );
 	}
 
 	/**
@@ -34,7 +33,7 @@ class OutletsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$outlet = $this->outlet->findOrFail($id);
+		$outlet = Outlet::findOrFail($id);
 
 		return View::make('site.outlets.show', compact('outlet'));
 	}
@@ -47,7 +46,7 @@ class OutletsController extends \BaseController {
 	 */
 	public function getList()
 	{
-		$outlets = $this->outlet->owner()->active()->paginate(10);
+		$outlets = Outlet::owner()->active()->paginate(10);
 		$title = Lang::get('site/outlets/title.outlet_management');
 
 		return View::make('site.outlets.index', compact('outlets', 'title'));
@@ -61,20 +60,19 @@ class OutletsController extends \BaseController {
 	 */
 	public function edit( $outlet )
 	{
-		$title = Session::get('title');
 		$countries = Country::lists('country','id');
 		$cities = City::lists('city','id');
 		$retailers = Retailer::owner()->lists('name', 'id');
 		$addresses = Address::select(array('addresses.id', 'addresses.address'))->lists('address',  'id');
 		$images = Picture::getByRefId( $outlet->id, 'outlet');
 
-		if ( ! $title )
+		if ( $outlet->status == 'active')
 		{
 			$title = Lang::get('site/outlets/title.outlet_update');
 		}
 		else
 		{
-			Session::forget('title');
+			$title = Lang::get('site/outlets/title.create_a_new_outlet');
 		}
 
 		return View::make('site.outlets.edit',compact('countries','cities', 'outlet', 'title', 'retailers', 'addresses'))
@@ -94,7 +92,7 @@ class OutletsController extends \BaseController {
 		$data = Input::except( 'summary' );
 		$description = Input::only('full_description', 'summary');
 
-		$validator = Validator::make($data = Input::all(), $this->outlet->$rules);
+		$validator = Validator::make($data = Input::all(), Outlet::$rules);
 
 		if ($validator->fails())
 		{
@@ -159,7 +157,9 @@ class OutletsController extends \BaseController {
 	    Image::make($files->getRealPath())->resize(308,308)->save( $picture['image_path'] );
 	    Image::make($files->getRealPath())->resize(64, 64)->save( $picture['thumbnail_path'] );
 		
-		Picture::create( $picture );
+		$result = Picture::create( $picture );
+
+		$picture['id'] = $result->id;
 
 		return json_encode($picture);
 	}
@@ -175,18 +175,21 @@ class OutletsController extends \BaseController {
 	/**
 	 * Remove the specified outlet from storage.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		if ( $this->outlet->destroy($id) )
-		{
-			return Redirect::route('outlets.index')->with('success', Lang::get('site/outlets/messages.delete.success'));
-		}
 
-		return Redirect::route('outlet.index')->with('error', Lang::get('site/outlets/messages.delete.error'));
+		$id = Input::get('id');
 
+		if (Outlet::destroy($id))
+        {
+            echo json_encode( array('code' => 0, 'messages' =>  Lang::get('site/outlets/messages.delete.success') ));
+        }
+        else
+        {
+            echo json_encode( array('code' => 1, 'messages' => Lang::get('site/outlets/messages.delete.error') ));
+        }
 	}
 
 	public function listTranByDeal( $id )
@@ -304,14 +307,18 @@ class OutletsController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function destroyDeal($id)
+    public function destroyDeal()
     {
-        if (Deal::destroy($id))
-        {
-            return Redirect::route('deal.index')->with('success', Lang::get('site/deals/messages.delete.success'));
-        }
+    	$id = Input::get('id');
 
-        return Redirect::route('deal.index')->with('error', Lang::get('site/deals/messages.delete.error'));
+		if (Deal::destroy($id))
+        {
+            echo json_encode( array('code' => 0, 'messages' =>  Lang::get('site/deals/messages.delete.success') ));
+        }
+        else
+        {
+            echo json_encode( array('code' => 1, 'messages' => Lang::get('site/deals/messages.delete.error') ));
+        }
     }
 
     public function cancellationDeal()
