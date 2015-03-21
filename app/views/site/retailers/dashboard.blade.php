@@ -18,9 +18,9 @@ List Outlet
             <div class="panel panel-green">
               <div class="panel-heading">
                 <div class="row">
-                  <div class="col-xs-12">
-                    <div class="text-lg p text-center">{{ $thisWeek->this_tran_week }}</div>
-                    <h3 class="media p mt0 text-center">This Week</h3>
+                  <div class="col-xs-12 text-center">
+                    <h3 class="media pt-sm ">{{ $thisWeek->this_tran_week }}</h3>
+                    <h3 class="media pt-sm mt0 text-center">This Week</h3>
                   </div>
                 </div>
               </div>
@@ -32,9 +32,9 @@ List Outlet
             <div class="panel panel-primary">
               <div class="panel-heading">
                 <div class="row">
-                  <div class="col-xs-12">
-                    <div class="text-lg p text-center">{{ $pastWeek->past_tran_week }}</div>
-                    <h3 class="media p mt0 text-center">Past Week</h3>
+                  <div class="col-xs-12 text-center">
+                    <h3 class="media pt-sm">{{ $pastWeek->past_tran_week }}</h3>
+                    <h3 class="media pt-sm mt0">Past Week</h3>
                   </div>
                   
                 </div>
@@ -58,8 +58,8 @@ List Outlet
               <div class="panel-heading">
                 <div class="row">
                   <div class="col-xs-12 text-center">
-                    <h3 class="media p">${{ number_format($thisWeek->this_amount_week,2) }}</h3>
-                    <h3 class="media p mt0">This Week</h3>
+                    <h3 class="media pt-sm">${{ number_format($thisWeek->this_amount_week,0) }}</h3>
+                    <h3 class="media pt-sm mt0">This Week</h3>
                   </div>
                 </div>
               </div>
@@ -72,8 +72,8 @@ List Outlet
               <div class="panel-heading">
                 <div class="row">
                   <div class="col-xs-12 text-center">
-                    <h3 class="media p">${{ number_format($pastWeek->past_amount_week,2) }}</h3>
-                    <h3 class="media p mt0">Past Week</h3>
+                    <h3 class="media pt-sm">${{ number_format($pastWeek->past_amount_week,0) }}</h3>
+                    <h3 class="media pt-sm mt0">Past Week</h3>
                   </div>
                   
                 </div>

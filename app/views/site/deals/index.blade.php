@@ -22,6 +22,7 @@
                    <th class="col-md-6">Title</th>
                    <th class="col-md-1">Amount</th>
                    <th class="col-md-1">Discount</th>
+                   <th class="col-md-1">Status</th>
                    <th class="col-md-2">Time Slot</th>
                    <th class="col-md-1">Action</th>         
                 </tr>
@@ -33,6 +34,7 @@
                    	<td>{{ $deal->title }}</td>
                    	<td>{{ $deal->amount }}</td>
                     <td>{{ $deal->discount }}</td>   
+                    <td>{{ $deal->status }}</td>   
                    	
                    	<td>{{ $deal->time_slot }}</td>
                    	<td class="text-center">
