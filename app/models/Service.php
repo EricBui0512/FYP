@@ -8,7 +8,7 @@ class Service extends \Eloquent {
 		'name' => 'required',
 		'condition_id' => 'integer',
 		'detail_id' => 'integer',
-		'price' => 'regex:/[\d]{1,5}.[\d]{2}/',
+		'price' => 'regex:/[\d]{1,5}/',
 		'summary' => 'required'
 	];
 
