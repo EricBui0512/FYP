@@ -10,7 +10,7 @@
             @endif
             <label>Username</label>
             <input type="text" class="form-control" placeholder="{{ Lang::get('confide::confide.username_e_mail') }}" name="email" id="email" value="{{ Input::old('email') }}">
-            <label>Password</label><a href="forgot" class="pull-right"><i class="icon-question-sign"></i>&nbsp;Forgot Password</a> 
+            <label>Password</label><a href="/user/forgot" class="pull-right"><i class="icon-question-sign"></i>&nbsp;Forgot Password</a> 
             <input type="password" class="form-control" tabindex="2" placeholder="{{ Lang::get('confide::confide.password') }}" name="password" id="password">
                 <div class="checkbox">
                     <label for="remember">{{ Lang::get('confide::confide.login.remember') }}

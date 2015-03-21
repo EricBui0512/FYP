@@ -57,7 +57,6 @@
                     </button>
                     <a href="{{{ URL::to('./') }}}" class="navbar-brand">
                         <img src="{{asset('assets/img/index/logo.png')}}">
-                        <!-- <div class="logo">Booking.com</div> -->
                     </a>
                 </div>
                 <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
