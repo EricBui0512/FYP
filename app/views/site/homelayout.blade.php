@@ -190,7 +190,8 @@
                 <div class="row mt20">
                     <div class="col-md-9">
                         <div class="row">
-                             <h3 class="cf1 pa10 bgMain w300"><i class="fa fa-fire"></i> Hot Deals</h3>
+                        <div class="col-md-12">
+                             <h4 class="cf1 pa10 bgMain w300"><i class="fa fa-fire"></i> Hot Deals</h4>
                               <!-- PRODUCTS -->
                                 <div class="row wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
                                     @if(!count($deals))
@@ -241,8 +242,10 @@
                                 <!-- END FIRST ROW -->
                                 <!-- / END PRODUCTS LIST -->
                         </div>
+                    </div>
                            <div class="row">
-                             <h3 class="cf1 pa10 bgMain w300"><i class="fa fa-glass"></i>  Top Services</h3>
+                           <div class="col-md-12">
+                             <h4 class="cf1 pa10 bgMain w300"><i class="fa fa-glass"></i>  Top Services</h4>
                               <!-- PRODUCTS -->
                                 <div class="row wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
                                     @if(!count($deals))
@@ -292,6 +295,7 @@
                                 </div>
                                 <!-- END FIRST ROW -->
                                 <!-- / END PRODUCTS LIST -->
+                        </div>
                         </div>
                            
                     </div>
