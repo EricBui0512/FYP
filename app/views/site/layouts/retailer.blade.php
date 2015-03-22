@@ -4,7 +4,7 @@
        <!-- START Menu-->
         <li>
            <a href="{{{URL::to('retailer/dashboard')}}}" title="Elements">
-             <em class="fa fa-flask"></em>
+             <em class="fa fa-tachometer"></em>
              <span class="item-text">Dashboard</span>
           </a>
         </li>      
@@ -31,7 +31,7 @@
          </li>
        <li>
           <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
-             <em class="fa fa-flask"></em>
+             <em class="fa fa-cubes"></em>
              <span class="item-text">Manage Outlet</span>
           </a>
           <!-- START SubMenu item-->
@@ -52,7 +52,7 @@
        </li>
        <li>
           <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
-             <em class="fa fa-flask"></em>
+             <em class="fa fa-coffee"></em>
              <span class="item-text">Manage Service</span>
           </a>
           <!-- START SubMenu item-->

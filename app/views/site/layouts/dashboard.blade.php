@@ -61,13 +61,11 @@
 	  <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
 		 <!-- START navbar header-->
 		 <div class="navbar-header">
-			<a href="/" class="navbar-brand">
+			<a class="navbar-brand" href="{{{ URL::to('') }}}" >
 			   <div class="brand-logo">
-				  <img src="{{asset('assets/img/index/logo.png')}}" alt="App Logo" class="img-responsive">
+			   		<img src="{{asset('assets/img/index/logo.png')}}" alt="App Logo" class="img-responsive" style="height:40px;">
 			   </div>
-			   <div class="brand-logo-collapsed">
-				  <img src="/assets/app/img/logo-single.png" alt="App Logo" class="img-responsive">
-			   </div>
+			  
 			</a>
 		 </div>
 		 <!-- END navbar header-->
@@ -77,9 +75,7 @@
 			<!-- START Left navbar-->
 			   
 			   <div class="collapse navbar-collapse navbar-ex1-collapse">
-                        <ul class="nav navbar-nav">
-                            <li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">Homepage</a></li>
-                        </ul>
+                    
                         <ul class="nav navbar-nav pull-right">
                             @if (Auth::check())
                                 <li><a href="{{{ URL::to('user') }}}">Logged in as {{{ Auth::user()->username }}}</a></li>
@@ -104,46 +100,21 @@
 			@endif
 		 </div>
 		 <!-- END Nav wrapper-->
-		 <!-- START Search form-->
-		 <form role="search" action="search.html" class="navbar-form">
-			<div class="form-group has-feedback">
-			   <input type="text" placeholder="Type and hit Enter.." class="form-control">
-			   <div data-toggle="navbar-search-dismiss" class="fa fa-times form-control-feedback"></div>
-			</div>
-			<button type="submit" class="hidden btn btn-default">Submit</button>
-		 </form>
-		 <!-- END Search form-->
+		
 	  </nav>
 	  <!-- END Top Navbar-->
 	  <!-- START aside-->
 	  
-	  <aside class="aside">
+	  <aside class="aside" style="margin-top:50px;">
 		 <!-- START Sidebar (left)-->
 		 <nav class="sidebar">
-			<!-- START user info-->
-			<div class="item user-block">
-			   <!-- User picture-->
-			   <div class="user-block-picture">
-				  <div class="user-block-status">
-					 <img src="/assets/app/img/user/02.jpg" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
-					 <div class="circle circle-success circle-lg"></div>
-				  </div>
-				  <!-- Status when collapsed-->
-			   </div>
-			   <!-- Name and Role-->
-			   <div class="user-block-info">
-				  <span class="user-block-name item-text">Welcome User</span>
-				  <span class="user-block-role">UX-Dev</span>
-			   </div>
-			</div>
-			<!-- END user info-->
+			
 			 @yield('menu')
 			
 		 </nav>
 		 <!-- END Sidebar (left)-->
 	  </aside>
 	  <!-- End aside-->
-
 	  <!-- START Main section-->
 	  <section>
 		 <!-- START Page content-->

@@ -13,11 +13,12 @@ class PurchaseController extends BaseController {
      * @param Post $post
      * @param User $user
      */
-    public function __construct(User $user)
+    public function __construct(IUserRepository $user, IDealRepository $deal)
     {
         parent::__construct();
 
         $this->user = $user;
+        $this->deal = $deal;
     }
     
 	/**
@@ -28,7 +29,7 @@ class PurchaseController extends BaseController {
 	public function getBill($id)
 	{
         // get list outlet active
-		 $detail=Deal::detail($id);
+		 $detail=$this->deal->detail($id);
         // Show the page
 		return View::make('site.purchase.bill',compact('detail'));
 	}
@@ -43,7 +44,7 @@ class PurchaseController extends BaseController {
         
 
         $validator = Validator::make(Input::all(), DealTransaction::$rules);
-        $detail=Deal::detail(Input::get('deal_id'));
+        $detail=$this->deal->detail(Input::get('deal_id'));
         if(!Auth::user())
             return Redirect::to('purchase/'.$detail->id)->with('message', 'Login please!');;
         if ($validator->passes())

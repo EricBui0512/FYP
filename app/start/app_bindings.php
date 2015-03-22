@@ -3,3 +3,4 @@
 App::bind('IUserRepository', 'UserRepository');
 App::bind('IRetailerRepository', 'RetailerRepository');
 App::bind('IDealRepository', 'DealRepository');
+App::bind('IOutletRepository', 'OutletRepository');
