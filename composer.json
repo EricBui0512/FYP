@@ -24,7 +24,8 @@
         "mockery/mockery": "~0.9",
         "summerstreet/woodling": "~0.1.6",
         "barryvdh/laravel-ide-helper": "~1.11",
-        "intervention/image": "dev-master"
+        "intervention/image": "dev-master",
+        "paypal/rest-api-sdk-php": "*"
     },
     "autoload": {
         "classmap": [

@@ -295,6 +295,35 @@
                            
                     </div>
                                 <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="mb20 cf1 pa10 bgMain"><i class="fa fa-flag-checkered"></i>  Why use spa online?</h4>
+                                    </div>
+                                    <div class="col-sm-12">
+                                         <div class="thumbnail">
+                                          <div class="caption">
+                                            <h4 class="cf7">
+                                            <span class="fa-stack fa-lg">
+                                              <i class="fa fa-circle fa-stack-2x"></i>
+                                                <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                            <b>120 Users</b></h4>
+                                            <h4 class="cf8">
+                                                    <span class="fa-stack fa-lg">
+                                              <i class="fa fa-circle fa-stack-2x"></i>
+                                                <i class="fa fa-sitemap fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                            <b>50</b> Spa service providers</h4>
+                                            <h4 class="cf9">
+ <span class="fa-stack fa-lg">
+                                              <i class="fa fa-circle fa-stack-2x"></i>
+                                                <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                            <b>150</b> Spa locations</h4>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
                                     <div class="row">
                                     <div class="col-sm-12">
                                         <h4 class="mb20 cf1 pa10 bgMain"><i class="fa fa-leaf"></i>  Featured services</h4>
