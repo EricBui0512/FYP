@@ -3,13 +3,15 @@
 class OutletsController extends \BaseController {
 
 	protected $adminId = null;
+	protected $dealRepo;
 
-	public function __construct()
+	public function __construct(IDealRepository $dealRepo)
 	{
 
 		parent::__construct();
 
 		$this->adminId = Auth::id();
+		$this->dealRepo = $dealRepo;
 	}
 
 	/**
@@ -170,7 +172,7 @@ class OutletsController extends \BaseController {
 		$normal = Input::get('normal');
 		$thumb = Input::get('thumb');
 
-		Picture::destroy( $id );
+		echo json_encode(Picture::destroy( $id ));
 	}
 	/**
 	 * Remove the specified outlet from storage.
@@ -329,46 +331,45 @@ class OutletsController extends \BaseController {
         return View::make('site.deals.cancellation', compact('deals','title'));
     }
 
-    public function getChartsData( $type )
-    {
-        // $type = Input::get('type');
+    // public function getChartsData( $type )
+    // {
+        
+    //     $chats = array(
+    //             array( 'category' => '27/02', 'value' => 1),
+    //             array( 'category' => '28/02', 'value' => 2),
+    //             array( 'category' => '01/03', 'value' => 4),
+    //             array( 'category' => '02/03', 'value' => 6),
+    //             array( 'category' => '03/03', 'value' => 7),
+    //             array( 'category' => '04/03', 'value' => 8),
+    //             array( 'category' => '05/03', 'value' => 2),
+    //             array( 'category' => '06/03', 'value' => 8),
+    //             array( 'category' => '07/03', 'value' => 26),
+    //             array( 'category' => '08/03', 'value' => 17),
+    //             array( 'category' => '09/03', 'value' => 2),
+    //             array( 'category' => '10/03', 'value' => 2),
+    //             array( 'category' => '11/03', 'value' => 13),
+    //             array( 'category' => '12/03', 'value' => 34),
+    //             array( 'category' => '13/03', 'value' => 1),
+    //             array( 'category' => '14/03', 'value' => 20),
+    //         );
 
-        $chats = array(
-                array( 'category' => '27/02', 'value' => 1),
-                array( 'category' => '28/02', 'value' => 2),
-                array( 'category' => '01/03', 'value' => 4),
-                array( 'category' => '02/03', 'value' => 6),
-                array( 'category' => '03/03', 'value' => 7),
-                array( 'category' => '04/03', 'value' => 8),
-                array( 'category' => '05/03', 'value' => 2),
-                array( 'category' => '06/03', 'value' => 8),
-                array( 'category' => '07/03', 'value' => 26),
-                array( 'category' => '08/03', 'value' => 17),
-                array( 'category' => '09/03', 'value' => 2),
-                array( 'category' => '10/03', 'value' => 2),
-                array( 'category' => '11/03', 'value' => 13),
-                array( 'category' => '12/03', 'value' => 34),
-                array( 'category' => '13/03', 'value' => 1),
-                array( 'category' => '14/03', 'value' => 20),
-            );
+    //     if ( $type == 'week' ) {
+    //         $chats = array(
+    //             array( 'category' => 'week 1 - 02', 'value' => 3),
+    //             array( 'category' => 'week 2 - 02', 'value' => 3),
+    //             array( 'category' => 'week 3 - 02', 'value' => 12),
+    //             array( 'category' => 'week 4 - 02', 'value' => 33),
+    //             array( 'category' => 'week 1 - 03', 'value' => 43),
+    //             array( 'category' => 'week 2 - 03', 'value' => 53),
+    //         );
+    //     }
+    //     else if ( $type == 'month') {
 
-        if ( $type == 'week' ) {
-            $chats = array(
-                array( 'category' => 'week 1 - 02', 'value' => 3),
-                array( 'category' => 'week 2 - 02', 'value' => 3),
-                array( 'category' => 'week 3 - 02', 'value' => 12),
-                array( 'category' => 'week 4 - 02', 'value' => 33),
-                array( 'category' => 'week 1 - 03', 'value' => 43),
-                array( 'category' => 'week 2 - 03', 'value' => 53),
-            );
-        }
-        else if ( $type == 'month') {
-
-        	$chats = array(
-                array( 'category' => '02/2015', 'value' => 3),
-                array( 'category' => '03/2015', 'value' => 147),
-            );
-        }
-        echo json_encode($chats);
-    }
+    //     	$chats = array(
+    //             array( 'category' => '02/2015', 'value' => 3),
+    //             array( 'category' => '03/2015', 'value' => 147),
+    //         );
+    //     }
+    //     echo json_encode($chats);
+    // }
 }

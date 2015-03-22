@@ -29,7 +29,8 @@ Create Outlet
           <div class="form-group">
             <label class="col-lg-2 control-label">Website</label>
             <div class="col-lg-8 ">
-              <input type="url" placeholder="Website" class="form-control" value="{{{ Input::old('website', isset($outlet) ? $outlet->website : null) }}}">
+              <input type="text" name="website" placeholder="Website" class="form-control" value="{{{ Input::old('website', isset($outlet) ? $outlet->website : null) }}}">
+              {{ $errors->first('website', '<span class="help-inline">:message</span>') }}
             </div>
           </div>
           <div class="form-group">
@@ -87,7 +88,7 @@ Create Outlet
             
           </div>
           <div class="form-group">
-            <label class="col-lg-2 control-label">Address{{--*/ $address = $outlet->address->address /*--}}</label>
+            <label class="col-lg-2 control-label">Address{{--*/ $address = isset($outlet->address)?$outlet->address->address:'' /*--}}</label>
             <div class="col-lg-8">
               <input type="text" placeholder="address" name="address" class="form-control" value="{{{ Input::old('address', isset($outlet->address) ? $outlet->address->address : '') }}}">
               {{ $errors->first('address', '<span class="help-inline">:message</span>') }}

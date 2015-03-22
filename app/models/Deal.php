@@ -6,8 +6,8 @@ class Deal extends \Eloquent {
 	public static $rules = [
 		'service_id' => 'required',
 		'title' => 'required',
-		'amount' => 'required|regex:/[\d]{1,5}.[\d]{2}/',
-		'discount' => 'regex:/[\d]{1,5}.[\d]{2}/',
+		'amount' => 'required|regex:/[\d]{1,5}/',
+		'discount' => 'regex:/[\d]{1,5}/',
 		'time_slot' => 'date',
 		'remind_time' => 'date'
 	];
@@ -72,6 +72,8 @@ class Deal extends \Eloquent {
 		}
 		
 		return $query->get();
+		// $log = DB::getQueryLog();
+		// var_dump($log);die;
 	}
 
 	public static function detail( $id )
@@ -121,5 +123,29 @@ class Deal extends \Eloquent {
 // var_dump($d);die;
 
 		return $deal;
+	}
+
+	public static function hotDeal()
+	{
+		$query = Deal::select( array( DB::raw('count(deal_transactions.deal_id) as count'),
+			'deals.id','deals.title','deals.amount','deals.discount','images.image_path') )
+			->leftJoin('services', 'services.id','=','deals.service_id')
+			->leftJoin('images', function( $join )
+			{
+				$join->on('images.ref_id', '=', 'services.id')
+					->where( 'images.image_type', '=', 'service');
+			})
+			->leftJoin('outlets','outlets.id','=','services.outlet_id')
+			->leftJoin('addresses','addresses.id','=','outlets.address_id')
+			->leftJoin('cities', 'cities.id','=','addresses.city_id')
+			->leftJoin('retailers','retailers.id','=','outlets.retailer_id')
+			->leftJoin('deal_transactions','deals.id','=','deal_transactions.deal_id')
+			->where('deals.status', 'active')
+			->groupBy('deal_transactions.deal_id')
+			->orderBy('count','desc')
+			->take(8)
+			->get();
+
+		return $query;
 	}
 }

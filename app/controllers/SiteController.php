@@ -29,24 +29,25 @@ class SiteController extends BaseController {
 	public function getIndex()
 	{
         // get list outlet active
-		$deals = $this->deal->search();
+		$hotDeals = $this->deal->hotDeal();
+        $deals = $this->deal->search();
         // Show the page
-		return View::make('site/homelayout',compact('deals'));
+		return View::make('site/homelayout',compact('hotDeals', 'deals'));
 	}
 
     public function getSearch() {
+        $search = true;
         $category=Input::get('category');
         $country=Input::get('country');
         $city=Input::get('city');
         $deals=$this->deal->search($category,$country,$city);
         // Show the page
-        return View::make('site.homelayout',compact('deals'));
+        return View::make('site.homelayout',compact('deals', 'search'));
     }
 
     public function getDetail($id) {
         $deal_id=$id;
         $detail=$this->deal->detail($id);
-        // echo ($detail);die;
         // Show the page
         return View::make('site.deals.show',compact('detail','deal_id'));
     }
@@ -54,7 +55,7 @@ class SiteController extends BaseController {
     public function postGetCities(){
         $country_id = Input::get('country_id');
         $cities = City::where('country_id','=',$country_id)->get();
-        $data_string = "";
+        $data_string = "<option value='0'>All</option>";
         foreach ($cities as $item) {
             $data_string.="<option value='$item->id'>$item->city</option>";
         }

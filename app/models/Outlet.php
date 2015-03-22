@@ -10,7 +10,8 @@ class Outlet extends Eloquent {
 		'retailer_id' => 'integer',
 		'description_id' => 'integer',
 		'full_description' =>'required',
-		'address' => 'required'
+		'address' => 'required',
+		'website' => 'url'
 	];
 
 	// Don't forget to fill this array

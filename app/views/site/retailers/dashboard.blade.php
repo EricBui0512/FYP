@@ -86,12 +86,12 @@ List Outlet
     </div>
   </div>
   <br/>
-  <div class="btn-group chart">
+  <!-- <div class="btn-group chart">
     <button type="button" class="btn btn-default" id="day">Day</button>
     <button type="button" class="btn btn-default" id="week">Week</button>
     <button type="button" class="btn btn-default" id="month">Month</button>
   </div>
-  <div id="chartdiv" style="width: 100%; height: 400px;"></div>
+  <div id="chartdiv" style="width: 100%; height: 400px;"></div> -->
   <br/>
   @foreach ( $outletsArray as $outlet )
   

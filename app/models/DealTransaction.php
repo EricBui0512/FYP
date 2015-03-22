@@ -11,7 +11,7 @@ class DealTransaction extends \Eloquent {
 		'phone_number' => 'required',
 		'qty' => 'integer',
 		'status' => 'integer',
-		'amount' => 'regex:/[\d]{1,5}.[\d]{2}/'
+		'amount' => 'regex:/[\d]{1,5}/'
 	];
  
 	// Don't forget to fill this array
@@ -83,7 +83,7 @@ class DealTransaction extends \Eloquent {
 	public static function chartDay()
 	{
 		$trans = DealTransaction::select(array(
-				'deal_transactions.created_at',
+				DB::raw("DATE_FORMAT(deal_transactions.created_at,'%m-%d-%Y') AS created_at"),
 				DB::raw('count(deal_transactions.id) AS count')
 			))
 			->leftJoin('deals', 'deals.id', '=', 'deal_transactions.deal_id')
@@ -94,11 +94,7 @@ class DealTransaction extends \Eloquent {
 			->groupBy('deal_transactions.created_at')
 			->get();
 
-		return $cancellations;
+		return $trans;
 	}
 
-	public static function chartWeek()
-	{
-		
-	}
 }
