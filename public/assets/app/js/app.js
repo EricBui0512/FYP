@@ -2757,21 +2757,45 @@
     // Masked inputs initialization
     $.fn.inputmask && $('[data-toggle="masked"]').inputmask();
 
-    $('.dropdown-menu').on('click', '.delete', function() {
+    $('#confirm').on('show.bs.modal', function (event) {
+      
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var modal = $(this);
 
-      if ( confirm('Are you sure?')) {
-        var th = $(this),
+      modal.find('#delete').click(function(){
+
+        var th = button,
             action = th.attr('data-action'),
             id = th.attr('id'),
             token = $('input[name=_token]').val();
-        $.post(action, {id: id, _token: token}, function( data ){
-          var json = $.parseJSON( data );
 
-          if ( json.code == 0 ) {
-            th.closest('tr').remove();
-          }
+          $.post(action, {id: id, _token: token}, function( data ){
+            var json = $.parseJSON( data );
+
+            if ( json.code == 0 ) {
+              th.closest('tr').remove();
+            }
+          });
+      })
+    });
+
+    $('#delImage').on('show.bs.modal', function (event) {
+      
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var modal = $(this);
+
+      modal.find('#delete').click(function(){
+
+        var id = button.attr('id'),
+          normalImg = button.attr('data-normal'),
+          thumbImg = button.attr('data-thumb'),
+          token = $('input[name=_token]').val();
+
+        $.post( '/image/delete', {id: id, normal: normalImg, thumb: thumbImg, _token: token}, function(data) {
+          $('.ele-' + id ).remove();
+          console.log(data);
         });
-      }
+      })
     });
 
   });
@@ -2781,20 +2805,8 @@
   function adjustLayout() {
     $('.wrapper > section').css('min-height', $(window).height());
   }
-  function delImg() {
-    $('.del-img').on('click', function(){
-      var id = $(this).attr('id'),
-          normalImg = $(this).attr('data-normal'),
-          thumbImg = $(this).attr('data-thumb'),
-          token = $('input[name=_token]').val();
+ 
 
-      if ( confirm('Are you sure?') ) {
-        $.post( '/image/delete', {id: id, normal: normalImg, thumb: thumbImg, _token: token}, function() {
-          $('.ele-' + id ).remove();
-        });
-      }
-    });
-  }
   // upload file
    $('.image').fileupload({
       dataType: 'json',
@@ -2812,12 +2824,11 @@
               html += ' <div id="progress">';
               html += '     <image id="picture" alt="" src="/'+ json.thumbnail_path +'" height="64" width="64"/>';
               html += '     </div>';
-              html += '     <a href="javascript:void(0)" id="'+json.id+'" class="col-lg-1 icon-add del-img"><em class="fa fa-minus"></em></a>';
+              html += '     <a href="javascript:void(0)" id="'+json.id+'" class="col-lg-1 icon-add del-img" data-toggle="modal" data-target=".bs-example-modal-sm-img"><em class="fa fa-minus"></em></a>';
               html += ' </div>';
               
               $('.list-images').append( html );
               $('.ulimage').html('%0');
-              delImg();
             });
         },
         done: function (e, data) {
@@ -2834,7 +2845,7 @@
             $('.ulimage').html(progress+' %');
         }
     });
-    delImg();
+    // delImg();
 
     
 }(jQuery, window, document));

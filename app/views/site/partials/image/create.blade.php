@@ -19,7 +19,8 @@
 				<div id="progress">
 					<image id="picture" alt="" src="/{{{ $image->thumbnail_path }}}" height="64" width="64"/>
 			   	</div>
-			   	<a href="javascript:void(0)" id="{{$image->id}}" data-normal="{{{$image->image_path}}}" data-thumb="{{{ $image->thumbnail_path }}}"class="col-lg-1 del-img icon-add"><em class="fa fa-minus"></em></a>
+			   	<a href="#" id="{{$image->id}}" data-normal="{{{$image->image_path}}}" data-thumb="{{{ $image->thumbnail_path }}}"class="col-lg-1 del-img icon-add"
+			   	data-toggle="modal" data-target=".bs-example-modal-sm-img"><em class="fa fa-minus"></em></a>
 			</div>
 		@endforeach
 	</div>

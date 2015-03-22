@@ -43,7 +43,8 @@
 	                          <em class="fa fa-angle-down"></em>Action</a>
 	                       <ul class="dropdown-menu pull-right text-left">
 	                          <li>
-                              <a class="delete" data-action="{{{ URL::to('deal/delete')}}}" id="{{{ $deal->id }}}" href="javascript:void(0)">Delete</a>
+                              <a class="delete" data-action="{{{ URL::to('deal/delete')}}}" id="{{{ $deal->id }}}" href="#"
+                              data-toggle="modal" data-target=".bs-example-modal-sm">Delete</a>
                             </li>
 	                          <li><a href="{{ URL::to('deal/' . $deal->id . '/edit') }}">Edit</a>
 	                          </li>
