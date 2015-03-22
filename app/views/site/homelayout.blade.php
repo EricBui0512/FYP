@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/index/jquery.vegas.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/index/animate.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendor/fontawesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
 
     <link rel="stylesheet" href="{{asset('assets/fonts/index/icon-fonts/styles.css')}}">
@@ -42,7 +43,10 @@
         <![endif]-->
 
     <!-- JQUERY -->
+    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="{{asset('assets/vendor/moment/min/moment.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js')}}"></script>
      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
      <script src="{{asset('assets/js/consumer.js')}}" ></script>
      <script src="{{asset('assets/js/common.js')}}" ></script>
@@ -118,27 +122,17 @@
                             <input class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label for="room" class="cf1">Appointment Date</label>
-                            <input class="form-control" type="date"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="room" class="cf1">Appointment Time Slot</label>
-                            <select class="form-control">
-                                <option value="08:00">08:00</option>
-                                <option value="08:00">09:00</option>
-                                <option value="08:00">10:00</option>
-                                <option value="08:00">11:00</option>
-                                <option value="08:00">12:00</option>
-                                <option value="08:00">13:00</option>
-                                <option value="08:00">14:00</option>
-                                <option value="08:00">15:00</option>
-                                <option value="08:00">16:00</option>
-                                <option value="08:00">17:00</option>
-                                <option value="08:00">18:00</option>
-                                <option value="08:00">19:00</option>
-                            </select>
-                        </div>
-
+                           <label class="cf1">Apointment</label>
+                           <div class="col-sm-12 mb20 pa0">
+                              <!--input.datepicker.form-control(size='16', type='text', value='12-02-2013', data-date-format='dd-mm-yyyy')-->
+                              <div class="datetimepicker input-group date mb-lg">
+                                 <input type="text" class="form-control">
+                                 <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                 </span>
+                              </div>
+                           </div>
+                       </div>
                        
                             {{Form::close()}}
 
@@ -432,6 +426,9 @@
     <script src="{{asset('assets/js/index/jquery.vegas.min.js')}}"></script>
     <script src="{{asset('assets/js/index/zerif.js')}}"></script>
     <script src="{{asset('assets/js/googlemap.js')}}"></script>
+    <script type="text/javascript">
+    $('.datetimepicker').datetimepicker();
+    </script>
 </body>
 
 </html>

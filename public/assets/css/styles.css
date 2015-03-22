@@ -3,7 +3,7 @@
 /* thuoc tinh mac dinh */
 .fl { float: left } .fr { float: right } .fn {float: none;}
 /*padding all*/
-.pa3 { padding:3px } .pa5 { padding:5px } .pa6 { padding:6px }  .pa7 { padding:7px } .pa10 { padding:10px } .pa13 { padding:13px }  .pa15 { padding:15px } .pa20 { padding:20px }  .pa25 { padding:25px } .pa30 { padding:30px } .pa35 { padding:35px }
+.pa0{padding:0!important;}.pa3 { padding:3px } .pa5 { padding:5px } .pa6 { padding:6px }  .pa7 { padding:7px } .pa10 { padding:10px } .pa13 { padding:13px }  .pa15 { padding:15px } .pa20 { padding:20px }  .pa25 { padding:25px } .pa30 { padding:30px } .pa35 { padding:35px }
 /*padding top*/
 .pt1{padding-top:1px} .pt2{padding-top:2px} .pt3{padding-top:3px} .pt4{padding-top:4px} .pt5{padding-top:5px} .pt10{padding-top:10px} .pt15{padding-top:15px} .pt20{padding-top:20px}  .pt25{padding-top:25px} .pt30{padding-top:30px} .pt35{padding-top:35px}
 /*padding right*/
