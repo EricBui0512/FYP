@@ -145,18 +145,18 @@
                         {{Form::close()}}
 
                     </div>
-                    <div class="col-sm-9">
+                    <div class="col-sm-8 bg0p30 ml30 mt60">
                         {{Form::open(array('url'=>'search'))}}
                         <h1 style="line-height:40px !important;font-size:45px;" class="cf1 sd-t pa20">FIND + BOOK</h1>
                         <p class="pl20 sd-t" style="font-size:30px; color:#fff">massage, therapy, yoga & more</p>
-                        <div class="col-sm-11 mt20 ml30 bg0p30">
-                            <div class="col-sm-3 ">
+                        <div class="row mt20">
+                            <div class="col-sm-4 ml20">
                                 <div class="form-group">
                                     <label for="email" accesskey="E" class="cf1">Category </label>
                                     {{Form::select('category',BusinessCategory::getKeyValueData(),null,array('class'=>'form-control'))}}
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="room" class="cf1">Countries</label>
                                     {{Form::select('country',Country::getKeyValueData(),Country::DEFAULT_COUNTRY,array('class'=>'form-control'))}}
@@ -166,12 +166,17 @@
                                 <div class="form-group">
                                     <label for="checkin" class="cf1">City</label>
                                     {{Form::select('city',array(),null,array('class'=>'form-control'))}}
-                                    {{Form::close()}}
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 ml20">
+                                {{Form::text('search',null,array('class'=>'form-control','placeholder'=>'enter spa name, address to search ...'))}}
+                            </div>
+                             <div class="col-sm-3">
                                 <label for="checkin" class="cf1"></label>
-                                <button type="submit" class="btn bt-spa btn-block bt-search mt25"><i class="fa fa-search"></i>  Search</button>
+                                <button type="submit" class="btn bt-spa btn-block bt-search mb10"><i class="fa fa-search"></i>  Search</button>
                             </div>
                         </div>
                         {{Form::close()}}
