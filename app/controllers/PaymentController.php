@@ -39,7 +39,7 @@ class PaymentController extends BaseController {
 	    $price=Input::get('price');
 	    $bill_id=Input::get('bill_id');
 	    $item_1 = new Item();
-	    $item_1->setName('Item 1') // item name
+	    $item_1->setName(Input::get('service_name')) // item name
 	        ->setCurrency('USD')
 	        ->setQuantity($qty)
 	        ->setPrice($price); // unit price
@@ -131,13 +131,12 @@ class PaymentController extends BaseController {
 	    if ($result->getState() == 'approved') { // payment made
 	    	$Bill= DealTransaction::find($bill_id);
 	    	$Bill->status=1;
-	    	$Bill->paypal_id=$payment_id;
+	    	$Bill->payment_id=$payment_id;
 	    	$Bill->save();
-	    	return Redirect::route('original.route')
-            ->with('success', 'Payment success');
+	    	echo '<center><h1>PAID SUCCESSFULLY!!!</h1><center><p>Please wait while we redirecting to homepage</p></center></center><script>setTimeout(function(){ location.href="/../"; }, 3000);</script>';die;
 	    }
-	    return Redirect::route('original.route')
-	        ->with('error', 'Payment failed');
+	    //return Redirect::route('original.route');
+	        echo '<center><h1>PAID FAILED!!!</h1></center><center><p>Please wait while we redirecting to homepage</p></center><script>setTimeout(function(){ location.href="/../"; }, 3000);</script>';die;
 	}
 }
 

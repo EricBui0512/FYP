@@ -18,11 +18,13 @@ class UserController extends BaseController {
      * @param User $user
      * @param UserRepository $userRepo
      */
-    public function __construct(User $user, IUserRepository $userRepo)
+    public function __construct(User $user, IUserRepository $userRepo, IRetailerRepository $retailer, IOutletRepository $outlet)
     {
         parent::__construct();
         $this->user = $user;
+        $this->retailer = $retailer;
         $this->userRepo = $userRepo;
+        $this->outlet = $outlet;
     }
 
     /**
@@ -363,5 +365,74 @@ class UserController extends BaseController {
         {
             return Redirect::route('user.dashboard');
         }
+    }
+    public function postBook(){
+        $spa_id = Input::get('spaName');
+        $outlet_id = Input::get('spaLocation');
+        $service_id = Input::get('serviceName');
+        $apptDate = Input::get('apptDate');
+        $apptTime = Input::get('timeSlot');
+
+        if (!empty($spa_id) && !empty($outlet_id) &&!empty($service_id) && !empty($apptDate) ) {
+            $apptDateTime = strtotime($apptDate." ".$apptTime);
+            $service = Service::find($service_id);
+            $response = array(
+                "retailerName" => Retailer::find($spa_id)->name,
+                "outletName" => Outlet::find($outlet_id)->name,
+                "serviceName" => $service->name." (".$service->time_operate." mins)",
+                "apptDateTime" => $apptDateTime,
+                "price" => $service->price
+                );
+            $deal = Deal::where('service_id','=',$service_id)->where('deal_type','=','Service')->first();
+            if ($deal==null) {
+                $deal = new Deal;
+                $deal->service_id = $service_id;
+                $deal->deal_type = 'Service';
+                $deal->title = $service->name;
+                $deal->amount = $service->price;
+                $deal->discount = 0;
+                $deal->special_request = "";
+                $deal->status = "active";
+                $deal->save();
+            }
+            $Bill=new DealTransaction();
+            $Bill->deal_id=$deal->id;
+            $Bill->consumer_id=Auth::user()->id;
+            $Bill->consumer_email=Auth::user()->email;
+            $Bill->qty=1;
+            $Bill->amount=$service->price;
+            $Bill->total=$service->price;
+            $Bill->save();
+            return View::make('site/user/book',compact('response','Bill'));
+        }
+        return Redirect::route('/');
+    }
+
+    public function getSpaLocations(){
+        $retailer_id = $_GET['retailer_id'];
+        $data = $this->retailer->getSpaLocations($retailer_id);
+        $data_string = "<option value='0'>Select a location</option>";
+        foreach ($data as $item) {
+            $data_string.="<option value='$item->id'>$item->name($item->outlet_register_id)</option>";
+        }
+        return $data_string;
+    }
+     public function getServiceNames(){
+        $outlet_id = $_GET['outlet_id'];
+        $data = $this->retailer->getServiceNames($outlet_id);
+        $data_string = "";//"<option value='0'>All</option>";
+        foreach ($data as $item) {
+            $data_string.="<option value='$item->id'>$item->name($item->time_operate mins)</option>";
+        }
+        return $data_string;
+    }
+    public function getTimeSlot(){
+        $service_id = $_GET['service_id'];
+        $data = $this->outlet->getTimeSlot($service_id);
+        $data_string = "";
+        foreach ($data as $item) {
+            $data_string.="<option value='".date("H:i",$item)."'>".date("H:i",$item)."</option>";
+        }
+        return $data_string;
     }
 }

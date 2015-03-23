@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/index/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/index/responsive.css')}}">
      <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"> 
+     
     <!-- WEBFONT -->
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,400italic|Montserrat:700,400|Homemade+Apple" rel="stylesheet" type="text/css">   
     <!--[if lt IE 9]>

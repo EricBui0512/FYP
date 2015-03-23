@@ -41,4 +41,11 @@ class Retailer extends \Eloquent {
 
   		return $retailer;
 	}
+	public static function getKeyValueData(){
+		return array( null => 'Select A Spa' ) + Retailer::lists('name','id');
+	}
+
+	public static function getServices(){
+		
+	}
 }

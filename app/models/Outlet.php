@@ -16,7 +16,7 @@ class Outlet extends Eloquent {
 
 	// Don't forget to fill this array
 	protected $fillable = [ 'name', 'admin_id', 'address_id', 'retailer_id', 'phone',
-			'description_id', 'outlet_register_id', 'website', 'operation_hour', 'rate', 'status'];
+			'description_id', 'outlet_register_id', 'website', 'operation_hour', 'rate', 'status','startTime','endTime'];
 
 	public function scopeOwner( $query ) {
 

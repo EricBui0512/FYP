@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="{{asset('assets/fonts/index/icon-fonts/styles.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/index/pixeden-icons.css')}}">
         <!-- CUSTOM STYLES -->
+
         <link rel="stylesheet" href="{{asset('assets/css/index/style.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/index/responsive.css')}}">
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
@@ -44,6 +45,8 @@
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
         <script src="{{asset('assets/js/consumer.js')}}" ></script>
         <script src="{{asset('assets/js/common.js')}}" ></script>
+          <link href="//raw.github.com/jharding/typeahead.js-bootstrap.css/master/typeahead.js-bootstrap.css" rel="stylesheet" media="screen">
+<script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js"></script>
     </head>
     <body onload="initialize()">
         <!-- =========================
@@ -101,35 +104,46 @@
         <div class="container ">
             <!-- HEADING -->
             <div id="locationField"></div>
-            <div class="row mt150">
+            <div class="row mt100">
                 <h3 class="mb10 cfMain sd-t2">Book a spa service now</h3>
                 <div class="text-left">
                     <div class="col-sm-3 bgMain">
-                        {{Form::open(array('url'=>'search'))}}
+                        {{Form::open(array('url'=>'user/book'))}}
                         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                         <div class="form-group">
-                            <label for="email" accesskey="E" class="cf1">Spa Name, Address </label>
-                            <input class="form-control" />
+                            <label for="email" accesskey="E" class="cf1">Spa </label>
+                            {{Form::select('spaName',Retailer::getKeyValueData(),null,array('class'=>'form-control'))}}
                         </div>
+                        <div class="form-group">
+                            <label for="email" accesskey="E" class="cf1">Spa Location</label>
+                            {{Form::select('spaLocation',array(),null,array('class'=>'form-control'))}}
+                        </div>
+                       
                         <div class="form-group">
                             <label for="checkin" class="cf1">Service Name</label>
-                            <input class="form-control" />
+                            <select name="serviceName" class="form-control"></select>
                         </div>
-                        <div class="form-group">
+                         <div class="form-group">
                             <label class="cf1">Apointment</label>
                             <div class="col-sm-12 mb20 pa0">
                                 <!--input.datepicker.form-control(size='16', type='text', value='12-02-2013', data-date-format='dd-mm-yyyy')-->
                                 <div class="datetimepicker input-group date mb-lg">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="apptDate">
                                     <span class="input-group-addon">
                                         <span class="fa fa-calendar"></span>
                                     </span>
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="cf1">Time Slot</label>
+                            <select name="timeSlot" class="form-control"></select>
                         </div>
                         
-                        {{Form::close()}}
                         <button type="submit" class="btn btn-default pull-right mb20">BOOK NOW</button>
+                        {{Form::close()}}
+
                     </div>
                     <div class="col-sm-9">
                         {{Form::open(array('url'=>'search'))}}
@@ -183,7 +197,7 @@
                             <div class="col-md-12">
                                 <h4 class="cf1 pa10 bgMain w300"><i class="fa fa-fire"></i> Hot Deals</h4>
                                 <!-- PRODUCTS -->
-                                <div class="row wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
+                                <div class="mt30 row wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
                                     @if(!count($hotDeals))
                                     <h3> Sorry, we have'nt deal.</h3>
                                     @else
@@ -505,7 +519,10 @@
 <script src="{{asset('assets/js/index/zerif.js')}}"></script>
 <script src="{{asset('assets/js/googlemap.js')}}"></script>
 <script type="text/javascript">
-$('.datetimepicker').datetimepicker();
+    $('.datetimepicker').datetimepicker({
+        format:"MM/DD/YYYY"
+    });
+     
 </script>
 </body>
 </html>

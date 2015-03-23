@@ -12,13 +12,14 @@
                 <div class="panel-body">
 	                
 	                <div class="row pa20">
-	                <h3>Do you want pay with paypal now!</h3>
+	                <h3>Do you want pay now!</h3>
 	                	<form method="post" action="{{URL::to('payment')}}" data-parsley-validate="" novalidate="" >
 	                		<input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
 	                		<input type="hidden" name="total" value="{{ $Bill->total }}">
 	                		<input type="hidden" name="qty" value="{{ $Bill->qty }}">
 	                		<input type="hidden" name="price" value="{{ $Bill->amount }}">
 	                		<input type="hidden" name="bill_id" value="{{ $Bill->id }}">
+	                		<input type="hidden" name="service_name" value="{{ Deal::find($Bill->deal_id)->title; }}">
 		                   	<div class="row ">
 			                    <div class="panel-footer">
 				                   <div class="clearfix">

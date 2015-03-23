@@ -46,4 +46,13 @@ class RetailerRepository implements IRetailerRepository{
         }
         return $outletsArray;
     }
+    public function searchSpa($query){
+        return $this->retailer->where('name', 'LIKE', "%".$query."%")->get();
+    }
+    public function getSpaLocations($retailer_id){
+        return Outlet::where('retailer_id', '=', $retailer_id)->get();
+    }
+    public function getServiceNames($outlet_id){
+        return Service::where('outlet_id', '=', $outlet_id)->get();
+    }
 }

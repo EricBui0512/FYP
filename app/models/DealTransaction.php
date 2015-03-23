@@ -16,7 +16,7 @@ class DealTransaction extends \Eloquent {
  
 	// Don't forget to fill this array
 	protected $fillable = ['deal_id','consumer_id','consumer_email','phone_number','payment_date',
-			'payment_type', 'payment_status', 'qty', 'amount', 'status'];
+			'payment_type', 'payment_status', 'qty', 'amount', 'status','payment_id'];
 
 	public function scopeOwner()
 	{

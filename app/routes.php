@@ -199,7 +199,10 @@ Route::group( array( 'before' => 'auth|role:user'), function() {
  *  ------------------------------------------
  */
 // 
-
+Route::post('user/book','UserController@postBook');
+Route::get('user/getSpaLocations','UserController@getSpaLocations');
+Route::get('user/getServiceNames','UserController@getServiceNames');
+Route::get('user/getTimeSlot','UserController@getTimeSlot');
 Route::post('purchase/pay','PurchaseController@createBill');
 Route::get('purchase/{id}', 'PurchaseController@getBill');
 
