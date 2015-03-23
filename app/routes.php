@@ -194,7 +194,6 @@ Route::group( array( 'before' => 'auth|role:user'), function() {
     Route::get('user/transaction', array('as' => 'user.transaction','uses' => 'ConsumersController@getTrans'));
 });
 
-
 /** ------------------------------------------
  *  Frontend Routes
  *  ------------------------------------------

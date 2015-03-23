@@ -350,7 +350,7 @@ class UserController extends BaseController {
     public function getDashboard()
     {
         $user = Auth::user();
-        
+
         if ( $user->user_type === Config::get('constants.USER_TYPE_RETAILER') )
         {
             return Redirect::route('retailer.dashboard');

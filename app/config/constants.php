@@ -8,5 +8,6 @@
 
 return array(
     'USER_TYPE_ADMIN' => 'admin',
-    'USER_TYPE_RETAILER' => 'retailer'
+    'USER_TYPE_RETAILER' => 'retailer',
+    'USER_TYPE_NORMAL' => 'user'
 );

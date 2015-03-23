@@ -1,5 +1,7 @@
 <?php
 class DealRepository implements IDealRepository{
+    const DEAL_TYPE_HOT_DEAL = "Hot Deal";
+    const DEAL_TYPE_SERVICE = "Service";
 	public function __construct(\Deal $deal)
     {
         $this->deal = $deal;
