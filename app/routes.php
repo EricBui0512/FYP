@@ -165,7 +165,7 @@ Route::group(array('before' => 'auth|role:retailer'), function()
     Route::get('deal/create', 'OutletsController@createDeal');
     Route::post('deal/create','OutletsController@storeDeal');
     Route::get('deal/{deal}/edit', 'OutletsController@editDeal');
-    Route::post('deal/create','OutletsController@storeDeal');
+    Route::post('deal/{deal}/edit','OutletsController@updateDeal');
     Route::get('deal/tran/{deal}','OutletsController@listTranByDeal');
     Route::get('deal/charts/{type}','OutletsController@getChartsData');
     Route::get('deal/cancellation','OutletsController@cancellationDeal');

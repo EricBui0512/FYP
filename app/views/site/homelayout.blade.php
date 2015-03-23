@@ -252,12 +252,12 @@
                                 <h4 class="cf1 pa10 bgMain w300"><i class="fa fa-glass"></i>  Top Services</h4>
                                 <!-- PRODUCTS -->
                                 <div class="row wow fadeInLeft animated animated" data-wow-offset="30" data-wow-duration="1.5s" data-wow-delay="0.15s" style="visibility: visible;-webkit-animation-duration: 1.5s; -moz-animation-duration: 1.5s; animation-duration: 1.5s;-webkit-animation-delay: 0.15s; -moz-animation-delay: 0.15s; animation-delay: 0.15s;">
-                                    @if(count($deals))
+                                    @if(!count($serviceDeals))
                                     <div class="col-md-12 pl20">
                                         <h3> Sorry, we have'nt deal.</h3>
                                     </div>
                                     @else
-                                    @foreach ($deals as $key => $deal)
+                                    @foreach ($serviceDeals as $key => $deal)
                                     <div class="col-md-4">
                                         <div class="item" style="background-image:url({{asset($deal->image_path)}});">
                                             <div class="item-overlay">
