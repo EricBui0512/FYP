@@ -5,7 +5,7 @@
       <div class="panel panel-default">
          <div class="panel-heading">Update deal</div>
          <div class="panel-body">
-            <form class="form-horizontal"  method="POST" action="{{URL::to('deal/create')}}">
+            <form class="form-horizontal"  method="POST" action="{{URL::to('deal/' . $deal->id . '/edit')}}">
                <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                <div class="form-group">
                   <label class="col-lg-2 control-label">Title</label>
@@ -41,27 +41,29 @@
                      <textarea placeholder="Special Request" class="form-control" rows="5" name="special_request">
                      	{{ isset($deal) ? $deal->special_request : null }}
                      </textarea>
+                     {{ $errors->first('special_request', '<span class="help-inline">:message</span>') }}
+
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg-2 control-label">Deal Type</label>
                   <div class="col-lg-8">
-                     <select class="form-control">
-                        <option value="{{DealRepository::DEAL_TYPE_HOT_DEAL}}">{{DealRepository::DEAL_TYPE_HOT_DEAL}}</option>
-                        <option value="{{DealRepository::DEAL_TYPE_SERVICE}}">{{DealRepository::DEAL_TYPE_SERVICE}}</option>
-                     </select>
+                     {{ Form::select('deal_type', $dealType, $deal->deal_type, array('class' => 'form-control'))}}
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg-2 control-label">Time Slot</label>
                   <div class="col-lg-8">
                      <input type="date" placeholder="Time Slot" class="form-control" name="time_slot" value="{{{ Input::old('time_slot', isset($deal) ? date('m/d/Y', strtotime($deal->time_slot)) : null) }}}">
+                     {{ $errors->first('time_slot', '<span class="help-inline">:message</span>') }}
+
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg-2 control-label">Remind Time</label>
                   <div class="col-lg-8">
                      <input type="date" placeholder="Remind Time" class="form-control" name="remind_time" value="{{{ Input::old('remind_time', isset($deal) ? date('m/d/Y', strtotime($deal->remind_time)) : null) }}}">
+                     {{ $errors->first('remind_time', '<span class="help-inline">:message</span>') }}
                   </div>
                </div>
                <div class="form-group">

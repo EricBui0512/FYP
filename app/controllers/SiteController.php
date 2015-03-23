@@ -29,10 +29,10 @@ class SiteController extends BaseController {
 	public function getIndex()
 	{
         // get list outlet active
-		$hotDeals = $this->deal->hotDeal();
-        $deals = $this->deal->search();
+		$hotDeals = $this->deal->dealByType('Hot Deal');
+        $serviceDeals = $this->deal->dealByType('Service');
         // Show the page
-		return View::make('site/homelayout',compact('hotDeals', 'deals'));
+		return View::make('site/homelayout',compact('hotDeals', 'serviceDeals'));
 	}
 
     public function getSearch() {

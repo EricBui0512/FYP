@@ -44,10 +44,7 @@
                <div class="form-group">
                   <label class="col-lg-2 control-label">Deal Type</label>
                   <div class="col-lg-8">
-                     <select class="form-control">
-                        <option value="{{DealRepository::DEAL_TYPE_HOT_DEAL}}">{{DealRepository::DEAL_TYPE_HOT_DEAL}}</option>
-                        <option value="{{DealRepository::DEAL_TYPE_SERVICE}}">{{DealRepository::DEAL_TYPE_SERVICE}}</option>
-                     </select>
+                     {{ Form::select('deal_type', $dealType, 0, array('class' => 'form-control'))}}
                   </div>
                </div>
                <div class="form-group">

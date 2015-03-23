@@ -9,13 +9,14 @@ class Deal extends \Eloquent {
 		'amount' => 'required|regex:/[\d]{1,5}/',
 		'discount' => 'regex:/[\d]{1,5}/',
 		'time_slot' => 'date',
-		'remind_time' => 'date'
+		'remind_time' => 'date',
+		'deal_type' => 'required'
 	];
 
     
 	// Don't forget to fill this array
 	protected $fillable = [ 'service_id', 'amount', 'discount', 'title',
-			'special_request', 'time_slot', 'remind_time' ];
+			'special_request', 'time_slot', 'remind_time', 'deal_type' ];
 
 	public function scopeOwner( $query )
 	{
@@ -35,7 +36,7 @@ class Deal extends \Eloquent {
 		return $this->hasMany('Feedback');
 	}
 
-	public static function search( $categoryId = null, $countryId = null, $cityId = null, $keyWord = null )
+	public static function search( $categoryId = null, $countryId = null, $cityId = null, $keyWord = null, $dealType = '' )
 	{
 		$query = Deal::select( array( 'deals.id','deals.title','deals.amount','deals.discount','images.image_path') )
 			->leftJoin('services', 'services.id','=','deals.service_id')
@@ -66,6 +67,11 @@ class Deal extends \Eloquent {
 		{
 			$query = $query->where('deals.name', 'LIKE', "%$keyWord%");
 		}
+
+		if ( $dealType )
+		{
+			$query = $query->where('deals.deal_type', $dealType );
+		}
 		if ( ! $categoryId && ! $countryId )
 		{
 			$query = $query->take(12)->orderBy('id', 'desc');
@@ -74,6 +80,11 @@ class Deal extends \Eloquent {
 		return $query->get();
 		// $log = DB::getQueryLog();
 		// var_dump($log);die;
+	}
+
+	public static function dealByType( $type )
+	{
+		return Deal::search( null, null, null, null, $type );
 	}
 
 	public static function detail( $id )
@@ -125,27 +136,4 @@ class Deal extends \Eloquent {
 		return $deal;
 	}
 
-	public static function hotDeal()
-	{
-		$query = Deal::select( array( DB::raw('count(deal_transactions.deal_id) as count'),
-			'deals.id','deals.title','deals.amount','deals.discount','images.image_path') )
-			->leftJoin('services', 'services.id','=','deals.service_id')
-			->leftJoin('images', function( $join )
-			{
-				$join->on('images.ref_id', '=', 'services.id')
-					->where( 'images.image_type', '=', 'service');
-			})
-			->leftJoin('outlets','outlets.id','=','services.outlet_id')
-			->leftJoin('addresses','addresses.id','=','outlets.address_id')
-			->leftJoin('cities', 'cities.id','=','addresses.city_id')
-			->leftJoin('retailers','retailers.id','=','outlets.retailer_id')
-			->leftJoin('deal_transactions','deals.id','=','deal_transactions.deal_id')
-			->where('deals.status', 'active')
-			->groupBy('deal_transactions.deal_id')
-			->orderBy('count','desc')
-			->take(8)
-			->get();
-
-		return $query;
-	}
 }

@@ -249,7 +249,7 @@ class OutletsController extends \BaseController {
     {
 
         $validator = Validator::make( $data = Input::all(), Deal::$rules );
-
+        
         if ($validator->fails())
         {
             return Redirect::back()->withErrors($validator)->withInput();
@@ -274,8 +274,12 @@ class OutletsController extends \BaseController {
     {
         $deal = Deal::find($id);
         $services = Service::select(array('services.name','services.id'))->owner()->lists('name','id');
+        $dealType = array(
+        		DealRepository::DEAL_TYPE_HOT_DEAL => DealRepository::DEAL_TYPE_HOT_DEAL,
+        		DealRepository::DEAL_TYPE_SERVICE => DealRepository::DEAL_TYPE_SERVICE
+        	);
 
-        return View::make('site.deals.edit', compact('deal', 'services'));
+        return View::make('site.deals.edit', compact('deal', 'services', 'dealType'));
     }
 
     /**
@@ -286,7 +290,7 @@ class OutletsController extends \BaseController {
      */
     public function updateDeal($id)
     {
-        $deal = Deals::findOrFail($id);
+        $deal = Deal::findOrFail($id);
 
         $validator = Validator::make($data = Input::all(), Deal::$rules);
 

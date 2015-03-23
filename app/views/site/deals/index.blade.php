@@ -23,6 +23,7 @@
                    <th class="col-md-1">Amount</th>
                    <th class="col-md-1">Discount</th>
                    <th class="col-md-1">Status</th>
+                   <th class="col-md-1">Type</th>
                    <th class="col-md-2">Time Slot</th>
                    <th class="col-md-1">Action</th>         
                 </tr>
@@ -35,8 +36,9 @@
                    	<td>{{ $deal->amount }}</td>
                     <td>{{ $deal->discount }}</td>   
                     <td>{{ $deal->status }}</td>   
+                    <td>{{ $deal->deal_type }}</td>   
                    	
-                   	<td>{{ $deal->time_slot }}</td>
+                   	<td>{{ date('m/d/Y', strtotime($deal->time_slot)) }}</td>
                    	<td class="text-center">
 	                    <div class="btn-group">
 	                       <a href="#" data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle">
