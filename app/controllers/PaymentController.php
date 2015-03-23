@@ -31,7 +31,7 @@ class PaymentController extends BaseController {
     // 
     public function postPayment()
 	{
-	    echo '123123';exit;
+	    // echo '123123';exit;
 	    $payer = new Payer();
 	    $payer->setPaymentMethod('paypal');
 	    $total=Input::get('total');

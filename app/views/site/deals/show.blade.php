@@ -42,8 +42,9 @@
         <![endif]-->
 
     <!-- JQUERY -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+     
 </head>
 <body class="bg1">
     <header>
@@ -93,13 +94,66 @@
     <content>
         <div class="container content">
             <div class="row">
-                <div class="col-md-5">
-                    <img src="{{asset($detail->big_img)}}" class="img-responsive"> 
+                <div class="col-md-6">
+                    <div class="product-image" style="margin-left: 0;">
+                    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 800px;height: 456px; background: #191919; overflow: hidden;">
+
+                        <!-- Loading Screen -->
+                        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+                            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
+                                background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
+                            </div>
+                            <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+                                top: 0px; left: 0px;width: 100%;height:100%;">
+                            </div>
+                        </div>
+
+                        <!-- Slides Container -->
+                        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 800px; height: 356px; overflow: hidden;">
+                            <div>
+                                <img u="image" src="{{asset('assets/upload/product/1.jpg')}}" />
+                                <img u="thumb" src="{{asset('assets/upload/product/1.jpg')}}" />
+                            </div>
+                            <div>
+                                <img u="image" src="{{asset('assets/upload/product/2.jpg')}}" />
+                                <img u="thumb" src="{{asset('assets/upload/product/2.jpg')}}" />
+                            </div>
+                            <div>
+                                <img u="image" src="{{asset('assets/upload/product/3.jpg')}}" />
+                                <img u="thumb" src="{{asset('assets/upload/product/3.jpg')}}" />
+                            </div>
+                            
+                        </div>
+        
+      
+                        <!-- Arrow Left -->
+                        <span u="arrowleft" class="jssora05l" style="width: 40px; height: 40px; top: 158px; left: 8px;">
+                        </span>
+                        <!-- Arrow Right -->
+                        <span u="arrowright" class="jssora05r" style="width: 40px; height: 40px; top: 158px; right: 8px">
+                        </span>
+                        <!-- Arrow Navigator Skin End -->
+                        <!-- Thumbnail Navigator Skin Begin -->
+                        <div u="thumbnavigator" class="jssort01" style="position: absolute; width: 800px; height: 100px; left:0px; bottom: 0px;">
+                          <!-- Arrow Navigator Skin Begin -->
+                       
+                            <div u="slides" style="cursor: move;">
+                                <div u="prototype" class="p" style="position: absolute; width: 72px; height: 72px; top: 0; left: 0;">
+                                    <div class=w><div u="thumbnailtemplate" style=" width: 100%; height: 100%; border: none;position:absolute; top: 0; left: 0;"></div></div>
+                                    <div class=c>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Thumbnail Item Skin End -->
+                        </div>
+                    </div>
+                    </div>
                 </div>
-                <div class="col-md-7">
+       
+                <div class="col-md-6">
                     <h3>{{$detail->title}}</h3>
-                    <p class="tdlt fs13"> ${{$detail->amount}}</p>
-                    <p>${{$detail->discount}}</p>
+                    <p class="fs14"> Cost: <span class="tdlt">${{$detail->amount}}</span></p>
+                    <p class="fs20">${{$detail->discount}}</p>
                     <a href="{{URL::to('purchase/'.$deal_id)}}" class="btn bt-spa">Purchase</a>
                 </div>
             </div>
@@ -164,6 +218,10 @@
     <script src="{{asset('assets/js/index/owl.carousel.min.js')}}"></script>
     <script src="{{asset('assets/js/index/jquery.vegas.min.js')}}"></script>
     <script src="{{asset('assets/js/googlemap.js')}}"></script>
+    <script src="{{asset('assets/js/jssor.js')}}"></script>
+    <script src="{{asset('assets/js/jssor.slider.js')}}"></script>
+    <script src="{{asset('assets/js/slider.js')}}"></script>
+   
 </body>
 
 </html>
