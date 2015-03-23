@@ -367,6 +367,9 @@ class UserController extends BaseController {
         }
     }
     public function postBook(){
+        $response = null;
+        $Bill = null;
+        
         $spa_id = Input::get('spaName');
         $outlet_id = Input::get('spaLocation');
         $service_id = Input::get('serviceName');
@@ -374,6 +377,7 @@ class UserController extends BaseController {
         $apptTime = Input::get('timeSlot');
 
         if (!empty($spa_id) && !empty($outlet_id) &&!empty($service_id) && !empty($apptDate) ) {
+            
             $apptDateTime = strtotime($apptDate." ".$apptTime);
             $service = Service::find($service_id);
             $response = array(
@@ -383,6 +387,8 @@ class UserController extends BaseController {
                 "apptDateTime" => $apptDateTime,
                 "price" => $service->price
                 );
+            if(!Auth::user())
+                return View::make('site/user/book',compact('response','Bill'));
             $deal = Deal::where('service_id','=',$service_id)->where('deal_type','=','Service')->first();
             if ($deal==null) {
                 $deal = new Deal;
