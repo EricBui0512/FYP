@@ -372,19 +372,19 @@
                                             <i class="fa fa-circle fa-stack-2x"></i>
                                             <i class="fa fa-user fa-stack-1x fa-inverse"></i>
                                         </span>
-                                        <b>120 Users</b></h4>
+                                        <b>{{DB::table('users')->count();}} Users</b></h4>
                                         <h4 class="cf8">
                                         <span class="fa-stack fa-lg">
                                             <i class="fa fa-circle fa-stack-2x"></i>
                                             <i class="fa fa-sitemap fa-stack-1x fa-inverse"></i>
                                         </span>
-                                        <b>50</b> Spa service providers</h4>
+                                        <b>{{DB::table('retailers')->count()}}</b> Spa service providers</h4>
                                         <h4 class="cf9">
                                         <span class="fa-stack fa-lg">
                                             <i class="fa fa-circle fa-stack-2x"></i>
                                             <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
                                         </span>
-                                        <b>150</b> Spa locations</h4>
+                                        <b>{{DB::table('outlets')->count()}}</b> Spa locations</h4>
                                     </div>
                                 </div>
                             </div>
