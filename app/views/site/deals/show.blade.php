@@ -114,8 +114,8 @@
                         <?php $thumb_images = explode(',', $detail->thumb_img)?>
                         @for ($i = 0; $i < count($big_images); $i++)
                             <div>
-                                <img u="image" src="{{$big_images[$i]}}" />
-                                <img u="thumb" src="{{$thumb_images[$i]}}" />
+                                <img u="image" src="/../{{$big_images[$i]}}" />
+                                <img u="thumb" src="/../{{$thumb_images[$i]}}" />
                             </div>
                         @endfor  
                         </div>
