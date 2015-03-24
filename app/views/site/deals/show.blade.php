@@ -110,11 +110,12 @@
 
                         <!-- Slides Container -->
                         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 800px; height: 356px; overflow: hidden;">
+                        @for ($i = 0; $i < count($detail->big_img); $i++)
                             <div>
-                                <img u="image" src="{{$detail->big_img}}" />
-                                <img u="thumb" src="{{$detail->thumb_img}}" />
+                                <img u="image" src="{{$detail->big_img[$i]}}" />
+                                <img u="thumb" src="{{$detail->thumb_img[$i]}}" />
                             </div>
-                            
+                        @endfor  
                         </div>
         
       
