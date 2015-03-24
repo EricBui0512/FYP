@@ -110,10 +110,12 @@
 
                         <!-- Slides Container -->
                         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 800px; height: 356px; overflow: hidden;">
-                        @for ($i = 0; $i < count($detail->big_img); $i++)
+                        <?php $big_images = explode(',', $detail->big_img)?>
+                        <?php $thumb_images = explode(',', $detail->thumb_img)?>
+                        @for ($i = 0; $i < count($big_images); $i++)
                             <div>
-                                <img u="image" src="{{$detail->big_img[$i]}}" />
-                                <img u="thumb" src="{{$detail->thumb_img[$i]}}" />
+                                <img u="image" src="{{$big_images[$i]}}" />
+                                <img u="thumb" src="{{$thumb_images[$i]}}" />
                             </div>
                         @endfor  
                         </div>
@@ -170,7 +172,6 @@
                           {{$detail->highlights}}
                       </div>
                       <div role="tabpanel" class="tab-pane" id="serviceprovider">
-                         <<?php var_dump($detail->big_img); ?>
                       </div>
                     </div>
                 </div>
