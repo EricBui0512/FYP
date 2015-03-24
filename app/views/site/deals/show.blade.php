@@ -178,13 +178,8 @@
                         <p><a href="//{{$detail->outletWebsite}}" target="_blank">{{$detail->outletWebsite}}</a></h4>
                         <p><b>Working hours:  </b>from {{$detail->outletStartTime}} to {{$detail->outletEndTime}}</p>
                         <p><b>MAP</b></p>
-                        <iframe
-                              width="600"
-                              height="450"
-                              frameborder="0" style="border:0"
-                              src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyBvK67-gFTje3jAzNJAeCv60FU6xR4ZXGo
-                                &q={{$detail->outletAddress}}, {{$detail->outletCity}}, {{$detail->outletCountry}}">
-                            </iframe>
+                       
+                            <img src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyBvK67-gFTje3jAzNJAeCv60FU6xR4ZXGo&size=512x512&place={{$detail->outletAddress}}, {{$detail->outletCity}}, {{$detail->outletCountry}}">
 
                       </div>
                     </div>
