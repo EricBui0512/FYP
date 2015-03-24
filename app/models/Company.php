@@ -1,7 +1,7 @@
 <?php
 class Company extends \Eloquent {
 	// Add your validation rules here
-	protected $table = 'Company';
+	protected $table = 'company';
 	public static $rules = [
 		// 'title' => 'required'
 	];
