@@ -170,7 +170,7 @@
                           {{$detail->highlights}}
                       </div>
                       <div role="tabpanel" class="tab-pane" id="serviceprovider">
-                         
+                         <<?php var_dump($detail->big_img); ?>
                       </div>
                     </div>
                 </div>
