@@ -46,11 +46,9 @@ class Address extends \Eloquent {
 
 		if ( ! ( empty( $address ) ) )
 		{
-			return $this->where('city_id', $address->city_id)->lists('address','id');
+			return Address::where('city_id', $address->city_id)->lists('address','id');
 		}
 
 		return null;
-		
 	}
-
 }

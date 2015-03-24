@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:06:32
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-03-14 16:05:39
+ * @Last Modified time: 2015-03-24 23:22:46
  */
 
 class AdminOutletsController extends AdminController {
@@ -27,15 +27,19 @@ class AdminOutletsController extends AdminController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($outlet)
 	{
-		$outlet = Outlet::find($id);
+		$title = 'Edit outlet';
 
-		$retailers = Retailer::all();
+		$retailers = Retailer::lists('name','id');
+		$countries = Country::lists('country','id');
+		$cities = City::lists('city','id');
+		$images = Picture::getByRefId( $outlet->id, 'outlet');
 
 		$addresses = Address::getHtmlByOutlet( $outlet->address_id );
 
-		return View::make('admin.outlets.edit', compact('outlet', 'retailers', 'addresses'));
+		return View::make('admin.outlets.edit', compact('outlet', 'retailers', 'addresses','title','cities','countries'))
+			->nest('imageForm', 'site.partials.image.create', ['refId' => $outlet->id, 'type' => 'outlet', 'images' => $images]);;
 	}
 
 	/**
@@ -44,20 +48,52 @@ class AdminOutletsController extends AdminController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($outlet)
 	{
-		$outlet = Outlet::findOrFail($id);
+
+		$data = Input::except( 'summary' );
+		$description = Input::only('full_description', 'summary');
 
 		$validator = Validator::make($data = Input::all(), Outlet::$rules);
 
 		if ($validator->fails())
 		{
+			var_dump($validator->messages());die;
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		$outlet->update($data);
+		if ($outlet->description_id)
+		{
+			$desc = OutletDescription::where('id', $outlet->description_id)->update($description);
+		}
+		else
+		{
+			$desc = OutletDescription::create( $description );
+			$data['description_id'] = $desc->id;
+		}
 
-		return Redirect::route('outlets.index');
+		$addressData = array( 'city_id' => $data['city_id'], 'address' => $data['address']);
+		
+		if ( $outlet->address_id )
+		{
+			$address = Address::where( 'id', $outlet->address_id )->update( $addressData );
+		}
+		else
+		{
+			$address = Address::create( $addressData );
+			$data['address_id'] = $address->id;
+		}
+		
+		unset( $data['full_description'] );
+		unset( $data['address']);
+
+		if ( $outlet->update($data) )
+		{
+			return Redirect::to('admin/outlets/' . $outlet->id . '/edit')->with('success', Lang::get('site/outlets/messages.update.success'));
+		}
+
+		return Redirect::to('admin/outlets/' . $outlet->id . '/edit')->with('error', Lang::get('site/outlets/messages.update.error'));
+
 	}
 
 	/**
