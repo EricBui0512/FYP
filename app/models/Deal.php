@@ -146,7 +146,18 @@ class Deal extends \Eloquent {
 	}
 
 	public static function getFeaturedService(){
-		return Deal::where('featured','=',1)->get();
+		
+		$deals = Deal::select( array( 'deals.id','deals.title','deals.amount','deals.discount','images.image_path') )
+			->leftJoin('services', 'services.id','=','deals.service_id')
+			->leftJoin('images', function( $join )
+			{
+				$join->on('images.ref_id', '=', 'services.id')
+					->where( 'images.image_type', '=', 'service');
+			})
+			->where('featured',1)
+			->get();
+
+		return $deals;
 	}
 
 }

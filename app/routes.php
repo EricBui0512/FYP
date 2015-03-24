@@ -104,8 +104,17 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
         ->where('cityId', '\d+')->where('countryId','\d+');
     Route::get('addresses', 'AdminCommonController@listAddress');
     
+    // Route::get('outlets/data', 'AdminOutletsController@getData');
+    // Route::resource('outlets', 'AdminOutletsController');
+
+    // outlet manage
+    Route::get('outlets', 'AdminOutletsController@index');
+    Route::get('outlets/{outlet}/edit', 'AdminOutletsController@edit');
+    Route::post('outlets/{outlet}/edit', 'AdminOutletsController@update');
+    Route::get('outlets/{outlet}/delete', 'AdminOutletsController@delete');
+    Route::post('outlets/{outlet}/delete', 'AdminOutletsController@destroy');
     Route::get('outlets/data', 'AdminOutletsController@getData');
-    Route::resource('outlets', 'AdminOutletsController');
+
 
     Route::get('retailers/data', 'AdminRetailerController@getData');
     Route::post('retailers/{retailerId}/edit', 'AdminRetailerController@update');
@@ -130,6 +139,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::get('deals/data', 'AdminRetailerController@getDataDeal');
     Route::get('deals', 'AdminRetailerController@listDeal');
     Route::get('deals/active/{id}', 'AdminRetailerController@activeDeal');
+    Route::get('deals/featured/{id}', 'AdminRetailerController@featuredDeal');
 
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');

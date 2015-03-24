@@ -2,7 +2,7 @@
 * @Author: Dung Ho
 * @Date:   2015-03-11 23:10:28
 * @Last Modified by:   Dung Ho
-* @Last Modified time: 2015-03-14 21:36:48
+* @Last Modified time: 2015-03-24 22:09:38
 */
 
 'use strict';
@@ -29,55 +29,55 @@ AmCharts.loadJSON = function(url) {
 
 $(document).ready(function() {
 
-	var chartData = AmCharts.loadJSON( '/deal/charts/day' );
+	// var chartData = AmCharts.loadJSON( '/deal/charts/day' );
 
-	$('.chart').on('click', '.btn', function(){
-		var type = $(this).attr('id');
+	// $('.chart').on('click', '.btn', function(){
+	// 	var type = $(this).attr('id');
 
-		var chartData = AmCharts.loadJSON('/deal/charts/' + type);
+	// 	var chartData = AmCharts.loadJSON('/deal/charts/' + type);
 
-		chart.dataProvider = chartData;
-		chart.validateData();
+	// 	chart.dataProvider = chartData;
+	// 	chart.validateData();
 
-	});
+	// });
 
-	AmCharts.ready(function () {
-        // SERIAL CHART
-        chart = new AmCharts.AmSerialChart();
-        chart.dataProvider = chartData;
-        chart.categoryField = "category";
-        chart.startDuration = 1;
+	// AmCharts.ready(function () {
+ //        // SERIAL CHART
+ //        chart = new AmCharts.AmSerialChart();
+ //        chart.dataProvider = chartData;
+ //        chart.categoryField = "category";
+ //        chart.startDuration = 1;
 
-        // AXES
-        // category
-        var categoryAxis = chart.categoryAxis;
-        categoryAxis.labelRotation = 90;
-        categoryAxis.gridPosition = "start";
+ //        // AXES
+ //        // category
+ //        var categoryAxis = chart.categoryAxis;
+ //        categoryAxis.labelRotation = 90;
+ //        categoryAxis.gridPosition = "start";
 
-        // value
-        // in case you don't want to change default settings of value axis,
-        // you don't need to create it, as one value axis is created automatically.
+ //        // value
+ //        // in case you don't want to change default settings of value axis,
+ //        // you don't need to create it, as one value axis is created automatically.
 
-        // GRAPH
-        var graph = new AmCharts.AmGraph();
-        graph.valueField = "value";
-        graph.balloonText = "[[category]]: <b>[[value]]</b>";
-        graph.type = "column";
-        graph.lineAlpha = 0;
-        graph.fillAlphas = 0.8;
-        chart.addGraph(graph);
+ //        // GRAPH
+ //        var graph = new AmCharts.AmGraph();
+ //        graph.valueField = "value";
+ //        graph.balloonText = "[[category]]: <b>[[value]]</b>";
+ //        graph.type = "column";
+ //        graph.lineAlpha = 0;
+ //        graph.fillAlphas = 0.8;
+ //        chart.addGraph(graph);
 
-        // CURSOR
-        var chartCursor = new AmCharts.ChartCursor();
-        chartCursor.cursorAlpha = 0;
-        chartCursor.zoomable = false;
-        chartCursor.categoryBalloonEnabled = false;
-        chart.addChartCursor(chartCursor);
+ //        // CURSOR
+ //        var chartCursor = new AmCharts.ChartCursor();
+ //        chartCursor.cursorAlpha = 0;
+ //        chartCursor.zoomable = false;
+ //        chartCursor.categoryBalloonEnabled = false;
+ //        chart.addChartCursor(chartCursor);
 
-        chart.creditsPosition = "top-right";
+ //        chart.creditsPosition = "top-right";
 
-        chart.write("chartdiv");
-    });
+ //        chart.write("chartdiv");
+ //    });
    
 });
 

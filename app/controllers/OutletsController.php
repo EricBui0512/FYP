@@ -236,8 +236,12 @@ class OutletsController extends \BaseController {
     {
 
         $services = Service::select(array('services.name','services.id'))->owner()->lists('name','id');
+        $dealType = array(
+        		DealRepository::DEAL_TYPE_HOT_DEAL => DealRepository::DEAL_TYPE_HOT_DEAL,
+        		DealRepository::DEAL_TYPE_SERVICE => DealRepository::DEAL_TYPE_SERVICE
+        	);
 
-        return View::make('site.deals.create', compact('services'));
+        return View::make('site.deals.create', compact('services', 'dealType'));
     }
 
     /**

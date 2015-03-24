@@ -83,7 +83,7 @@
                     </div>
                     <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
                         <ul class="nav navbar-nav navbar-right responsive-nav main-nav-list">
-                            <li class=""><a href="">Home</a>
+                            <li class=""><a href="{{{ URL::to('/')}}}">Home</a>
                         </li>
                         @if (!Auth::check())
                         <li class=""><a href="" data-toggle="modal" data-target=".bs-example-modal-lg">Login</a></li>

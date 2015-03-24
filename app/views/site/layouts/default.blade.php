@@ -60,7 +60,7 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <ul class="nav navbar-nav">
-                            <li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">Home</a></li>
+                            <li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('/') }}}">Home</a></li>
                         </ul>
                         <ul class="nav navbar-nav pull-right">
                             @if (Auth::check())
@@ -91,9 +91,7 @@
         </div>
         <!-- ./wrap -->
         <div id="footer">
-            <div class="container">
-                <p class="muted credit">Laravel 4 Starter Site on <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a>.</p>
-            </div>
+           
         </div>
         <!-- Javascripts
         ================================================== -->

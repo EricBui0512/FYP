@@ -72,7 +72,7 @@
                 </div>
                 <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
                     <ul class="nav navbar-nav navbar-right responsive-nav main-nav-list">
-                        <li class=""><a href="">Home</a>
+                        <li class=""><a href="{{{ URL::to('/')}}}">Home</a>
                         </li> 
                         @if (!Auth::check())              
                             <li class=""><a href="" data-toggle="modal" data-target=".bs-example-modal-lg">Login</a></li> 
@@ -155,7 +155,7 @@
        
                 <div class="col-md-6">
                     <h3 class="cfMain">{{$detail->title}}</h3>
-                    <p class="mt10 mb10">{{$detail->summary}}</p>
+                    <p class="mt10 mb10">{{$detail->highlights}}</p>
                     <p class="fs12">Price: <span class="">{{number_format($detail->amount)}} SGD</span></p>
                     <p class="fs20 mt10 mb10 cf7">{{number_format($detail->amount - $detail->discount)}} SGD</p>
                     <a href="{{URL::to('purchase/'.$deal_id)}}" class="btn bt-spa">Purchase</a>
