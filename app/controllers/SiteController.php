@@ -49,6 +49,9 @@ class SiteController extends BaseController {
     public function getDetail($id) {
         $deal_id=$id;
         $detail=$this->deal->detail($id);
+        echo "<pre>";
+        print_r($detail);
+        die;
         // Show the page
         return View::make('site.deals.show',compact('detail','deal_id'));
     }

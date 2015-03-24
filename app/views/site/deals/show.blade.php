@@ -111,16 +111,8 @@
                         <!-- Slides Container -->
                         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 800px; height: 356px; overflow: hidden;">
                             <div>
-                                <img u="image" src="{{asset('assets/upload/product/1.jpg')}}" />
-                                <img u="thumb" src="{{asset('assets/upload/product/1.jpg')}}" />
-                            </div>
-                            <div>
-                                <img u="image" src="{{asset('assets/upload/product/2.jpg')}}" />
-                                <img u="thumb" src="{{asset('assets/upload/product/2.jpg')}}" />
-                            </div>
-                            <div>
-                                <img u="image" src="{{asset('assets/upload/product/3.jpg')}}" />
-                                <img u="thumb" src="{{asset('assets/upload/product/3.jpg')}}" />
+                                <img u="image" src="{{$detail->big_img}}" />
+                                <img u="thumb" src="{{$detail->thumb_img}}" />
                             </div>
                             
                         </div>
@@ -158,14 +150,15 @@
                 </div>
             </div>
             
-            <div class="row">
+            <div class="row mt30">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs" role="tablist" id="myTab">
-                      <li role="presentation" class="active"><a href="#conditions"  role="tab" data-toggle="tab">Conditions</a></li>
-                      <li role="presentation"><a href="#detail"  role="tab" data-toggle="tab">Detail</a></li>
+                      <li role="presentation" class="active"><a href="#detail"  role="tab" data-toggle="tab">Detail</a></li>
+                      <li role="presentation" ><a href="#conditions"  role="tab" data-toggle="tab">Conditions</a></li>
+                      <li role="presentation"><a href="#serviceprovider"  role="tab" data-toggle="tab">About Spa Service Provider</a></li>
                     </ul>
 
-                    <div class="tab-content">
+                    <div class="tab-content pa20">
                       <div role="tabpanel" class="tab-pane active" id="conditions">
                           {{$detail->special_condition}}
                           {{$detail->condition1}}
@@ -174,6 +167,9 @@
                       <div role="tabpanel" class="tab-pane" id="detail">
                           {{$detail->summary}}
                           {{$detail->highlights}}
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="serviceprovider">
+                         
                       </div>
                     </div>
                 </div>

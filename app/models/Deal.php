@@ -136,4 +136,8 @@ class Deal extends \Eloquent {
 		return $deal;
 	}
 
+	public static function getFeaturedService(){
+		return Deal::where('featured','=',1)->get();
+	}
+
 }

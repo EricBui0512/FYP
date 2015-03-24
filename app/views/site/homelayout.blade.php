@@ -398,46 +398,21 @@
                             <div class="col-sm-12">
                                 <h4 class="mb20 cf1 pa10 bgMain"><i class="fa fa-leaf"></i>  Featured services</h4>
                             </div>
+                            <?php
+                            $featured_services = Deal::getFeaturedService()
+                            ?>
+                            @foreach ($featured_services as $key => $deal)
                             <div class="col-sm-12">
                                 <div class="thumbnail">
                                     <img src="/assets/img/index/backgrounds/bg1.jpg" alt="...">
                                     <div class="caption">
-                                        <h3>Thumbnail label</h3>
-                                        <p>...</p>
-                                        <p><a href="#" class="btn btn-primary" role="button">Book now!</a></p>
+                                        <h3 class="cfMain">{{$deal->title}}</h3>
+                                        <p class="mt5 mb5">From {{$deal->amount}} SGD</p>
+                                        <p><a href="/detail/{{$deal->id}}" class="btn btn-primary" role="button">Detail</a></p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12">
-                                <div class="thumbnail">
-                                    <img src="/assets/img/index/backgrounds/bg1.jpg" alt="...">
-                                    <div class="caption">
-                                        <h3>Thumbnail label</h3>
-                                        <p>...</p>
-                                        <p><a href="#" class="btn btn-primary" role="button">Book now!</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="thumbnail">
-                                    <img src="/assets/img/index/backgrounds/bg1.jpg" alt="...">
-                                    <div class="caption">
-                                        <h3>Thumbnail label</h3>
-                                        <p>...</p>
-                                        <p><a href="#" class="btn btn-primary" role="button">Book now!</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="thumbnail">
-                                    <img src="/assets/img/index/backgrounds/bg1.jpg" alt="...">
-                                    <div class="caption">
-                                        <h3>Thumbnail label</h3>
-                                        <p>...</p>
-                                        <p><a href="#" class="btn btn-primary" role="button">Book now!</a></p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
