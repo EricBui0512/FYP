@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:17:58
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-03-14 22:43:36
+ * @Last Modified time: 2015-03-24 22:03:42
  */
 class AdminRetailerController extends AdminController {
 	
@@ -161,17 +161,27 @@ class AdminRetailerController extends AdminController {
 		return Redirect::route('admin.services.index');
 	}
 
+	public function deleteService($service)
+    {
+        // Title
+        $title = 'Delete a service';
+
+        // Show the page
+        return View::make('admin/services/delete', compact('service', 'title'));
+    }
+
 	/**
 	 * Remove the specified outlet from storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroyService($id)
+	public function destroyService($service)
 	{
-		Service::destroy($id);
 
-		return Redirect::route('admin.services.index');
+		$service->delete();
+
+		return Redirect::to('admin/services');
 	}
 
 	/**
@@ -229,7 +239,8 @@ class AdminRetailerController extends AdminController {
 
     public function getDataDeal( )
     {
-        $deals = Deal::select(array('id','title','amount','discount','status', 'time_slot', 'created_at', 'updated_at'));
+        $deals = Deal::select(array('id','title','amount','discount', 'featured','status',
+        	DB::raw('date_format(time_slot,"%m/%d/%Y") AS time_slot')));
 
         // if ( $outletId )
         // {
@@ -238,11 +249,12 @@ class AdminRetailerController extends AdminController {
 
         return Datatables::of($deals)
 
-	        // ->edit_column('active','{{{ $active ? "Yes":"No" }}}')
+	        ->edit_column('featured','{{{ $featured == 1 ? "Yes":"No" }}}')
 
 	        ->add_column('actions', '<a href="{{{ URL::to(\'admin/deals/\' . $id . \'/edit\' ) }}}" class="iframe btn btn-xs btn-default">{{{ Lang::get(\'button.edit\') }}}</a>
 	                                <a href="{{{ URL::to(\'admin/deals/\' . $id . \'/delete\' ) }}}" class="iframe btn btn-xs btn-danger">{{{ Lang::get(\'button.delete\') }}}</a>
 	                                <a href="javascript:void(0)" id="{{{ $id }}}" class="btn btn-xs btn-success active {{{ $status==\'active\'? \'disabled\':\'\'}}}">Active</a>
+	                                <a href="javascript:void(0)" id="{{{ $id }}}" class="btn btn-xs btn-primary featured {{{ $featured==1? \'disabled\':\'\'}}}">Featured</a>
 	            ')
 
 	        ->remove_column('id')
@@ -254,11 +266,46 @@ class AdminRetailerController extends AdminController {
     {
     	if ( Deal::where('id', $id)->update(array('status' => 'active')) )
     	{
-    		echo json_encode(array('code' => 0, 'messages' => 'Active successfully'));
+    		echo json_encode(array('code' => 0, 'messages' => 'Successfully implemented'));
     	}
     	else
     	{
-			echo json_encode(array('code' => 1, 'messages' => "Can't active"));
+			echo json_encode(array('code' => 1, 'messages' => "Action not success"));
     	}
     }
+
+    public function featuredDeal( $id )
+    {
+    	if ( Deal::where('id', $id)->update(array('featured' => '1')) )
+    	{
+    		echo json_encode(array('code' => 0, 'messages' => 'Successfully implemented'));
+    	}
+    	else
+    	{
+			echo json_encode(array('code' => 1, 'messages' => "Action not success"));
+    	}
+    }
+
+    public function deleteDeal($id)
+    {
+        // Title
+        $title = 'Delete a deal';
+
+        // Show the page
+        return View::make('admin/deals/delete', compact('id', 'title'));
+    }
+
+	/**
+	 * Remove the specified outlet from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroyDeal($id)
+	{
+
+		Deal::destroy( $id );
+
+		return Redirect::to('admin/deals');
+	}
 }

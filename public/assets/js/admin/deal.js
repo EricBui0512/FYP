@@ -2,7 +2,7 @@
 * @Author: Dung Ho
 * @Date:   2015-03-11 23:10:28
 * @Last Modified by:   Dung Ho
-* @Last Modified time: 2015-03-14 22:48:32
+* @Last Modified time: 2015-03-24 21:59:53
 */
 
 'use strict';
@@ -38,15 +38,33 @@ $(document).ready(function() {
 
 			var json = $.parseJSON( data );
 
+			$('#notifications').find('.modal-body').html(json.messages);
+
 			if ( json.code == 0 ) {
 
-				th.addClass('disabled').closest('tr').find("td:nth-child(4)").html('active');
-				alert( json.messages );
-			} else {
-				alert( json.messages );
+				th.addClass('disabled').closest('tr').find("td:nth-child(5)").html('active');
+			} 
+
+			$('#notifications').modal('show');
+		});
+	});
+
+	$('#deal').on('click', '.featured', function() {
+
+		var th = $(this), id = th.attr('id');
+
+		$.get('/admin/deals/featured/' + id, function( data ) {
+
+			var json = $.parseJSON( data );
+
+			$('#notifications').find('.modal-body').html(json.messages);
+
+			if ( json.code == 0 ) {
+
+				th.addClass('disabled').closest('tr').find("td:nth-child(4)").html('Yes');
 			}
 
-			
+			$('#notifications').modal('show');
 		});
-	})
+	});
 });

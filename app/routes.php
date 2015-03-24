@@ -130,6 +130,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::get('deals/data', 'AdminRetailerController@getDataDeal');
     Route::get('deals', 'AdminRetailerController@listDeal');
     Route::get('deals/active/{id}', 'AdminRetailerController@activeDeal');
+    Route::get('deals/featured/{id}', 'AdminRetailerController@featuredDeal');
 
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');
