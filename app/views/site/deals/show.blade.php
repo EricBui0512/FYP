@@ -178,8 +178,8 @@
                         <p><a href="//{{$detail->outletWebsite}}" target="_blank">{{$detail->outletWebsite}}</a></h4>
                         <p><b>Working hours:  </b>from {{$detail->outletStartTime}} to {{$detail->outletEndTime}}</p>
                         <p><b>MAP</b></p>
-                        
-                      <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q={{urlencode($detail->outletAddress.', '.$detail->outletCity.', '.$detail->outletCountry)}}&key=AIzaSyBvK67-gFTje3jAzNJAeCv60FU6xR4ZXGo"></iframe>
+
+                      <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q={{urlencode($detail->outletAddress.', '.$detail->outletCity.', '.$detail->outletCountry)}}&key=AIzaSyBvK67-gFTje3jAzNJAeCv60FU6xR4ZXGo&zoom=13"></iframe>
                       </div>
                     </div>
                 </div>
