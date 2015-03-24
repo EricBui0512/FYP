@@ -146,9 +146,10 @@
                 </div>
        
                 <div class="col-md-6">
-                    <h3>{{$detail->title}}</h3>
-                    <p class="fs14"> Cost: <span class="tdlt">${{$detail->amount}}</span></p>
-                    <p class="fs20">${{$detail->discount}}</p>
+                    <h3 class="cfMain">{{$detail->title}}</h3>
+                    <p class="mt10 mb10">{{$detail->summary}}</p>
+                    <p class="fs12">Price: <span class="">{{number_format($detail->amount)}} SGD</span></p>
+                    <p class="fs20 mt10 mb10 cf7">{{number_format($detail->amount - $detail->discount)}} SGD</p>
                     <a href="{{URL::to('purchase/'.$deal_id)}}" class="btn bt-spa">Purchase</a>
                 </div>
             </div>
@@ -172,6 +173,18 @@
                           {{$detail->highlights}}
                       </div>
                       <div role="tabpanel" class="tab-pane" id="serviceprovider">
+                        <h3>{{$detail->retailerName}}</h3>
+                        <h4>{{$detail->outletAddress}}, {{$detail->outletCity}}, {{$detail->outletCountry}}</h4>
+                        <h4>{{$detail->outletWebsite}}</h4>
+                        <h4>WORKING HOURS: from {{$detail->outletStartTime}} to {{$detail->outletEndTime}}</h4>
+                        <h4>MAP</h4>
+                        <iframe
+                              width="600"
+                              height="450"
+                              frameborder="0" style="border:0"
+                              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCkPwdxQsi77-hqrd_7D_R1Ss2OLmmSmvI
+                                &q={{$detail->outletAddress}}, {{$detail->outletCity}}, {{$detail->outletCountry}}">
+                            </iframe>
                       </div>
                     </div>
                 </div>
@@ -219,7 +232,9 @@
     <script src="{{asset('assets/js/jssor.js')}}"></script>
     <script src="{{asset('assets/js/jssor.slider.js')}}"></script>
     <script src="{{asset('assets/js/slider.js')}}"></script>
-   
+ <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5165a11f04e5f961" async="async"></script>
+
 </body>
 
 </html>
