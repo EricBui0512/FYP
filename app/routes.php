@@ -22,6 +22,7 @@ Route::model('city', 'City');
 Route::model('address', 'Address');
 Route::model('outlet', 'Outlet');
 Route::model('service', 'Service');
+Route::model('company', 'Company');
 
 /** ------------------------------------------
  *  Route constraint patterns

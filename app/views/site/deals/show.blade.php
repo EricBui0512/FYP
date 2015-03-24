@@ -47,6 +47,14 @@
      
 </head>
 <body class="bg1">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=620447237967845&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     <header>
         <!-- TOP BAR -->
         <div id="main-nav" class="navbar navbar-inverse bs-docs-nav fixed booking-navbar" role="banner">
@@ -181,6 +189,7 @@
 
                       <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q={{urlencode($detail->outletAddress.', '.$detail->outletCity.', '.$detail->outletCountry)}}&key=AIzaSyBvK67-gFTje3jAzNJAeCv60FU6xR4ZXGo&zoom=13"></iframe>
                       </div>
+                      <div class="fb-comments" data-href="{{ "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"}}" data-numposts="5" data-colorscheme="light"></div>
                     </div>
                 </div>
                 <script>
