@@ -40,7 +40,8 @@ class SiteController extends BaseController {
         $category=Input::get('category');
         $country=Input::get('country');
         $city=Input::get('city');
-        $deals=$this->deal->search($category,$country,$city);
+        $search_key=Input::get('search_key');
+        $deals=$this->deal->search($category,$country,$city,$search_key);
         // Show the page
         return View::make('site.homelayout',compact('deals', 'search'));
     }

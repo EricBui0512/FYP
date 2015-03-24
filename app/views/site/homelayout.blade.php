@@ -172,7 +172,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-8 ml20">
-                                {{Form::text('search',null,array('class'=>'form-control','placeholder'=>'enter spa name, address to search ...'))}}
+                                {{Form::text('search_key',null,array('class'=>'form-control','placeholder'=>'enter spa name, address to search ...'))}}
                             </div>
                              <div class="col-sm-3">
                                 <label for="checkin" class="cf1"></label>
