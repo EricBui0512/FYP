@@ -39,9 +39,10 @@
 	                </div>
 	                <div class="row pa20">
 	                <legend>Enter your reservation guarantee</legend>
-	                	<form method="post" action="{{URL::to('purchase/pay')}}" data-parsley-validate="" novalidate="" >
+	                	<form method="post" action="{{URL::to('user/transaction/edit')}}" data-parsley-validate="" novalidate="" >
 	                		<input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
 	                		<input type="hidden" name="deal_id" value="{{$detail->id}}">
+	                		<input type="hidden" name="id" value="{{$transactions->id}}">
 	                		<input type="hidden" name="amount" value="{{$detail->discount}}">
 		                   	<div class="row">
 			                   	<div class="col-md-3">

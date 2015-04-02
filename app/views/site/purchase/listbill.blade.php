@@ -41,7 +41,10 @@
 	                          </li> -->
                             <li>
                                <a href="{{ URL::to('user/transaction/edit/' .$transaction->id) }}">Edit</a>
-                            </li> 
+                            </li>
+                            <li>
+                               <a href="{{ URL::to('purchase/pay/'.$transaction->id) }}">Pay</a>
+                            </li>
 	                          <!-- <li><a href="{{URL::to('service/detail/1')}}">Detail</a>
 	                          </li> -->
 	                       </ul>

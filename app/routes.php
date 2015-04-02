@@ -204,7 +204,8 @@ Route::group( array( 'before' => 'auth|role:user'), function() {
     Route::get('payment/status', array('as' => 'payment.status','uses' => 'PaymentController@getPaymentStatus'));
     Route::get('user/transaction', array('as' => 'user.transaction','uses' => 'ConsumersController@getTrans'));
     Route::get('user/transaction/edit/{id}', array('as' => 'user.transaction','uses' => 'PurchaseController@editBill'));
-    Route::post('user/transaction/edit', array('as' => 'user.transaction','uses' => 'PurchaseController@editBill'));
+    Route::post('user/transaction/edit', array('as' => 'user.transaction','uses' => 'PurchaseController@updateBill'));
+    Route::get('purchase/pay/{id}','PurchaseController@payBill');
 });
 
 /** ------------------------------------------
