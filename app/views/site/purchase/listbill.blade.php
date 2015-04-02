@@ -25,25 +25,29 @@
                  	<td>{{$transaction->qty}}</td>
                   <td>{{$transaction->total}}</td>   
                   <td>
-                    @if($transaction->status)
-
+                    @if($transaction->payment_status)
+                      Payed
                     @else
                       
                     @endif
                   </td>   	
                  	<td class="text-center">
+                      @if(!$transaction->payment_status)
 	                    <div class="btn-group">
 	                       <a href="#" data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle">
 	                          <em class="fa fa-angle-down"></em>Action</a>
 	                       <ul class="dropdown-menu pull-right text-left">
 	                          <!-- <li><a href="#">Delete</a>
 	                          </li> -->
-	                          <li><a href="{{ URL::to('service/' . '/edit') }}">Edit</a>
-	                          </li>
+                            <li>
+                               <a href="{{ URL::to('user/transaction/edit/' .$transaction->id) }}">Edit</a>
+                            </li> 
 	                          <!-- <li><a href="{{URL::to('service/detail/1')}}">Detail</a>
 	                          </li> -->
 	                       </ul>
-	                    </div></td>                   
+	                    </div>
+                      @endif
+                      </td>                   
                 </tr> 
               @endforeach
              </tbody>

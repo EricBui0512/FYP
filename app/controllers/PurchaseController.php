@@ -22,16 +22,29 @@ class PurchaseController extends BaseController {
     }
     
 	/**
+     * Returns all the blog posts.
+     *
+     * @return View
+     */
+    public function getBill($id)
+    {
+        // get list outlet active
+         $detail=$this->deal->detail($id);
+        // Show the page
+        return View::make('site.purchase.bill',compact('detail'));
+    }
+    /**
 	 * Returns all the blog posts.
 	 *
 	 * @return View
 	 */
-	public function getBill($id)
+	public function editBill($id)
 	{
         // get list outlet active
-		 $detail=$this->deal->detail($id);
+        $transactions=DealTransaction::find($id);
+        $detail=$this->deal->detail($transactions->deal_id);
         // Show the page
-		return View::make('site.purchase.bill',compact('detail'));
+		return View::make('site.purchase.edit-bill',compact('detail','transactions'));
 	}
     /**
      * Returns all the blog posts.
@@ -55,6 +68,7 @@ class PurchaseController extends BaseController {
             $Bill->consumer_id=Auth::user()->id;
             $Bill->consumer_email=Auth::user()->email;
             $Bill->qty=$data['qty'];
+            $Bill->phone_number=$data['phone_number'];
             $Bill->amount=$data['amount'];
             $Bill->total=$data['amount']*$data['qty'];
              if ($Bill->save())

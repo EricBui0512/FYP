@@ -203,6 +203,8 @@ Route::group( array( 'before' => 'auth|role:user'), function() {
     // this is after make the payment, PayPal redirect back to your site
     Route::get('payment/status', array('as' => 'payment.status','uses' => 'PaymentController@getPaymentStatus'));
     Route::get('user/transaction', array('as' => 'user.transaction','uses' => 'ConsumersController@getTrans'));
+    Route::get('user/transaction/edit/{id}', array('as' => 'user.transaction','uses' => 'PurchaseController@editBill'));
+    Route::post('user/transaction/edit', array('as' => 'user.transaction','uses' => 'PurchaseController@editBill'));
 });
 
 /** ------------------------------------------

@@ -130,6 +130,7 @@ class PaymentController extends BaseController {
  
 	    if ($result->getState() == 'approved') { // payment made
 	    	$Bill= DealTransaction::find($bill_id);
+	    	$Bill->payment_status=1;
 	    	$Bill->status=1;
 	    	$Bill->payment_id=$payment_id;
 	    	$Bill->save();

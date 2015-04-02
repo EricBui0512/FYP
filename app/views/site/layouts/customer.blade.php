@@ -4,7 +4,7 @@
     <ul class="nav">
        <!-- START Menu-->
         <li>
-          <a href="{{{URL::to('customer/dashboard')}}}">Dashboard</a>
+          <a>Dashboard</a>
         </li>      
        <li>
           <a href="#" class="no-submenu">
