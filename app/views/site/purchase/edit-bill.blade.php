@@ -57,7 +57,7 @@
 			                   	</div>
 			                   	<div class="col-md-1"></div>
 			                   	<div class="col-md-3">
-			                   		<img src="{{asset($detail->big_img)}}" alt="" class="img-thumbnail">
+			                   		<img src="{{asset($thumbnail)}}" alt="" class="img-thumbnail">
 			                   		
 			                   	</div>
 			                   	<div class="col-md-5">
