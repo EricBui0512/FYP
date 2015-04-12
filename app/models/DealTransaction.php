@@ -97,4 +97,20 @@ class DealTransaction extends \Eloquent {
 		return $trans;
 	}
 
+	public static function tranDetail( $id ) {
+
+		$tran = DealTransaction::select(array('deal_transactions.*', 'deals.title', 'deals.id as deal_id',
+			'deals.discount', 'images.thumbnail_path'))
+			->leftJoin('deals', 'deals.id', '=', 'deal_transactions.deal_id')
+			->leftJoin('services', 'services.id', '=', 'deals.service_id')
+			->leftJoin('images', function( $join )
+			{
+				$join->on('images.ref_id', '=', 'services.id')
+					->where( 'images.image_type', '=', 'service');
+			})
+			->where('deal_transactions.id', $id)
+			->first();
+
+		return $tran;
+	}
 }

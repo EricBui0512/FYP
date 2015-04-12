@@ -41,31 +41,31 @@
 	                <legend>Enter your reservation guarantee</legend>
 	                	<form method="post" action="{{URL::to('user/transaction/edit')}}" data-parsley-validate="" novalidate="" >
 	                		<input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
-	                		<input type="hidden" name="deal_id" value="{{$detail->id}}">
-	                		<input type="hidden" name="id" value="{{$transactions->id}}">
-	                		<input type="hidden" name="amount" value="{{$detail->discount}}">
+	                		<input type="hidden" name="deal_id" value="{{$tranDetail->deal_id}}">
+	                		<input type="hidden" name="id" value="{{$tranDetail->id}}">
+	                		<input type="hidden" name="amount" value="{{$tranDetail->discount}}">
 		                   	<div class="row">
 			                   	<div class="col-md-3">
 				                   	<div class="form-group">
 				                      <label class="control-label">Phone number *</label>
-				                      <input type="text" name="phone_number" required class="form-control col-md-6" placeholder="(+84)xxxx.xxxx.xxxx" value="{{$transactions->phone_number}}">
+				                      <input type="text" name="phone_number" required class="form-control col-md-6" placeholder="(+84)xxxx.xxxx.xxxx" value="{{$tranDetail->phone_number}}">
 				                   	</div>
 				                   	<div class="form-group">
 				                      <label class="control-label">Quanity *</label>
-				                      <input id="qty" type="number" name="qty" required class="form-control" value="{{$transactions->qty}}">
+				                      <input id="qty" type="number" name="qty" required class="form-control" value="{{$tranDetail->qty}}">
 				                   	</div>
 			                   	</div>
 			                   	<div class="col-md-1"></div>
 			                   	<div class="col-md-3">
-			                   		<img src="{{asset($thumbnail)}}" alt="" class="img-thumbnail">
+			                   		<img src="{{asset($tranDetail->thumbnail_path)}}" alt="" class="img-thumbnail">
 			                   		
 			                   	</div>
 			                   	<div class="col-md-5">
 			                   		<p class="fs14">
-			                   			{{$detail->title}}
+			                   			{{$tranDetail->title}}
 			                   		</p>
 			                   		<p>
-			                   			Prices: {{$detail->discount}}$
+			                   			Prices: {{$tranDetail->discount}}$
 			                   		</p>
 			                   	</div>
 		                   	</div>

@@ -40,15 +40,10 @@ class PurchaseController extends BaseController {
      */
     public function editBill($id)
     {
-        // get list outlet active
-        $transactions=DealTransaction::find($id);
-        $detail=$this->deal->detail($transactions->deal_id);
+        $tranDetail = DealTransaction::tranDetail( $id );
 
-        $image = explode(',', $detail->thumbnail_path);
-        $thumbnail = isset($image[0]) ? $image[0] : '';
-        
         // Show the page
-        return View::make('site.purchase.edit-bill',compact('detail','transactions', 'thumbnail'));
+        return View::make('site.purchase.edit-bill',compact('tranDetail'));
     }
     /**
 	 * Returns all the blog posts.

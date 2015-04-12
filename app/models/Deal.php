@@ -119,7 +119,7 @@ class Deal extends \Eloquent {
 			->leftJoin('service_details','service_details.id','=','services.detail_id')
 			->leftJoin('service_conditions','service_conditions.id','=','services.condition_id')
 			->where('deals.id', $id)->first();
-
+// var_dump( DB::getQueryLog());die;
 		return $deal;
 	}
 
