@@ -68,8 +68,10 @@ class PurchaseController extends BaseController {
         // get list outlet active
         $validator = Validator::make(Input::all(), DealTransaction::$rules);
         $detail=$this->deal->detail(Input::get('deal_id'));
+        
         if(!Auth::user())
             return Redirect::to('purchase/'.$detail->id)->with('message', 'Login please!');;
+        
         if ($validator->passes())
         {
             $data=Input::except('_token');
