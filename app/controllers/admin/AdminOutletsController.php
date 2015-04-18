@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:06:32
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-03-24 23:22:46
+ * @Last Modified time: 2015-04-12 18:02:55
  */
 
 class AdminOutletsController extends AdminController {
@@ -102,12 +102,22 @@ class AdminOutletsController extends AdminController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($outlet)
 	{
-		Outlet::destroy($id);
+		$outlet->delete();
 
-		return Redirect::route('outlets.index');
+		return Redirect::to('admin/outlets');
 	}
+
+	public function delete( $outlet )
+    {
+        // Title
+        $title = 'Delete a service will delete service of outlet';
+
+        // Show the page
+        return View::make('admin/outlets/delete', compact('outlet', 'title'));
+    }
+
 
 	/**
      * Show a list of all the outlets formatted for Datatables.

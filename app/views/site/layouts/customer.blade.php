@@ -7,7 +7,7 @@
           <a href="{{URL::to('user/dashboard')}}">Dashboard</a>
         </li>      
        <li>
-          <a href="#" class="no-submenu">
+          <a href="{{URL::to('user/profile/' . Auth::user()->username)}}" class="no-submenu">
              <em class="fa fa-flask"></em>
              <span class="item-text">Profile</span>
           </a>

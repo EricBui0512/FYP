@@ -73,14 +73,16 @@ class PurchaseController extends BaseController {
         if ($validator->passes())
         {
             $data=Input::except('_token');
-            $Bill=DealTransaction::find(Input::get('id'));
-            $Bill->qty=$data['qty'];
-            $Bill->phone_number=$data['phone_number'];
-            $Bill->amount=$data['amount'];
-            $Bill->total=$data['amount']*$data['qty'];
-             if ($Bill->save())
+            $bill=DealTransaction::find(Input::get('id'));
+            $bill->qty=$data['qty'];
+            $bill->phone_number=$data['phone_number'];
+            $bill->amount=$data['amount'];
+            $bill->total=$data['amount']*$data['qty'];
+            if ($bill->save())
             {
-                return View::make('site.purchase.pay',compact('Bill'));
+                User::where( 'id', Auth::user()->id)->update( array('phone_number' => $data['phone_number']));
+                
+                return View::make('site.purchase.pay',compact('bill'));
             }
             return Redirect::to('user/transaction/edit/'.Input::get('id'))->withInput()->withErrors($validator);
         }

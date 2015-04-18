@@ -96,24 +96,28 @@ class UserController extends BaseController {
 
         $user->username = Input::get('username');
         $user->email = Input::get('email');
+        $user->phone_number = Input::get('phone_number');
 
         $password = Input::get('password');
         $passwordConfirmation = Input::get('password_confirmation');
 
-        if (!empty($password)) {
+        if ( ! empty($password) ) {
+
             if ($password != $passwordConfirmation) {
+
                 // Redirect to the new user page
                 $error = Lang::get('admin/users/messages.password_does_not_match');
                 return Redirect::to('user')
                     ->with('error', $error);
-            } else {
+            }
+            else {
                 $user->password = $password;
                 $user->password_confirmation = $passwordConfirmation;
             }
         }
 
         if ($this->userRepo->save($user)) {
-            return Redirect::to('user')
+            return Redirect::to('user/profile/' . $user->username)
                 ->with( 'success', Lang::get('user/user.user_account_updated') );
         } else {
             $error = $user->errors()->all(':message');
@@ -317,6 +321,29 @@ class UserController extends BaseController {
         return View::make('site/user/profile', compact('user'));
     }
 
+    /**
+     * Get edit user's profile
+     * @param $username
+     * @return mixed
+     */
+    public function getEdit($username)
+    {
+        $userModel = new User;
+        $user = $userModel->getUserByUsername($username);
+
+        // Check if the user exists
+        if (is_null($user))
+        {
+            return App::abort(404);
+        }
+
+        $images = Picture::getByRefId( $user->id, 'user');
+
+        return View::make('site/user/edit', compact('user'))
+            ->nest('imageForm', 'site.partials.image.create', ['refId' => $user->id, 'type' => 'user', 'images' => $images]);
+    }
+
+    
     public function getSettings()
     {
         list($user,$redirect) = User::checkAuthAndRedirect('user/settings');

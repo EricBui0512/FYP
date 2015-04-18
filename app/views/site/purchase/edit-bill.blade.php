@@ -48,7 +48,7 @@
 			                   	<div class="col-md-3">
 				                   	<div class="form-group">
 				                      <label class="control-label">Phone number *</label>
-				                      <input type="text" name="phone_number" required class="form-control col-md-6" placeholder="(+84)xxxx.xxxx.xxxx" value="{{$tranDetail->phone_number}}">
+				                      <input type="text" name="phone_number" required class="form-control col-md-6" placeholder="(+84)xxxx.xxxx.xxxx" value="{{ Auth::user()->phone_number}}">
 				                   	</div>
 				                   	<div class="form-group">
 				                      <label class="control-label">Quanity *</label>

@@ -41,7 +41,7 @@ Route::filter('role', function( $route, $request, $value ) {
     array_shift($roles);
     array_shift($roles);
 
-    if ( Auth::user()->user_type !== $roles[0] ) {
+    if ( ! in_array( Auth::user()->user_type, $roles ) ) {
 
         return App::abort( 403 );
     }
@@ -145,7 +145,9 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::controller('/', 'AdminDashboardController');
 
 });
-
+Route::group(array('before' => 'auth|role:retailer,user'), function(){
+    Route::post('outlet/uploadimage', array( 'as' => 'outlet.uploadimage', 'uses' => 'OutletsController@uploadimage'));
+});
 
 Route::group(array('before' => 'auth|role:retailer'), function()
 {
@@ -169,7 +171,6 @@ Route::group(array('before' => 'auth|role:retailer'), function()
 
     Route::post('outlet/delete', array( 'as' => 'outlet.delete', 'uses' => 'OutletsController@destroy'));
     Route::get('outlet', array( 'as' => 'outlet.list', 'uses' => 'OutletsController@getList'));
-    Route::post('outlet/uploadimage', array( 'as' => 'outlet.uploadimage', 'uses' => 'OutletsController@uploadimage'));
 
     #deals manager
     Route::get('deal', array('as'=> 'deal.index','uses' => 'OutletsController@listDeal'));
@@ -206,6 +207,11 @@ Route::group( array( 'before' => 'auth|role:user'), function() {
     Route::get('user/transaction/edit/{id}', array('as' => 'user.transaction','uses' => 'PurchaseController@editBill'));
     Route::post('user/transaction/edit', array('as' => 'user.transaction','uses' => 'PurchaseController@updateBill'));
     Route::get('purchase/pay/{id}','PurchaseController@payBill');
+    Route::get('user/profile/{username}', 'UserController@getProfile');
+    Route::get('user/profile/{username}/edit', 'UserController@getEdit');
+    //:: User Account Routes ::
+    Route::post('user/{user}/edit', 'UserController@postEdit');
+
 });
 
 /** ------------------------------------------
@@ -228,8 +234,6 @@ Route::get('/detail/{id}', 'SiteController@getDetail');
 Route::get('user/reset/{token}', 'UserController@getReset');
 // User password reset
 Route::post('user/reset/{token}', 'UserController@postReset');
-//:: User Account Routes ::
-Route::post('user/{user}/edit', 'UserController@postEdit');
 
 //:: User Account Routes ::
 Route::post('user/login', 'UserController@postLogin');
