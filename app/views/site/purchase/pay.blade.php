@@ -25,7 +25,7 @@
 				                   <div class="clearfix">
 				                      <div >
 				                         <button type="submit" class="btn btn-primary">Pay</button>
-				                         <a href="{{URL::to('user/transaction')}}" class="btn btn-default">Pay laster</a>
+				                         <a href="{{URL::to('user/transaction')}}" class="btn btn-default">Pay later</a>
 				                      </div>
 				                   </div>
 		                		</div>
