@@ -1,5 +1,9 @@
 @extends('site.layouts.customer')
 @section('content')
+<?php 
+	$image = explode(',', $detail->big_img);
+	$thumbnail = (isset($image[0]) && $image[0] ) ? asset($image[0]) : asset('assets/img/noimage.jpeg');
+?>
 <!-- START row-->
     <div class="row">
        <div class="col-md-12">
@@ -56,8 +60,7 @@
 			                   	</div>
 			                   	<div class="col-md-1"></div>
 			                   	<div class="col-md-3">
-			                   		<img src="{{asset($detail->big_img)}}" alt="" class="img-thumbnail">
-			                   		
+			                   		<img src="{{ $thumbnail }}" alt="" class="img-thumbnail">
 			                   	</div>
 			                   	<div class="col-md-5">
 			                   		<p class="fs14">
