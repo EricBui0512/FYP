@@ -57,7 +57,7 @@
 			                   	</div>
 			                   	<div class="col-md-1"></div>
 			                   	<div class="col-md-3">
-			                   		<img src="{{asset($tranDetail->thumbnail_path)}}" alt="" class="img-thumbnail">
+			                   		<img src="{{ ($tranDetail->thumbnail_path) ? asset($tranDetail->thumbnail_path) : asset('assets/img/noimage.jpeg')}}" alt="" class="img-thumbnail">
 			                   		
 			                   	</div>
 			                   	<div class="col-md-5">

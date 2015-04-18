@@ -171,15 +171,16 @@
                     </ul>
 
                     <div class="tab-content pa20">
-                      <div role="tabpanel" class="tab-pane active" id="conditions">
+                     <div role="tabpanel" class="tab-pane active" id="detail">
+                          {{$detail->summary}}
+                          {{$detail->highlights}}
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="conditions">
                           {{$detail->special_condition}}
                           {{$detail->condition1}}
                           
                       </div>
-                      <div role="tabpanel" class="tab-pane" id="detail">
-                          {{$detail->summary}}
-                          {{$detail->highlights}}
-                      </div>
+                      
                       <div role="tabpanel" class="tab-pane" id="serviceprovider">
                         <h3>{{$detail->retailerName}}</h3>
                         <h4>{{$detail->outletAddress}}, {{$detail->outletCity}}, {{$detail->outletCountry}}</h4>
