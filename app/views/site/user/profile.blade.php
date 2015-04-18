@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                     <th scope="row">Address</th>
-                    <td>{{ $user->address->address . ', ' . $user->address->city->city . ', ' . $user->address->city->country->country }}</td>
+                    <td>{{ (isset($user->address->address) ? $user->address->address . ', ' : '' ) . (isset($user->address->city->city)?$user->address->city->city . ', ':'') . (isset($user->address->city->country->country)?$user->address->city->country->country:'') }}</td>
                 </tr>
                 <tr>
                     <th scope="row">UserName</th>
