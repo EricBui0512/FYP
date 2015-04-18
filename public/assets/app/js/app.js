@@ -2798,6 +2798,15 @@
       })
     });
 
+    $('.location').on('change', '#country_id', function() {
+
+      var country_id = $(this).val();
+
+      $.get('/cities/html/' + country_id, function( data ) {
+        $('.location').find('.col-lg-2.city').html(data);
+      });
+    });
+
   });
 
   // keeps the wrapper covering always the entire body

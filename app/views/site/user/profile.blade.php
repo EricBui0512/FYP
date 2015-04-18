@@ -21,8 +21,12 @@
         
             <tbody>
                 <tr>
+                    <th scope="row">Avatar</th>
+                    <td><img src="{{asset($avatar)}}" height="50" width="50"></td>
+                </tr>
+                <tr>
                     <th scope="row">Address</th>
-                    <td>Mark</td>
+                    <td>{{ $user->address->address . ', ' . $user->address->city->city . ', ' . $user->address->city->country->country }}</td>
                 </tr>
                 <tr>
                     <th scope="row">UserName</th>

@@ -116,7 +116,21 @@ class UserController extends BaseController {
             }
         }
 
+        $data = array( 'city_id' => Input::get('city_id'),
+                            'address' => Input::get('address'));
+
+        if ( $user->address_id ) {
+
+            Address::where('id', $user->address_id )->update( $data );
+        }
+        else {
+
+            $address = Address::create( $data );
+            $user['address_id'] = $address->id;
+        }
+
         if ($this->userRepo->save($user)) {
+
             return Redirect::to('user/profile/' . $user->username)
                 ->with( 'success', Lang::get('user/user.user_account_updated') );
         } else {
@@ -311,6 +325,14 @@ class UserController extends BaseController {
     {
         $userModel = new User;
         $user = $userModel->getUserByUsername($username);
+        $images = Picture::getByRefId( $user->id, 'user');
+        $avatar = '';
+
+        foreach ($images as $key => $image) {
+            
+            $avatar = $image->thumbnail_path;
+            break;
+        }
 
         // Check if the user exists
         if (is_null($user))
@@ -318,7 +340,7 @@ class UserController extends BaseController {
             return App::abort(404);
         }
 
-        return View::make('site/user/profile', compact('user'));
+        return View::make('site/user/profile', compact('user', 'avatar'));
     }
 
     /**
@@ -330,6 +352,8 @@ class UserController extends BaseController {
     {
         $userModel = new User;
         $user = $userModel->getUserByUsername($username);
+        $countries = Country::lists('country', 'id');
+        $cities = City::where('country_id', Country::DEFAULT_COUNTRY)->lists('city','id');
 
         // Check if the user exists
         if (is_null($user))
@@ -339,7 +363,7 @@ class UserController extends BaseController {
 
         $images = Picture::getByRefId( $user->id, 'user');
 
-        return View::make('site/user/edit', compact('user'))
+        return View::make('site/user/edit', compact('user', 'countries','cities'))
             ->nest('imageForm', 'site.partials.image.create', ['refId' => $user->id, 'type' => 'user', 'images' => $images]);
     }
 

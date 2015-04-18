@@ -112,4 +112,9 @@ class User extends Eloquent implements ConfideUserInterface {
         return $this->email;
     }
 
+    public function address()
+    {
+        return $this->belongsTo('Address');
+    }
+
 }

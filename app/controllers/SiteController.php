@@ -64,4 +64,11 @@ class SiteController extends BaseController {
         }
         return $data_string;
     }
+
+    public function getHtmlCity( $countryId ) {
+
+        $cities = array_merge(array( '0' => 'All' ), City::ByCountry( $countryId )->lists('city', 'id'));
+
+        return View::make( 'admin/cities/_city', compact('cities'));
+    }
 }

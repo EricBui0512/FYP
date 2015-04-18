@@ -63,7 +63,7 @@ class OutletsController extends \BaseController {
 	public function edit( $outlet )
 	{
 		$countries = Country::lists('country','id');
-		$cities = City::lists('city','id');
+		$cities = City::where('country_id', Country::DEFAULT_COUNTRY)->lists('city','id');
 		$retailers = Retailer::owner()->lists('name', 'id');
 		$addresses = Address::select(array('addresses.id', 'addresses.address'))->lists('address',  'id');
 		$images = Picture::getByRefId( $outlet->id, 'outlet');

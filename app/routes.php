@@ -265,5 +265,5 @@ Route::post('/getCities', array('before' => 'detectLang','uses' => 'SiteControll
 
 Route::get('transaction/create', 'ConsumersController@createTrans');
 Route::post('transaction', 'ConsumersController@storeTrans');
-    Route::post('image/delete', array( 'as' => 'image.delete', 'uses' => 'OutletsController@deleteImage'));
-
+Route::post('image/delete', array( 'as' => 'image.delete', 'uses' => 'OutletsController@deleteImage'));
+ Route::get('cities/html/{countryId}', 'SiteController@getHtmlCity');

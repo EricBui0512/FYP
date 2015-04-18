@@ -32,6 +32,11 @@ class Address extends \Eloquent {
 		return $this->belongsTo('City');
 	}
 
+	public function user()
+	{
+		return $this->hasOne('User');
+	}
+
 	public function outlet()
 	{
 		return $this->hasOne('Outlet');

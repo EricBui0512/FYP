@@ -74,15 +74,15 @@ Create Outlet
             </div>
           </div>
         </fieldset>
-        <fieldset>
+        <fieldset class="location">
           <legend>Location</legend>
           <div class="form-group">
             <label class="col-lg-2 control-label">Country</label>
             <div class="col-lg-2">
-              {{ Form::select('country_id', $countries,isset($outlet->address->city->country_id)?$outlet->address->city->country_id:0,array('class'=>'form-control m-b','id'=>'country_id','name'=>'country') )}}
+              {{ Form::select('country_id', $countries,isset($outlet->address->city->country_id)?$outlet->address->city->country_id:Country::DEFAULT_COUNTRY,array('class'=>'form-control m-b','id'=>'country_id','name'=>'country') )}}
             </div>
             <label class="col-md-1 control-label">City</label>
-            <div class="col-lg-2">
+            <div class="col-lg-2 city">
               {{ Form::select('city_id', $cities,isset($outlet->address->city_id)?$outlet->address->city_id:0,array('class'=>'form-control m-b','name'=>'city_id','id'=>'city_id') )}}
             </div>
             
