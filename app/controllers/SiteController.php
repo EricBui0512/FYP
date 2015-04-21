@@ -29,7 +29,7 @@ class SiteController extends BaseController {
 	public function getIndex()
 	{
         // get list outlet active
-		$hotDeals = $this->deal->dealByType('Hot Deal');
+		$hotDeals = $this->deal->hotDeals();
         $serviceDeals = $this->deal->dealByType('Service');
         // Show the page
 		return View::make('site/homelayout',compact('hotDeals', 'serviceDeals'));
@@ -70,5 +70,12 @@ class SiteController extends BaseController {
         $cities = array_merge(array( '0' => 'All' ), City::ByCountry( $countryId )->lists('city', 'id'));
 
         return View::make( 'admin/cities/_city', compact('cities'));
+    }
+
+    public function getListName() {
+
+        $names = Service::getName();
+
+        return Response::json($names);
     }
 }

@@ -65,7 +65,8 @@ class Deal extends \Eloquent {
 		}
 		if ( $keyWord )
 		{
-			$query = $query->where('deals.name', 'LIKE', "%$keyWord%");
+			$query = $query->where('services.name', 'REGEXP', "$keyWord")
+					->orWhere('outlets.name', 'REGEXP', "$keyWord");
 		}
 
 		if ( $dealType )
@@ -87,6 +88,55 @@ class Deal extends \Eloquent {
 		return Deal::search( null, null, null, null, $type );
 	}
 
+	public function hotDeals()
+	{
+		$deals = Deal::select( array( 'deals.id','deals.title','deals.amount','deals.discount','images.image_path',
+				DB::raw('count(deal_transactions.deal_id) count')
+			) )
+			->leftJoin('services', 'services.id','=','deals.service_id')
+			->leftJoin('images', function( $join )
+			{
+				$join->on('images.ref_id', '=', 'services.id')
+					->where( 'images.image_type', '=', 'service');
+			})
+			->leftJoin('deal_transactions', 'deals.id', '=', 'deal_transactions.deal_id')
+			->leftJoin('outlets','outlets.id','=','services.outlet_id')
+			->leftJoin('addresses','addresses.id','=','outlets.address_id')
+			->leftJoin('cities', 'cities.id','=','addresses.city_id')
+			->leftJoin('retailers','retailers.id','=','outlets.retailer_id')
+			->where('deals.status', 'active')
+			->whereRaw('deal_transactions.created_at > date_sub( current_date, INTERVAL 7 day)')
+			->groupBy('deal_transactions.deal_id')
+			->orderBy('count', 'desc')
+			->take(9)->get();
+
+		return $deals;
+	}
+
+	public function hotService()
+	{
+		$services = Deal::select( array( 'deals.id','deals.title','deals.amount','deals.discount','images.image_path',
+				DB::raw('count(deals.service_id) count')
+			) )
+			->leftJoin('services', 'services.id','=','deals.service_id')
+			->leftJoin('images', function( $join )
+			{
+				$join->on('images.ref_id', '=', 'services.id')
+					->where( 'images.image_type', '=', 'service');
+			})
+			->leftJoin('deal_transactions', 'deals.id', '=', 'deal_transactions.deal_id')
+			->leftJoin('outlets','outlets.id','=','services.outlet_id')
+			->leftJoin('addresses','addresses.id','=','outlets.address_id')
+			->leftJoin('cities', 'cities.id','=','addresses.city_id')
+			->leftJoin('retailers','retailers.id','=','outlets.retailer_id')
+			->where('deals.status', 'active')
+			->whereRaw('deal_transactions.created_at > date_sub( current_date, INTERVAL 7 day)')
+			->groupBy('deals.service_id')
+			->orderBy('count', 'desc')
+			->take(9)->get();
+
+		return $services;
+	}
 	public static function detail( $id )
 	{
 		$deal = Deal::select( array( 'deals.id','deals.title','deals.amount','deals.discount',

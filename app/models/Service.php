@@ -70,4 +70,24 @@ class Service extends \Eloquent {
 
 		return $this->id;
 	}
+
+	public static function getName()
+	{
+		$service = DB::table('services' )
+				->select('name')
+		       ->where('status', 'active');
+		$outlets = DB::table('outlets')->select('name')
+				->where('status', 'active')
+				->union($service)->get();
+		
+		$result = [];
+
+		if ( ! empty( $outlets )) {
+
+			foreach ($outlets as $key => $value) {
+				array_push($result, $value->name);
+			}
+		}
+		return $result;
+	}
 }
