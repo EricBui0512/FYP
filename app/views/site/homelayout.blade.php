@@ -171,7 +171,7 @@
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label for="checkin" class="cf1">City</label>
-                            {{Form::select('city',array(),null,array('class'=>'form-control'))}}
+                            {{Form::select('city',City::getKeyValueData(),null,array('class'=>'form-control'))}}
                         </div>
                     </div>
                     

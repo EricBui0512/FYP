@@ -30,4 +30,8 @@ class City extends Eloquent {
 
 		return $query->where('country_id', $countryId);
 	}
+
+	public static function getKeyValueData(){
+		return array( null => 'All' ) + City::where('country_id', Country::DEFAULT_COUNTRY)->lists('city','id');
+	}
 }
