@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:06:32
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-04-12 18:02:55
+ * @Last Modified time: 2015-04-22 23:19:17
  */
 
 class AdminOutletsController extends AdminController {
@@ -104,6 +104,21 @@ class AdminOutletsController extends AdminController {
 	 */
 	public function destroy($outlet)
 	{
+		// var_dump($outlet);die;
+		//delete service
+		$service = Service::where('outlet_id', $outlet->id)->get();
+		var_dump($service);die;
+		
+		// delete deal
+		$deal = Deal::where('service_id', $service->id)->get();
+		
+		// delete deal transaction
+		DealTransaction::where('deal_id', $deal->id)->destroy();
+
+		$deal->delete();
+
+		$service->delete();
+
 		$outlet->delete();
 
 		return Redirect::to('admin/outlets');

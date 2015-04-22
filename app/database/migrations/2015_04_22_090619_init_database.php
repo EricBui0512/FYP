@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnToDeals extends Migration {
+class InitDatabase extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,11 @@ class AddColumnToDeals extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('deals', function( $table ){
-			$table->enum('deal_type', array('Hot Deal', 'Service'));
-		});
+		$file = dirname(__FILE__) . '/booking_server.sql';
+      
+	    $contents = file_get_contents( $file );
+
+		DB::unprepared( $contents );
 	}
 
 	/**
@@ -24,7 +26,7 @@ class AddColumnToDeals extends Migration {
 	 */
 	public function down()
 	{
-		//
+		
 	}
 
 }
