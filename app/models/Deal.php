@@ -106,7 +106,7 @@ class Deal extends \Eloquent {
 			->leftJoin('retailers','retailers.id','=','outlets.retailer_id')
 			->where('deals.status', 'active')
 			->where('deal_type', $dealType)
-			->whereRaw('deal_transactions.created_at > date_sub( current_date, INTERVAL 7 day)')
+			// ->whereRaw('deal_transactions.created_at > date_sub( current_date, INTERVAL 7 day)')
 			->groupBy('deal_transactions.deal_id')
 			->orderBy('count', 'desc')
 			->take(9)->get();
