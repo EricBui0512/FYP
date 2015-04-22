@@ -29,8 +29,8 @@ class SiteController extends BaseController {
 	public function getIndex()
 	{
         // get list outlet active
-		$hotDeals = $this->deal->hotDeals();
-        $serviceDeals = $this->deal->dealByType('Service');
+		$hotDeals = $this->deal->hotDeals('Hot Deal');
+        $serviceDeals = $this->deal->hotDeals('Service');
         // Show the page
 		return View::make('site/homelayout',compact('hotDeals', 'serviceDeals'));
 	}
