@@ -2,13 +2,13 @@
 
 return array(
 
-    'default' => 'sqlite',
+    'default' => 'mysql',
 
     'connections' => array(
         'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'booking',
+			'database'  => 'booking_test',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
