@@ -114,7 +114,6 @@ class Deal extends \Eloquent {
 		return $deals;
 	}
 
-	
 	public static function detail( $id )
 	{
 		$deal = Deal::select( array( 'deals.id','deals.title','deals.amount','deals.discount',
@@ -130,6 +129,7 @@ class Deal extends \Eloquent {
 				'outlets.endTime as outletEndTime',
 				'service_conditions.special_condition','service_conditions.condition1',
 				'service_conditions.condition2','outlets.phone',
+				'outlets.id as outlet_id',
 				DB::raw('concat(addresses.address, " - ",cities.city," - ",countries.country) AS address'),
 				DB::raw('group_concat(images.image_path) AS big_img') ,
 				DB::raw('group_concat(images.thumbnail_path) AS thumb_img')))

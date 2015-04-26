@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:06:32
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-04-22 23:19:17
+ * @Last Modified time: 2015-04-23 00:11:00
  */
 
 class AdminOutletsController extends AdminController {
@@ -107,7 +107,7 @@ class AdminOutletsController extends AdminController {
 		// var_dump($outlet);die;
 		//delete service
 		$service = Service::where('outlet_id', $outlet->id)->get();
-		var_dump($service);die;
+		
 		
 		// delete deal
 		$deal = Deal::where('service_id', $service->id)->get();

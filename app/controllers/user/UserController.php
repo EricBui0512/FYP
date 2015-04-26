@@ -219,6 +219,45 @@ class UserController extends BaseController {
         }
     }
 
+    public function loginBeforePuchase()
+    {
+        $id = Input::get('purchase');
+
+        if ( Auth::check())
+        {
+            return Redirect::to('purchase/' . $id);
+        }
+        else
+        {
+            $repo = App::make('UserRepository');
+            $input = Input::only(array('username', 'password'));
+
+            if ($this->userRepo->login($input)) {
+
+                return Redirect::to('purchase/' . $id);
+            }
+            else {
+
+                if ($this->userRepo->isThrottled($input)) {
+
+                    $err_msg = Lang::get('confide::confide.alerts.too_many_attempts');
+                }
+                elseif ($this->userRepo->existsButNotConfirmed($input)) {
+                   
+                    $err_msg = Lang::get('confide::confide.alerts.not_confirmed');
+                }
+                else {
+
+                    $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
+                }
+
+                return Redirect::to('purchase/' . $id)
+                    ->withInput(Input::except('password'))
+                    ->with('error', $err_msg);
+            }
+        }
+    }
+
     /**
      * Attempt to confirm account with code
      *

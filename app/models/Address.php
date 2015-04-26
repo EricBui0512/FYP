@@ -41,6 +41,11 @@ class Address extends \Eloquent {
 	{
 		return $this->hasOne('Outlet');
 	}
+
+	public function retailer()
+	{
+		return $this->hasOne('Retailer');
+	}
 	public function getCity()
 	{
 		return $this->hasOne('City','id','city_id');

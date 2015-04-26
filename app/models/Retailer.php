@@ -28,7 +28,10 @@ class Retailer extends \Eloquent {
 
 		return $this->belongsTo('Admin');
 	}
+	public function address() {
 
+		return $this->belongsTo('Address'); 
+	}
 	public static function findOne( $id ) {
 
   		$retailer = Retailer::select( array( 'retailers.id', 'admin_id', 'category_id','address_id',
@@ -45,7 +48,18 @@ class Retailer extends \Eloquent {
 		return array( null => 'Select A Spa' ) + Retailer::lists('name','id');
 	}
 
-	public static function getServices(){
+	public function getById( $id ){
 		
+		$retailer = $this->select(array('retailers.name', 'retailers.website', 'images.image_path', 'outlets.address_id'))
+
+				->join('outlets', 'outlets.retailer_id', '=', 'retailers.id')
+				->join('images', function( $join ){
+					$join->on('images.ref_id', '=', 'outlets.id')
+						->where('images.image_type', '=', 'outlet');
+				})
+				->where('outlets.id', $id)
+				->first();
+
+		return $retailer;
 	}
 }

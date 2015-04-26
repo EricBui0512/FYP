@@ -1,4 +1,4 @@
-@extends('site.layouts.customer')
+@extends('site.layouts.customer', ['retailer' => isset($retailer)?$retailer:null])
 @section('content')
 <?php 
 	$image = explode(',', $detail->big_img);
@@ -18,7 +18,9 @@
 	                	<legend>Your account details</legend>
 	                	@if (!Auth::check())
 		                	<h5 class="fwb">When you are already registered, please login directly here</h5>
-		                   	<form method="post" action="#" data-parsley-validate="" novalidate="">
+		                   	<form method="post" action="{{{ URL::to('purchase/login')}}}" data-parsley-validate="" novalidate="">
+			                   <input type="hidden" value="{{{ $detail->id }}}" name="purchase">
+			                   <input type="hidden" value="{{{ csrf_token() }}}" name="_token">
 			                   <div class="col-sm-4 pl0">
 			                   		<input type="text" name="username" required class="form-control" placeholder="username">
 			                   	</div>
@@ -51,7 +53,7 @@
 			                   	<div class="col-md-3">
 				                   	<div class="form-group">
 				                      <label class="control-label">Phone number *</label>
-				                      <input type="text" value="{{{ Auth::user()->phone_number}}}" name="phone_number" required class="form-control col-md-6" placeholder="(+65) xxxx xxxx">
+				                      <input type="text" value="{{{ (Auth::check())?Auth::user()->phone_number:''}}}" name="phone_number" required class="form-control col-md-6" placeholder="(+65) xxxx xxxx">
 				                   	</div>
 				                   	<div class="form-group">
 				                      <label class="control-label">Quanity *</label>

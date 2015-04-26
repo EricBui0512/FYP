@@ -8,17 +8,20 @@ class PurchaseController extends BaseController {
      */
     protected $user;
 
+    protected $retailer;
+
     /**
      * Inject the models.
      * @param Post $post
      * @param User $user
      */
-    public function __construct(IUserRepository $user, IDealRepository $deal)
+    public function __construct(IUserRepository $user, IDealRepository $deal, Retailer $retailer)
     {
         parent::__construct();
 
         $this->user = $user;
         $this->deal = $deal;
+        $this->retailer = $retailer;
     }
     
 	/**
@@ -28,10 +31,18 @@ class PurchaseController extends BaseController {
      */
     public function getBill($id)
     {
+        $retailer = null;
+
         // get list outlet active
-         $detail=$this->deal->detail($id);
+        $detail=$this->deal->detail($id);
+
+        if ( ! empty($detail) )
+        {
+            $retailer = $this->retailer->getById( $detail->outlet_id );
+        }
+
         // Show the page
-        return View::make('site.purchase.bill',compact('detail'));
+        return View::make('site.purchase.bill',compact('detail', 'retailer'));
     }
     /**
      * Returns all the blog posts.
