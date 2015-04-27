@@ -115,6 +115,11 @@
     							<li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/users') }}}"><span class="glyphicon glyphicon-user"></span> Users</a></li>
     						</ul>
     					</li>
+                        <li class="{{ (Request::is('admin/pages*') ? ' active' : '') }}">
+                            <a href="{{{ URL::to('admin/pages') }}}">
+                                Pages
+                            </a>
+                        </li>
     				</ul>
 
     				<ul class="nav navbar-nav pull-right">
@@ -164,6 +169,7 @@
     <script src="{{asset('assets/js/jquery.colorbox.js')}}"></script>
     <script src="{{asset('assets/js/prettify.js')}}"></script>
     <script src="{{asset('assets/vendor/select2/select2.min.js')}}"></script>
+    <script src="//cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
 
     <script type="text/javascript">
     	$('.wysihtml5').wysihtml5();

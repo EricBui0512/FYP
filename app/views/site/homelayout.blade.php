@@ -460,11 +460,11 @@ FOOTER
         </div>
         <h5>ABOUT US</h5>
         <ul>
-            <li><a href="#">Who are we</a></li>
-            <li><a href="#">Terms and Conditions</a></li>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Why</a></li>
-            <li><a href="#">Career</a></li>
+            <li><a href="{{{ URL::to('helper/who-are-we')}}}">Who are we</a></li>
+            <li><a href="{{{ URL::to('helper/term-condition')}}}">Terms and Conditions</a></li>
+            <li><a href="{{{ URL::to('helper/privacy')}}}">Privacy</a></li>
+            <li><a href="{{{ URL::to('helper/why')}}}">Why</a></li>
+            <li><a href="{{{ URL::to('helper/career')}}}">Career</a></li>
         </ul>
        
     </div>
@@ -475,9 +475,9 @@ FOOTER
         </div>
         <h5>HELP</h5>
         <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">How to buy</a></li>
-            <li><a href="#">Retailer Guide</a></li>
+            <li><a href="{{{ URL::to('helper/faq')}}}">FAQ</a></li>
+            <li><a href="{{{ URL::to('helper/how-to-buy')}}}">How to buy</a></li>
+            <li><a href="{{{ URL::to('helper/retailer-guide')}}}">Retailer Guide</a></li>
         </ul>
     </div>
     <!-- COMPANY PHONE NUMBER -->

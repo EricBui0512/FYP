@@ -23,6 +23,7 @@ Route::model('address', 'Address');
 Route::model('outlet', 'Outlet');
 Route::model('service', 'Service');
 Route::model('company', 'Company');
+Route::model('page', 'Page');
 
 /** ------------------------------------------
  *  Route constraint patterns
@@ -141,6 +142,15 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::get('deals/active/{id}', 'AdminRetailerController@activeDeal');
     Route::get('deals/featured/{id}', 'AdminRetailerController@featuredDeal');
 
+    // page resource
+    Route::get('pages', 'AdminSettingController@index');
+    Route::get('pages/create', 'AdminSettingController@create');
+    Route::post('pages/create', 'AdminSettingController@store');
+    Route::get('pages/{page}/edit', 'AdminSettingController@edit');
+    Route::post('pages/{page}', 'AdminSettingController@update');
+    Route::get('pages/{page}/delete', 'AdminSettingController@delete');
+    Route::post('pages/{page}/delete', 'AdminSettingController@destroy');
+    Route::get('pages/data', 'AdminSettingController@getPages');
     # Admin Dashboard
     Route::controller('/', 'AdminDashboardController');
 
@@ -269,3 +279,4 @@ Route::post('transaction', 'ConsumersController@storeTrans');
 Route::post('image/delete', array( 'as' => 'image.delete', 'uses' => 'OutletsController@deleteImage'));
 Route::get('cities/html/{countryId}', 'SiteController@getHtmlCity');
 Route::get('names', 'SiteController@getListName');
+Route::get('helper/{slug}', 'SiteController@getPage');

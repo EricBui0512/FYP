@@ -78,4 +78,11 @@ class SiteController extends BaseController {
 
         return Response::json($names);
     }
+
+    public function getPage($slug) {
+
+        $page = Page::where('slug', $slug)->first();
+
+        return View::make('site.pages.index', compact('page'));
+    }
 }

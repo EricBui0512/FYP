@@ -459,7 +459,7 @@ class UserController extends BaseController {
     public function postBook(){
         $response = null;
         $Bill = null;
-        
+
         $spa_id = Input::get('spaName');
         $outlet_id = Input::get('spaLocation');
         $service_id = Input::get('serviceName');
@@ -467,7 +467,7 @@ class UserController extends BaseController {
         $apptTime = Input::get('timeSlot');
 
         if (!empty($spa_id) && !empty($outlet_id) &&!empty($service_id) && !empty($apptDate) ) {
-            
+
             $apptDateTime = strtotime($apptDate." ".$apptTime);
             $service = Service::find($service_id);
             $response = array(
@@ -501,7 +501,7 @@ class UserController extends BaseController {
             $Bill->save();
             return View::make('site/user/book',compact('response','Bill'));
         }
-        return Redirect::route('/');
+        return Redirect::to('/');
     }
 
     public function getSpaLocations(){

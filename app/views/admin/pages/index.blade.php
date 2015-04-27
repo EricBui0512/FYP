@@ -11,24 +11,20 @@
 		<h3>
 			{{{ $title }}}
 
-			<!-- <div class="pull-right">
-				<a href="{{{ URL::to('admin/outlets/create') }}}" class="btn btn-small btn-info iframe"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
-			</div> -->
+			<div class="pull-right">
+				<a href="{{{ URL::to('admin/pages/create') }}}" class="btn btn-small btn-info"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+			</div>
 		</h3>
 	</div>
 
-	<table id="outlets" class="table table-striped table-hover">
+	<table id="pages" class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th class="col-md-3">Name</th>
-				<th class="col-md-1">Register</th>
-				<th class="col-md-2">Website</th>
-				<th class="col-md-1">Operation</th>
-				<th class="col-md-1">Rate</th>
-				<th class="col-md-1">Active</th>
-				<th class="col-md-1">Created</th>
-				<th class="col-md-1">Updated</th>
-				<th class="col-md-1">Actions</th>
+				<th class="col-md-1">ID</th>
+				<th class="col-md-4">Slug</th>
+				<th class="col-md-2">Created at</th>
+				<th class="col-md-2">Updated at</th>
+				<th class="col-md-2">Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,9 +35,12 @@
 {{-- Scripts --}}
 @section('scripts')
 	<script type="text/javascript">
+
 		var oTable;
+
 		$(document).ready(function() {
-				oTable = $('#outlets').dataTable( {
+
+			oTable = $('#pages').dataTable( {
 				// "sDom": "<'row'<'col-md-6'l>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
 				"sPaginationType": "bootstrap",
 				"oLanguage": {
@@ -49,7 +48,7 @@
 				},
 				"bProcessing": true,
 		        "bServerSide": true,
-		        "sAjaxSource": "{{ URL::to('admin/outlets/data') }}",
+		        "sAjaxSource": "{{ URL::to('admin/pages/data') }}",
 	     		"fnDrawCallback": function ( oSettings ) {
 		        	$('.container').on('click', '.dataTable .btn-xs, .btn-info.iframe', function() {
 		        		if ($(this).hasClass('btn-danger') || $(this).hasClass('btn-warning')) {
