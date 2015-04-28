@@ -81,7 +81,7 @@ class UserRepository implements IUserRepository
             'contentType' => 'User',
             'action'      => 'Login',
             'description' => 'User log in',
-            'details'     => 'Username: '.$input['username'],
+            'details'     => 'Username: '.$input['email'],
             'updated'     => false
         ]);
 		if (! isset($input['password'])) {
