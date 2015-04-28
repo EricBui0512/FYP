@@ -119,7 +119,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 
     Route::get('retailers/data', 'AdminRetailerController@getData');
     Route::post('retailers/{retailerId}/edit', 'AdminRetailerController@update');
-    Route::get('retailers/{retailerId}/delete', 'AdminRetailerController@getData');
+    Route::get('retailers/{retailerId}/delete', 'AdminRetailerController@delete');
+    Route::post('retailers/{retailerId}/delete', 'AdminRetailerController@destroy');
     Route::resource('retailers', 'AdminRetailerController');
 
     # Service Management

@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:17:58
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-04-28 21:58:46
+ * @Last Modified time: 2015-04-28 22:26:12
  */
 class AdminRetailerController extends AdminController {
 	
@@ -190,6 +190,18 @@ class AdminRetailerController extends AdminController {
 	public function destroyService($service)
 	{
 
+		$deals = Deal::where('service_id', $service->id)->get();
+
+		if ( ! empty($deals)) {
+			$dealIds = [];
+			foreach ($deals as $key => $deal) {
+				array_push( $dealIds, $deal->id);
+			}
+
+			DealTransaction::whereIn('deal_id', $dealIds)->delete();
+
+			Deal::whereIn('id', $dealIds)->delete();
+		}
 		$service->delete();
 
 		return Redirect::to('admin/services');
@@ -314,7 +326,7 @@ class AdminRetailerController extends AdminController {
 	 */
 	public function destroyDeal($id)
 	{
-
+		DealTransaction::where('deal_id', $id)->delete();
 		Deal::destroy( $id );
 
 		return Redirect::to('admin/deals');
