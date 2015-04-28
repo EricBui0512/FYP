@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:17:58
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-03-24 22:03:42
+ * @Last Modified time: 2015-04-28 21:58:46
  */
 class AdminRetailerController extends AdminController {
 	
@@ -64,7 +64,16 @@ class AdminRetailerController extends AdminController {
 		$cats = BusinessCategory::lists( 'name', 'id');
 		return Redirect::to('admin/retailers/' . $retailer->id . '/edit')->with('success','Update retailer');
 	}
+	public function delete( $id )
+    {
+    	$retailer = Retailer::find($id);
+        
+        // Title
+        $title = 'Delete this outlet will delete outlet relate.';
 
+        // Show the page
+        return View::make('admin/retailers/delete', compact('retailer', 'title'));
+    }
 	/**
 	 * Remove the specified outlet from storage.
 	 *
@@ -73,6 +82,8 @@ class AdminRetailerController extends AdminController {
 	 */
 	public function destroy($id)
 	{
+		$outlets = Outlet::where('retailer_id', $id)->get();
+		Outlet::destroy($outlets);
 		Retailer::destroy($id);
 
 		return Redirect::route('admin.retailers.index');

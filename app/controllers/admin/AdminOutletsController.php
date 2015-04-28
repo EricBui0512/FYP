@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:06:32
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-04-28 21:43:26
+ * @Last Modified time: 2015-04-28 22:11:37
  */
 
 class AdminOutletsController extends AdminController {
@@ -104,8 +104,9 @@ class AdminOutletsController extends AdminController {
 	 */
 	public function destroy($outlet)
 	{
+		$id = Input::get('id');
 
-		Outlet::destroy($outlet);
+		Outlet::destroy($outlet, $id);
 
 		return Redirect::to('admin/outlets');
 	}
