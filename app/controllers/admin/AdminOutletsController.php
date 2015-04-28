@@ -110,16 +110,24 @@ class AdminOutletsController extends AdminController {
 		
 		
 		// delete deal
-		$deal = Deal::where('service_id', $service->id)->get();
-		
-		// delete deal transaction
-		DealTransaction::where('deal_id', $deal->id)->destroy();
-
-		$deal->delete();
-
-		$service->delete();
-
-		$outlet->delete();
+		if (count($service)>0) {
+			foreach ($service as $serv) {
+				$deals = Deal::where('service_id', $serv->id)->get();
+				if (count($deals)>0) {
+					foreach ($deals as $deal) {
+						$trans = DealTransaction::where('deal_id', $deal->id)->get();
+						if (count($trans)>0) {
+							foreach ($trans as $tran) {
+								$tran->destroy($tran->id);
+							}
+						}
+						$deal->destroy($deal->id);
+					}
+				}
+				$serv->destroy($serv->id);
+			}
+		}
+		$outlet->destroy($outlet->id);
 
 		return Redirect::to('admin/outlets');
 	}
