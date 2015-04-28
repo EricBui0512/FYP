@@ -14,7 +14,7 @@
                    <th class="col-md-7">Title</th>
                    <th class="col-md-1">Quanity</th>
                    <th class="col-md-2">Total</th>
-                   <th class="col-md-1">Pay</th>         
+                   <th class="col-md-1">Payment Status</th>         
                    <th class="col-md-1">Action</th>         
                 </tr>
              </thead>
@@ -26,9 +26,9 @@
                   <td>{{$transaction->total}}</td>   
                   <td>
                     @if($transaction->payment_status)
-                      Payed
+                      Paid
                     @else
-                      
+                      Unknown
                     @endif
                   </td>   	
                  	<td class="text-center">

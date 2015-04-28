@@ -64,10 +64,10 @@ class PurchaseController extends BaseController {
 	public function payBill($id)
 	{
         // get list outlet active
-        $Bill=DealTransaction::find($id);
+        $bill=DealTransaction::find($id);
        
         // Show the page
-		 return View::make('site.purchase.pay',compact('Bill'));
+		 return View::make('site.purchase.pay',compact('bill'));
 	}
     /**
      * Returns all the blog posts.
@@ -118,19 +118,19 @@ class PurchaseController extends BaseController {
         if ($validator->passes())
         {
             $data=Input::except('_token');
-            $Bill=new DealTransaction();
-            $Bill->deal_id=$data['deal_id'];
-            $Bill->consumer_id=Auth::user()->id;
-            $Bill->consumer_email=Auth::user()->email;
-            $Bill->qty=$data['qty'];
-            $Bill->phone_number=$data['phone_number'];
-            $Bill->amount=$data['amount'];
-            $Bill->total=$data['amount']*$data['qty'];
-             if ($Bill->save())
+            $bill=new DealTransaction();
+            $bill->deal_id=$data['deal_id'];
+            $bill->consumer_id=Auth::user()->id;
+            $bill->consumer_email=Auth::user()->email;
+            $bill->qty=$data['qty'];
+            $bill->phone_number=$data['phone_number'];
+            $bill->amount=$data['amount'];
+            $bill->total=$data['amount']*$data['qty'];
+             if ($bill->save())
             {
                 // var_dump($Bill->id);die;
                // Redirect to the new country page
-                return View::make('site.purchase.pay',compact('Bill'));
+                return View::make('site.purchase.pay',compact('bill'));
             }
             return Redirect::to('purchase/'.$detail->id)->withInput()->withErrors($validator);
         }
