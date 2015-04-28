@@ -52,4 +52,29 @@ class Outlet extends Eloquent {
 
 		return $this->id;
 	}
+
+	public static function destroy( $outlet )
+	{
+		$serviceIds = $dealIds = [];
+		$services = Service::where('outlet_id', $outlet->id)->get();
+		
+		foreach ($services as $key => $service) {
+			array_push($serviceIds, $service->id);
+		}
+		// delete deal
+		$deals = Deal::whereIn('service_id', $serviceIds)->get();
+
+		foreach ($deals as $key => $deal) {
+			array_push($dealIds, $deal->id);
+		}
+		
+		// delete deal transaction
+		DealTransaction::whereIn('deal_id', $dealIds)->delete();
+
+		Deal::whereIn('id', $dealIds)->delete();
+
+		Service::whereIn('id', $serviceIds)->delete();
+
+		$outlet->delete();
+	}
 }

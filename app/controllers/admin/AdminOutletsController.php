@@ -3,7 +3,7 @@
  * @Author: Dung Ho
  * @Date:   2015-02-25 23:06:32
  * @Last Modified by:   Dung Ho
- * @Last Modified time: 2015-04-23 00:11:00
+ * @Last Modified time: 2015-04-28 21:27:19
  */
 
 class AdminOutletsController extends AdminController {
@@ -104,22 +104,7 @@ class AdminOutletsController extends AdminController {
 	 */
 	public function destroy($outlet)
 	{
-		// var_dump($outlet);die;
-		//delete service
-		$service = Service::where('outlet_id', $outlet->id)->get();
-		
-		
-		// delete deal
-		$deal = Deal::where('service_id', $service->id)->get();
-		
-		// delete deal transaction
-		DealTransaction::where('deal_id', $deal->id)->destroy();
-
-		$deal->delete();
-
-		$service->delete();
-
-		$outlet->delete();
+		Outlet::destroy($outlet);
 
 		return Redirect::to('admin/outlets');
 	}
@@ -127,7 +112,7 @@ class AdminOutletsController extends AdminController {
 	public function delete( $outlet )
     {
         // Title
-        $title = 'Delete a service will delete service of outlet';
+        $title = 'Delete this outlet will delete service relate.';
 
         // Show the page
         return View::make('admin/outlets/delete', compact('outlet', 'title'));
