@@ -53,7 +53,7 @@
 	     		"fnDrawCallback": function ( oSettings ) {
 		        	$('.container').on('click', '.dataTable .btn-xs, .btn-info.iframe', function() {
 		        		if ($(this).hasClass('btn-danger') || $(this).hasClass('btn-warning')) {
-		        			$(".iframe").colorbox({iframe:true, width:"300px", height:"200px"});
+		        			$(".iframe").colorbox({iframe:true, width:"600px", height:"200px"});
 		        		} else {
 		        			$(".iframe").colorbox({iframe:true, width:"600px", height:"400px"});
 		        		}

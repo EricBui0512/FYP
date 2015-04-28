@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'debug' => false,
+	'debug' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -118,6 +118,7 @@ return array(
        'Way\Generators\GeneratorsServiceProvider', // Generators
 //        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
        'Intervention\Image\ImageServiceProvider',
+       // 'Regulus\ActivityLog\ActivityLogServiceProvider',
     ),
 
     /*
@@ -192,6 +193,7 @@ return array(
         'Carbon'          => 'Carbon\Carbon', // Carbon
         'Datatables'      => 'Bllim\Datatables\Datatables', // DataTables
         'Image' 		  => 'Intervention\Image\Facades\Image',//image
+        // 'Activity' 			=> 'Regulus\ActivityLog\Models\Activity',
     ),
 
     'available_language' => array('en', 'pt', 'es'),
