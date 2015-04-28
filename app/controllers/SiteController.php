@@ -83,6 +83,15 @@ class SiteController extends BaseController {
 
         $page = Page::where('slug', $slug)->first();
 
+        if (empty($page)) {
+            $page = new Page;
+
+            $page->slug     =   $slug;
+            $page->content  =   "Empty Page -> Please Edit in Admin Section";
+
+            $page->save();
+        }
+
         return View::make('site.pages.index', compact('page'));
     }
 }
