@@ -55,4 +55,14 @@ class RetailerRepository implements IRetailerRepository{
     public function getServiceNames($outlet_id){
         return Service::where('outlet_id', '=', $outlet_id)->get();
     }
+
+    public function createRetailerOnSignUp($user, $data){
+        $retailer = new Retailer;
+
+        $retailer->admin_id     = $user->id;
+        $retailer->category_id  = $data['category'];
+        $retailer->name         = $data['spaname'];
+
+        $retailer->save();
+    }
 }

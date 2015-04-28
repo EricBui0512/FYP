@@ -59,6 +59,12 @@ class UserController extends BaseController {
         $user = $this->userRepo->signup(Input::all());
 
         if ($user->id) {
+            //create a retailer whether user is retailer
+            if( $user->user_type === User::RetailerType )
+            {
+                $this->retailer->createRetailerOnSignUp($user,Input::all());
+            }
+
             if (Config::get('confide::signup_email')) {
                 Mail::queueOn(
                     Config::get('confide::email_queue'),

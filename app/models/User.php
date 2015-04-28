@@ -6,6 +6,10 @@ use Zizaco\Entrust\HasRole;
 use Carbon\Carbon;
 
 class User extends Eloquent implements ConfideUserInterface {
+    const RetailerType = "retailer";
+    const ConsumerType = "user";
+    const SysAdminType = "admin";
+
     use ConfideUser, HasRole;
 
     /**
