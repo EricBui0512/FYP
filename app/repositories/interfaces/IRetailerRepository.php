@@ -7,5 +7,6 @@ interface IRetailerRepository{
 	public function searchSpa($query);
 	public function getSpaLocations($retailer_id);
 	public function getServiceNames($outlet_id);
+	public function createRetailerOnSignUp($user, $data);
 }	
 ?>

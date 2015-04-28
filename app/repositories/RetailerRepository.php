@@ -47,12 +47,36 @@ class RetailerRepository implements IRetailerRepository{
         return $outletsArray;
     }
     public function searchSpa($query){
+        Activity::log([
+            'contentId'   => 0,
+            'contentType' => 'Outlet',
+            'action'      => 'searchSpa',
+            'description' => 'Search an Oultet',
+            'details'     => 'Query: '.$query,
+            'updated'     => false
+        ]);
         return $this->retailer->where('name', 'LIKE', "%".$query."%")->get();
     }
     public function getSpaLocations($retailer_id){
+        Activity::log([
+            'contentId'   => $retailer_id,
+            'contentType' => 'Outlet Location',
+            'action'      => 'GetSpaLocations',
+            'description' => 'Get Locations of Outlets for an Retailer',
+            'details'     => 'Outlet Id: '.$retailer_id,
+            'updated'     => false
+        ]);
         return Outlet::where('retailer_id', '=', $retailer_id)->get();
     }
     public function getServiceNames($outlet_id){
+        Activity::log([
+            'contentId'   => $outlet_id,
+            'contentType' => 'OutletService',
+            'action'      => 'GetServiceNames',
+            'description' => 'Get List Service for an Outlet',
+            'details'     => 'Outlet Id: '.$outlet_id,
+            'updated'     => false
+        ]);
         return Service::where('outlet_id', '=', $outlet_id)->get();
     }
 
@@ -64,5 +88,14 @@ class RetailerRepository implements IRetailerRepository{
         $retailer->name         = $data['spaname'];
 
         $retailer->save();
+
+        Activity::log([
+            'contentId'   => $retailer->id,
+            'contentType' => 'Retailer',
+            'action'      => 'Create',
+            'description' => 'Created a retailer',
+            'details'     => 'Retailer Name: '.$retailer->name,
+            'updated'     => false
+        ]);
     }
 }

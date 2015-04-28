@@ -42,8 +42,8 @@ class DealRepository implements IDealRepository{
     	// 	var_dump($value);
 
     	// }
-    	var_dump($charts);
-die;
+//     	var_dump($charts);
+// die;
     	return $data;
 
     }

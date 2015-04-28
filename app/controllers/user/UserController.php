@@ -57,7 +57,7 @@ class UserController extends BaseController {
     public function postIndex()
     {
         $user = $this->userRepo->signup(Input::all());
-
+       
         if ($user->id) {
             //create a retailer whether user is retailer
             if( $user->user_type === User::RetailerType )

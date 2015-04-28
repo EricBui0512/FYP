@@ -118,7 +118,7 @@ return array(
        'Way\Generators\GeneratorsServiceProvider', // Generators
 //        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
        'Intervention\Image\ImageServiceProvider',
-       // 'Regulus\ActivityLog\ActivityLogServiceProvider',
+      'Regulus\ActivityLog\ActivityLogServiceProvider',
     ),
 
     /*
@@ -193,7 +193,7 @@ return array(
         'Carbon'          => 'Carbon\Carbon', // Carbon
         'Datatables'      => 'Bllim\Datatables\Datatables', // DataTables
         'Image' 		  => 'Intervention\Image\Facades\Image',//image
-        // 'Activity' 			=> 'Regulus\ActivityLog\Models\Activity',
+        'Activity' => 'Regulus\ActivityLog\Activity',
     ),
 
     'available_language' => array('en', 'pt', 'es'),

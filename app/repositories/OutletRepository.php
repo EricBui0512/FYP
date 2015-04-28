@@ -15,6 +15,14 @@ class OutletRepository implements IOutletRepository
     }
 
     public function getTimeSlot($service_id){
+        Activity::log([
+            'contentId'   => $service_id,
+            'contentType' => 'Outlet',
+            'action'      => 'getTimeSlot',
+            'description' => 'getTimeSlot of Service',
+            'details'     => 'Service Id: '.$service_id,
+            'updated'     => false
+        ]);
         $service = Service::find($service_id);
         $outlet = Outlet::find($service->outlet_id);
         $startTime = explode(':',$outlet->startTime);

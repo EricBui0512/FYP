@@ -55,6 +55,15 @@ class UserRepository implements IUserRepository
 		// Save if valid. Password field will be hashed before save
 		$this->save($user);
 
+		 Activity::log([
+            'contentId'   => $user->id,
+            'contentType' => 'User',
+            'action'      => 'SignUp',
+            'description' => 'Created a User',
+            'details'     => 'Username: '.$user->username,
+            'updated'     => true
+        ]);
+
 		return $user;
 	}
 
@@ -67,6 +76,14 @@ class UserRepository implements IUserRepository
 	 */
 	public function login($input)
 	{
+		 Activity::log([
+            'contentId'   => 0,
+            'contentType' => 'User',
+            'action'      => 'Login',
+            'description' => 'User log in',
+            'details'     => 'Username: '.$input['username'],
+            'updated'     => false
+        ]);
 		if (! isset($input['password'])) {
 			$input['password'] = null;
 		}
@@ -132,6 +149,15 @@ class UserRepository implements IUserRepository
 			Confide::destroyForgotPasswordToken($input['token']);
 		}
 
+		Activity::log([
+            'contentId'   => 0,
+            'contentType' => 'User',
+            'action'      => 'resetPassword',
+            'description' => 'User reset password',
+            'details'     => 'Username: '.$input['username'],
+            'updated'     => false
+        ]);
+
 		return $result;
 	}
 
@@ -144,6 +170,14 @@ class UserRepository implements IUserRepository
 	 */
 	public function save(User $instance)
 	{
+		Activity::log([
+            'contentId'   => 0,
+            'contentType' => 'User',
+            'action'      => 'Update',
+            'description' => 'Update user info',
+            'details'     => 'Username: '.$instance->username,
+            'updated'     => false
+        ]);
 		return $instance->save();
 	}
 
